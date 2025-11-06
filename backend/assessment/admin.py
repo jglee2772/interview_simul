@@ -14,3 +14,39 @@ from .models import Assessment, AssessmentQuestion, AssessmentAnswer, Assessment
 # @admin.register(Assessment)
 # class AssessmentAdmin(admin.ModelAdmin):
 #     pass
+
+@admin.register(Assessment)
+class AssessmentAdmin(admin.ModelAdmin):
+    list_display = ("id", "name", "created_at", "is_completed")
+    list_filter = ("is_completed",)
+    search_fields = ("name",)
+
+
+@admin.register(AssessmentQuestion)
+class AssessmentQuestionAdmin(admin.ModelAdmin):
+    list_display = ("number", "dimension", "is_reverse", "text")
+    list_filter = ("dimension", "is_reverse")
+    search_fields = ("text",)
+
+
+@admin.register(AssessmentAnswer)
+class AssessmentAnswerAdmin(admin.ModelAdmin):
+    list_display = ("assessment", "question", "value")
+    list_filter = ("question__dimension",)
+
+
+@admin.register(AssessmentResult)
+class AssessmentResultAdmin(admin.ModelAdmin):
+    list_display = (
+        "assessment",
+        "communication",
+        "responsibility",
+        "problem_solving",
+        "growth",
+        "stress",
+        "adaptation",
+        "attention_check_pass",
+        "exaggeration_flag",
+        "type_label",
+    )
+    list_filter = ("attention_check_pass", "exaggeration_flag")
