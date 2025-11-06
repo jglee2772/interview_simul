@@ -2,6 +2,7 @@
 
 # 수동 배포 스크립트
 # 서버에 SSH 접속 후 이 스크립트를 실행하면 배포됩니다
+# 사용법: ./deployment/manual-deploy.sh
 
 set -e
 

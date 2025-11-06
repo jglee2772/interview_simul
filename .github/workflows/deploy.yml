@@ -22,9 +22,10 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           script: |
-            cd /var/www/interview-simulation/backend
-            source venv/bin/activate
+            cd /var/www/interview-simulation
             git pull origin main
+            cd backend
+            source venv/bin/activate
             pip install -r requirements.txt
             python manage.py migrate
             python manage.py collectstatic --noinput
@@ -57,7 +58,7 @@ jobs:
           username: ${{ secrets.LIGHTSAIL_USER }}
           key: ${{ secrets.LIGHTSAIL_SSH_KEY }}
           source: "frontend/build/*"
-          target: "/var/www/interview-simulation/frontend"
+          target: "/var/www/interview-simulation/frontend/build"
       
       - name: Reload Nginx
         uses: appleboy/ssh-action@v1.0.0

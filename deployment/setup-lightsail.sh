@@ -126,10 +126,16 @@ sudo systemctl enable gunicorn
 
 # MySQL 설정
 echo "🐬 MySQL 설정 중..."
-sudo mysql -e "CREATE DATABASE IF NOT EXISTS interview_simulation CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
-sudo mysql -e "CREATE USER IF NOT EXISTS 'interview_user'@'localhost' IDENTIFIED BY 'your_secure_password_here';"
-sudo mysql -e "GRANT ALL PRIVILEGES ON interview_simulation.* TO 'interview_user'@'localhost';"
-sudo mysql -e "FLUSH PRIVILEGES;"
+echo "⚠️  MySQL 데이터베이스는 수동으로 설정하세요!"
+echo "스크립트 실행 후 다음 명령어로 MySQL 설정:"
+echo ""
+echo "sudo mysql"
+echo "CREATE DATABASE interview_simulation CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;"
+echo "CREATE USER 'interview_user'@'localhost' IDENTIFIED BY 'your_secure_password';"
+echo "GRANT ALL PRIVILEGES ON interview_simulation.* TO 'interview_user'@'localhost';"
+echo "FLUSH PRIVILEGES;"
+echo "EXIT;"
+echo ""
 
 # 방화벽 설정 (필요시)
 echo "🔥 방화벽 설정 중..."
