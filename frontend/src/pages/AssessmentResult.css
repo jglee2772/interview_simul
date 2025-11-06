@@ -1,0 +1,24 @@
+/**
+ * 파일: AssessmentResult.css
+ * 역할: 인적성검사 결과 페이지 스타일 작성
+ * 설명:
+ * - AssessmentResult.js 컴포넌트의 스타일을 정의합니다
+ * - 결과 카드, 차트, 그래프 등의 스타일을 작성합니다
+ */
+
+/* 인적성검사 결과 페이지 스타일 작성 */
+.assessment-result {
+  padding: 2rem;
+}
+
+.assessment-result-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.assessment-result-container h1 {
+  font-size: 2rem;
+  color: #333;
+}
+

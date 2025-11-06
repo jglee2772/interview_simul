@@ -1,0 +1,23 @@
+/**
+ * 파일: Assessment.css
+ * 역할: 인적성검사 페이지 스타일 작성
+ * 설명:
+ * - Assessment.js 컴포넌트의 스타일을 정의합니다
+ * - 질문 카드, 답변 선택 버튼, 진행 바 등의 스타일을 작성합니다
+ */
+
+/* 인적성검사 페이지 스타일 작성 */
+.assessment {
+  padding: 2rem;
+}
+
+.assessment-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.assessment-container h1 {
+  font-size: 2rem;
+  color: #333;
+}

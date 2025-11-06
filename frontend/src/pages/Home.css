@@ -1,0 +1,23 @@
+/**
+ * 파일: Home.css
+ * 역할: 메인 홈페이지 스타일 작성
+ * 설명:
+ * - Home.js 컴포넌트의 스타일을 정의합니다
+ * - CSS 클래스 선택자를 사용하여 스타일링합니다
+ */
+
+/* 홈페이지 스타일 작성 */
+.home {
+  padding: 2rem;
+}
+
+.home-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.home-container h1 {
+  font-size: 2rem;
+  color: #333;
+}

@@ -1,0 +1,136 @@
+면접 시뮬레이션 웹사이트 - 프로젝트 파일 트리
+==================================================
+
+interview-simulation-web/
+│
+├── .gitignore                          # Git 제외 파일 목록
+│
+├── README.md                            # 프로젝트 소개
+├── SETUP.md                             # 개발 환경 설정 가이드
+├── PROJECT_GUIDE.md                     # 파일별 역할 가이드
+├── PROJECT_TREE.txt                     # 프로젝트 파일 트리 (이 파일)
+│
+├── frontend/                            # React 프론트엔드
+│   ├── package.json                     # NPM 패키지 설정
+│   ├── public/                          # 정적 파일
+│   │   └── index.html                   # HTML 템플릿
+│   │
+│   └── src/                             # 소스 코드
+│       ├── index.js                     # React 앱 진입점
+│       ├── index.css                    # 전역 스타일
+│       ├── App.js                       # 메인 앱 컴포넌트 및 라우팅
+│       ├── App.css                      # 메인 앱 스타일
+│       │
+│       ├── components/                  # 재사용 가능한 컴포넌트
+│       │   ├── Navbar.js                # 네비게이션 바 컴포넌트
+│       │   └── Navbar.css               # 네비게이션 바 스타일
+│       │
+│       ├── pages/                       # 페이지 컴포넌트
+│       │   ├── Home.js                  # 메인 홈페이지
+│       │   ├── Home.css                 # 홈페이지 스타일
+│       │   ├── Interview.js             # 면접 시뮬레이션 페이지
+│       │   ├── Interview.css            # 면접 시뮬레이션 스타일
+│       │   ├── Assessment.js            # 인적성검사 페이지
+│       │   ├── Assessment.css           # 인적성검사 스타일
+│       │   ├── AssessmentResult.js      # 인적성검사 결과 페이지
+│       │   ├── AssessmentResult.css     # 인적성검사 결과 스타일
+│       │   ├── Resume.js                # 이력서 작성 페이지
+│       │   └── Resume.css               # 이력서 작성 스타일
+│       │
+│       └── services/                    # API 서비스 레이어
+│           ├── apiConfig.js             # Axios 공통 설정
+│           ├── interviewAPI.js          # 면접 시뮬레이션 API
+│           ├── assessmentAPI.js         # 인적성검사 API
+│           ├── resumeAPI.js             # 이력서 API
+│           ├── authAPI.js               # 인증 API
+│           ├── api.js                   # 통합 API 서비스 (레거시 호환용)
+│           └── README.md                # API 서비스 사용 가이드
+│
+├── backend/                             # Django 백엔드
+│   ├── manage.py                        # Django 관리 스크립트
+│   ├── requirements.txt                 # Python 패키지 목록
+│   ├── .env                             # 환경 변수 파일 (로컬에서 생성)
+│   ├── .env.example                     # 환경 변수 예시 파일
+│   │
+│   ├── config/                          # Django 프로젝트 설정
+│   │   ├── __init__.py                  # 패키지 초기화 (pymysql 설정)
+│   │   ├── settings.py                  # Django 프로젝트 설정
+│   │   ├── urls.py                      # 메인 URL 라우팅 설정
+│   │   ├── wsgi.py                      # WSGI 설정
+│   │   └── asgi.py                      # ASGI 설정
+│   │
+│   ├── interview/                       # 면접 시뮬레이션 앱
+│   │   ├── __init__.py
+│   │   ├── apps.py                      # 앱 설정
+│   │   ├── models.py                    # 데이터베이스 모델
+│   │   ├── views.py                     # API 뷰(컨트롤러)
+│   │   ├── serializers.py               # API 시리얼라이저
+│   │   ├── urls.py                      # URL 라우팅
+│   │   ├── admin.py                     # Django Admin 설정
+│   │   └── migrations/                  # 데이터베이스 마이그레이션
+│   │       ├── __init__.py
+│   │       └── 0001_initial.py
+│   │
+│   ├── assessment/                      # 인적성검사 앱
+│   │   ├── __init__.py
+│   │   ├── apps.py                      # 앱 설정
+│   │   ├── models.py                    # 데이터베이스 모델
+│   │   ├── views.py                     # API 뷰(컨트롤러)
+│   │   ├── serializers.py               # API 시리얼라이저
+│   │   ├── urls.py                      # URL 라우팅
+│   │   ├── admin.py                     # Django Admin 설정
+│   │   └── migrations/                  # 데이터베이스 마이그레이션
+│   │       ├── __init__.py
+│   │       └── 0001_initial.py
+│   │
+│   ├── resume/                          # 이력서 앱
+│   │   ├── __init__.py
+│   │   ├── apps.py                      # 앱 설정
+│   │   ├── models.py                    # 데이터베이스 모델
+│   │   ├── views.py                     # API 뷰(컨트롤러)
+│   │   ├── serializers.py               # API 시리얼라이저
+│   │   ├── urls.py                      # URL 라우팅
+│   │   ├── admin.py                     # Django Admin 설정
+│   │   └── migrations/                  # 데이터베이스 마이그레이션
+│   │       ├── __init__.py
+│   │       └── 0001_initial.py
+│   │
+│   └── accounts/                        # 인증 앱
+│       ├── __init__.py
+│       ├── apps.py                      # 앱 설정
+│       ├── views.py                     # API 뷰(컨트롤러)
+│       └── urls.py                      # URL 라우팅
+│
+└── deployment/                          # 배포 스크립트
+    ├── README.md                        # 배포 가이드
+    ├── setup-lightsail.sh               # AWS Lightsail 초기 설정 스크립트
+    └── manual-deploy.sh                 # 수동 배포 스크립트
+
+
+.github/                                  # GitHub 설정
+└── workflows/                           # GitHub Actions
+    └── deploy.yml                       # 자동 배포 워크플로우
+
+
+==================================================
+주요 파일 설명
+==================================================
+
+프론트엔드 (React):
+- src/pages/: 5개 페이지 컴포넌트 (Home, Interview, Assessment, AssessmentResult, Resume)
+- src/services/: API 서비스 레이어 (각 페이지별로 분리)
+- src/components/: 공통 컴포넌트 (Navbar)
+
+백엔드 (Django):
+- config/: Django 프로젝트 설정
+- interview/: 면접 시뮬레이션 관련 API
+- assessment/: 인적성검사 관련 API
+- resume/: 이력서 관련 API
+- accounts/: 인증 관련 API
+
+배포:
+- deployment/: AWS Lightsail 배포 관련 스크립트
+- .github/workflows/: GitHub Actions 자동 배포 설정
+
+==================================================
+

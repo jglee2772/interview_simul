@@ -1,0 +1,47 @@
+/**
+ * 파일: Navbar.css
+ * 역할: 네비게이션 바 스타일 작성
+ * 설명:
+ * - Navbar.js 컴포넌트의 스타일을 정의합니다
+ * - 네비게이션 바의 레이아웃, 링크 스타일 등을 작성합니다
+ */
+
+/* 네비게이션 바 스타일 작성 */
+.navbar {
+  background-color: #2c3e50;
+  padding: 1rem 0;
+}
+
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar-logo {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-link {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.navbar-link:hover {
+  color: #3498db;
+}

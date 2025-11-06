@@ -1,0 +1,23 @@
+/**
+ * 파일: Interview.css
+ * 역할: 면접 시뮬레이션 페이지 스타일 작성
+ * 설명:
+ * - Interview.js 컴포넌트의 스타일을 정의합니다
+ * - 채팅 인터페이스, 메시지 버블, 입력창 등의 스타일을 작성합니다
+ */
+
+/* 면접 시뮬레이션 페이지 스타일 작성 */
+.interview {
+  padding: 2rem;
+}
+
+.interview-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.interview-container h1 {
+  font-size: 2rem;
+  color: #333;
+}

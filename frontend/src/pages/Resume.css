@@ -1,0 +1,24 @@
+/**
+ * 파일: Resume.css
+ * 역할: 이력서 작성 페이지 스타일 작성
+ * 설명:
+ * - Resume.js 컴포넌트의 스타일을 정의합니다
+ * - 폼 입력 필드, 버튼, 레이아웃 등의 스타일을 작성합니다
+ */
+
+/* 이력서 작성 페이지 스타일 작성 */
+.resume {
+  padding: 2rem;
+}
+
+.resume-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.resume-container h1 {
+  font-size: 2rem;
+  color: #333;
+}
+
