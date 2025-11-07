@@ -16,6 +16,7 @@ const Home = () => {
     <div className="home">
       <div className="home-container">
         <h1>이 페이지는 홈페이지입니다</h1>
+        <p>안뇽</p>
       </div>
     </div>
   );
