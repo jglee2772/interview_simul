@@ -3,45 +3,97 @@
  * 역할: 네비게이션 바 스타일 작성
  * 설명:
  * - Navbar.js 컴포넌트의 스타일을 정의합니다
- * - 네비게이션 바의 레이아웃, 링크 스타일 등을 작성합니다
+ * - 상단형을 왼쪽 사이드바(세로 탭) 형태로 변경
  */
 
-/* 네비게이션 바 스타일 작성 */
+/* 왼쪽 고정 사이드바 */
 .navbar {
-  background-color: #2c3e50;
-  padding: 1rem 0;
-}
-
-.navbar-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;               /* 사이드바 너비 */
+  height: 100vh;              /* 화면 전체 높이 */
+  background-color: #2c3e50;  /* 진한 남색 배경 */
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
+  padding-top: 2rem;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* 사이드바 내부 컨테이너 */
+.navbar-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+/* 로고 영역 */
 .navbar-logo {
   color: white;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
+  margin-bottom: 2rem;
+  text-align: center;
 }
 
+/* 메뉴 목록 */
 .navbar-menu {
   display: flex;
+  flex-direction: column;  /* 세로 정렬 */
   list-style: none;
-  gap: 2rem;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
 
+/* 메뉴 링크 */
 .navbar-link {
+  display: block;
   color: white;
   text-decoration: none;
-  transition: color 0.3s;
+  padding: 1rem 1.5rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+/* 마우스 오버 시 */
 .navbar-link:hover {
-  color: #3498db;
+  background-color: #34495e;
+  color: #1abc9c;
+}
+
+/* 현재 페이지 활성화 상태 */
+.active .navbar-link {
+  background-color: #1abc9c;
+  color: white;
+}
+
+/* 본문이 사이드바 옆으로 밀리도록 */
+body {
+  margin-left: 220px;
+  background-color: #f5f6fa;
+  font-family: 'Noto Sans KR', sans-serif;
+}
+
+/* 모바일 화면용 (선택사항) */
+@media (max-width: 768px) {
+  .navbar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem 0;
+    position: relative;
+  }
+
+  body {
+    margin-left: 0;
+  }
+
+  .navbar-menu {
+    flex-direction: row;
+    justify-content: center;
+  }
 }

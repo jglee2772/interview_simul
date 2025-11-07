@@ -9,32 +9,34 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './Navbar.css';
 
 const Navbar = () => {
-  return (
-    <nav className="navbar">
+  const location = useLocation();
+
+ return (
+    <div className="navbar"> {/* 기존 nav → div로 변경 (CSS 매칭 명확하게) */}
       <div className="navbar-container">
         <Link to="/" className="navbar-logo">
           면접 시뮬레이션
         </Link>
         <ul className="navbar-menu">
-          <li>
+          <li className={location.pathname === '/' ? 'active' : ''}>
             <Link to="/" className="navbar-link">홈</Link>
           </li>
-          <li>
+          <li className={location.pathname === '/interview' ? 'active' : ''}>
             <Link to="/interview" className="navbar-link">면접 시뮬레이션</Link>
           </li>
-          <li>
+          <li className={location.pathname === '/assessment' ? 'active' : ''}>
             <Link to="/assessment" className="navbar-link">인적성검사</Link>
           </li>
-          <li>
+          <li className={location.pathname === '/resume' ? 'active' : ''}>
             <Link to="/resume" className="navbar-link">이력서 작성</Link>
           </li>
         </ul>
       </div>
-    </nav>
+    </div>
   );
 };
 
