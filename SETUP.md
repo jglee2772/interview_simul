@@ -9,6 +9,10 @@
 
 ## 로컬 개발 환경 설정
 
+> **참고**  
+> 백엔드 관련 명령은 항상 저장소 루트에서 `cd backend` 후 실행합니다.  
+> 프론트엔드는 `cd frontend` 후 진행합니다.
+
 ### 1. 사전 요구사항
 
 - Python 3.10 이상
@@ -58,16 +62,10 @@ EXIT;
 REM 백엔드 디렉토리로 이동
 cd backend
 
-REM 가상환경 생성
+REM (선택) 기존 가상환경 재사용 또는 새로 생성
 python -m venv venv
-
-REM 가상환경 활성화
 venv\Scripts\activate
-
-REM pip 업그레이드
 python -m pip install --upgrade pip
-
-REM 패키지 설치
 pip install -r requirements.txt
 ```
 
@@ -79,13 +77,9 @@ pip install -r requirements.txt
 # 백엔드 디렉토리로 이동
 cd backend
 
-# 가상환경 생성
+# (선택) 가상환경 생성 및 활성화
 python3 -m venv venv
-
-# 가상환경 활성화
 source venv/bin/activate
-
-# 패키지 설치
 pip install -r requirements.txt
 ```
 

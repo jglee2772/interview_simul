@@ -34,7 +34,7 @@ interview-simulation-web/
 │   │   └── index.js       # 진입점
 │   └── package.json
 │
-├── backend/               # Django 백엔드
+├── backend/               # Django 백엔드 (전체 Django 프로젝트는 이 디렉터리 하나에 위치)
 │   ├── config/            # Django 설정
 │   ├── interview/         # 면접 시뮬레이션 앱
 │   ├── assessment/        # 인적성검사 앱
@@ -58,6 +58,10 @@ interview-simulation-web/
 ### Backend
 ```bash
 cd backend
+# (선택) 가상환경 생성 및 활성화
+# python -m venv venv
+# venv\Scripts\activate  # Windows
+# source venv/bin/activate  # macOS/Linux
 conda create -n interview python=3.12
 conda activate interview
 pip install -r requirements.txt
