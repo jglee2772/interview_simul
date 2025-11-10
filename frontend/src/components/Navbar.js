@@ -49,7 +49,7 @@ const Navbar = () => {
             }`}
             onClick={toggleMenu}
           >
-            면접 시뮬레이션
+            시뮬레이션
           </Link>
           <Link
             to="/assessment"

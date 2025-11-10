@@ -44,60 +44,76 @@
   cursor: pointer;
 }
 
-/* 사이드 메뉴 오버레이 */
+/* 사이드 오버레이 전체 */
 .overlay {
   position: fixed;
   top: 0;
-  left: -260px; /* 기본적으로 숨김 */
-  width: 260px;
+  left: -200px;
+  width: 100px;
   height: 100vh;
-  background: linear-gradient(180deg, #0b132b 0%, #1c2541 100%);
+  background: linear-gradient(180deg, #0e1a3a 0%, #1a2755 100%);
   box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
   transition: left 0.35s ease;
   z-index: 30;
+  border-top-right-radius: 16px;
+  border-bottom-right-radius: 16px;
 }
 
-/* 열렸을 때 */
 .overlay.open {
   left: 0;
 }
 
-/* 메뉴 내용 */
+/* 메뉴 리스트 */
 .overlay-content {
   display: flex;
   flex-direction: column;
-  margin-top: 80px;
+  margin-top: 65px;
+  align-items: center;
+  gap: 20px;
 }
 
+/* 메뉴 항목 (원형 버튼 스타일) */
 .overlay-link {
-  color: #e0e0e0;
-  text-decoration: none;
-  padding: 1rem 2rem;
-  font-size: 1.1rem;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  background-color: #1c2750;
+  border: 2px solid transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #f0f3fa;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
 }
 
+/* hover 시 강조 */
 .overlay-link:hover {
-  background-color: #3a506b;
-  color: #f6c90e;
+  background-color: #f0cf48;
+  color: #0e1a3a;
+  transform: scale(1.1);
 }
 
+/* 활성화(현재 페이지) */
 .overlay-link.active {
   background-color: #f6c90e;
-  color: #0b132b;
-  font-weight: 700;
+  color: #0e1a3a;
+  box-shadow: 0 0 12px rgba(246, 201, 14, 0.6);
 }
 
-/* 오버레이 배경 (클릭 시 닫힘) */
+/* 클릭 시 어두운 배경 (메뉴 외부 영역) */
 .overlay-bg {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgba(0, 0, 0, 0.3);
   z-index: 25;
 }
+
 
 /* 본문 아래로 밀림 방지 */
 body {
