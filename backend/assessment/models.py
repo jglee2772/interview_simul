@@ -26,10 +26,15 @@ class Assessment(models.Model):
     # 인적성검사 세션 필드 정의
     name = models.CharField(
         max_length=30,
-        help_text="검사 응시자 이름"
+        help_text="검사 응시자 이름",
+        null=True,
+        blank=True
     )
-    created_at = models.DateTimeField(auto_now_add=True)
-    completed_at = models.DateTimeField(null=True, blank=True)
+    # 생성 시각: 새로 만들어질 때 자동으로 now, 기존 row도 null 허용
+    created_at = models.DateTimeField(null=True, blank=True)
+    # 검사 완료 시각: 우리가 계산 끝낸 순간에 수동으로 채울 거라 auto_now_add 안 씀
+    completed_at = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    # 완료 여부 플래그
     is_completed = models.BooleanField(default=False)
 
     def __str__(self):
@@ -160,12 +165,12 @@ class AssessmentAnswer(models.Model):
     assessment = models.ForeignKey(
         Assessment,
         related_name="answers",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     question = models.ForeignKey(
         AssessmentQuestion,
         related_name="answers",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     value = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)],
@@ -191,7 +196,7 @@ class AssessmentResult(models.Model):
     assessment = models.OneToOneField(
         Assessment,
         related_name="result",
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
 
     # 6개 역량 점수 (1.00 ~ 5.00)

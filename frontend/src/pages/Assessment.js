@@ -38,11 +38,12 @@ const Assessment = () => {
       setLoading(true);
       setError('');
 
-      // 백엔드: POST /api/assessment/start/ 호출한다고 가정
-      // 예: assessmentAPI.start(name) → { assessment, questions }
-      const res = await assessmentAPI.start(name);
+      // 🔥 assessmentAPI.js 기준: startAssessment(data) 사용
+      // data 형태: { name: '홍길동' }
+      const res = await assessmentAPI.startAssessment({ name });
 
-      const { assessment, questions } = res;
+      // 🔥 axios 응답의 실제 JSON은 res.data 안에 있음
+      const { assessment, questions } = res.data;
 
       setAssessmentId(assessment.id);
       setQuestions(questions);
@@ -74,15 +75,17 @@ const Assessment = () => {
       setLoading(true);
       setError('');
 
-      // 백엔드: POST /api/assessment/{id}/submit/
-      // 예: assessmentAPI.submit(assessmentId, answers)
-      const res = await assessmentAPI.submit(assessmentId, answers);
+      // 🔥 assessmentAPI.js 기준: submitAnswer(assessmentId, answers) 사용
+      const res = await assessmentAPI.submitAnswer(assessmentId, answers);
 
+      const payload = res.data; // 백엔드에서 내려준 JSON 전체
       setSubmitted(true);
-      setResult(res.result || res); // 구현에 따라 result 안에 또 들어 있을 수 있음
+      // 백엔드 응답이 { message: ..., result: {...} } 형태라면 result만 꺼내 쓰고,
+      // 아니라면 payload 통째로 저장
+      setResult(payload.result || payload);
 
       // 필요하면 결과 페이지로 이동
-      // navigate(`/assessment/${assessmentId}/result`, { state: res.result });
+      // navigate(`/assessment/${assessmentId}/result`, { state: payload.result });
 
     } catch (e) {
       console.error(e);
