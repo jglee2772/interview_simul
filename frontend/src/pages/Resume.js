@@ -30,7 +30,7 @@ const Resume = () => {
   return (
     <div className="resume">
       <div className="resume-container">
-        <h1>이 페이지는 이력서 작성 페이지입니다</h1>
+        <h1>이 페이지는 이력서 작성 페이지입니다!</h1>
       </div>
     </div>
   );
