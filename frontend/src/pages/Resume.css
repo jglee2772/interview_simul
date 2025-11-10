@@ -7,18 +7,133 @@
  */
 
 /* 이력서 작성 페이지 스타일 작성 */
-.resume {
-  padding: 2rem;
-}
-
+/* 페이지 전체 레이아웃 */
 .resume-container {
-  max-width: 1200px;
-  margin: 0 auto;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6fa;
+  padding: 60px 80px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.resume-container h1 {
+/* 제목 영역 */
+.resume-title {
   font-size: 2rem;
-  color: #333;
+  font-weight: 700;
+  color: #0e1a3a;
+  margin-bottom: 40px;
+  border-bottom: 3px solid #f6c90e;
+  padding-bottom: 10px;
 }
 
+/* 폼 전체 */
+.resume-form {
+  width: 100%;
+  max-width: 800px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* 각 입력 구역 */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* 섹션 제목 */
+.form-section h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1a2755;
+  margin-bottom: 8px;
+  border-left: 5px solid #f6c90e;
+  padding-left: 10px;
+}
+
+/* 입력 필드 */
+.resume-input,
+.resume-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1.8px solid #d0d4e0;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+  font-family: "Segoe UI", sans-serif;
+}
+
+.resume-input:focus,
+.resume-textarea:focus {
+  border-color: #f6c90e;
+  box-shadow: 0 0 6px rgba(246, 201, 14, 0.4);
+}
+
+/* textarea 전용 */
+.resume-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* 추가 버튼 (경력/자격증 항목 추가 등) */
+.add-btn {
+  align-self: flex-start;
+  padding: 8px 14px;
+  background-color: #f6c90e;
+  border: none;
+  color: #0e1a3a;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.add-btn:hover {
+  background-color: #0e1a3a;
+  color: #f6c90e;
+}
+
+/* 제출 버튼 */
+.submit-btn {
+  margin-top: 30px;
+  padding: 14px 20px;
+  background-color: #0e1a3a;
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  align-self: center;
+  transition: all 0.3s ease;
+}
+
+.submit-btn:hover {
+  background-color: #f6c90e;
+  color: #0e1a3a;
+  box-shadow: 0 0 10px rgba(246, 201, 14, 0.6);
+}
+
+/* 반응형 (태블릿 이하) */
+@media (max-width: 768px) {
+  .resume-container {
+    padding: 40px 20px;
+  }
+
+  .resume-form {
+    padding: 30px 20px;
+  }
+
+  .resume-title {
+    font-size: 1.6rem;
+  }
+}
