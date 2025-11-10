@@ -1,125 +1,99 @@
 /**
  * 파일: Navbar.css
- * 역할: 네비게이션 바 스타일 작성
- * 설명:
- * - Navbar.js 컴포넌트의 스타일을 정의합니다
- * - 상단형을 왼쪽 사이드바(세로 탭) 형태로 변경
+ * 역할: 왼쪽 고정 사이드바 스타일 정의
+ * 기능:
+ * - 홈 버튼 상단 고정
+ * - 나머지 메뉴 중앙 정렬
+ * - hover 시 이모지 → 텍스트 전환
  */
 
-/**
- * 파일: Navbar.css
- * 스타일: 사이드 오버레이 (햄버거 클릭 시 왼쪽 슬라이드)
- * 테마: 딥 블루 & 골드 (강인한 프로페셔널)
- */
-
-/* 상단 고정바 */
-.topbar {
+/* 왼쪽 고정형 사이드바 */
+.sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 60px;
-  background-color: #0b132b;
-  display: flex;
-  align-items: center;
-  padding: 0 1rem;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  z-index: 20;
-}
-
-/* 상단바 제목 */
-.topbar-title {
-  color: #f6c90e;
-  font-weight: 700;
-  font-size: 1.2rem;
-  margin-left: 10px;
-}
-
-/* 햄버거 버튼 */
-.menu-btn {
-  background: none;
-  border: none;
-  color: #f6c90e;
-  font-size: 1.8rem;
-  cursor: pointer;
-}
-
-/* 사이드 오버레이 전체 */
-.overlay {
-  position: fixed;
-  top: 0;
-  left: -200px;
-  width: 100px;
+  width: 130px;
   height: 100vh;
   background: linear-gradient(180deg, #0e1a3a 0%, #1a2755 100%);
-  box-shadow: 3px 0 10px rgba(0, 0, 0, 0.3);
-  transition: left 0.35s ease;
-  z-index: 30;
-  border-top-right-radius: 16px;
-  border-bottom-right-radius: 16px;
-}
-
-.overlay.open {
-  left: 0;
-}
-
-/* 메뉴 리스트 */
-.overlay-content {
   display: flex;
   flex-direction: column;
-  margin-top: 65px;
   align-items: center;
-  gap: 20px;
+  justify-content: center;
+  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+  z-index: 100;
 }
 
-/* 메뉴 항목 (원형 버튼 스타일) */
-.overlay-link {
-  width: 55px;
-  height: 55px;
+/* 홈 버튼 위치 */
+.sidebar-top {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* 메뉴 버튼 컨테이너 */
+.sidebar-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+  margin-top: 150px; /* 홈 아래 여백 */
+}
+
+/* 둥근 원형 버튼 */
+.sidebar-link {
+  position: relative;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background-color: #1c2750;
-  border: 2px solid transparent;
+  color: #f0f3fa;
+  text-decoration: none;
+  font-size: 2.4rem; /* 이모지 크기 */
+  font-weight: 600;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #f0f3fa;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-align: center;
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
+  overflow: hidden;
 }
 
-/* hover 시 강조 */
-.overlay-link:hover {
-  background-color: #f0cf48;
+/* hover 시 색상 변화 */
+.sidebar-link:hover {
+  background-color: #f6c90e;
   color: #0e1a3a;
   transform: scale(1.1);
 }
 
-/* 활성화(현재 페이지) */
-.overlay-link.active {
+/* 활성화된 버튼 */
+.sidebar-link.active {
   background-color: #f6c90e;
   color: #0e1a3a;
-  box-shadow: 0 0 12px rgba(246, 201, 14, 0.6);
+  box-shadow: 0 0 18px rgba(246, 201, 14, 0.6);
 }
 
-/* 클릭 시 어두운 배경 (메뉴 외부 영역) */
-.overlay-bg {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 25;
+/* 내부 이모지 & 텍스트 */
+.sidebar-link .emoji {
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-
-/* 본문 아래로 밀림 방지 */
-body {
-  font-family: "Noto Sans KR", sans-serif;
-  background-color: #f8f9fb;
-  margin: 0;
-  padding-top: 60px; /* 상단바 높이만큼 띄움 */
+.sidebar-link .label {
+  position: absolute;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #0e1a3a;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
+/* hover 시 전환 효과 */
+.sidebar-link:hover .emoji {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.sidebar-link:hover .label {
+  opacity: 1;
+  transform: translateY(0);
+}
