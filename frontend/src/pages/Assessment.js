@@ -12,6 +12,66 @@ import React, { useState } from 'react';
 import assessmentAPI from '../services/assessmentAPI';
 import { useNavigate } from 'react-router-dom';
 import './Assessment.css';
+import RadarChart from '../components/RadarChart';
+
+const TRAIT_MAP = {
+  communication: '의사소통',
+  responsibility: '책임감',
+  problem_solving: '문제해결',
+  growth: '성장성',
+  stress: '스트레스 내성',
+  adaptation: '적응력',
+};
+
+function getTopTraitLabel(result) {
+  if (!result) return '';
+
+  const entries = [
+    ['communication', Number(result.communication)],
+    ['responsibility', Number(result.responsibility)],
+    ['problem_solving', Number(result.problem_solving)],
+    ['growth', Number(result.growth)],
+    ['stress', Number(result.stress)],
+    ['adaptation', Number(result.adaptation)],
+  ];
+
+  const valid = entries.filter(([, v]) => !isNaN(v));
+  if (!valid.length) return '';
+
+  const [bestKey] = valid.sort((a, b) => b[1] - a[1])[0];
+  return TRAIT_MAP[bestKey] || '';
+}
+
+function getSummaryText(result) {
+  if (!result) return '';
+
+  const stress = Number(result.stress);
+  const adaptation = Number(result.adaptation);
+  const comm = Number(result.communication);
+
+  const parts = [];
+
+  if (comm >= 4) {
+    parts.push('타인과의 소통에서 강점을 보이며 팀 내 협업에 유리한 편입니다.');
+  }
+  if (adaptation >= 4) {
+    parts.push('새로운 환경과 변화에 빠르게 적응하는 경향이 있습니다.');
+  }
+  if (stress <= 2.5) {
+    parts.push('스트레스 상황에서는 부담을 크게 느낄 수 있어, 휴식과 환경 조절이 중요합니다.');
+  } else if (stress >= 4) {
+    parts.push('압박 상황에서도 비교적 안정적인 모습을 유지하는 편입니다.');
+  }
+
+  if (parts.length === 0) {
+    return '각 역량이 전반적으로 균형 있게 분포되어 있어, 다양한 역할에 두루 적응할 수 있는 유형입니다.';
+  }
+
+  return parts.join(' ');
+}
+
+
+
 
 const Assessment = () => {
   const navigate = useNavigate();
@@ -75,7 +135,7 @@ const Assessment = () => {
       setLoading(true);
       setError('');
 
-      // 🔥 assessmentAPI.js 기준: submitAnswer(assessmentId, answers) 사용
+      // assessmentAPI.js 기준: submitAnswer(assessmentId, answers) 사용
       const res = await assessmentAPI.submitAnswer(assessmentId, answers);
 
       const payload = res.data; // 백엔드에서 내려준 JSON 전체
@@ -140,71 +200,125 @@ const Assessment = () => {
     );
   }
 
-  // 검사 진행 중 화면
-  if (!submitted && assessmentId && questions.length > 0) {
-    const currentQuestion = questions[currentIndex];
-    const currentValue = answers[currentIndex];
+// 검사 진행 중 화면
+if (!submitted && assessmentId && questions.length > 0) {
+  const currentQuestion = questions[currentIndex];
+  const currentValue = answers[currentIndex];
 
-    return (
-      <div className="assessment">
-        <div className="assessment-container">
-          <h1>인적성 검사</h1>
-          <p>
-            <strong>{name}</strong> 님, 총 {questions.length}문항 중{' '}
-            {currentIndex + 1}번 문항입니다.
+  return (
+    <div className="assessment">
+      <div className="assessment-container">
+        <h1>인적성 검사</h1>
+        <p>
+          <strong>{name}</strong> 님, 총 {questions.length}문항 중{' '}
+          {currentIndex + 1}번 문항입니다.
+        </p>
+
+        <div className="question-box">
+          <p className="question-text">
+            {currentQuestion.number}. {currentQuestion.text}
           </p>
 
-          <div className="question-box">
-            <p>
-              {currentQuestion.number}. {currentQuestion.text}
-            </p>
+          <div className="answer-options">
+            {['전혀 아니다', '아니다', '보통이다', '그렇다', '매우 그렇다'].map(
+              (label, index) => {
+                const value = index + 1; // 1~5 점수
 
-            <div className="answer-options">
-              {[1, 2, 3, 4, 5].map((val) => (
-                <button
-                  key={val}
-                  className={currentValue === val ? 'selected' : ''}
-                  onClick={() => handleAnswer(val)}
-                >
-                  {val}
-                </button>
-              ))}
-            </div>
+                return (
+                  <button
+                    key={value}
+                    type="button"
+                    className={`scale-button ${
+                      currentValue === value ? 'selected' : ''
+                    }`}
+                    onClick={() => handleAnswer(value)}
+                  >
+                    {label}
+                  </button>
+                );
+              }
+            )}
           </div>
 
-          {error && <p className="error-text">{error}</p>}
+        </div>
 
-          <div className="navigation">
-            <p>
-              진행 상황: {currentIndex + 1} / {questions.length}
-            </p>
-            <button onClick={nextQuestion} disabled={loading}>
-              {currentIndex === questions.length - 1
-                ? '검사 제출하기'
-                : '다음 문항'}
-            </button>
+        {error && <p className="error-text">{error}</p>}
+
+        <div className="navigation">
+          <p>
+            진행 상황: {currentIndex + 1} / {questions.length}
+          </p>
+          <button onClick={nextQuestion} disabled={loading}>
+            {currentIndex === questions.length - 1 ? '검사 제출하기' : '다음 문항'}
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+
+
+// 제출 완료 후 결과 요약(간단 버전)
+if (submitted && result) {
+  return (
+    <div className="assessment">
+      <div className="assessment-container assessment-result">
+        <h1>인적성 검사 결과</h1>
+        <p>
+          <strong>{name || '응시자'}</strong> 님의 검사 결과입니다.
+        </p>
+
+        {/* 위: 좌측 설명 + 우측 그래프 */}
+        <div className="result-main">
+          {/* 왼쪽: 6가지 특성 설명 */}
+          <div className="result-text">
+            <h3>역량 설명</h3>
+            <ul>
+              <li>
+                <strong>의사소통(COMM)</strong> : 의견을 나누고 조율하는 능력입니다.
+              </li>
+              <li>
+                <strong>책임감(RESP)</strong> : 맡은 일을 끝까지 수행하고 약속을 지키는 정도입니다.
+              </li>
+              <li>
+                <strong>문제해결(PROB)</strong> : 문제를 분석하고 해결 방법을 찾아가는 능력입니다.
+              </li>
+              <li>
+                <strong>성장성(GROW)</strong> : 배움과 변화에 얼마나 적극적인지 나타냅니다.
+              </li>
+              <li>
+                <strong>스트레스 내성(STRE)</strong> : 압박 상황에서 안정적으로 버티는 힘입니다.
+              </li>
+              <li>
+                <strong>적응력(ADAP)</strong> : 새로운 환경과 규칙에 얼마나 빨리 적응하는지입니다.
+              </li>
+            </ul>
+          </div>
+
+          {/* 오른쪽: 레이더 차트 */}
+          <div className="result-chart">
+            <RadarChart result={result} />
           </div>
         </div>
-      </div>
-    );
-  }
 
-  // 제출 완료 후 결과 요약(간단 버전)
-  if (submitted && result) {
-    return (
-      <div className="assessment">
-        <div className="assessment-container">
-          <h1>인적성 검사 결과</h1>
-          <p><strong>{name}</strong> 님의 검사 결과입니다.</p>
-
-          {/* 여기서 result 안에 있는 scores, type_label 등을 보여주면 됨 */}
-          <pre>{JSON.stringify(result, null, 2)}</pre>
-
-          <button onClick={() => navigate('/')}>메인으로 돌아가기</button>
+        {/* 아래: 해석 박스 (성향분석 최종결과) */}
+        <div className="result-summary-card">
+          <h3>성향 분석 최종 결과</h3>
+          <p>
+            전체적으로 볼 때,&nbsp;
+            <strong>{getTopTraitLabel(result)}</strong> 역량이 상대적으로 높게 나타났습니다.
+          </p>
+          <p>
+            {getSummaryText(result)}
+          </p>
         </div>
+
+        <button onClick={() => navigate('/')}>메인으로 돌아가기</button>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
   // 혹시라도 로딩 중 또는 데이터 없는 상태 대비
   return (
