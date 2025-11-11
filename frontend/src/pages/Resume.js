@@ -13,8 +13,6 @@ import resumeAPI from '../services/resumeAPI';
 import './Resume.css';
 
 const Resume = () => {
-  // 상태 관리 로직 작성
-  // 예: 이력서 데이터, 폼 상태 등
   const [formData, setFormData] = useState({
     // 인적사항
     name: '',
@@ -22,10 +20,11 @@ const Resume = () => {
     phone: '',
     address: '',
     birthDate: '',
+    gender: '', // 성별
     photo: null, // 증명사진 파일
     
     // 학력 (배열)
-    educations: [{ school: '', major: '', graduationYear: '', degree: '' }],
+    educations: [{ school: '', major: '', graduationYear: '' }],
     
     // 경력 (배열)
     experiences: [{ company: '', position: '', startDate: '', endDate: '', description: '' }],
@@ -45,6 +44,12 @@ const Resume = () => {
   
   // 증명사진 미리보기 상태
   const [photoPreview, setPhotoPreview] = useState(null);
+  
+  // 날짜 검증 에러 메시지 상태
+  const [birthDateError, setBirthDateError] = useState('');
+  const [educationErrors, setEducationErrors] = useState({}); // { index: { graduationYear: '' } }
+  const [experienceErrors, setExperienceErrors] = useState({}); // { index: { startDate: '', endDate: '' } }
+  const [certificateErrors, setCertificateErrors] = useState({}); // { index: { date: '' } }
 
   // 전화번호 자동 포맷팅 함수
   const formatPhoneNumber = (value) => {
@@ -83,34 +88,67 @@ const Resume = () => {
     }
   };
 
-  // 폼 입력 핸들러 작성
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
-    // 전화번호는 자동 포맷팅
+    // 전화번호와 생년월일은 자동 포맷팅
     if (name === 'phone') {
       const formatted = formatPhoneNumber(value);
       setFormData(prev => ({ ...prev, [name]: formatted}));
+    } else if (name === 'birthDate') {
+      const formatted = formatDate(value);
+      setFormData(prev => ({ ...prev, [name]: formatted}));
+      // 생년월일 실시간 검증
+      setBirthDateError(validateBirthDate(formatted));
     } else {
       setFormData(prev => ({ ...prev, [name]: value}));
     }
-    // 입력값 변경 처리 로직 작성
   };
 
   // 학력/경력/자격증 입력 핸들러
   const handleArrayChange = (section, index, field, value) => {
-    // 날짜 필드는 자동 포맷팅
+    // 필드별 포맷팅
     let formattedValue = value;
     if (field === 'startDate' || field === 'endDate' || field === 'date') {
+      // 날짜 필드는 날짜 포맷팅
       formattedValue = formatDate(value);
+    } else if (field === 'graduationYear') {
+      // 졸업년도는 숫자만 허용
+      formattedValue = formatGraduationYear(value);
     }
     
-    setFormData(prev => ({
-      ...prev,
-      [section]: prev[section].map((item, i) => 
+    setFormData(prev => {
+      const updatedSection = prev[section].map((item, i) => 
         i === index ? { ...item, [field]: formattedValue } : item
-      )
-    }));
+      );
+      
+      // 날짜 필드 실시간 검증 (업데이트된 값을 사용)
+      if (section === 'educations' && field === 'graduationYear') {
+        const error = validateGraduationYear(formattedValue);
+        setEducationErrors(prevErrors => ({
+          ...prevErrors,
+          [index]: { graduationYear: error }
+        }));
+      } else if (section === 'experiences' && (field === 'startDate' || field === 'endDate')) {
+        const experience = updatedSection[index];
+        const errors = validateExperienceDates(experience.startDate, experience.endDate, index);
+        setExperienceErrors(prevErrors => ({
+          ...prevErrors,
+          [index]: errors
+        }));
+      } else if (section === 'certificates' && field === 'date') {
+        const error = validateCertificateDate(formattedValue);
+        setCertificateErrors(prevErrors => ({
+          ...prevErrors,
+          [index]: { date: error }
+        }));
+      }
+      
+      return {
+        ...prev,
+        [section]: updatedSection
+      };
+    });
   };
 
   // 학력/경력/자격증 추가
@@ -133,6 +171,136 @@ const Resume = () => {
   const validateEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
+  };
+
+  // 날짜 유효성 검증 함수
+  const isValidDate = (dateString) => {
+    if (!dateString || dateString.length !== 10) return false;
+    const regex = /^\d{4}-\d{2}-\d{2}$/;
+    if (!regex.test(dateString)) return false;
+    
+    const date = new Date(dateString);
+    const [year, month, day] = dateString.split('-').map(Number);
+    
+    // 날짜가 유효한지 확인 (예: 1990-02-30은 불가)
+    return date.getFullYear() === year &&
+           date.getMonth() === month - 1 &&
+           date.getDate() === day;
+  };
+
+  // 생년월일 검증
+  const validateBirthDate = (dateString) => {
+    if (!dateString) return '';
+    
+    if (!isValidDate(dateString)) {
+      return '올바른 날짜 형식을 입력해주세요. (예: 1990-01-01)';
+    }
+    
+    const date = new Date(dateString);
+    const today = new Date();
+    const minDate = new Date('1900-01-01');
+    
+    if (date > today) {
+      return '생년월일은 오늘 이전이어야 합니다.';
+    }
+    
+    if (date < minDate) {
+      return '생년월일은 1900년 이후여야 합니다.';
+    }
+    
+    return '';
+  };
+
+  // 경력 날짜 검증
+  const validateExperienceDates = (startDate, endDate, index) => {
+    const errors = { startDate: '', endDate: '' };
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+    
+    if (startDate) {
+      if (!isValidDate(startDate)) {
+        errors.startDate = '올바른 날짜 형식을 입력해주세요.';
+      } else {
+        const start = new Date(startDate);
+        if (start > today) {
+          errors.startDate = '시작일은 오늘 이전이어야 합니다.';
+        }
+      }
+    }
+    
+    if (endDate && endDate !== '') {
+      if (!isValidDate(endDate)) {
+        errors.endDate = '올바른 날짜 형식을 입력해주세요.';
+      } else {
+        const end = new Date(endDate);
+        if (end > today) {
+          errors.endDate = '종료일은 오늘 이전이어야 합니다.';
+        }
+        
+        if (startDate && isValidDate(startDate)) {
+          const start = new Date(startDate);
+          if (end < start) {
+            errors.endDate = '종료일은 시작일 이후여야 합니다.';
+          }
+        }
+      }
+    }
+    
+    return errors;
+  };
+
+  // 자격증 날짜 검증
+  const validateCertificateDate = (dateString) => {
+    if (!dateString) return '';
+    
+    if (!isValidDate(dateString)) {
+      return '올바른 날짜 형식을 입력해주세요. (예: 1990-01-01)';
+    }
+    
+    const date = new Date(dateString);
+    const today = new Date();
+    today.setHours(23, 59, 59, 999);
+    
+    if (date > today) {
+      return '취득일은 오늘 이전이어야 합니다.';
+    }
+    
+    return '';
+  };
+
+  // 졸업년도 포맷팅 (숫자만 허용)
+  const formatGraduationYear = (value) => {
+    // 숫자만 추출
+    return value.replace(/[^\d]/g, '');
+  };
+
+  // 졸업년도 검증
+  const validateGraduationYear = (yearString) => {
+    if (!yearString) return '';
+    
+    // 숫자만 허용
+    if (!/^\d+$/.test(yearString)) {
+      return '숫자만 입력해주세요.';
+    }
+    
+    // 4자리 숫자인지 확인
+    if (yearString.length !== 4) {
+      return '4자리 연도를 입력해주세요. (예: 2020)';
+    }
+    
+    const year = parseInt(yearString, 10);
+    const currentYear = new Date().getFullYear();
+    const minYear = 1900;
+    
+    if (year < minYear) {
+      return `졸업년도는 ${minYear}년 이후여야 합니다.`;
+    }
+    
+    if (year > currentYear) {
+      return `졸업년도는 ${currentYear}년 이하여야 합니다.`;
+    }
+    
+    return '';
   };
 
   // 이메일 실시간 검증
@@ -182,23 +350,129 @@ const Resume = () => {
     setPhotoPreview(null);
   };
 
-  // 이력서 저장 함수 작성 (Axios 사용)
-  const saveResume = async () => {
+  const hasValidationErrors = () => {
+    // 필수 필드가 비어있는지 확인
+    if (!formData.name.trim()) return true;
+    if (!formData.email.trim()) return true;
+    if (!formData.birthDate.trim()) return true;
+    
+    // 이메일 형식 검증 오류
+    if (emailError) return true;
+    if (formData.email && !validateEmail(formData.email)) return true;
+    
+    // 생년월일 검증 오류
+    if (formData.birthDate && birthDateError) return true;
+    
+    // 학력 검증: 입력된 학력이 있으면 졸업년도 검증 오류 확인
+    if (formData.educations.some((edu, index) => {
+      const hasEducationData = edu.school.trim() || edu.major.trim() || edu.graduationYear.trim();
+      return hasEducationData && educationErrors[index]?.graduationYear;
+    })) return true;
+    
+    // 경력 검증: 입력된 경력이 있으면 날짜 검증 오류 확인
+    if (formData.experiences.some((exp, index) => {
+      const hasExperienceData = exp.company.trim() || exp.position.trim() || exp.startDate.trim() || exp.endDate.trim() || exp.description.trim();
+      return hasExperienceData && (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate);
+    })) return true;
+    
+    // 자격증 검증: 입력된 자격증이 있으면 날짜 검증 오류 확인
+    if (formData.certificates.some((cert, index) => {
+      const hasCertificateData = cert.name.trim() || cert.issuer.trim() || cert.date.trim();
+      return hasCertificateData && certificateErrors[index]?.date;
+    })) return true;
+    
+    return false;
+  };
+
+  const getValidationErrorMessage = () => {
+    // 필수 필드 확인
+    if (!formData.name.trim()) {
+      return '이름을 입력해주세요.';
+    }
+    if (!formData.email.trim()) {
+      return '이메일을 입력해주세요.';
+    }
+    if (!formData.birthDate.trim()) {
+      return '생년월일을 입력해주세요.';
+    }
+    
     // 이메일 형식 검증
+    if (emailError) {
+      return emailError;
+    }
     if (formData.email && !validateEmail(formData.email)) {
-      alert('올바른 이메일 형식을 입력해주세요. (예: example@email.com)');
+      return '올바른 이메일 형식을 입력해주세요. (예: example@email.com)';
+    }
+    
+    // 생년월일 검증
+    if (formData.birthDate && birthDateError) {
+      return birthDateError;
+    }
+    
+    // 학력 검증
+    const eduErrorIndex = formData.educations.findIndex((edu, index) => {
+      const hasEducationData = edu.school.trim() || edu.major.trim() || edu.graduationYear.trim();
+      return hasEducationData && educationErrors[index]?.graduationYear;
+    });
+    if (eduErrorIndex !== -1) {
+      return educationErrors[eduErrorIndex].graduationYear;
+    }
+    
+    // 경력 검증
+    const expErrorIndex = formData.experiences.findIndex((exp, index) => {
+      const hasExperienceData = exp.company.trim() || exp.position.trim() || exp.startDate.trim() || exp.endDate.trim() || exp.description.trim();
+      return hasExperienceData && (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate);
+    });
+    if (expErrorIndex !== -1) {
+      const expError = experienceErrors[expErrorIndex];
+      if (expError.startDate) return `경력 ${expErrorIndex + 1}번 항목: ${expError.startDate}`;
+      if (expError.endDate) return `경력 ${expErrorIndex + 1}번 항목: ${expError.endDate}`;
+    }
+    
+    // 자격증 검증
+    const certErrorIndex = formData.certificates.findIndex((cert, index) => {
+      const hasCertificateData = cert.name.trim() || cert.issuer.trim() || cert.date.trim();
+      return hasCertificateData && certificateErrors[index]?.date;
+    });
+    if (certErrorIndex !== -1) {
+      return `자격증 ${certErrorIndex + 1}번 항목: ${certificateErrors[certErrorIndex].date}`;
+    }
+    
+    return null;
+  };
+
+  const saveResume = async () => {
+    const errorMessage = getValidationErrorMessage();
+    if (errorMessage) {
+      alert(errorMessage);
       return;
     }
 
     try {
-      await resumeAPI.saveResume(formData);
+      const submitData = new FormData();
+      submitData.append('name', formData.name);
+      submitData.append('email', formData.email);
+      submitData.append('phone', formData.phone);
+      submitData.append('address', formData.address);
+      submitData.append('birthDate', formData.birthDate);
+      submitData.append('gender', formData.gender);
+      if (formData.photo) {
+        submitData.append('photo', formData.photo);
+      }
+      submitData.append('educations', JSON.stringify(formData.educations));
+      submitData.append('experiences', JSON.stringify(formData.experiences));
+      submitData.append('certificates', JSON.stringify(formData.certificates));
+      submitData.append('growthProcess', formData.growthProcess);
+      submitData.append('strengthsWeaknesses', formData.strengthsWeaknesses);
+      submitData.append('academicLife', formData.academicLife);
+      submitData.append('motivation', formData.motivation);
+      
+      await resumeAPI.saveResume(submitData);
       alert('저장 되었습니다.');
     } catch (error) {
       alert('저장 중 오류가 발생했습니다.');
     }
   };
-    // resumeAPI.saveResume()을 사용하여 API 호출 로직 작성
-    // 예: await resumeAPI.saveResume(formData);
 
   return (
     <div className="resume">
@@ -285,12 +559,24 @@ const Resume = () => {
           </div>
           <div className="form-group">
             <input
-              className="resume-input"
+              className={`resume-input ${birthDateError ? 'error' : ''}`}
               name="birthDate"
               type="text"
               value={formData.birthDate}
               onChange={handleInputChange}
               placeholder="생년월일 ex) 1990-01-01"
+            />
+            {birthDateError && (
+              <span className="error-message">{birthDateError}</span>
+            )}
+          </div>
+          <div className="form-group">
+            <input
+              className="resume-input"
+              name="gender"
+              value={formData.gender}
+              onChange={handleInputChange}
+              placeholder="성별"
             />
           </div>
         </section>
@@ -302,7 +588,7 @@ const Resume = () => {
             <button 
               type="button"
               className="add-button"
-              onClick={() => addItem('educations', { school: '', major: '', graduationYear: '', degree: '' })}
+              onClick={() => addItem('educations', { school: '', major: '', graduationYear: '' })}
             >
               + 추가
             </button>
@@ -327,12 +613,17 @@ const Resume = () => {
               </div>
               <div className="form-group">
                 <input
-                  className="resume-input"
+                  className={`resume-input ${educationErrors[index]?.graduationYear ? 'error' : ''}`}
+                  type="text"
+                  inputMode="numeric"
+                  maxLength={4}
                   value={education.graduationYear}
                   onChange={(e) => handleArrayChange('educations', index, 'graduationYear', e.target.value)}
-                  placeholder="졸업년도"
+                  placeholder="졸업년도 (예: 2020)"
                 />
-              
+                {educationErrors[index]?.graduationYear && (
+                  <span className="error-message">{educationErrors[index].graduationYear}</span>
+                )}
               </div>
               {formData.educations.length > 1 && (
                 <button
@@ -379,21 +670,27 @@ const Resume = () => {
               </div>
               <div className="form-group">
                 <input
-                  className="resume-input"
+                  className={`resume-input ${experienceErrors[index]?.startDate ? 'error' : ''}`}
                   type="text"
                   value={experience.startDate}
                   onChange={(e) => handleArrayChange('experiences', index, 'startDate', e.target.value)}
                   placeholder="시작일 (예: 1991-01-01)"
                 />
+                {experienceErrors[index]?.startDate && (
+                  <span className="error-message">{experienceErrors[index].startDate}</span>
+                )}
               </div>
               <div className="form-group">
                 <input
-                  className="resume-input"
+                  className={`resume-input ${experienceErrors[index]?.endDate ? 'error' : ''}`}
                   type="text"
                   value={experience.endDate}
                   onChange={(e) => handleArrayChange('experiences', index, 'endDate', e.target.value)}
                   placeholder="종료일 (예: 1991-01-01)"
                 />
+                {experienceErrors[index]?.endDate && (
+                  <span className="error-message">{experienceErrors[index].endDate}</span>
+                )}
               </div>
               <div className="form-group">
                 <textarea
@@ -449,12 +746,15 @@ const Resume = () => {
               </div>
               <div className="form-group">
                 <input
-                  className="resume-input"
+                  className={`resume-input ${certificateErrors[index]?.date ? 'error' : ''}`}
                   type="text"
                   value={certificate.date}
                   onChange={(e) => handleArrayChange('certificates', index, 'date', e.target.value)}
                   placeholder="취득일 (예: 1991-01-01)"
                 />
+                {certificateErrors[index]?.date && (
+                  <span className="error-message">{certificateErrors[index].date}</span>
+                )}
               </div>
               {formData.certificates.length > 1 && (
                 <button
@@ -482,7 +782,9 @@ const Resume = () => {
               onChange={handleInputChange}
               placeholder="성장과정을 작성해주세요"
               rows={5}
+              maxLength={500}
             />
+            <div className="character-count">{formData.growthProcess.length}/500</div>
           </div>
           
           <div className="form-group">
@@ -494,7 +796,9 @@ const Resume = () => {
               onChange={handleInputChange}
               placeholder="성격의 장단점을 작성해주세요"
               rows={5}
+              maxLength={500}
             />
+            <div className="character-count">{formData.strengthsWeaknesses.length}/500</div>
           </div>
           
           <div className="form-group">
@@ -506,7 +810,9 @@ const Resume = () => {
               onChange={handleInputChange}
               placeholder="학업생활을 작성해주세요"
               rows={5}
+              maxLength={500}
             />
+            <div className="character-count">{formData.academicLife.length}/500</div>
           </div>
           
           <div className="form-group">
@@ -518,7 +824,9 @@ const Resume = () => {
               onChange={handleInputChange}
               placeholder="지원동기와 입사 후 포부를 작성해주세요"
               rows={5}
+              maxLength={500}
             />
+            <div className="character-count">{formData.motivation.length}/500</div>
           </div>
         </section>
 
@@ -528,9 +836,25 @@ const Resume = () => {
             type="button"
             className="save-button"
             onClick={saveResume}
+            disabled={hasValidationErrors()}
           >
             저장
           </button>
+          {hasValidationErrors() && (
+            <div style={{
+              marginTop: '12px',
+              color: '#e53935',
+              fontSize: '0.9rem',
+              fontWeight: '500',
+              textAlign: 'center',
+              padding: '8px 16px',
+              backgroundColor: '#ffebee',
+              borderRadius: '6px',
+              borderLeft: '4px solid #e53935'
+            }}>
+              {getValidationErrorMessage()}
+            </div>
+          )}
         </div>
       </div>
     </div>
