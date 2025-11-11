@@ -1,20 +1,14 @@
-/**
- * 파일: Resume.css
- * 역할: 이력서 작성 페이지 스타일 작성
- * 설명:
- * - Resume.js 컴포넌트의 스타일을 정의합니다
- * - 폼 입력 필드, 버튼, 레이아웃 등의 스타일을 작성합니다
- */
-
-/* 이력서 작성 페이지 스타일 작성 */
-/* ✅ 페이지 전체 레이아웃 */
+/* =======================================
+   🧾 이력서 페이지 (종이 질감 + 중앙 정렬)
+======================================= */
 .resume {
   width: 100%;
   min-height: 100vh;
-  background: #e9ecef url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* 종이 질감 */
+  background: #e9ecef url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   background-size: cover;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
   padding: 60px 20px;
   box-sizing: border-box;
 }
@@ -22,218 +16,116 @@
 /* 중앙 컨테이너 */
 .resume-container {
   width: 100%;
-  max-width: 850px;
+  max-width: 900px;
   background-color: #ffffff;
   border-radius: 12px;
   box-shadow: 0 4px 20px rgba(14, 26, 58, 0.25);
   padding: 50px 60px;
   box-sizing: border-box;
   animation: fadeIn 0.5s ease;
+  margin-bottom: 60px;
 }
 
-/* 섹션 구분 */
-.resume-section {
+/* =======================================
+   🔹 인적사항 (좌: 사진, 우: 정보입력)
+======================================= */
+.personal-info {
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* 왼쪽 사진, 오른쪽 입력 */
+  align-items: start;
+  gap: 40px;
   margin-bottom: 50px;
-  border-bottom: 1.5px solid #d9dbe1;
-  padding-bottom: 30px;
 }
 
-.section-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #0e1a3a;
-  border-left: 5px solid #f6c90e;
-  padding-left: 12px;
-  margin-bottom: 25px;
-}
-
-/* 섹션 상단 + 버튼 */
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.add-button,
-.remove-button {
-  background-color: #0e1a3a;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  padding: 6px 12px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.add-button:hover,
-.remove-button:hover {
-  background-color: #f6c90e;
-  color: #0e1a3a;
-}
-
-/* 📸 증명사진 업로드 영역 */
+/* 왼쪽 사진 영역 */
 .photo-upload {
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-.photo-preview-container {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-}
-
-.photo-preview-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-.photo-preview {
-  width: 120px;
-  height: 150px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid #f6c90e;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
-}
-
-.photo-remove-button {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #f44336;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  padding: 4px 10px;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-
-.photo-remove-button:hover {
-  background-color: #c62828;
 }
 
 .photo-upload-label {
-  display: inline-flex;
+  width: 180px;
+  height: 220px;
+  border: 2px dashed #b7c4da;
+  border-radius: 10px;
+  background-color: #f0f4fa;
+  color: #1e4d8b;
+  font-size: 0.95rem;
+  text-align: center;
+  display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 150px;
-  border: 2px dashed #bbb;
-  border-radius: 8px;
-  color: #777;
-  background-color: #fafafa;
+  align-items: center;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .photo-upload-label:hover {
-  border-color: #f6c90e;
-  color: #0e1a3a;
-  background-color: #fffbe8;
+  background-color: #e4ecfb;
+  border-color: #1e4d8b;
+  transform: scale(1.03);
 }
 
-.photo-upload-placeholder span:first-child {
-  font-size: 2rem;
-  font-weight: bold;
+/* ⚠ 개인정보 경고문 */
+.warning-text {
+  margin-top: 8px;
+  font-size: 0.8rem;
+  color: #9aa2b1;
+  text-align: center;
+  font-style: italic;
 }
 
-/* 📝 폼 입력 스타일 */
-.form-group {
-  margin-bottom: 16px;
+.warning-text::before {
+  content: "⚠ ";
+  color: #e57373;
 }
 
+/* 오른쪽 입력 영역 */
+.personal-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* 상단: 이름 / 성별 / 생년월일 */
+.personal-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
+}
+
+/* 하단: 주소 / 전화번호 / 이메일 */
+.personal-bottom-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 15px;
+}
+
+/* 입력창 */
 .resume-input {
   width: 100%;
   padding: 12px 14px;
   font-size: 1rem;
-  border: 1.6px solid #d0d4e0;
+  border: 1.6px solid #c9d4e6;
   border-radius: 8px;
   outline: none;
+  background-color: #fafcff;
   transition: all 0.25s ease;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 .resume-input:focus {
-  border-color: #f6c90e;
-  box-shadow: 0 0 6px rgba(246, 201, 14, 0.4);
+  border-color: #1e4d8b;
+  box-shadow: 0 0 10px rgba(30, 77, 139, 0.4);
 }
 
-/* textarea 확장 */
-.resume-input[rows] {
-  resize: vertical;
-  min-height: 100px;
-}
-
-/* 자기소개서 텍스트 */
-.cover-letter-label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #1a2755;
-  margin-bottom: 6px;
-  display: inline-block;
-}
-
-.cover-letter-textarea {
-  background-color: #fafbff;
-}
-
-/* 에러 메시지 */
-.error-message {
-  color: #e53935;
-  font-size: 0.85rem;
-  margin-top: 4px;
-}
-
-/* 학력, 경력, 자격증 아이템 카드 */
-.education-item,
-.experience-item,
-.certificate-item {
-  background: #f9fafc;
-  border-radius: 8px;
-  padding: 18px 20px;
-  margin-bottom: 18px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  border-left: 4px solid #f6c90e;
-}
-
-/* 저장 버튼 */
-.resume-actions {
-  text-align: center;
-  margin-top: 40px;
-}
-
-.save-button {
-  background-color: #0e1a3a;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  padding: 14px 30px;
-  font-size: 1.1rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 8px rgba(14, 26, 58, 0.25);
-}
-
-.save-button:hover {
-  background-color: #f6c90e;
-  color: #0e1a3a;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(246, 201, 14, 0.4);
-}
-
-/* ✨ 애니메이션 */
+/* =======================================
+   ✨ 애니메이션 & 반응형
+======================================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(15px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -241,19 +133,22 @@
   }
 }
 
-/* 📱 반응형 */
 @media (max-width: 768px) {
   .resume-container {
     padding: 30px 20px;
   }
 
-  .section-title {
-    font-size: 1.2rem;
+  .personal-info {
+    grid-template-columns: 1fr;
   }
 
-  .photo-preview,
+  .personal-top-row,
+  .personal-bottom-row {
+    grid-template-columns: 1fr;
+  }
+
   .photo-upload-label {
-    width: 100px;
-    height: 130px;
+    width: 150px;
+    height: 180px;
   }
 }

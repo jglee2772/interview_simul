@@ -8,15 +8,47 @@
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
 import './Home.css';
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="home">
       <div className="home-container">
-        <h1>이 페이지는 홈페이지입니다. 그리고 저는 바보입니다.</h1>
-        <p>안뇽</p>
+        <div className="home-header">
+          <h2>면접 시뮬레이션 메인 페이지</h2>
+        </div>
+
+        <div className="card-grid">
+          <div className="card" onClick={() => navigate('/info')}>
+            <div className="card-icon"></div>
+            <span className="card-title">기본정보</span>
+          </div>
+
+          <div className="card" onClick={() => navigate('/interview')}>
+            <div className="card-icon"></div>
+            <span className="card-title">면접 시뮬레이션 가기</span>
+          </div>
+
+          <div className="card" onClick={() => navigate('/assessment')}>
+            <div className="card-icon"></div>
+            <span className="card-title">인적성검사 가기</span>
+          </div>
+        </div>
+
+        <div className="bottom-section">
+          <div className="resume-card" onClick={() => navigate('/resume')}>
+            <div className="card-icon"></div>
+            <h3>이력서 작성해보기</h3>
+          </div>
+
+          <div className="job-section">
+            <h3>구인사이트</h3>
+            <p>추천 채용 사이트나 링크를 여기에 배치할 수 있습니다.</p>
+          </div>
+        </div>
       </div>
     </div>
   );

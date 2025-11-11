@@ -1,12 +1,12 @@
 /**
  * 파일: Assessment.css
- * 역할: 인적성검사 페이지 스타일 작성
+ * 역할: 인적성검사 페이지 스타일 정의
  * 설명:
- * - Assessment.js 컴포넌트의 스타일을 정의합니다
- * - 질문 카드, 답변 선택 버튼, 진행 바 등의 스타일을 작성합니다
+ * - 인적성 질문, 버튼, 결과 그래프 및 요약 레이아웃 구성
+ * - 시각적 가독성과 반응형 디자인 적용
  */
 
-/* 전체 페이지 레이아웃 */
+/* 페이지 전체 배경 */
 .assessment {
   width: 100%;
   min-height: 100vh;
@@ -18,63 +18,61 @@
   box-sizing: border-box;
 }
 
-/* 중앙 컨테이너 */
+/* 메인 컨테이너 */
 .assessment-container {
   width: 100%;
-  max-width: 700px;
+  max-width: 820px;
   background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
   padding: 50px 60px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
   text-align: center;
   animation: fadeIn 0.6s ease;
 }
 
-/* 페이지 제목 */
+/* 제목 */
 .assessment-container h1 {
   color: #0e1a3a;
   font-size: 2rem;
   margin-bottom: 20px;
   border-bottom: 3px solid #f6c90e;
+  display: inline-block;
   padding-bottom: 8px;
 }
 
-/* 기본 텍스트 */
+/* 일반 텍스트 */
 .assessment-container p {
   color: #1a1a1a;
-  margin: 10px 0;
   font-size: 1rem;
+  margin: 10px 0;
 }
 
 /* 이름 입력 */
 .assessment-container input[type='text'] {
-  margin-top: 10px;
+  margin-top: 12px;
   padding: 10px 14px;
   font-size: 1rem;
-  border: 1.8px solid #cfd3e1;
+  border: 1.6px solid #ccd1e1;
   border-radius: 8px;
   outline: none;
-  width: 260px;
+  width: 280px;
   transition: all 0.25s ease;
 }
 
 .assessment-container input[type='text']:focus {
   border-color: #f6c90e;
-  box-shadow: 0 0 8px rgba(246, 201, 14, 0.4);
+  box-shadow: 0 0 8px rgba(246, 201, 14, 0.5);
 }
 
-/* 버튼 공통 스타일 */
+/* 공통 버튼 */
 .assessment-container button {
   background-color: #0e1a3a;
-  color: #fff;
+  color: #ffffff;
   font-weight: 600;
   border: none;
   border-radius: 8px;
-  padding: 12px 20px;
-  margin-top: 20px;
+  padding: 12px 22px;
+  margin-top: 24px;
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -82,99 +80,173 @@
 .assessment-container button:hover {
   background-color: #f6c90e;
   color: #0e1a3a;
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
-/* 질문 박스 */
+/* 질문 카드 */
 .question-box {
   background-color: #f7f9fc;
   border-radius: 10px;
-  padding: 25px 30px;
-  margin-top: 25px;
-  width: 100%;
+  padding: 28px 30px;
+  margin-top: 30px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
   text-align: left;
 }
 
-.question-box p {
+.question-text {
   font-size: 1.05rem;
-  color: #0e1a3a;
   font-weight: 600;
-  margin-bottom: 15px;
+  color: #0e1a3a;
+  margin-bottom: 20px;
 }
 
-/* 선택지 버튼 (1~5) */
+/* 선택지 버튼 영역 */
 .answer-options {
   display: flex;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
   margin-top: 10px;
+  position: relative;
 }
 
-.answer-options button {
+/* 양쪽 문구 */
+.scale-label {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #1a2755;
+  opacity: 0.7;
+}
+
+.scale-label.left {
+  margin-right: 12px;
+}
+
+.scale-label.right {
+  margin-left: 12px;
+}
+
+/* 척도 버튼 */
+.scale-button {
   flex: 1;
-  margin: 0 6px;
-  padding: 12px 0;
-  border-radius: 6px;
+  min-width: 110px;
   border: 2px solid #d5d9e4;
+  border-radius: 10px;
   background: white;
   color: #0e1a3a;
   font-weight: 600;
-  font-size: 1rem;
+  padding: 12px 10px;
   cursor: pointer;
-  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
-.answer-options button:hover {
+.scale-button:hover {
   border-color: #f6c90e;
-  background-color: #fdf6d9;
+  background-color: #fffbe8;
+  transform: translateY(-2px);
 }
 
-/* 선택된 버튼 */
-.answer-options button.selected {
+.scale-button.selected {
   background-color: #f6c90e;
   border-color: #f6c90e;
   color: #0e1a3a;
-  box-shadow: 0 0 8px rgba(246, 201, 14, 0.6);
+  box-shadow: 0 4px 10px rgba(246, 201, 14, 0.4);
 }
 
-/* 진행 상황 & 다음 버튼 */
+/* 네비게이션 */
 .navigation {
   margin-top: 30px;
-  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
 .navigation p {
-  font-size: 0.95rem;
   color: #1a2755;
+  font-size: 0.95rem;
 }
 
 /* 에러 메시지 */
 .error-text {
   color: #ff4d4f;
   font-weight: 600;
-  margin-top: 12px;
+  margin-top: 15px;
 }
 
-/* 결과창 */
-pre {
-  background: #f5f7fb;
-  color: #df0101;
-  padding: 16px;
-  border-radius: 8px;
-  width: 100%;
-  overflow-x: auto;
+/* 결과 섹션 */
+.assessment-result {
   text-align: left;
-  font-size: 0.9rem;
 }
 
-/* 애니메이션 효과 */
+/* 결과 요약 상단 (텍스트 + 그래프) */
+.result-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* 왼쪽 설명 */
+.result-text {
+  flex: 1;
+  background: #f9fafc;
+  padding: 20px 25px;
+  border-radius: 10px;
+  border-left: 4px solid #f6c90e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.result-text h3 {
+  color: #0e1a3a;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.result-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-text li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #1a2755;
+}
+
+/* 오른쪽 그래프 */
+.result-chart {
+  flex: 1;
+  background: #fffef9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 결과 요약 박스 */
+.result-summary-card {
+  margin-top: 35px;
+  background: #f6f7fb;
+  border-left: 5px solid #f6c90e;
+  padding: 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-summary-card h3 {
+  color: #0e1a3a;
+  margin-bottom: 12px;
+}
+
+/* 애니메이션 */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -182,63 +254,26 @@ pre {
   }
 }
 
-/* 반응형 (모바일) */
+/* 반응형 */
 @media (max-width: 768px) {
   .assessment-container {
     padding: 30px 20px;
   }
 
-  .answer-options {
+  .result-main {
     flex-direction: column;
   }
 
-  .answer-options button {
-    margin: 6px 0;
+  .scale-label {
+    display: none;
+  }
+
+  .scale-button {
+    min-width: 100%;
   }
 
   .navigation {
     flex-direction: column;
     gap: 10px;
   }
-}
-
-.assessment-result {
-  max-width: 900px;
-  margin: 0 auto;
-}
-
-.result-main {
-  display: flex;
-  gap: 24px;
-  margin-top: 16px;
-}
-
-.result-text {
-  flex: 1;
-}
-
-.result-chart {
-  flex: 1;
-  min-height: 260px;
-}
-
-.scale-buttons {
-  display: flex;
-  gap: 4px;
-}
-
-.scale-button {
-  padding: 10px 16px;
-  border-radius: 8px;
-  border: none;
-  background-color: #0b1633; /* 기본 색 (지금 쓰는 네이비에 맞춰서) */
-  color: #ffffff;
-  cursor: pointer;
-  font-size: 0.9rem;
-}
-
-/* 선택된 버튼 */
-.scale-button.selected {
-  background-color: #ffc700; /* 선택 시 노란색 */
-  color: #000000;
 }
