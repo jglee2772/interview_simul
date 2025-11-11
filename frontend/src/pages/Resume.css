@@ -1,73 +1,169 @@
-/* =======================================
-   🧾 이력서 페이지 (종이 질감 + 중앙 정렬)
-======================================= */
+/* =========================================
+   🧾 Resume.css
+   Author: ChatGPT Pro Design System
+   Purpose: 이력서 페이지 스타일 전면 재정의
+   ========================================= */
+
+/* ---------- 🎯 Global Layout ---------- */
 .resume {
   width: 100%;
   min-height: 100vh;
-  background: #e9ecef url("https://www.transparenttextures.com/patterns/paper-fibers.png");
+  background: #f4f6fb url("https://www.transparenttextures.com/patterns/paper-fibers.png");
   background-size: cover;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   padding: 60px 20px;
   box-sizing: border-box;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  color: #1a1a1a;
 }
 
-/* 중앙 컨테이너 */
 .resume-container {
   width: 100%;
-  max-width: 900px;
+  max-width: 980px;
   background-color: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(14, 26, 58, 0.25);
-  padding: 50px 60px;
+  border-radius: 14px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+  padding: 60px 70px;
   box-sizing: border-box;
-  animation: fadeIn 0.5s ease;
+  animation: fadeIn 0.6s ease;
   margin-bottom: 60px;
 }
 
-/* =======================================
-   🔹 인적사항 (좌: 사진, 우: 정보입력)
-======================================= */
-.personal-info {
-  display: grid;
-  grid-template-columns: 1fr 2fr; /* 왼쪽 사진, 오른쪽 입력 */
-  align-items: start;
-  gap: 40px;
-  margin-bottom: 50px;
+/* 섹션 공통 */
+.resume-section {
+  margin-bottom: 70px;
+  border-bottom: 1px solid #e0e4eb;
+  padding-bottom: 40px;
 }
 
-/* 왼쪽 사진 영역 */
-.photo-upload {
+/* 섹션 타이틀 */
+.section-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #0d1b3d;
+  border-left: 6px solid #1e4d8b;
+  padding-left: 14px;
+  margin-bottom: 25px;
+  letter-spacing: -0.5px;
+}
+
+/* 섹션 헤더 (타이틀 + 버튼) */
+.section-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   📸 Personal Info Section
+   ========================================= */
+.personal-info {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr); /* 사진 + 오른쪽 3열 */
+  column-gap: 24px;
+  row-gap: 8px;
+  align-items: flex-start;
+  background-color: #f9fafc;
+  border: 1.5px solid #e1e4eb;
+  border-radius: 12px;
+  padding: 40px 50px;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* 제목 */
+.personal-info .section-title {
+  grid-column: 1 / -1;
+}
+
+/* 왼쪽 사진 */
+.personal-info .photo-upload {
+  grid-column: 1;
+  grid-row: 2 / span 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.personal-info .photo-preview,
+.personal-info .photo-upload-label {
+  width: 130px;
+  height: 170px;
+  border-radius: 10px;
+}
+
+/* 업로드 박스 */
+.photo-preview {
+  object-fit: cover;
+  border: 2px solid #d0d8e3;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .photo-upload-label {
-  width: 180px;
-  height: 220px;
-  border: 2px dashed #b7c4da;
-  border-radius: 10px;
-  background-color: #f0f4fa;
+  border: 2px dashed #b6c4db;
+  background-color: #f7f9fc;
   color: #1e4d8b;
-  font-size: 0.95rem;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.25s ease;
 }
 
 .photo-upload-label:hover {
-  background-color: #e4ecfb;
   border-color: #1e4d8b;
-  transform: scale(1.03);
+  background-color: #eef4ff;
+  transform: scale(1.02);
 }
 
-/* ⚠ 개인정보 경고문 */
+/* 삭제 버튼 */
+.photo-remove-button {
+  position: absolute;
+  bottom: -32px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #e53935;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 2px 6px rgba(229, 57, 53, 0.4);
+}
+
+.photo-remove-button:hover {
+  background-color: #c62828;
+}
+
+/* 인풋 공통 스타일 */
+.personal-info .form-group:not(.photo-upload) {
+  margin-bottom: 4px;
+}
+
+.personal-info .resume-input {
+  padding: 6px 10px;
+  font-size: 0.9rem;
+}
+
+/* 3행 구성 */
+.personal-info .form-group:nth-of-type(2) { grid-column: 2; grid-row: 2; } /* 이름 */
+.personal-info .form-group:nth-of-type(7) { grid-column: 3/5; grid-row: 2; } /* 성별 */
+.personal-info .form-group:nth-of-type(6) { grid-column: 5; grid-row: 2; } /* 생년월일 */
+
+.personal-info .form-group:nth-of-type(4) { grid-column: 2; grid-row: 3; } /* 전화번호 */
+.personal-info .form-group:nth-of-type(5) { grid-column: 3/6; grid-row: 3; } /* 주소 */
+
+.personal-info .form-group:nth-of-type(3) { grid-column: 2/6; grid-row: 4; } /* 이메일 */
+
+/* 사진 안내문 */
 .warning-text {
   margin-top: 8px;
   font-size: 0.8rem;
@@ -76,56 +172,144 @@
   font-style: italic;
 }
 
-.warning-text::before {
-  content: "⚠ ";
-  color: #e57373;
-}
-
-/* 오른쪽 입력 영역 */
-.personal-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-/* 상단: 이름 / 성별 / 생년월일 */
-.personal-top-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-}
-
-/* 하단: 주소 / 전화번호 / 이메일 */
-.personal-bottom-row {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
-  gap: 15px;
-}
-
-/* 입력창 */
+/* =========================================
+   ✏️ Input & Error Styles
+   ========================================= */
 .resume-input {
   width: 100%;
-  padding: 12px 14px;
+  padding: 13px 16px;
   font-size: 1rem;
-  border: 1.6px solid #c9d4e6;
+  border: 1.5px solid #cfd5e2;
   border-radius: 8px;
-  outline: none;
   background-color: #fafcff;
+  outline: none;
   transition: all 0.25s ease;
+}
+
+.resume-input:hover {
+  border-color: #90a4c4;
 }
 
 .resume-input:focus {
   border-color: #1e4d8b;
-  box-shadow: 0 0 10px rgba(30, 77, 139, 0.4);
+  box-shadow: 0 0 10px rgba(30, 77, 139, 0.3);
+  background-color: #fff;
 }
 
-/* =======================================
-   ✨ 애니메이션 & 반응형
-======================================= */
+.resume-input.error {
+  border-color: #e53935;
+  background-color: #fff8f8;
+}
+
+.error-message {
+  color: #e53935;
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+/* =========================================
+   🧩 Dynamic Sections
+   ========================================= */
+.education-item,
+.experience-item,
+.certificate-item {
+  background-color: #f9fafc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 18px;
+  border-left: 4px solid #1e4d8b;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  animation: fadeIn 0.4s ease;
+}
+
+.add-button,
+.remove-button {
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 8px 14px;
+  transition: all 0.25s ease;
+}
+
+.add-button {
+  background-color: #1e4d8b;
+  color: #fff;
+}
+
+.add-button:hover {
+  background-color: #2d63b4;
+}
+
+.remove-button {
+  background-color: #f44336;
+  color: #fff;
+}
+
+.remove-button:hover {
+  background-color: #c62828;
+}
+
+/* =========================================
+   🧠 Cover Letter Section
+   ========================================= */
+.cover-letter-label {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #0d1b3d;
+  margin-bottom: 6px;
+}
+
+.cover-letter-textarea {
+  resize: vertical;
+  background-color: #fafcff;
+  min-height: 120px;
+}
+
+.character-count {
+  text-align: right;
+  font-size: 0.85rem;
+  color: #9aa2b1;
+  margin-top: 4px;
+}
+
+/* =========================================
+   💾 Save Button
+   ========================================= */
+.resume-actions {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.save-button {
+  background-color: #1e4d8b;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 36px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 15px rgba(30, 77, 139, 0.35);
+}
+
+.save-button:hover {
+  background-color: #f6c90e;
+  color: #0d1b3d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(246, 201, 14, 0.45);
+}
+
+/* =========================================
+   ✨ Animation
+   ========================================= */
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(15px);
   }
   to {
     opacity: 1;
@@ -133,22 +317,64 @@
   }
 }
 
-@media (max-width: 768px) {
+/* =========================================
+   📱 Responsive Design
+   ========================================= */
+@media (max-width: 992px) {
   .resume-container {
-    padding: 30px 20px;
+    padding: 40px 30px;
   }
 
   .personal-info {
     grid-template-columns: 1fr;
+    padding: 30px 25px;
   }
 
-  .personal-top-row,
-  .personal-bottom-row {
-    grid-template-columns: 1fr;
-  }
-
+  .photo-preview,
   .photo-upload-label {
     width: 150px;
-    height: 180px;
+    height: 190px;
+  }
+
+  .section-title {
+    font-size: 1.4rem;
+  }
+
+  .save-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .personal-info {
+    display: block;
+  }
+
+  .personal-info .photo-upload {
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+
+  .personal-info .form-group:not(.photo-upload) {
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 576px) {
+  .resume {
+    padding: 30px 10px;
+  }
+
+  .resume-container {
+    padding: 25px 18px;
+  }
+
+  .section-title {
+    font-size: 1.2rem;
+  }
+
+  .resume-input {
+    font-size: 0.95rem;
+    padding: 10px 12px;
   }
 }
