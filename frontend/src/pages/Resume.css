@@ -60,7 +60,9 @@
 /* =========================================
    📸 Personal Info Section
    ========================================= */
-.personal-info {
+
+/* 인적사항 내용 박스 (제목 제외) */
+.personal-info-box {
   display: grid;
   grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr); /* 사진 + 오른쪽 3열 */
   column-gap: 24px;
@@ -68,28 +70,24 @@
   align-items: flex-start;
   background-color: #f9fafc;
   border: 1.5px solid #e1e4eb;
+  border-left: 4px solid #1e4d8b;
   border-radius: 12px;
   padding: 40px 50px;
   box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
 }
 
-/* 제목 */
-.personal-info .section-title {
-  grid-column: 1 / -1;
-}
-
 /* 왼쪽 사진 */
-.personal-info .photo-upload {
+.personal-info-box .photo-upload {
   grid-column: 1;
-  grid-row: 2 / span 3;
+  grid-row: 1 / span 3;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
 }
 
-.personal-info .photo-preview,
-.personal-info .photo-upload-label {
+.personal-info-box .photo-preview,
+.personal-info-box .photo-upload-label {
   width: 130px;
   height: 170px;
   border-radius: 10px;
@@ -144,24 +142,24 @@
 }
 
 /* 인풋 공통 스타일 */
-.personal-info .form-group:not(.photo-upload) {
+.personal-info-box .form-group:not(.photo-upload) {
   margin-bottom: 4px;
 }
 
-.personal-info .resume-input {
+.personal-info-box .resume-input {
   padding: 6px 10px;
   font-size: 0.9rem;
 }
 
 /* 3행 구성 */
-.personal-info .form-group:nth-of-type(2) { grid-column: 2; grid-row: 2; } /* 이름 */
-.personal-info .form-group:nth-of-type(7) { grid-column: 3/5; grid-row: 2; } /* 성별 */
-.personal-info .form-group:nth-of-type(6) { grid-column: 5; grid-row: 2; } /* 생년월일 */
+.personal-info-box .form-group:nth-of-type(2) { grid-column: 2; grid-row: 1; } /* 이름 */
+.personal-info-box .form-group:nth-of-type(7) { grid-column: 3/5; grid-row: 1; } /* 성별 */
+.personal-info-box .form-group:nth-of-type(6) { grid-column: 5; grid-row: 1; } /* 생년월일 */
 
-.personal-info .form-group:nth-of-type(4) { grid-column: 2; grid-row: 3; } /* 전화번호 */
-.personal-info .form-group:nth-of-type(5) { grid-column: 3/6; grid-row: 3; } /* 주소 */
+.personal-info-box .form-group:nth-of-type(4) { grid-column: 2; grid-row: 2; } /* 전화번호 */
+.personal-info-box .form-group:nth-of-type(5) { grid-column: 3/6; grid-row: 2; } /* 주소 */
 
-.personal-info .form-group:nth-of-type(3) { grid-column: 2/6; grid-row: 4; } /* 이메일 */
+.personal-info-box .form-group:nth-of-type(3) { grid-column: 2/6; grid-row: 3; } /* 이메일 */
 
 /* 사진 안내문 */
 .warning-text {

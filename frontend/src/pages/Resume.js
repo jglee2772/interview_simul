@@ -481,8 +481,9 @@ const Resume = () => {
         <section className="resume-section personal-info">
           <h2 className="section-title">인적사항</h2>
           
-          {/* 증명사진 업로드 */}
-          <div className="form-group photo-upload">
+          <div className="personal-info-box">
+            {/* 증명사진 업로드 */}
+            <div className="form-group photo-upload">
             <div className="photo-preview-container">
               {photoPreview ? (
                 <div className="photo-preview-wrapper">
@@ -578,6 +579,7 @@ const Resume = () => {
               onChange={handleInputChange}
               placeholder="성별"
             />
+          </div>
           </div>
         </section>
 
