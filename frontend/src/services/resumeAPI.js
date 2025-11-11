@@ -15,19 +15,18 @@
 import api from './apiConfig';
 
 const resumeAPI = {
-  // 이력서 저장(생성) API 함수 작성
-  saveResume: (data) => api.post('/resume/', data),
+  saveResume: (data) => {
+    if (data instanceof FormData) {
+      return api.post('/resume/', data, {
+        headers: { 'Content-Type': undefined }
+      });
+    }
+    return api.post('/resume/', data);
+  },
   
-  // 이력서 조회 API 함수 작성
   getResume: (resumeId) => api.get(`/resume/${resumeId}/`),
-  
-  // 이력서 목록 조회 API 함수 작성 (필요시)
   getResumeList: () => api.get('/resume/'),
-  
-  // 이력서 수정 API 함수 작성
   updateResume: (resumeId, data) => api.put(`/resume/${resumeId}/`, data),
-  
-  // 이력서 삭제 API 함수 작성
   deleteResume: (resumeId) => api.delete(`/resume/${resumeId}/`),
 };
 
