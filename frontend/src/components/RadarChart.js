@@ -49,6 +49,13 @@ function RadarChart({ result }) {
         label: '역량 점수',
         data: scores,
         fill: true,
+        backgroundColor: "rgba(135, 181, 255, 0.25)",
+        borderColor: "rgba(80, 139, 255, 1)",
+        pointBackgroundColor: "rgba(80, 139, 255, 1)",
+        pointBorderColor: "#fff",
+        pointHoverBackgroundColor: "#fff",
+        pointHoverBorderColor: "rgba(246, 201, 14, 1)",
+        borderWidth: 2,
       },
     ],
   };

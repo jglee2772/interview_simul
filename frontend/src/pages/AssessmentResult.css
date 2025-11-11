@@ -22,3 +22,106 @@
   color: #333;
 }
 
+/* 결과 섹션 */
+.assessment-result {
+  text-align: left;
+}
+
+/* 결과 요약 상단 (텍스트 + 그래프) */
+.result-main {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 40px;
+  margin-top: 30px;
+}
+
+/* 왼쪽 설명 */
+.result-text {
+  flex: 1;
+  background: #f9fafc;
+  padding: 20px 25px;
+  border-radius: 10px;
+  border-left: 4px solid #f6c90e;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.result-text h3 {
+  color: #0e1a3a;
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.result-text ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.result-text li {
+  margin-bottom: 10px;
+  font-size: 0.95rem;
+  color: #1a2755;
+}
+
+/* 오른쪽 그래프 */
+.result-chart {
+  flex: 1;
+  background: #fffef9;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* 결과 요약 박스 */
+.result-summary-card {
+  margin-top: 35px;
+  background: #f6f7fb;
+  border-left: 5px solid #f6c90e;
+  padding: 20px 25px;
+  border-radius: 8px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.result-summary-card h3 {
+  color: #0e1a3a;
+  margin-bottom: 12px;
+}
+
+/* 애니메이션 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .assessment-container {
+    padding: 30px 20px;
+  }
+
+  .result-main {
+    flex-direction: column;
+  }
+
+  .scale-label {
+    display: none;
+  }
+
+  .scale-button {
+    min-width: 100%;
+  }
+
+  .navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+
