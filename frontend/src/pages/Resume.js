@@ -160,8 +160,18 @@ const Resume = () => {
   const [educationErrors, setEducationErrors] = useState({});
   const [experienceErrors, setExperienceErrors] = useState({});
   const [certificateErrors, setCertificateErrors] = useState({});
+  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isAnalyzing, setIsAnalyzing] = useState(false);
+  const [currentSection, setCurrentSection] = useState('');
 
-  // 컴포넌트 마운트 시 localStorage에서 데이터 불러오기
+  // 자기소개서 섹션 설정
+  const coverLetterSections = [
+    { key: 'growthProcess', label: '성장과정' },
+    { key: 'strengthsWeaknesses', label: '성격의 장단점' },
+    { key: 'academicLife', label: '학업생활' },
+    { key: 'motivation', label: '지원동기와 입사 후 포부' },
+  ];
+
   useEffect(() => {
     const { formData: savedData, photoPreview: savedPreview } = loadFromStorage();
     setFormData(savedData);
@@ -271,27 +281,31 @@ const Resume = () => {
     setPhotoPreview(null);
   };
 
+  // 검증 헬퍼 함수
+  const hasSectionData = (item, fields) => fields.some(field => item[field]?.trim());
+
   // 검증 함수들
   const hasValidationErrors = () => {
+    // 필수 필드 검증
     if (!formData.name.trim() || !formData.email.trim() || !formData.birthDate.trim()) return true;
     if (emailError || (formData.email && !validateEmail(formData.email))) return true;
     if (formData.birthDate && birthDateError) return true;
     
-    if (formData.educations.some((edu, index) => {
-      const hasData = edu.school.trim() || edu.major.trim() || edu.graduationYear.trim();
-      return hasData && educationErrors[index]?.graduationYear;
-    })) return true;
+    // 학력 검증
+    if (formData.educations.some((edu, index) => 
+      hasSectionData(edu, ['school', 'major', 'graduationYear']) && educationErrors[index]?.graduationYear
+    )) return true;
     
-    if (formData.experiences.some((exp, index) => {
-      const hasData = exp.company.trim() || exp.position.trim() || exp.startDate.trim() || 
-                      exp.endDate.trim() || exp.description.trim();
-      return hasData && (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate);
-    })) return true;
+    // 경력 검증
+    if (formData.experiences.some((exp, index) => 
+      hasSectionData(exp, ['company', 'position', 'startDate', 'endDate', 'description']) && 
+      (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate)
+    )) return true;
     
-    if (formData.certificates.some((cert, index) => {
-      const hasData = cert.name.trim() || cert.issuer.trim() || cert.date.trim();
-      return hasData && certificateErrors[index]?.date;
-    })) return true;
+    // 자격증 검증
+    if (formData.certificates.some((cert, index) => 
+      hasSectionData(cert, ['name', 'issuer', 'date']) && certificateErrors[index]?.date
+    )) return true;
     
     return false;
   };
@@ -306,28 +320,26 @@ const Resume = () => {
     }
     if (formData.birthDate && birthDateError) return birthDateError;
     
-    const eduErrorIndex = formData.educations.findIndex((edu, index) => {
-      const hasData = edu.school.trim() || edu.major.trim() || edu.graduationYear.trim();
-      return hasData && educationErrors[index]?.graduationYear;
-    });
-    if (eduErrorIndex !== -1) {
-      return educationErrors[eduErrorIndex].graduationYear;
-    }
+    // 학력 오류
+    const eduErrorIndex = formData.educations.findIndex((edu, index) => 
+      hasSectionData(edu, ['school', 'major', 'graduationYear']) && educationErrors[index]?.graduationYear
+    );
+    if (eduErrorIndex !== -1) return educationErrors[eduErrorIndex].graduationYear;
     
-    const expErrorIndex = formData.experiences.findIndex((exp, index) => {
-      const hasData = exp.company.trim() || exp.position.trim() || exp.startDate.trim() || 
-                      exp.endDate.trim() || exp.description.trim();
-      return hasData && (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate);
-    });
+    // 경력 오류
+    const expErrorIndex = formData.experiences.findIndex((exp, index) => 
+      hasSectionData(exp, ['company', 'position', 'startDate', 'endDate', 'description']) && 
+      (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate)
+    );
     if (expErrorIndex !== -1) {
       const expError = experienceErrors[expErrorIndex];
       return `경력 ${expErrorIndex + 1}번 항목: ${expError.startDate || expError.endDate}`;
     }
     
-    const certErrorIndex = formData.certificates.findIndex((cert, index) => {
-      const hasData = cert.name.trim() || cert.issuer.trim() || cert.date.trim();
-      return hasData && certificateErrors[index]?.date;
-    });
+    // 자격증 오류
+    const certErrorIndex = formData.certificates.findIndex((cert, index) => 
+      hasSectionData(cert, ['name', 'issuer', 'date']) && certificateErrors[index]?.date
+    );
     if (certErrorIndex !== -1) {
       return `자격증 ${certErrorIndex + 1}번 항목: ${certificateErrors[certErrorIndex].date}`;
     }
@@ -347,6 +359,25 @@ const Resume = () => {
     } else {
       alert('저장 중 오류가 발생했습니다.');
     }
+  };
+
+  const handleAnalyze = async (section) => {
+    const content = formData[section];
+    
+    if (!content || !content.trim()) {
+      alert('분석할 내용이 없습니다.');
+      return;
+    }
+    
+    setIsAnalyzing(true);
+    setCurrentSection(section);
+    
+    // TODO: API 연동
+    setTimeout(() => {
+      setIsAnalyzing(false);
+      setCurrentSection('');
+      alert(`${section} 분석 완료 (임시)`);
+    }, 2000);
   };
 
   return (
@@ -642,61 +673,31 @@ const Resume = () => {
         <section className="resume-section cover-letter">
           <h2 className="section-title">자기소개서</h2>
           
-          <div className="form-group">
-            <label className="cover-letter-label">성장과정</label>
-            <textarea
-              className="resume-input cover-letter-textarea"
-              name="growthProcess"
-              value={formData.growthProcess}
-              onChange={handleInputChange}
-              placeholder="성장과정을 작성해주세요"
-              rows={5}
-              maxLength={MAX_TEXT_LENGTH}
-            />
-            <div className="character-count">{formData.growthProcess.length}/{MAX_TEXT_LENGTH}</div>
-          </div>
-          
-          <div className="form-group">
-            <label className="cover-letter-label">성격의 장단점</label>
-            <textarea
-              className="resume-input cover-letter-textarea"
-              name="strengthsWeaknesses"
-              value={formData.strengthsWeaknesses}
-              onChange={handleInputChange}
-              placeholder="성격의 장단점을 작성해주세요"
-              rows={5}
-              maxLength={MAX_TEXT_LENGTH}
-            />
-            <div className="character-count">{formData.strengthsWeaknesses.length}/{MAX_TEXT_LENGTH}</div>
-          </div>
-          
-          <div className="form-group">
-            <label className="cover-letter-label">학업생활</label>
-            <textarea
-              className="resume-input cover-letter-textarea"
-              name="academicLife"
-              value={formData.academicLife}
-              onChange={handleInputChange}
-              placeholder="학업생활을 작성해주세요"
-              rows={5}
-              maxLength={MAX_TEXT_LENGTH}
-            />
-            <div className="character-count">{formData.academicLife.length}/{MAX_TEXT_LENGTH}</div>
-          </div>
-          
-          <div className="form-group">
-            <label className="cover-letter-label">지원동기와 입사 후 포부</label>
-            <textarea
-              className="resume-input cover-letter-textarea"
-              name="motivation"
-              value={formData.motivation}
-              onChange={handleInputChange}
-              placeholder="지원동기와 입사 후 포부를 작성해주세요"
-              rows={5}
-              maxLength={MAX_TEXT_LENGTH}
-            />
-            <div className="character-count">{formData.motivation.length}/{MAX_TEXT_LENGTH}</div>
-          </div>
+          {coverLetterSections.map(({ key, label }) => (
+            <div key={key} className="form-group">
+              <label className="cover-letter-label">
+                {label}
+                <button
+                  type="button"
+                  className="analyze-button"
+                  onClick={() => handleAnalyze(key)}
+                  disabled={isAnalyzing}
+                >
+                  {isAnalyzing && currentSection === key ? '분석 중...' : 'AI 분석'}
+                </button>
+              </label>
+              <textarea
+                className="resume-input cover-letter-textarea"
+                name={key}
+                value={formData[key]}
+                onChange={handleInputChange}
+                placeholder={`${label}을 작성해주세요`}
+                rows={5}
+                maxLength={MAX_TEXT_LENGTH}
+              />
+              <div className="character-count">{formData[key].length}/{MAX_TEXT_LENGTH}</div>
+            </div>
+          ))}
         </section>
 
         {/* 저장 버튼 */}
@@ -715,6 +716,30 @@ const Resume = () => {
             </div>
           )}
         </div>
+      </div>
+      
+      {/* AI 피드백 패널 */}
+      <div className={`feedback-panel ${isPanelOpen ? 'open' : 'closed'}`}>
+        <button 
+          type="button"
+          className="panel-toggle"
+          onClick={() => setIsPanelOpen(!isPanelOpen)}
+          aria-label={isPanelOpen ? '패널 닫기' : '패널 열기'}
+        >
+          {isPanelOpen ? '>' : '<'}
+        </button>
+        
+        {isPanelOpen && (
+          <div className="feedback-content">
+            <h3 className="feedback-title">AI 피드백</h3>
+            <div className="feedback-divider"></div>
+            <div className="feedback-text-container">
+              <p className="feedback-placeholder">
+                분석 버튼을 클릭하면 피드백이 표시됩니다.
+              </p>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
