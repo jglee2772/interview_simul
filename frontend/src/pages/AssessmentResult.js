@@ -133,22 +133,22 @@ const AssessmentResult = () => {
             <h3>역량 설명</h3>
             <ul>
               <li>
-                <strong>의사소통(COMM)</strong> : 의견을 나누고 조율하는 능력입니다.
+                <strong>의사소통(COMM)</strong> : <br/>의견을 나누고 조율하는 능력입니다.
               </li>
               <li>
-                <strong>책임감(RESP)</strong> : 맡은 일을 끝까지 수행하고 약속을 지키는 정도입니다.
+                <strong>책임감(RESP)</strong> : <br/>맡은 일을 끝까지 수행하고 약속을 지키는 정도입니다.
               </li>
               <li>
-                <strong>문제해결(PROB)</strong> : 문제를 분석하고 해결 방법을 찾아가는 능력입니다.
+                <strong>문제해결(PROB)</strong> : <br/>문제를 분석하고 해결 방법을 찾아가는 능력입니다.
               </li>
               <li>
-                <strong>성장성(GROW)</strong> : 배움과 변화에 얼마나 적극적인지 나타냅니다.
+                <strong>성장성(GROW)</strong> : <br/>배움과 변화에 얼마나 적극적인지 나타냅니다.
               </li>
               <li>
-                <strong>스트레스 내성(STRE)</strong> : 압박 상황에서 안정적으로 버티는 힘입니다.
+                <strong>스트레스 내성(STRE)</strong> : <br/>압박 상황에서 안정적으로 버티는 힘입니다.
               </li>
               <li>
-                <strong>적응력(ADAP)</strong> : 새로운 환경과 규칙에 얼마나 빨리 적응하는지입니다.
+                <strong>적응력(ADAP)</strong> : <br/>새로운 환경과 규칙에 얼마나 빨리 적응하는지입니다.
               </li>
             </ul>
           </div>
