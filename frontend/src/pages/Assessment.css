@@ -18,6 +18,8 @@
   box-sizing: border-box;
 }
 
+
+
 /* 메인 컨테이너 */
 .assessment-container {
   width: 100%;
@@ -29,6 +31,15 @@
   text-align: center;
   animation: fadeIn 0.6s ease;
 }
+
+.assessment-layout {
+  display: flex;             /*✅ 이게 핵심*/
+  justify-content: center;   /* 메인 컨테이너 가운데 정렬 */
+  align-items: flex-start;   /* 위쪽 맞춤 */
+  gap: 10px;                 /* 본문 ↔ 사이드 간 여백 */
+  position: relative;
+}
+
 
 /* 제목 */
 .assessment-container h1 {
@@ -242,6 +253,8 @@
   margin-bottom: 12px;
 }
 
+
+
 /* 애니메이션 */
 @keyframes fadeIn {
   from {
@@ -277,3 +290,5 @@
     gap: 10px;
   }
 }
+
+

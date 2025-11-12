@@ -1,0 +1,76 @@
+.asidebar {                 /* AnswerAsidebar의 루트에 붙는 클래스명 */
+  position: sticky;         /* 스크롤해도 상단에 붙어있게 */
+  top: 24px;
+  width: 260px;
+  background: #f6f7fb;
+  border-left: 4px solid #f6c90e;
+  border-radius: 5px;
+  padding: 20px 16px;
+  box-shadow: -2px 0 12px rgba(0,0,0,0.08);
+  height: fit-content;
+}
+
+.asidebar.open {
+  right: -10px;
+}
+
+.asidebar h3 {
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0e1a3a;
+}
+
+.asidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.asidebar li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.asidebar li:hover {
+  background-color: rgba(246, 201, 14, 0.15);
+}
+
+.asidebar li.unanswered {
+  color: #e74c3c;
+}
+
+/* 사이드 내부 리스트 기본 여백 보정(선택) */
+.asidebar h1 { margin: 0 0 12px; }
+.asidebar ul { margin: 0; padding: 0; list-style: none; }
+
+.aside-question-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.aside-question-list li.unanswered {
+  background: rgba(255, 99, 71, 0.1);
+  color: #e74c3c;
+}
+
+.aside-question-list li.answered {
+  background: rgba(46, 204, 113, 0.12);
+  color: #27ae60;
+}
+
+.aside-question-list li:hover {
+  transform: translateX(4px);
+  background: rgba(246, 201, 14, 0.1);
+}
