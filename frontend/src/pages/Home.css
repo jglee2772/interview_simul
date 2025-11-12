@@ -1,12 +1,4 @@
-/**
- * 파일: Home.css
- * 역할: 메인 홈페이지 스타일 작성
- * 설명:
- * - Home.js 컴포넌트의 스타일을 정의합니다
- * - CSS 클래스 선택자를 사용하여 스타일링합니다
- */
-
-/* 전체 레이아웃 */
+/* 공통 */
 .home {
   width: 100%;
   min-height: 100vh;
@@ -16,6 +8,7 @@
   padding: 80px 40px;
   box-sizing: border-box;
   overflow-x: hidden;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
 }
 
 /* 내부 컨테이너 */
@@ -27,102 +20,102 @@
   gap: 30px;
 }
 
-/* 상단 탭 */
-.home-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  margin-bottom: 10px;
-}
-
+/* 제목 */
 .home-header h2 {
-  font-size: 1.6rem;
-  font-weight: 700;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #0e1a3a;
+  letter-spacing: -0.5px;
 }
 
 /* 카드 레이아웃 */
 .card-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr; /* 기본정보(크게) + 2개 중간 카드 */
-  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
 
-/* 카드 기본 스타일 */
+/* 카드 디자인 */
 .card {
   background-color: #ffffff;
-  border-radius: 14px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
   padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 18px rgba(246, 201, 14, 0.5);
+  transform: translateY(-6px);
+  box-shadow: 0 8px 22px rgba(246, 201, 14, 0.4);
 }
 
-/* 카드 제목 */
-.card-title {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #0e1a3a;
-  margin-top: 10px;
-}
-
-/* 아이콘 자리 (임시용) */
 .card-icon {
   width: 80px;
   height: 80px;
   background-color: #f6c90e;
-  border-radius: 16px;
-  opacity: 0.9;
-  margin-bottom: 15px;
+  border-radius: 18px;
+  margin-bottom: 14px;
 }
 
-/* 하단 섹션 (이력서 작성 + 구인사이트) */
+.card-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0e1a3a;
+}
+
+/* 하단 섹션 */
 .bottom-section {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 24px;
 }
 
-/* 이력서 작성해보기 */
+/* ✅ 이력서 카드 */
 .resume-card {
   background-color: #ffffff;
-  border-radius: 14px;
-  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 25px 30px;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .resume-card:hover {
-  background-color: #f6c90e;
   transform: translateY(-3px);
+  box-shadow: 0 8px 22px rgba(246, 201, 14, 0.4);
 }
 
+/* ✅ 이력서 이미지 */
+.resume-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 14px;
+  object-fit: cover;
+  background-color: #f6c90e;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 제목 */
 .resume-card h3 {
   color: #0e1a3a;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   font-weight: 700;
 }
 
-/* 구인사이트 섹션 */
+/* 구인사이트 */
 .job-section {
-  background-color: #fff;
-  border-radius: 14px;
-  padding: 25px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 25px 30px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
 }
 
 .job-section h3 {
@@ -132,18 +125,19 @@
   margin-bottom: 10px;
 }
 
-/* 반응형 레이아웃 */
-@media (max-width: 1024px) {
+.job-section p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
   .card-grid {
     grid-template-columns: 1fr 1fr;
   }
 }
 
-@media (max-width: 768px) {
-  .home {
-    padding: 40px 20px;
-  }
-
+@media (max-width: 600px) {
   .card-grid {
     grid-template-columns: 1fr;
   }
@@ -151,5 +145,10 @@
   .resume-card {
     flex-direction: column;
     align-items: flex-start;
+  }
+
+  .resume-icon {
+    width: 65px;
+    height: 65px;
   }
 }

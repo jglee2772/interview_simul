@@ -6,6 +6,7 @@ const Navbar = () => {
   const location = useLocation();
 
   return (
+    
     <div className="sidebar">
       {/* 홈 버튼 */}
       <div className="sidebar-top">

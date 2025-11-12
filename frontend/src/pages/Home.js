@@ -39,8 +39,13 @@ const Home = () => {
         </div>
 
         <div className="bottom-section">
+          {/* ✅ 이력서 작성해보기 카드 (이미지 추가) */}
           <div className="resume-card" onClick={() => navigate('/resume')}>
-            <div className="card-icon"></div>
+            <img
+              src="https://i.pinimg.com/736x/c3/ec/da/c3ecda8195eb14dd0c201bbc52b49549.jpg"
+              alt="이력서 아이콘"
+              className="resume-icon"
+            />
             <h3>이력서 작성해보기</h3>
           </div>
 
