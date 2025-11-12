@@ -64,9 +64,9 @@
 /* 인적사항 내용 박스 (제목 제외) */
 .personal-info-box {
   display: grid;
-  grid-template-columns: 170px minmax(0, 1fr) minmax(0, 1fr); /* 사진 + 오른쪽 3열 */
-  column-gap: 24px;
-  row-gap: 8px;
+  grid-template-columns: 170px repeat(4, 1fr); /* 사진 + 오른쪽 4열 */
+  column-gap: 20px;
+  row-gap: 16px;
   align-items: flex-start;
   background-color: #f9fafc;
   border: 1.5px solid #e1e4eb;
@@ -119,6 +119,14 @@
   transform: scale(1.02);
 }
 
+/* 사진 미리보기 래퍼 */
+.photo-preview-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* 삭제 버튼 */
 .photo-remove-button {
   position: absolute;
@@ -143,23 +151,26 @@
 
 /* 인풋 공통 스타일 */
 .personal-info-box .form-group:not(.photo-upload) {
-  margin-bottom: 4px;
+  margin-bottom: 0;
 }
 
 .personal-info-box .resume-input {
-  padding: 6px 10px;
-  font-size: 0.9rem;
+  padding: 10px 14px;
+  font-size: 0.95rem;
 }
 
-/* 3행 구성 */
+/* 그리드 레이아웃 구성 */
+/* 1행: 이름 | 성별 | 생년월일 */
 .personal-info-box .form-group:nth-of-type(2) { grid-column: 2; grid-row: 1; } /* 이름 */
-.personal-info-box .form-group:nth-of-type(7) { grid-column: 3/5; grid-row: 1; } /* 성별 */
-.personal-info-box .form-group:nth-of-type(6) { grid-column: 5; grid-row: 1; } /* 생년월일 */
+.personal-info-box .form-group:nth-of-type(3) { grid-column: 3; grid-row: 1; } /* 성별 */
+.personal-info-box .form-group:nth-of-type(4) { grid-column: 4 / span 2; grid-row: 1; } /* 생년월일 */
 
-.personal-info-box .form-group:nth-of-type(4) { grid-column: 2; grid-row: 2; } /* 전화번호 */
-.personal-info-box .form-group:nth-of-type(5) { grid-column: 3/6; grid-row: 2; } /* 주소 */
+/* 2행: 전화번호 (더 길게) | 이메일 */
+.personal-info-box .form-group:nth-of-type(5) { grid-column: 2 / span 2; grid-row: 2; } /* 전화번호 */
+.personal-info-box .form-group:nth-of-type(6) { grid-column: 4 / span 2; grid-row: 2; } /* 이메일 */
 
-.personal-info-box .form-group:nth-of-type(3) { grid-column: 2/6; grid-row: 3; } /* 이메일 */
+/* 3행: 주소 (전체 너비) */
+.personal-info-box .form-group:nth-of-type(7) { grid-column: 2 / span 4; grid-row: 3; } /* 주소 */
 
 /* 사진 안내문 */
 .warning-text {
@@ -279,6 +290,18 @@
 .resume-actions {
   text-align: center;
   margin-top: 50px;
+}
+
+.validation-error-message {
+  margin-top: 12px;
+  color: #e53935;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-align: center;
+  padding: 8px 16px;
+  background-color: #ffebee;
+  border-radius: 6px;
+  border-left: 4px solid #e53935;
 }
 
 .save-button {
