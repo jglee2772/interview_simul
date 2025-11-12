@@ -1,13 +1,11 @@
-.asidebar {                 /* AnswerAsidebar의 루트에 붙는 클래스명 */
-  position: sticky;         /* 스크롤해도 상단에 붙어있게 */
-  top: 24px;
+.asidebar {
   width: 260px;
   background: #f6f7fb;
   border-left: 4px solid #f6c90e;
-  border-radius: 5px;
-  padding: 20px 16px;
-  box-shadow: -2px 0 12px rgba(0,0,0,0.08);
-  height: fit-content;
+  border-radius: 10px;
+  padding: 16px;
+  box-shadow: 0 0 12px rgba(0,0,0,0.08);
+  align-self: flex-start; /* 위쪽 정렬 유지 */
 }
 
 .asidebar.open {
@@ -27,14 +25,14 @@
 }
 
 .asidebar li {
+  font-size: 0.85rem; 
+  padding: 4px 0;
+  width: 65px;
+  height: 34px;
+  border-radius: 6px;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+  justify-content: center;
 }
 
 .asidebar li:hover {
@@ -49,15 +47,21 @@
 .asidebar h1 { margin: 0 0 12px; }
 .asidebar ul { margin: 0; padding: 0; list-style: none; }
 
+.aside-question-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 두 줄로 */
+  gap: 8px 12px; /* 세로, 가로 간격 */
+  justify-content: center;
+}
+
 .aside-question-list li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 6px;
-  padding: 8px 12px;
-  border-radius: 10px;
+  list-style: none;
+  padding: 6px 10px;
+  border-radius: 8px;
+  text-align: center;
   font-weight: 600;
-  transition: background 0.2s, transform 0.1s;
+  cursor: pointer;
+  transition: background 0.2s ease;
 }
 
 .aside-question-list li.unanswered {
