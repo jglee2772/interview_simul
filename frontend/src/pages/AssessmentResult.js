@@ -52,9 +52,7 @@ function getSummaryText(result) {
     parts.push('새로운 환경과 변화에 빠르게 적응하는 경향이 있습니다.');
   }
   if (stress <= 2.5) {
-    parts.push(
-      '스트레스 상황에서는 부담을 크게 느낄 수 있어, 휴식과 환경 조절이 중요합니다.'
-    );
+    parts.push('스트레스 상황에서는 부담을 크게 느낄 수 있어, 휴식과 환경 조절이 중요합니다.');
   } else if (stress >= 4) {
     parts.push('압박 상황에서도 비교적 안정적인 모습을 유지하는 편입니다.');
   }
@@ -71,18 +69,24 @@ const AssessmentResult = () => {
   const location = useLocation();
   const { id } = useParams();
 
+  //  이름
   const [name] = useState(location.state?.name || '응시자');
+
+  //  검사 점수 결과
   const [result, setResult] = useState(
     location.state?.result || location.state || null
   );
 
-  // 🔥 GPT 분석 데이터
+  //  GPT 분석 결과
   const [analysis] = useState(location.state?.analysis || null);
 
-  const [loading, setLoading] = useState(false);
+  //  로딩 여부 (submit 페이지에서 전달됨)
+  const initialLoading = location.state?.loading || false;
+
+  const [loading, setLoading] = useState(initialLoading);
   const [error, setError] = useState('');
 
-  // 새로고침 시 API 재조회
+  // ---------- 🔥 새로고침 시 데이터 재요청 ----------
   useEffect(() => {
     if (!result && id) {
       const fetchResult = async () => {
@@ -98,20 +102,29 @@ const AssessmentResult = () => {
         }
       };
       fetchResult();
+    } else {
+      // 초기 1초 동안 로딩 애니메이션 유지 (감성)
+      setTimeout(() => setLoading(false), 1000);
     }
   }, [result, id]);
 
+  // ---------- 🔥 로딩 화면 ----------
   if (loading || !result) {
     return (
       <div className="assessment">
         <div className="assessment-container assessment-result">
           <h1>인적성 검사 결과</h1>
-          {error ? <p className="error-text">{error}</p> : <p>결과를 불러오는 중입니다...</p>}
+          {error ? (
+            <p className="error-text">{error}</p>
+          ) : (
+            <p>결과를 불러오는 중입니다...</p>
+          )}
         </div>
       </div>
     );
   }
 
+  // ---------- 🔥 실제 결과 화면 ----------
   return (
     <div className="assessment">
       <div className="assessment-container assessment-result">
@@ -120,54 +133,44 @@ const AssessmentResult = () => {
           <strong>{name}</strong> 님의 검사 결과입니다.
         </p>
 
-        {/* 1) 좌측 설명 + 우측 그래프 */}
+        {/* 1) 설명 + 그래프 */}
         <div className="result-main">
-          {/* ▷ Left: 6가지 기본 역량 설명 */}
           <div className="result-text">
             <h3>역량 설명</h3>
             <ul>
-              <li><strong>의사소통(COMM)</strong> : <br/>의견을 나누고 조율하는 능력입니다.</li>
-              <li><strong>책임감(RESP)</strong> : <br/>맡은 일을 끝까지 수행하는 정도입니다.</li>
-              <li><strong>문제해결(PROB)</strong> : <br/>문제를 분석하고 해결하는 능력입니다.</li>
-              <li><strong>성장성(GROW)</strong> : <br/>배움과 변화에 대한 적극성입니다.</li>
-              <li><strong>스트레스 내성(STRE)</strong> : <br/>압박 상황에서도 안정적 버티기.</li>
-              <li><strong>적응력(ADAP)</strong> : <br/>새로운 환경 적응 속도.</li>
+              <li><strong>의사소통(COMM)</strong> : 의견을 조율하는 능력.</li>
+              <li><strong>책임감(RESP)</strong> : 맡은 일을 끝까지 완수.</li>
+              <li><strong>문제해결(PROB)</strong> : 문제를 분석하고 대응.</li>
+              <li><strong>성장성(GROW)</strong> : 배움과 성장 의지.</li>
+              <li><strong>스트레스 내성(STRE)</strong> : 압박 상황 대응력.</li>
+              <li><strong>적응력(ADAP)</strong> : 새로운 환경 적응력.</li>
             </ul>
           </div>
 
-          {/* ▷ Right: Radar Chart */}
           <div className="result-chart">
             <RadarChart result={result} />
           </div>
         </div>
 
-        {/* 2) GPT 성향 분석 카드 */}
+        {/* 2) GPT 성향 분석 */}
         <div className="result-summary-card gpt-analysis-card">
-          <h3>GPT 종합 성향 분석</h3>
+          <h3>종합 성향 분석</h3>
 
           {analysis ? (
             <>
-              <p>
-                <strong>요약:</strong> {analysis.summary}
-              </p>
+              <p><strong>요약:</strong> {analysis.summary}</p>
 
               <h4>강점</h4>
               <ul>
-                {analysis.strengths?.map((s, i) => (
-                  <li key={i}>{s}</li>
-                ))}
+                {analysis.strengths?.map((s, i) => <li key={i}>{s}</li>)}
               </ul>
 
               <h4>보완점</h4>
               <ul>
-                {analysis.weaknesses?.map((w, i) => (
-                  <li key={i}>{w}</li>
-                ))}
+                {analysis.weaknesses?.map((w, i) => <li key={i}>{w}</li>)}
               </ul>
 
-              <p>
-                <strong>작업 스타일:</strong> {analysis.work_style}
-              </p>
+              <p><strong>작업 스타일:</strong> {analysis.work_style}</p>
             </>
           ) : (
             <p>GPT 분석 데이터가 존재하지 않습니다.</p>
