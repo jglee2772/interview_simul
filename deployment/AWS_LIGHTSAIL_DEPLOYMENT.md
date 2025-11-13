@@ -435,7 +435,84 @@ nano /var/www/interview-simulation/backend/config/settings.py
 sudo systemctl restart gunicorn
 ```
 
-### 9.5 정적 파일 404 오류
+### 9.5 OpenAI API 키 오류 (401 Invalid API Key)
+
+**원인**: AWS 서버의 환경 변수가 Gunicorn 서비스에 로드되지 않음
+
+**증상**:
+- 로컬에서는 정상 작동하지만 AWS 배포 환경에서만 오류 발생
+- "Incorrect API key provided" 또는 "401 Invalid API Key" 오류
+
+**해결**:
+
+1. **.env 파일 확인**:
+```bash
+# .env 파일이 존재하는지 확인
+ls -la /var/www/interview-simulation/backend/.env
+
+# .env 파일 내용 확인 (API 키가 올바르게 설정되어 있는지)
+cat /var/www/interview-simulation/backend/.env | grep OPENAI_API_KEY
+```
+
+2. **Gunicorn 서비스 설정 확인**:
+```bash
+# Gunicorn 서비스 파일 확인
+sudo cat /etc/systemd/system/gunicorn.service
+
+# EnvironmentFile이 설정되어 있는지 확인
+# 다음 줄이 있어야 함:
+# EnvironmentFile=/var/www/interview-simulation/backend/.env
+```
+
+3. **Gunicorn 서비스 설정 수정** (필요한 경우):
+```bash
+sudo nano /etc/systemd/system/gunicorn.service
+```
+
+다음 내용이 포함되어 있어야 합니다:
+```ini
+[Service]
+...
+EnvironmentFile=/var/www/interview-simulation/backend/.env
+...
+```
+
+4. **서비스 재시작**:
+```bash
+# systemd 데몬 리로드
+sudo systemctl daemon-reload
+
+# Gunicorn 재시작
+sudo systemctl restart gunicorn
+
+# 상태 확인
+sudo systemctl status gunicorn
+```
+
+5. **환경 변수 로드 확인**:
+```bash
+# Gunicorn 프로세스의 환경 변수 확인
+sudo systemctl show gunicorn | grep EnvironmentFile
+
+# 또는 직접 확인
+sudo cat /proc/$(pgrep -f gunicorn | head -1)/environ | tr '\0' '\n' | grep OPENAI
+```
+
+6. **.env 파일 권한 확인**:
+```bash
+# .env 파일 권한 확인 (읽기 가능해야 함)
+ls -l /var/www/interview-simulation/backend/.env
+
+# 권한 수정 (필요한 경우)
+chmod 600 /var/www/interview-simulation/backend/.env
+```
+
+**주의사항**:
+- `.env` 파일에는 실제 API 키가 포함되어 있으므로 Git에 커밋하지 마세요
+- API 키는 `sk-`로 시작해야 합니다
+- API 키에 공백이나 특수문자가 포함되지 않았는지 확인하세요
+
+### 9.6 정적 파일 404 오류
 
 **원인**: collectstatic 미실행 또는 경로 문제
 

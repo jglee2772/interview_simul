@@ -38,7 +38,7 @@
 .tip-slider {
   display: flex;
   white-space: nowrap;
-  animation: slide 40s linear infinite;
+  animation: slide 50s linear infinite;
 }
 
 .tip-item {

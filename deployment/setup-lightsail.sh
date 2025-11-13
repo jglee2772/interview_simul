@@ -112,10 +112,14 @@ After=network.target
 User=$USER
 Group=www-data
 WorkingDirectory=/var/www/interview-simulation/backend
+# .env 파일에서 환경 변수 로드
+EnvironmentFile=/var/www/interview-simulation/backend/.env
 ExecStart=/var/www/interview-simulation/backend/venv/bin/gunicorn \
     --workers 3 \
     --bind 127.0.0.1:8000 \
     config.wsgi:application
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
