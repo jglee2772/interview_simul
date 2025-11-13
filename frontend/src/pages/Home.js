@@ -13,12 +13,28 @@ import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
   const navigate = useNavigate();
+  const tips = [
+  "회사와 직무에 대해 최소한의 정보는 알고 가야 해요!",
+  "단정한 복장, 자신감 있는 인사, 밝은 표정이 중요해요!",
+  "질문에 바로 핵심을 전달하고 장황하지 않게 답변해야 해요!",
+  "면접관의 질문이 무엇을 알고 싶어 하는지 이해 후 답변하세요!",
+  "모르는 질문이 나오면 솔직히 말하고, 유연하게 대응하세요!",
+  "회사에 대해 궁금한 점 한두 개 정도 미리 준비하면 좋아요!",
+  "긴장해도 괜찮아요, 당신의 진짜 모습이 가장 큰 강점입니다!",
+  "한 걸음씩 준비한 만큼 자신감 있게 보여주세요, 잘할 수 있습니다!"
+  ];
 
   return (
     <div className="home">
       <div className="home-container">
         <div className="home-header">
-          <h2>TIP</h2>
+          <div className="tip-slider-container">
+            <div className="tip-slider">
+              {[...tips, ...tips].map((tip, index) => (
+                <span key={index} className="tip-item">{tip}</span>
+              ))}
+            </div>
+          </div>
         </div>
 
         <div className="card-grid">
