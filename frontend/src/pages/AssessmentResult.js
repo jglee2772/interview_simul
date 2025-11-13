@@ -1,14 +1,5 @@
 /**
  * 페이지: 인적성검사 결과 페이지
- * 역할: 인적성검사 결과 표시 UI 작성
- * 설명:
- * - 인적성검사 결과를 시각적으로 표시합니다
- * - 점수, 분석 결과, 추천사항 등을 표시합니다
- * - API 서비스를 통해 백엔드에서 결과 데이터를 가져옵니다
- * - React 컴포넌트로 작성하며, 차트나 그래프를 사용할 수 있습니다
- */
-/**
- * 페이지: 인적성검사 결과 페이지
  */
 
 import React, { useEffect, useState } from 'react';
@@ -82,13 +73,16 @@ const AssessmentResult = () => {
 
   const [name] = useState(location.state?.name || '응시자');
   const [result, setResult] = useState(
-    // navigate 할 때 state에 { name, result } 넣었으니 그거 먼저 사용
     location.state?.result || location.state || null
   );
+
+  // 🔥 GPT 분석 데이터
+  const [analysis] = useState(location.state?.analysis || null);
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // 새로고침으로 들어온 경우: 백엔드에서 다시 결과 조회
+  // 새로고침 시 API 재조회
   useEffect(() => {
     if (!result && id) {
       const fetchResult = async () => {
@@ -126,47 +120,58 @@ const AssessmentResult = () => {
           <strong>{name}</strong> 님의 검사 결과입니다.
         </p>
 
-        {/* 위: 좌측 설명 + 우측 그래프 */}
+        {/* 1) 좌측 설명 + 우측 그래프 */}
         <div className="result-main">
-          {/* 왼쪽: 6가지 특성 설명 */}
+          {/* ▷ Left: 6가지 기본 역량 설명 */}
           <div className="result-text">
             <h3>역량 설명</h3>
             <ul>
-              <li>
-                <strong>의사소통(COMM)</strong> : <br/>의견을 나누고 조율하는 능력입니다.
-              </li>
-              <li>
-                <strong>책임감(RESP)</strong> : <br/>맡은 일을 끝까지 수행하고 약속을 지키는 정도입니다.
-              </li>
-              <li>
-                <strong>문제해결(PROB)</strong> : <br/>문제를 분석하고 해결 방법을 찾아가는 능력입니다.
-              </li>
-              <li>
-                <strong>성장성(GROW)</strong> : <br/>배움과 변화에 얼마나 적극적인지 나타냅니다.
-              </li>
-              <li>
-                <strong>스트레스 내성(STRE)</strong> : <br/>압박 상황에서 안정적으로 버티는 힘입니다.
-              </li>
-              <li>
-                <strong>적응력(ADAP)</strong> : <br/>새로운 환경과 규칙에 얼마나 빨리 적응하는지입니다.
-              </li>
+              <li><strong>의사소통(COMM)</strong> : <br/>의견을 나누고 조율하는 능력입니다.</li>
+              <li><strong>책임감(RESP)</strong> : <br/>맡은 일을 끝까지 수행하는 정도입니다.</li>
+              <li><strong>문제해결(PROB)</strong> : <br/>문제를 분석하고 해결하는 능력입니다.</li>
+              <li><strong>성장성(GROW)</strong> : <br/>배움과 변화에 대한 적극성입니다.</li>
+              <li><strong>스트레스 내성(STRE)</strong> : <br/>압박 상황에서도 안정적 버티기.</li>
+              <li><strong>적응력(ADAP)</strong> : <br/>새로운 환경 적응 속도.</li>
             </ul>
           </div>
 
-          {/* 오른쪽: 레이더 차트 */}
+          {/* ▷ Right: Radar Chart */}
           <div className="result-chart">
             <RadarChart result={result} />
           </div>
         </div>
 
-        {/* 아래: 해석 박스 */}
-        <div className="result-summary-card">
-          <h3>성향 분석 최종 결과</h3>
-          <p>
-            전체적으로 볼 때,&nbsp;
-            <strong>{getTopTraitLabel(result)}</strong> 역량이 상대적으로 높게 나타났습니다.
-          </p>
-          <p>{getSummaryText(result)}</p>
+        {/* 2) GPT 성향 분석 카드 */}
+        <div className="result-summary-card gpt-analysis-card">
+          <h3>GPT 종합 성향 분석</h3>
+
+          {analysis ? (
+            <>
+              <p>
+                <strong>요약:</strong> {analysis.summary}
+              </p>
+
+              <h4>강점</h4>
+              <ul>
+                {analysis.strengths?.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
+              </ul>
+
+              <h4>보완점</h4>
+              <ul>
+                {analysis.weaknesses?.map((w, i) => (
+                  <li key={i}>{w}</li>
+                ))}
+              </ul>
+
+              <p>
+                <strong>작업 스타일:</strong> {analysis.work_style}
+              </p>
+            </>
+          ) : (
+            <p>GPT 분석 데이터가 존재하지 않습니다.</p>
+          )}
         </div>
 
         <button onClick={() => navigate('/')}>메인으로 돌아가기</button>

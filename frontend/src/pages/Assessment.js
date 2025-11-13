@@ -87,8 +87,13 @@ const Assessment = () => {
       const resultData = payload.result || payload;
 
       navigate(`/assessment-result/${assessmentId}`, {
-        state: { name, result: resultData },
-      });
+      state: { 
+      name,
+      result: resultData,
+      analysis: res.data.analysis ?? null
+  },
+});
+
     } catch (e) {
       console.error(e);
       setError('답변 제출 중 오류가 발생했습니다.');
