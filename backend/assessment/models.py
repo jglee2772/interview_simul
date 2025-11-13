@@ -94,18 +94,20 @@ class Assessment(models.Model):
         type_label = "기본 유형"
 
         # 5) AssessmentResult 생성
-        result = AssessmentResult.objects.create(
-            assessment=self,
-            communication=communication,
-            responsibility=responsibility,
-            problem_solving=problem_solving,
-            growth=growth,
-            stress=stress,
-            adaptation=adaptation,
-            attention_check_pass=attention_check_pass,
-            exaggeration_flag=exaggeration_flag,
-            type_label=type_label,
-        )
+        result, created = AssessmentResult.objects.update_or_create(
+        assessment=self,
+        defaults={
+        "communication": communication,
+        "responsibility": responsibility,
+        "problem_solving": problem_solving,
+        "growth": growth,
+        "stress": stress,
+        "adaptation": adaptation,
+        "attention_check_pass": attention_check_pass,
+        "exaggeration_flag": exaggeration_flag,
+        "type_label": type_label,
+    }
+)
 
         # 6) 검사 완료 표시
         self.is_completed = True

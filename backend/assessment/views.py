@@ -18,12 +18,69 @@ from rest_framework.response import Response
 from rest_framework.permissions import AllowAny  # 로그인 없이 사용
 from django.shortcuts import get_object_or_404
 
+# GPT API
+from openai import OpenAI
+import json
+import os  
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+import re
+
 from .models import Assessment, AssessmentQuestion, AssessmentAnswer, AssessmentResult
 from .serializers import (
     AssessmentSerializer,
     AssessmentQuestionSerializer,
     AssessmentResultSerializer,
 )
+
+def generate_personality_analysis(result):
+    prompt = f"""
+너는 HR 성격 평가 전문 컨설턴트이다.
+
+다음은 인적성 검사 6개 역량의 점수이다. 점수는 1~5점이다.
+이를 기반으로 사용자의 전체 성향을 분석하라.
+
+[점수]
+의사소통(COMM): {result.communication}
+책임감(RESP): {result.responsibility}
+문제해결(PROB): {result.problem_solving}
+성장성(GROW): {result.growth}
+스트레스 내성(STRE): {result.stress}
+적응력(ADAP): {result.adaptation}
+
+요구사항:
+1) summary 는 반드시 150~250자 사이
+2) strengths 는 정확히 3개
+3) weaknesses 는 정확히 2개
+4) work_style 은 반드시 1개 (예: 분석형, 조율형, 창의형 등)
+5) **하나라도 비워두면 안 됨**
+6) **반드시 완전한 JSON 형식만 출력** (설명 금지, 텍스트 금지)
+
+JSON 예시 형식:
+{{
+  "summary": "텍스트",
+  "strengths": ["문장1", "문장2", "문장3"],
+  "weaknesses": ["문장1", "문장2"],
+  "work_style": "텍스트"
+}}
+"""
+
+    response = client.chat.completions.create(
+        model="gpt-4.1",
+        messages=[{"role": "user", "content": prompt}],
+    )
+
+    # 🔥 최신 SDK 방식
+    content = response.choices[0].message.content
+
+    # JSON만 추출
+    json_match = re.search(r"\{[\s\S]*\}", content)
+    if json_match:
+        content = json_match.group(0)
+
+    try:
+        return json.loads(content)
+    except Exception:
+        return {"raw": content}
 
 
 class AssessmentViewSet(viewsets.ModelViewSet):
@@ -142,37 +199,41 @@ class AssessmentViewSet(viewsets.ModelViewSet):
 
         result_data = AssessmentResultSerializer(result).data
 
+        # 🔥 GPT 기반 성향 분석 생성
+        analysis = generate_personality_analysis(result)
+
         return Response(
             {
                 "message": "답변이 정상적으로 제출되고 결과가 계산되었습니다.",
                 "result": result_data,
+                "analysis": analysis, 
             },
             status=status.HTTP_200_OK,
         )
 
-    @action(detail=True, methods=["get"])
-    def result(self, request, pk=None):
-        """
-        결과 조회 API
-        - 이미 계산된 인적성검사 결과를 조회합니다.
-        """
-        assessment = get_object_or_404(Assessment, pk=pk)
+@action(detail=True, methods=["get"])
+def result(self, request, pk=None):
+    assessment = get_object_or_404(Assessment, pk=pk)
 
-        try:
-            result = assessment.result  # OneToOneField 역참조
-        except AssessmentResult.DoesNotExist:
-            return Response(
-                {"error": "아직 이 세션에 대한 결과가 존재하지 않습니다."},
-                status=status.HTTP_404_NOT_FOUND,
-            )
-
-        result_data = AssessmentResultSerializer(result).data
-
+    try:
+        result = assessment.result
+    except AssessmentResult.DoesNotExist:
         return Response(
-            {
-                "assessment_id": assessment.id,
-                "name": assessment.name,
-                "result": result_data,
-            },
-            status=status.HTTP_200_OK,
+            {"error": "아직 이 세션에 대한 결과가 존재하지 않습니다."},
+            status=status.HTTP_404_NOT_FOUND,
         )
+
+    result_data = AssessmentResultSerializer(result).data
+
+    # 🔥 GPT 분석 다시 생성 (또는 DB에 저장해두고 가져와도 됨)
+    analysis = generate_personality_analysis(result)
+
+    return Response(
+        {
+            "assessment_id": assessment.id,
+            "name": assessment.name,
+            "result": result_data,
+            "analysis": analysis,   # ✔ 반드시 포함
+        },
+        status=status.HTTP_200_OK,
+    )
