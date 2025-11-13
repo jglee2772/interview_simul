@@ -28,6 +28,10 @@ const resumeAPI = {
   getResumeList: () => api.get('/resume/'),
   updateResume: (resumeId, data) => api.put(`/resume/${resumeId}/`, data),
   deleteResume: (resumeId) => api.delete(`/resume/${resumeId}/`),
+  
+  // AI 분석 API
+  analyzeSection: (section, content) => 
+    api.post('/resume/analyze/', { section, content }),
 };
 
 export default resumeAPI;

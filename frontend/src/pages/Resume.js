@@ -5,6 +5,7 @@
 
 import React, { useState, useEffect } from 'react';
 import './Resume.css';
+import resumeAPI from '../services/resumeAPI';
 
 // 상수 정의
 const STORAGE_KEY = 'resumeData';
@@ -163,6 +164,7 @@ const Resume = () => {
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
+  const [feedbackText, setFeedbackText] = useState('');
 
   // 자기소개서 섹션 설정
   const coverLetterSections = [
@@ -364,6 +366,7 @@ const Resume = () => {
   const handleAnalyze = async (section) => {
     const content = formData[section];
     
+    // 빈 필드 검증
     if (!content || !content.trim()) {
       alert('분석할 내용이 없습니다.');
       return;
@@ -371,13 +374,19 @@ const Resume = () => {
     
     setIsAnalyzing(true);
     setCurrentSection(section);
+    setFeedbackText(''); // 이전 피드백 초기화
     
-    // TODO: API 연동
-    setTimeout(() => {
+    try {
+      const response = await resumeAPI.analyzeSection(section, content);
+      setFeedbackText(response.data.feedback);
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || 'AI 분석 중 오류가 발생했습니다.';
+      alert(errorMessage);
+      setFeedbackText('');
+    } finally {
       setIsAnalyzing(false);
       setCurrentSection('');
-      alert(`${section} 분석 완료 (임시)`);
-    }, 2000);
+    }
   };
 
   return (
@@ -734,9 +743,15 @@ const Resume = () => {
             <h3 className="feedback-title">AI 피드백</h3>
             <div className="feedback-divider"></div>
             <div className="feedback-text-container">
-              <p className="feedback-placeholder">
-                분석 버튼을 클릭하면 피드백이 표시됩니다.
-              </p>
+              {isAnalyzing ? (
+                <p className="feedback-placeholder">분석 중...</p>
+              ) : feedbackText ? (
+                <p className="feedback-text">{feedbackText}</p>
+              ) : (
+                <p className="feedback-placeholder">
+                  분석 버튼을 클릭하면 피드백이 표시됩니다.
+                </p>
+              )}
             </div>
           </div>
         )}

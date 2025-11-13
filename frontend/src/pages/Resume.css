@@ -434,7 +434,7 @@
   position: fixed;
   right: 0;
   top: 0;
-  width: 400px;
+  width: 600px;
   height: 100vh;
   background-color: #ffffff;
   box-shadow: -2px 0 15px rgba(0, 0, 0, 0.1);
@@ -446,7 +446,7 @@
 
 /* 패널 닫힘 상태 */
 .feedback-panel.closed {
-  transform: translateX(370px); /* 토글 버튼만 보이도록 */
+  transform: translateX(570px); /* 토글 버튼만 보이도록 */
 }
 
 /* 토글 버튼 */
