@@ -18,11 +18,11 @@ const Home = () => {
     <div className="home">
       <div className="home-container">
         <div className="home-header">
-          <h2>면접 시뮬레이션 메인 페이지</h2>
+          <h2>TIP</h2>
         </div>
 
         <div className="card-grid">
-          <div className="card" onClick={() => navigate('/info')}>
+          <div className="card-info">
             <div className="card-icon"></div>
             <span className="card-title">기본정보</span>
           </div>

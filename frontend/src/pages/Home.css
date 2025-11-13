@@ -68,6 +68,18 @@
   color: #0e1a3a;
 }
 
+.card-info {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+}
+
 /* 하단 섹션 */
 .bottom-section {
   display: flex;
