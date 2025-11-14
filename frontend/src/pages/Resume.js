@@ -1,18 +1,11 @@
-/**
- * 페이지: 이력서 작성 페이지
- * 역할: 이력서 작성 폼 UI 및 로직
- */
-
 import React, { useState, useEffect } from 'react';
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
-// 상수 정의
 const STORAGE_KEY = 'resumeData';
-const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
+const MAX_FILE_SIZE = 5 * 1024 * 1024;
 const MAX_TEXT_LENGTH = 500;
 
-// 기본 폼 데이터
 const defaultFormData = {
   name: '',
   email: '',
@@ -20,9 +13,31 @@ const defaultFormData = {
   address: '',
   birthDate: '',
   gender: '',
+  applicationField: '',
+  portfolio: '',
   photo: null,
-  educations: [{ school: '', major: '', graduationYear: '' }],
-  experiences: [{ company: '', position: '', startDate: '', endDate: '', description: '' }],
+  educations: [{ 
+    school: '', 
+    major: '', 
+    startDate: '',
+    endDate: '',
+    graduationStatus: '',
+    location: ''
+  }],
+  experiences: [{ 
+    company: '', 
+    position: '', 
+    rank: '',
+    startDate: '', 
+    endDate: '', 
+    description: '' 
+  }],
+  trainings: [{
+    startDate: '',
+    endDate: '',
+    content: '',
+    institution: ''
+  }],
   certificates: [{ name: '', issuer: '', date: '' }],
   growthProcess: '',
   strengthsWeaknesses: '',
@@ -30,7 +45,6 @@ const defaultFormData = {
   motivation: '',
 };
 
-// 유틸리티 함수들
 const formatPhoneNumber = (value) => {
   const numbers = value.replace(/[^\d]/g, '');
   if (numbers.length <= 3) return numbers;
@@ -45,8 +59,6 @@ const formatDate = (value) => {
   return `${numbers.slice(0, 4)}-${numbers.slice(4, 6)}-${numbers.slice(6, 8)}`;
 };
 
-const formatGraduationYear = (value) => value.replace(/[^\d]/g, '');
-
 const isValidDate = (dateString) => {
   if (!dateString || dateString.length !== 10) return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return false;
@@ -58,36 +70,51 @@ const isValidDate = (dateString) => {
 
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-const validateBirthDate = (dateString) => {
+const getToday = () => {
+  const today = new Date();
+  today.setHours(23, 59, 59, 999);
+  return today;
+};
+
+const DATE_FORMAT_ERROR = '올바른 날짜 형식을 입력해주세요.';
+
+const validateDateRange = (dateString, options = {}) => {
   if (!dateString) return '';
-  if (!isValidDate(dateString)) return '올바른 날짜 형식을 입력해주세요. (예: 1990-01-01)';
+  if (!isValidDate(dateString)) return DATE_FORMAT_ERROR;
   
   const date = new Date(dateString);
-  const today = new Date();
-  const minDate = new Date('1900-01-01');
+  const today = getToday();
   
-  if (date > today) return '생년월일은 오늘 이전이어야 합니다.';
-  if (date < minDate) return '생년월일은 1900년 이후여야 합니다.';
+  if (date > today) return options.futureError || '날짜는 오늘 이전이어야 합니다.';
+  if (options.minDate && date < options.minDate) {
+    return options.minDateError || '날짜가 너무 이전입니다.';
+  }
   return '';
+};
+
+const validateBirthDate = (dateString) => {
+  return validateDateRange(dateString, {
+    minDate: new Date('1900-01-01'),
+    futureError: '생년월일은 오늘 이전이어야 합니다.',
+    minDateError: '생년월일은 1900년 이후여야 합니다.'
+  });
 };
 
 const validateExperienceDates = (startDate, endDate) => {
   const errors = { startDate: '', endDate: '' };
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
   
-  if (startDate && !isValidDate(startDate)) {
-    errors.startDate = '올바른 날짜 형식을 입력해주세요.';
-  } else if (startDate && new Date(startDate) > today) {
-    errors.startDate = '시작일은 오늘 이전이어야 합니다.';
+  if (startDate) {
+    errors.startDate = validateDateRange(startDate, {
+      futureError: '시작일은 오늘 이전이어야 합니다.'
+    });
   }
   
-  if (endDate && endDate !== '') {
+  if (endDate) {
     if (!isValidDate(endDate)) {
-      errors.endDate = '올바른 날짜 형식을 입력해주세요.';
+      errors.endDate = DATE_FORMAT_ERROR;
     } else {
       const end = new Date(endDate);
-      if (end > today) {
+      if (end > getToday()) {
         errors.endDate = '종료일은 오늘 이전이어야 합니다.';
       } else if (startDate && isValidDate(startDate) && end < new Date(startDate)) {
         errors.endDate = '종료일은 시작일 이후여야 합니다.';
@@ -99,43 +126,32 @@ const validateExperienceDates = (startDate, endDate) => {
 };
 
 const validateCertificateDate = (dateString) => {
-  if (!dateString) return '';
-  if (!isValidDate(dateString)) return '올바른 날짜 형식을 입력해주세요. (예: 1990-01-01)';
-  
-  const date = new Date(dateString);
-  const today = new Date();
-  today.setHours(23, 59, 59, 999);
-  
-  if (date > today) return '취득일은 오늘 이전이어야 합니다.';
-  return '';
+  return validateDateRange(dateString, {
+    futureError: '취득일은 오늘 이전이어야 합니다.'
+  });
 };
 
-const validateGraduationYear = (yearString) => {
-  if (!yearString) return '';
-  if (!/^\d+$/.test(yearString)) return '숫자만 입력해주세요.';
-  if (yearString.length !== 4) return '4자리 연도를 입력해주세요. (예: 2020)';
-  
-  const year = parseInt(yearString, 10);
-  const currentYear = new Date().getFullYear();
-  const minYear = 1900;
-  
-  if (year < minYear) return `졸업년도는 ${minYear}년 이후여야 합니다.`;
-  if (year > currentYear) return `졸업년도는 ${currentYear}년 이하여야 합니다.`;
-  return '';
-};
-
-// localStorage 유틸리티
 const loadFromStorage = () => {
   try {
     const saved = localStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      const parsed = JSON.parse(saved);
-      return { formData: { ...parsed, photo: null }, photoPreview: parsed.photoBase64 || null };
-    }
+    if (!saved) return { formData: defaultFormData, photoPreview: null };
+    
+    const parsed = JSON.parse(saved);
+    const arrayFields = ['educations', 'experiences', 'trainings', 'certificates'];
+    const mergedData = {
+      ...defaultFormData,
+      ...parsed,
+      photo: null,
+      ...arrayFields.reduce((acc, field) => ({
+        ...acc,
+        [field]: parsed[field] || defaultFormData[field]
+      }), {})
+    };
+    return { formData: mergedData, photoPreview: parsed.photoBase64 || null };
   } catch (error) {
     console.error('저장된 데이터 불러오기 실패:', error);
+    return { formData: defaultFormData, photoPreview: null };
   }
-  return { formData: defaultFormData, photoPreview: null };
 };
 
 const saveToStorage = (formData, photoPreview) => {
@@ -160,13 +176,14 @@ const Resume = () => {
   const [birthDateError, setBirthDateError] = useState('');
   const [educationErrors, setEducationErrors] = useState({});
   const [experienceErrors, setExperienceErrors] = useState({});
+  const [trainingErrors, setTrainingErrors] = useState({});
   const [certificateErrors, setCertificateErrors] = useState({});
   const [isPanelOpen, setIsPanelOpen] = useState(true);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
   const [feedbackText, setFeedbackText] = useState('');
+  const [activeTab, setActiveTab] = useState('resume');
 
-  // 자기소개서 섹션 설정
   const coverLetterSections = [
     { key: 'growthProcess', label: '성장과정' },
     { key: 'strengthsWeaknesses', label: '성격의 장단점' },
@@ -180,7 +197,6 @@ const Resume = () => {
     setPhotoPreview(savedPreview);
   }, []);
 
-  // 입력 핸들러
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     
@@ -196,39 +212,26 @@ const Resume = () => {
   };
 
   const handleArrayChange = (section, index, field, value) => {
-    let formattedValue = value;
-    
-    if (field === 'startDate' || field === 'endDate' || field === 'date') {
-      formattedValue = formatDate(value);
-    } else if (field === 'graduationYear') {
-      formattedValue = formatGraduationYear(value);
-    }
+    const isDateField = ['startDate', 'endDate', 'date'].includes(field);
+    const formattedValue = isDateField ? formatDate(value) : value;
     
     setFormData(prev => {
       const updatedSection = prev[section].map((item, i) =>
         i === index ? { ...item, [field]: formattedValue } : item
       );
       
-      // 실시간 검증
-      if (section === 'educations' && field === 'graduationYear') {
-        const error = validateGraduationYear(formattedValue);
-        setEducationErrors(prevErrors => ({
-          ...prevErrors,
-          [index]: { graduationYear: error }
-        }));
-      } else if (section === 'experiences' && (field === 'startDate' || field === 'endDate')) {
-        const experience = updatedSection[index];
-        const errors = validateExperienceDates(experience.startDate, experience.endDate);
-        setExperienceErrors(prevErrors => ({
-          ...prevErrors,
-          [index]: errors
-        }));
+      if (['startDate', 'endDate'].includes(field)) {
+        const item = updatedSection[index];
+        const errors = validateExperienceDates(item.startDate, item.endDate);
+        const errorSetters = {
+          educations: setEducationErrors,
+          trainings: setTrainingErrors,
+          experiences: setExperienceErrors
+        };
+        errorSetters[section]?.(prevErrors => ({ ...prevErrors, [index]: errors }));
       } else if (section === 'certificates' && field === 'date') {
         const error = validateCertificateDate(formattedValue);
-        setCertificateErrors(prevErrors => ({
-          ...prevErrors,
-          [index]: { date: error }
-        }));
+        setCertificateErrors(prevErrors => ({ ...prevErrors, [index]: { date: error } }));
       }
       
       return { ...prev, [section]: updatedSection };
@@ -247,6 +250,31 @@ const Resume = () => {
       ...prev,
       [section]: prev[section].filter((_, i) => i !== index)
     }));
+    
+    const errorSetters = {
+      educations: setEducationErrors,
+      trainings: setTrainingErrors,
+      experiences: setExperienceErrors,
+      certificates: setCertificateErrors
+    };
+    
+    const setError = errorSetters[section];
+    if (setError) {
+      setError(prevErrors => {
+        const updated = { ...prevErrors };
+        delete updated[index];
+        const reindexed = {};
+        Object.keys(updated).forEach(key => {
+          const oldIndex = parseInt(key);
+          if (oldIndex > index) {
+            reindexed[oldIndex - 1] = updated[oldIndex];
+          } else if (oldIndex < index) {
+            reindexed[oldIndex] = updated[oldIndex];
+          }
+        });
+        return reindexed;
+      });
+    }
   };
 
   const handleEmailChange = (e) => {
@@ -283,70 +311,52 @@ const Resume = () => {
     setPhotoPreview(null);
   };
 
-  // 검증 헬퍼 함수
   const hasSectionData = (item, fields) => fields.some(field => item[field]?.trim());
-
-  // 검증 함수들
-  const hasValidationErrors = () => {
-    // 필수 필드 검증
-    if (!formData.name.trim() || !formData.email.trim() || !formData.birthDate.trim()) return true;
-    if (emailError || (formData.email && !validateEmail(formData.email))) return true;
-    if (formData.birthDate && birthDateError) return true;
-    
-    // 학력 검증
-    if (formData.educations.some((edu, index) => 
-      hasSectionData(edu, ['school', 'major', 'graduationYear']) && educationErrors[index]?.graduationYear
-    )) return true;
-    
-    // 경력 검증
-    if (formData.experiences.some((exp, index) => 
-      hasSectionData(exp, ['company', 'position', 'startDate', 'endDate', 'description']) && 
-      (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate)
-    )) return true;
-    
-    // 자격증 검증
-    if (formData.certificates.some((cert, index) => 
-      hasSectionData(cert, ['name', 'issuer', 'date']) && certificateErrors[index]?.date
-    )) return true;
-    
-    return false;
-  };
 
   const getValidationErrorMessage = () => {
     if (!formData.name.trim()) return '이름을 입력해주세요.';
     if (!formData.email.trim()) return '이메일을 입력해주세요.';
     if (!formData.birthDate.trim()) return '생년월일을 입력해주세요.';
-    if (emailError) return emailError;
-    if (formData.email && !validateEmail(formData.email)) {
-      return '올바른 이메일 형식을 입력해주세요. (예: example@email.com)';
+    if (emailError || (formData.email && !validateEmail(formData.email))) {
+      return emailError || '올바른 이메일 형식을 입력해주세요. (예: example@email.com)';
     }
     if (formData.birthDate && birthDateError) return birthDateError;
     
-    // 학력 오류
-    const eduErrorIndex = formData.educations.findIndex((edu, index) => 
-      hasSectionData(edu, ['school', 'major', 'graduationYear']) && educationErrors[index]?.graduationYear
-    );
-    if (eduErrorIndex !== -1) return educationErrors[eduErrorIndex].graduationYear;
+    const findError = (items, errors, fields, name) => {
+      const index = items.findIndex((item, i) => 
+        hasSectionData(item, fields) && Object.values(errors[i] || {}).some(e => e)
+      );
+      if (index !== -1) {
+        const error = Object.values(errors[index] || {}).find(e => e) || '';
+        return error ? `${name} ${index + 1}번 항목: ${error}` : null;
+      }
+      return null;
+    };
     
-    // 경력 오류
-    const expErrorIndex = formData.experiences.findIndex((exp, index) => 
-      hasSectionData(exp, ['company', 'position', 'startDate', 'endDate', 'description']) && 
-      (experienceErrors[index]?.startDate || experienceErrors[index]?.endDate)
-    );
-    if (expErrorIndex !== -1) {
-      const expError = experienceErrors[expErrorIndex];
-      return `경력 ${expErrorIndex + 1}번 항목: ${expError.startDate || expError.endDate}`;
+    return findError(formData.educations, educationErrors, ['school', 'major', 'startDate', 'endDate'], '학력') ||
+           findError(formData.experiences, experienceErrors, ['company', 'position', 'startDate', 'endDate', 'description'], '경력') ||
+           findError(formData.certificates, certificateErrors, ['name', 'issuer', 'date'], '자격증') ||
+           null;
+  };
+
+  const clearAllErrors = () => {
+    setEmailError('');
+    setBirthDateError('');
+    setEducationErrors({});
+    setExperienceErrors({});
+    setTrainingErrors({});
+    setCertificateErrors({});
+  };
+
+  const clearAllData = () => {
+    if (window.confirm('모든 입력 내용을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+      setFormData(defaultFormData);
+      setPhotoPreview(null);
+      clearAllErrors();
+      setFeedbackText('');
+      localStorage.removeItem(STORAGE_KEY);
+      alert('모든 내용이 삭제되었습니다.');
     }
-    
-    // 자격증 오류
-    const certErrorIndex = formData.certificates.findIndex((cert, index) => 
-      hasSectionData(cert, ['name', 'issuer', 'date']) && certificateErrors[index]?.date
-    );
-    if (certErrorIndex !== -1) {
-      return `자격증 ${certErrorIndex + 1}번 항목: ${certificateErrors[certErrorIndex].date}`;
-    }
-    
-    return null;
   };
 
   const saveResume = () => {
@@ -355,7 +365,6 @@ const Resume = () => {
       alert(errorMessage);
       return;
     }
-
     if (saveToStorage(formData, photoPreview)) {
       alert('저장 되었습니다.');
     } else {
@@ -365,8 +374,6 @@ const Resume = () => {
 
   const handleAnalyze = async (section) => {
     const content = formData[section];
-    
-    // 빈 필드 검증
     if (!content || !content.trim()) {
       alert('분석할 내용이 없습니다.');
       return;
@@ -374,14 +381,37 @@ const Resume = () => {
     
     setIsAnalyzing(true);
     setCurrentSection(section);
-    setFeedbackText(''); // 이전 피드백 초기화
+    setFeedbackText('');
     
     try {
       const response = await resumeAPI.analyzeSection(section, content);
       setFeedbackText(response.data.feedback);
     } catch (error) {
-      const errorMessage = error.response?.data?.error || 'AI 분석 중 오류가 발생했습니다.';
+      alert(error.response?.data?.error || 'AI 분석 중 오류가 발생했습니다.');
+      setFeedbackText('');
+    } finally {
+      setIsAnalyzing(false);
+      setCurrentSection('');
+    }
+  };
+
+  const handleAnalyzeFull = async () => {
+    const errorMessage = getValidationErrorMessage();
+    if (errorMessage) {
       alert(errorMessage);
+      return;
+    }
+    
+    setIsAnalyzing(true);
+    setCurrentSection('full');
+    setFeedbackText('');
+    
+    try {
+      const { photo, ...resumeData } = formData;
+      const response = await resumeAPI.analyzeFull(resumeData);
+      setFeedbackText(response.data.feedback);
+    } catch (error) {
+      alert(error.response?.data?.error || error.message || 'AI 분석 중 오류가 발생했습니다.');
       setFeedbackText('');
     } finally {
       setIsAnalyzing(false);
@@ -392,342 +422,523 @@ const Resume = () => {
   return (
     <div className="resume">
       <div className="resume-container">
-        {/* 인적사항 섹션 */}
-        <section className="resume-section personal-info">
-          <h2 className="section-title">인적사항</h2>
-          
-          <div className="personal-info-box">
-            <div className="form-group photo-upload">
-              <div className="photo-preview-container">
-                {photoPreview ? (
-                  <div className="photo-preview-wrapper">
-                    <img src={photoPreview} alt="증명사진 미리보기" className="photo-preview" />
-                    <button type="button" className="photo-remove-button" onClick={handlePhotoRemove}>
-                      삭제
-                    </button>
-                  </div>
-                ) : (
-                  <label className="photo-upload-label">
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handlePhotoUpload}
-                      className="photo-input"
-                      style={{ display: 'none' }}
-                    />
-                    <div className="photo-upload-placeholder">
-                      <span>+</span>
-                      <span>증명사진 업로드</span>
-                    </div>
-                  </label>
-                )}
-              </div>
-            </div>
-            
-            {/* 1행: 이름 | 성별 | 생년월일 */}
-            <div className="form-group">
-              <input
-                className="resume-input"
-                name="name"
-                value={formData.name}
-                onChange={handleInputChange}
-                placeholder="이름"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="resume-input"
-                name="gender"
-                value={formData.gender}
-                onChange={handleInputChange}
-                placeholder="성별"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className={`resume-input ${birthDateError ? 'error' : ''}`}
-                name="birthDate"
-                type="text"
-                value={formData.birthDate}
-                onChange={handleInputChange}
-                placeholder="생년월일 ex) 1990-01-01"
-              />
-              {birthDateError && <span className="error-message">{birthDateError}</span>}
-            </div>
-            
-            {/* 2행: 전화번호 | 이메일 */}
-            <div className="form-group">
-              <input
-                className="resume-input"
-                name="phone"
-                value={formData.phone}
-                onChange={handleInputChange}
-                placeholder="전화번호"
-              />
-            </div>
-            <div className="form-group">
-              <input
-                className="resume-input"
-                name="email"
-                type="email"
-                value={formData.email}
-                onChange={handleEmailChange}
-                placeholder="이메일"
-              />
-              {emailError && <span className="error-message">{emailError}</span>}
-            </div>
-            
-            {/* 3행: 주소 (전체 너비) */}
-            <div className="form-group">
-              <input
-                className="resume-input"
-                name="address"
-                value={formData.address}
-                onChange={handleInputChange}
-                placeholder="주소"
-              />
-            </div>
-          </div>
-        </section>
-
-        {/* 학력 섹션 */}
-        <section className="resume-section education">
-          <div className="section-header">
-            <h2 className="section-title">학력</h2>
-            <button
-              type="button"
-              className="add-button"
-              onClick={() => addItem('educations', { school: '', major: '', graduationYear: '' })}
-            >
-              + 추가
-            </button>
-          </div>
-          {formData.educations.map((education, index) => (
-            <div key={index} className="education-item">
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={education.school}
-                  onChange={(e) => handleArrayChange('educations', index, 'school', e.target.value)}
-                  placeholder="학교명"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={education.major}
-                  onChange={(e) => handleArrayChange('educations', index, 'major', e.target.value)}
-                  placeholder="전공"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className={`resume-input ${educationErrors[index]?.graduationYear ? 'error' : ''}`}
-                  type="text"
-                  inputMode="numeric"
-                  maxLength={4}
-                  value={education.graduationYear}
-                  onChange={(e) => handleArrayChange('educations', index, 'graduationYear', e.target.value)}
-                  placeholder="졸업년도 (예: 2020)"
-                />
-                {educationErrors[index]?.graduationYear && (
-                  <span className="error-message">{educationErrors[index].graduationYear}</span>
-                )}
-              </div>
-              {formData.educations.length > 1 && (
-                <button
-                  type="button"
-                  className="remove-button"
-                  onClick={() => removeItem('educations', index)}
-                >
-                  삭제
-                </button>
-              )}
-            </div>
-          ))}
-        </section>
-
-        {/* 경력 섹션 */}
-        <section className="resume-section experience">
-          <div className="section-header">
-            <h2 className="section-title">경력</h2>
-            <button
-              type="button"
-              className="add-button"
-              onClick={() => addItem('experiences', { company: '', position: '', startDate: '', endDate: '', description: '' })}
-            >
-              + 추가
-            </button>
-          </div>
-          {formData.experiences.map((experience, index) => (
-            <div key={index} className="experience-item">
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={experience.company}
-                  onChange={(e) => handleArrayChange('experiences', index, 'company', e.target.value)}
-                  placeholder="회사명"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={experience.position}
-                  onChange={(e) => handleArrayChange('experiences', index, 'position', e.target.value)}
-                  placeholder="직책"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className={`resume-input ${experienceErrors[index]?.startDate ? 'error' : ''}`}
-                  type="text"
-                  value={experience.startDate}
-                  onChange={(e) => handleArrayChange('experiences', index, 'startDate', e.target.value)}
-                  placeholder="시작일 (예: 1991-01-01)"
-                />
-                {experienceErrors[index]?.startDate && (
-                  <span className="error-message">{experienceErrors[index].startDate}</span>
-                )}
-              </div>
-              <div className="form-group">
-                <input
-                  className={`resume-input ${experienceErrors[index]?.endDate ? 'error' : ''}`}
-                  type="text"
-                  value={experience.endDate}
-                  onChange={(e) => handleArrayChange('experiences', index, 'endDate', e.target.value)}
-                  placeholder="종료일 (예: 1991-01-01)"
-                />
-                {experienceErrors[index]?.endDate && (
-                  <span className="error-message">{experienceErrors[index].endDate}</span>
-                )}
-              </div>
-              <div className="form-group">
-                <textarea
-                  className="resume-input"
-                  value={experience.description}
-                  onChange={(e) => handleArrayChange('experiences', index, 'description', e.target.value)}
-                  placeholder="담당업무 및 성과"
-                  rows={3}
-                />
-              </div>
-              {formData.experiences.length > 1 && (
-                <button
-                  type="button"
-                  className="remove-button"
-                  onClick={() => removeItem('experiences', index)}
-                >
-                  삭제
-                </button>
-              )}
-            </div>
-          ))}
-        </section>
-
-        {/* 자격증 섹션 */}
-        <section className="resume-section certificate">
-          <div className="section-header">
-            <h2 className="section-title">자격증</h2>
-            <button
-              type="button"
-              className="add-button"
-              onClick={() => addItem('certificates', { name: '', issuer: '', date: '' })}
-            >
-              + 추가
-            </button>
-          </div>
-          {formData.certificates.map((certificate, index) => (
-            <div key={index} className="certificate-item">
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={certificate.name}
-                  onChange={(e) => handleArrayChange('certificates', index, 'name', e.target.value)}
-                  placeholder="자격증명"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className="resume-input"
-                  value={certificate.issuer}
-                  onChange={(e) => handleArrayChange('certificates', index, 'issuer', e.target.value)}
-                  placeholder="발급기관"
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  className={`resume-input ${certificateErrors[index]?.date ? 'error' : ''}`}
-                  type="text"
-                  value={certificate.date}
-                  onChange={(e) => handleArrayChange('certificates', index, 'date', e.target.value)}
-                  placeholder="취득일 (예: 1991-01-01)"
-                />
-                {certificateErrors[index]?.date && (
-                  <span className="error-message">{certificateErrors[index].date}</span>
-                )}
-              </div>
-              {formData.certificates.length > 1 && (
-                <button
-                  type="button"
-                  className="remove-button"
-                  onClick={() => removeItem('certificates', index)}
-                >
-                  삭제
-                </button>
-              )}
-            </div>
-          ))}
-        </section>
-
-        {/* 자기소개서 섹션 */}
-        <section className="resume-section cover-letter">
-          <h2 className="section-title">자기소개서</h2>
-          
-          {coverLetterSections.map(({ key, label }) => (
-            <div key={key} className="form-group">
-              <label className="cover-letter-label">
-                {label}
-                <button
-                  type="button"
-                  className="analyze-button"
-                  onClick={() => handleAnalyze(key)}
-                  disabled={isAnalyzing}
-                >
-                  {isAnalyzing && currentSection === key ? '분석 중...' : 'AI 분석'}
-                </button>
-              </label>
-              <textarea
-                className="resume-input cover-letter-textarea"
-                name={key}
-                value={formData[key]}
-                onChange={handleInputChange}
-                placeholder={`${label}을 작성해주세요`}
-                rows={5}
-                maxLength={MAX_TEXT_LENGTH}
-              />
-              <div className="character-count">{formData[key].length}/{MAX_TEXT_LENGTH}</div>
-            </div>
-          ))}
-        </section>
-
-        {/* 저장 버튼 */}
-        <div className="resume-actions">
+        <div className="resume-tabs">
           <button
             type="button"
-            className="save-button"
-            onClick={saveResume}
-            disabled={hasValidationErrors()}
+            className={`tab-button ${activeTab === 'resume' ? 'active' : ''}`}
+            onClick={() => setActiveTab('resume')}
           >
-            저장
+            이력서
           </button>
-          {hasValidationErrors() && (
-            <div className="validation-error-message">
-              {getValidationErrorMessage()}
+          <button
+            type="button"
+            className={`tab-button ${activeTab === 'coverLetter' ? 'active' : ''}`}
+            onClick={() => setActiveTab('coverLetter')}
+          >
+            자기소개서
+          </button>
+        </div>
+
+        {activeTab === 'resume' && (
+          <>
+            <div className="resume-full-analysis-header">
+              <button
+                type="button"
+                className="analyze-full-button"
+                onClick={handleAnalyzeFull}
+                disabled={isAnalyzing}
+              >
+                {isAnalyzing && currentSection === 'full' ? '분석 중...' : '이력서 전체 분석'}
+              </button>
+              <p className="analyze-full-description">
+                이력서 전체를 분석하여 면접 예상 질문과 대응 전략을 제공합니다.
+              </p>
             </div>
-          )}
+
+            <section className="resume-section personal-info">
+              <h2 className="section-title">인적사항</h2>
+              <div className="personal-info-box">
+                <div className="form-group photo-upload">
+                  <div className="photo-preview-container">
+                    {photoPreview ? (
+                      <div className="photo-preview-wrapper">
+                        <img src={photoPreview} alt="증명사진 미리보기" className="photo-preview" />
+                        <button type="button" className="photo-remove-button" onClick={handlePhotoRemove}>
+                          삭제
+                        </button>
+                      </div>
+                    ) : (
+                      <label className="photo-upload-label">
+                        <input
+                          type="file"
+                          accept="image/*"
+                          onChange={handlePhotoUpload}
+                          className="photo-input"
+                          style={{ display: 'none' }}
+                        />
+                    <div className="photo-upload-placeholder">
+                      <span>+사진</span>
+                    </div>
+                      </label>
+                    )}
+                  </div>
+                </div>
+                
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="이름"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="gender"
+                    value={formData.gender}
+                    onChange={handleInputChange}
+                    placeholder="성별"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className={`resume-input ${birthDateError ? 'error' : ''}`}
+                    name="birthDate"
+                    type="text"
+                    value={formData.birthDate}
+                    onChange={handleInputChange}
+                    placeholder="생년월일 ex) 1990-01-01"
+                  />
+                  {birthDateError && <span className="error-message">{birthDateError}</span>}
+                </div>
+                
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="전화번호"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={handleEmailChange}
+                    placeholder="이메일"
+                  />
+                  {emailError && <span className="error-message">{emailError}</span>}
+                </div>
+                
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="address"
+                    value={formData.address}
+                    onChange={handleInputChange}
+                    placeholder="주소"
+                  />
+                </div>
+                
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="applicationField"
+                    value={formData.applicationField}
+                    onChange={handleInputChange}
+                    placeholder="지원분야"
+                  />
+                </div>
+                <div className="form-group">
+                  <input
+                    className="resume-input"
+                    name="portfolio"
+                    value={formData.portfolio}
+                    onChange={handleInputChange}
+                    placeholder="포트폴리오 URL"
+                  />
+                </div>
+              </div>
+            </section>
+
+            <section className="resume-section education">
+              <div className="section-header">
+                <h2 className="section-title">학력</h2>
+                <button
+                  type="button"
+                  className="add-button"
+                  onClick={() => addItem('educations', { 
+                    school: '', 
+                    major: '', 
+                    startDate: '', 
+                    endDate: '', 
+                    graduationStatus: '', 
+                    location: '' 
+                  })}
+                >
+                  + 추가
+                </button>
+              </div>
+              {formData.educations.map((education, index) => (
+                <div key={index} className="education-item">
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={education.school}
+                      onChange={(e) => handleArrayChange('educations', index, 'school', e.target.value)}
+                      placeholder="학교명"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={education.major}
+                      onChange={(e) => handleArrayChange('educations', index, 'major', e.target.value)}
+                      placeholder="전공"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${educationErrors[index]?.startDate ? 'error' : ''}`}
+                      type="text"
+                      value={education.startDate}
+                      onChange={(e) => handleArrayChange('educations', index, 'startDate', e.target.value)}
+                      placeholder="재학기간 시작 (예: 2011.03)"
+                    />
+                    {educationErrors[index]?.startDate && (
+                      <span className="error-message">{educationErrors[index].startDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${educationErrors[index]?.endDate ? 'error' : ''}`}
+                      type="text"
+                      value={education.endDate}
+                      onChange={(e) => handleArrayChange('educations', index, 'endDate', e.target.value)}
+                      placeholder="재학기간 종료 (예: 2014.02)"
+                    />
+                    {educationErrors[index]?.endDate && (
+                      <span className="error-message">{educationErrors[index].endDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={education.graduationStatus}
+                      onChange={(e) => handleArrayChange('educations', index, 'graduationStatus', e.target.value)}
+                      placeholder="졸업구분 (예: 졸업)"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={education.location}
+                      onChange={(e) => handleArrayChange('educations', index, 'location', e.target.value)}
+                      placeholder="소재지"
+                    />
+                  </div>
+                  {formData.educations.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => removeItem('educations', index)}
+                      title="삭제"
+                    >
+                      −
+                    </button>
+                  )}
+                </div>
+              ))}
+            </section>
+
+            <section className="resume-section experience">
+              <div className="section-header">
+                <h2 className="section-title">경력</h2>
+                <button
+                  type="button"
+                  className="add-button"
+                  onClick={() => addItem('experiences', { 
+                    company: '', 
+                    position: '', 
+                    rank: '', 
+                    startDate: '', 
+                    endDate: '', 
+                    description: '' 
+                  })}
+                >
+                  + 추가
+                </button>
+              </div>
+              {formData.experiences.map((experience, index) => (
+                <div key={index} className="experience-item">
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={experience.company}
+                      onChange={(e) => handleArrayChange('experiences', index, 'company', e.target.value)}
+                      placeholder="회사명"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={experience.position}
+                      onChange={(e) => handleArrayChange('experiences', index, 'position', e.target.value)}
+                      placeholder="직책"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={experience.rank}
+                      onChange={(e) => handleArrayChange('experiences', index, 'rank', e.target.value)}
+                      placeholder="직급 (예: 사원, 주임, 대리 등)"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${experienceErrors[index]?.startDate ? 'error' : ''}`}
+                      type="text"
+                      value={experience.startDate}
+                      onChange={(e) => handleArrayChange('experiences', index, 'startDate', e.target.value)}
+                      placeholder="시작일 (예: 1991-01-01)"
+                    />
+                    {experienceErrors[index]?.startDate && (
+                      <span className="error-message">{experienceErrors[index].startDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${experienceErrors[index]?.endDate ? 'error' : ''}`}
+                      type="text"
+                      value={experience.endDate}
+                      onChange={(e) => handleArrayChange('experiences', index, 'endDate', e.target.value)}
+                      placeholder="종료일 (예: 1991-01-01)"
+                    />
+                    {experienceErrors[index]?.endDate && (
+                      <span className="error-message">{experienceErrors[index].endDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      type="text"
+                      value={experience.description}
+                      onChange={(e) => handleArrayChange('experiences', index, 'description', e.target.value)}
+                      placeholder="담당업무 및 성과"
+                    />
+                  </div>
+                  {formData.experiences.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => removeItem('experiences', index)}
+                      title="삭제"
+                    >
+                      −
+                    </button>
+                  )}
+                </div>
+              ))}
+            </section>
+
+            <section className="resume-section certificate">
+              <div className="section-header">
+                <h2 className="section-title">자격증</h2>
+                <button
+                  type="button"
+                  className="add-button"
+                  onClick={() => addItem('certificates', { name: '', issuer: '', date: '' })}
+                >
+                  + 추가
+                </button>
+              </div>
+              {formData.certificates.map((certificate, index) => (
+                <div key={index} className="certificate-item">
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={certificate.name}
+                      onChange={(e) => handleArrayChange('certificates', index, 'name', e.target.value)}
+                      placeholder="자격증명"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={certificate.issuer}
+                      onChange={(e) => handleArrayChange('certificates', index, 'issuer', e.target.value)}
+                      placeholder="발급기관"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${certificateErrors[index]?.date ? 'error' : ''}`}
+                      type="text"
+                      value={certificate.date}
+                      onChange={(e) => handleArrayChange('certificates', index, 'date', e.target.value)}
+                      placeholder="취득일 (예: 1991-01-01)"
+                    />
+                    {certificateErrors[index]?.date && (
+                      <span className="error-message">{certificateErrors[index].date}</span>
+                    )}
+                  </div>
+                  {formData.certificates.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => removeItem('certificates', index)}
+                      title="삭제"
+                    >
+                      −
+                    </button>
+                  )}
+                </div>
+              ))}
+            </section>
+
+            <section className="resume-section training">
+              <div className="section-header">
+                <h2 className="section-title">교육사항</h2>
+                <button
+                  type="button"
+                  className="add-button"
+                  onClick={() => addItem('trainings', { 
+                    startDate: '', 
+                    endDate: '', 
+                    content: '', 
+                    institution: '' 
+                  })}
+                >
+                  + 추가
+                </button>
+              </div>
+              {formData.trainings.map((training, index) => (
+                <div key={index} className="training-item">
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${trainingErrors[index]?.startDate ? 'error' : ''}`}
+                      type="text"
+                      value={training.startDate}
+                      onChange={(e) => handleArrayChange('trainings', index, 'startDate', e.target.value)}
+                      placeholder="교육기간 시작 (예: 2025.06)"
+                    />
+                    {trainingErrors[index]?.startDate && (
+                      <span className="error-message">{trainingErrors[index].startDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className={`resume-input ${trainingErrors[index]?.endDate ? 'error' : ''}`}
+                      type="text"
+                      value={training.endDate}
+                      onChange={(e) => handleArrayChange('trainings', index, 'endDate', e.target.value)}
+                      placeholder="교육기간 종료 (예: 2025.12)"
+                    />
+                    {trainingErrors[index]?.endDate && (
+                      <span className="error-message">{trainingErrors[index].endDate}</span>
+                    )}
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={training.content}
+                      onChange={(e) => handleArrayChange('trainings', index, 'content', e.target.value)}
+                      placeholder="교육내용"
+                    />
+                  </div>
+                  <div className="form-group">
+                    <input
+                      className="resume-input"
+                      value={training.institution}
+                      onChange={(e) => handleArrayChange('trainings', index, 'institution', e.target.value)}
+                      placeholder="교육기관"
+                    />
+                  </div>
+                  {formData.trainings.length > 1 && (
+                    <button
+                      type="button"
+                      className="remove-button"
+                      onClick={() => removeItem('trainings', index)}
+                      title="삭제"
+                    >
+                      −
+                    </button>
+                  )}
+                </div>
+              ))}
+            </section>
+          </>
+        )}
+
+        {activeTab === 'coverLetter' && (
+          <section className="resume-section cover-letter">
+            <h2 className="section-title">자기소개서</h2>
+            
+            {coverLetterSections.map(({ key, label }) => (
+              <div key={key} className="form-group">
+                <label className="cover-letter-label">
+                  {label}
+                  <button
+                    type="button"
+                    className="analyze-button"
+                    onClick={() => handleAnalyze(key)}
+                    disabled={isAnalyzing}
+                  >
+                    {isAnalyzing && currentSection === key ? '분석 중...' : 'AI 분석'}
+                  </button>
+                </label>
+                <textarea
+                  className="resume-input cover-letter-textarea"
+                  name={key}
+                  value={formData[key]}
+                  onChange={handleInputChange}
+                  placeholder={`${label}을 작성해주세요`}
+                  rows={8}
+                  maxLength={MAX_TEXT_LENGTH}
+                />
+                <div className="character-count">{formData[key].length}/{MAX_TEXT_LENGTH}</div>
+              </div>
+            ))}
+          </section>
+        )}
+
+        <div className="resume-actions">
+          {(() => {
+            const errorMessage = getValidationErrorMessage();
+            return (
+              <>
+                <button
+                  type="button"
+                  className="save-button"
+                  onClick={saveResume}
+                  disabled={!!errorMessage}
+                >
+                  저장
+                </button>
+                <button
+                  type="button"
+                  className="clear-button"
+                  onClick={clearAllData}
+                >
+                  모두 지우기
+                </button>
+                {errorMessage && (
+                  <div className="validation-error-message">
+                    {errorMessage}
+                  </div>
+                )}
+              </>
+            );
+          })()}
         </div>
       </div>
       
-      {/* AI 피드백 패널 */}
       <div className={`feedback-panel ${isPanelOpen ? 'open' : 'closed'}`}>
         <button 
           type="button"
