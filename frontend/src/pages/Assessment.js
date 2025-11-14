@@ -140,7 +140,9 @@ const Assessment = () => {
   }
 
   // -------------------- 2) 검사 진행 화면 --------------------
-  return (
+return (
+  <div className="assessment-wrapper">  {/* ← 새 최상위 컨테이너 */}
+
     <div className="assessment-layout">
 
       <AnswerAsidebar
@@ -248,8 +250,10 @@ const Assessment = () => {
           </div>
         </div>
       </div>
+
     </div>
-  );
+  </div>
+)
 };
 
 export default Assessment;

@@ -34,11 +34,23 @@
 
 .assessment-layout {
   display: grid;
-   grid-template-columns: 260px 950px;             
-  justify-content: center;   /* 메인 컨테이너 가운데 정렬 */
-  gap: 48px;                 /* 본문 ↔ 사이드 간 여백 */
+  grid-template-columns: 2fr 8fr;   /* ← 2:8 비율 */
+  width: 100%;
+  min-height: 100vh;
+
+  width: 100%;
+  max-width: 1400px;  
 }
 
+.assessment-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;   /* ← 가로 가운데 */
+  align-items: flex-start;   /* 세로는 위에서 시작 */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
 
 /* 제목 */
 .assessment-container h1 {

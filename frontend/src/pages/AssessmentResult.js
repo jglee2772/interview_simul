@@ -8,61 +8,63 @@ import assessmentAPI from '../services/assessmentAPI';
 import RadarChart from '../components/RadarChart';
 import './AssessmentResult.css';
 
-const TRAIT_MAP = {
-  communication: '의사소통',
-  responsibility: '책임감',
-  problem_solving: '문제해결',
-  growth: '성장성',
-  stress: '스트레스 내성',
-  adaptation: '적응력',
-};
 
-function getTopTraitLabel(result) {
-  if (!result) return '';
 
-  const entries = [
-    ['communication', Number(result.communication)],
-    ['responsibility', Number(result.responsibility)],
-    ['problem_solving', Number(result.problem_solving)],
-    ['growth', Number(result.growth)],
-    ['stress', Number(result.stress)],
-    ['adaptation', Number(result.adaptation)],
-  ];
+// const TRAIT_MAP = {
+//   communication: '의사소통',
+//   responsibility: '책임감',
+//   problem_solving: '문제해결',
+//   growth: '성장성',
+//   stress: '스트레스 내성',
+//   adaptation: '적응력',
+// };
 
-  const valid = entries.filter(([, v]) => !isNaN(v));
-  if (!valid.length) return '';
+// function getTopTraitLabel(result) {
+//   if (!result) return '';
 
-  const [bestKey] = valid.sort((a, b) => b[1] - a[1])[0];
-  return TRAIT_MAP[bestKey] || '';
-}
+//   const entries = [
+//     ['communication', Number(result.communication)],
+//     ['responsibility', Number(result.responsibility)],
+//     ['problem_solving', Number(result.problem_solving)],
+//     ['growth', Number(result.growth)],
+//     ['stress', Number(result.stress)],
+//     ['adaptation', Number(result.adaptation)],
+//   ];
 
-function getSummaryText(result) {
-  if (!result) return '';
+//   const valid = entries.filter(([, v]) => !isNaN(v));
+//   if (!valid.length) return '';
 
-  const stress = Number(result.stress);
-  const adaptation = Number(result.adaptation);
-  const comm = Number(result.communication);
+//   const [bestKey] = valid.sort((a, b) => b[1] - a[1])[0];
+//   return TRAIT_MAP[bestKey] || '';
+// }
 
-  const parts = [];
+// function getSummaryText(result) {
+//   if (!result) return '';
 
-  if (comm >= 4) {
-    parts.push('타인과의 소통에서 강점을 보이며 팀 내 협업에 유리한 편입니다.');
-  }
-  if (adaptation >= 4) {
-    parts.push('새로운 환경과 변화에 빠르게 적응하는 경향이 있습니다.');
-  }
-  if (stress <= 2.5) {
-    parts.push('스트레스 상황에서는 부담을 크게 느낄 수 있어, 휴식과 환경 조절이 중요합니다.');
-  } else if (stress >= 4) {
-    parts.push('압박 상황에서도 비교적 안정적인 모습을 유지하는 편입니다.');
-  }
+//   const stress = Number(result.stress);
+//   const adaptation = Number(result.adaptation);
+//   const comm = Number(result.communication);
 
-  if (parts.length === 0) {
-    return '각 역량이 전반적으로 균형 있게 분포되어 있어, 다양한 역할에 두루 적응할 수 있는 유형입니다.';
-  }
+//   const parts = [];
 
-  return parts.join(' ');
-}
+//   if (comm >= 4) {
+//     parts.push('타인과의 소통에서 강점을 보이며 팀 내 협업에 유리한 편입니다.');
+//   }
+//   if (adaptation >= 4) {
+//     parts.push('새로운 환경과 변화에 빠르게 적응하는 경향이 있습니다.');
+//   }
+//   if (stress <= 2.5) {
+//     parts.push('스트레스 상황에서는 부담을 크게 느낄 수 있어, 휴식과 환경 조절이 중요합니다.');
+//   } else if (stress >= 4) {
+//     parts.push('압박 상황에서도 비교적 안정적인 모습을 유지하는 편입니다.');
+//   }
+
+//   if (parts.length === 0) {
+//     return '각 역량이 전반적으로 균형 있게 분포되어 있어, 다양한 역할에 두루 적응할 수 있는 유형입니다.';
+//   }
+
+//   return parts.join(' ');
+// }
 
 const AssessmentResult = () => {
   const navigate = useNavigate();
