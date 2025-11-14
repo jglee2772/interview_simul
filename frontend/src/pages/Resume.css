@@ -1,5 +1,5 @@
 /* =========================================
-   🧾 Resume.css — 최종 완성본
+   🧾 Resume.css — 최신 완성본 (AI분석·글자수 상단 고정)
    ========================================= */
 
 /* ---------- 전체 레이아웃 ---------- */
@@ -126,30 +126,12 @@
 }
 
 /* 입력 필드 (3행 × 4열 구성) */
-.personal-info-box .form-group:nth-of-type(2) {
-  grid-column: 2;
-  grid-row: 1;
-}
-.personal-info-box .form-group:nth-of-type(3) {
-  grid-column: 3;
-  grid-row: 1;
-}
-.personal-info-box .form-group:nth-of-type(4) {
-  grid-column: 4 / span 2;
-  grid-row: 1;
-}
-.personal-info-box .form-group:nth-of-type(5) {
-  grid-column: 2 / span 2;
-  grid-row: 2;
-}
-.personal-info-box .form-group:nth-of-type(6) {
-  grid-column: 4 / span 2;
-  grid-row: 2;
-}
-.personal-info-box .form-group:nth-of-type(7) {
-  grid-column: 2 / span 4;
-  grid-row: 3;
-}
+.personal-info-box .form-group:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+.personal-info-box .form-group:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+.personal-info-box .form-group:nth-of-type(4) { grid-column: 4 / span 2; grid-row: 1; }
+.personal-info-box .form-group:nth-of-type(5) { grid-column: 2 / span 2; grid-row: 2; }
+.personal-info-box .form-group:nth-of-type(6) { grid-column: 4 / span 2; grid-row: 2; }
+.personal-info-box .form-group:nth-of-type(7) { grid-column: 2 / span 4; grid-row: 3; }
 
 /* =========================================
    📋 입력 필드 공통 스타일
@@ -216,8 +198,13 @@
 }
 
 /* =========================================
-   ✏️ 자기소개서
+   ✏️ 자기소개서 — (AI 분석 + 글자수 상단 고정형)
    ========================================= */
+.form-group {
+  position: relative;
+  margin-bottom: 50px;
+}
+
 .cover-letter-label {
   display: flex;
   align-items: center;
@@ -225,10 +212,33 @@
   font-size: 1rem;
   font-weight: 600;
   color: #0d1b3d;
-  margin-bottom: 6px;
+  margin-bottom: 8px;
 }
 
+/* textarea */
+.cover-letter-textarea {
+  resize: vertical;
+  background-color: #fafcff;
+  min-height: 120px;
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: 1.5px solid #cfd5e2;
+  border-radius: 8px;
+  transition: all 0.25s ease;
+}
+
+.cover-letter-textarea:focus {
+  border-color: #1e4d8b;
+  box-shadow: 0 0 8px rgba(30, 77, 139, 0.25);
+  background-color: #fff;
+}
+
+/* AI 분석 버튼 */
 .analyze-button {
+  position: absolute;
+  top: -28px;
+  right: 70px;
   padding: 6px 14px;
   font-size: 0.85rem;
   font-weight: 600;
@@ -239,7 +249,6 @@
   cursor: pointer;
   transition: all 0.25s ease;
   box-shadow: 0 2px 6px rgba(30, 77, 139, 0.3);
-  margin-left: 12px;
 }
 
 .analyze-button:hover:not(:disabled) {
@@ -252,17 +261,16 @@
   cursor: not-allowed;
 }
 
-.cover-letter-textarea {
-  resize: vertical;
-  background-color: #fafcff;
-  min-height: 120px;
-}
-
+/* 글자 수 — 오른쪽 상단 고정 */
 .character-count {
-  text-align: right;
+  position: absolute;
+  top: -26px;
+  right: 0;
   font-size: 0.85rem;
   color: #9aa2b1;
-  margin-top: 4px;
+  background-color: #ffffff;
+  padding: 2px 6px;
+  border-radius: 4px;
 }
 
 /* =========================================
@@ -417,4 +425,40 @@
   .feedback-panel.closed {
     transform: translateX(100%);
   }
+}
+/* =========================================
+   📏 섹션 간 여백 조정 (밀착형 스타일)
+   ========================================= */
+
+/* 각 섹션 사이 간격을 줄임 */
+.resume-section {
+  margin-bottom: 50px; /* 기존 80px → 50px */
+}
+
+/* 내부 아이템(학력, 경력, 자격증) 간격도 축소 */
+.education-item,
+.experience-item,
+.certificate-item {
+  margin-bottom: 16px; /* 기존 24px → 16px */
+  padding: 22px 20px;  /* 기존 26px 22px → 살짝 줄임 */
+}
+
+/* 인적사항 박스 내부 padding 줄이기 */
+.personal-info-box {
+  padding: 30px 40px; /* 기존 40px 50px → 더 컴팩트하게 */
+}
+
+/* 자기소개서 영역도 아래 여백 감소 */
+.form-group {
+  margin-bottom:15px; /* 기존 50px → 조금 더 밀착 */
+}
+
+/* 제목 아래 간격 줄이기 */
+.section-title {
+  margin-bottom: 20px; /* 기존 28px → 더 깔끔하게 */
+}
+
+/* 추가 버튼과 섹션 간 간격 최소화 */
+.section-header {
+  margin-bottom: 18px; /* 기존 25px → 조금 덜 띄움 */
 }
