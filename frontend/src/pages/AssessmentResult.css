@@ -1,55 +1,82 @@
-/**
- * 파일: AssessmentResult.css
- * 역할: 인적성검사 결과 페이지 스타일 작성
- * 설명:
- * - AssessmentResult.js 컴포넌트의 스타일을 정의합니다
- * - 결과 카드, 차트, 그래프 등의 스타일을 작성합니다
- */
+/* =========================================
+📘 AssessmentResult.css — 결과 페이지 전용
+========================================= */
 
-/* 인적성검사 결과 페이지 스타일 작성 */
-.assessment-result {
-  padding: 2rem;
+body {
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  background: #f4f6fb;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
 }
 
-.assessment-result-container {
-  max-width: 1200px;
-  margin: 0 auto;
+/* ---------- 메인 컨테이너 ---------- */
+.assessment {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 80px 20px;
+  box-sizing: border-box;
+}
+
+.assessment-container.assessment-result {
+  width: 100%;
+  max-width: 1100px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  padding: 60px 70px;
   text-align: center;
+  animation: fadeIn 0.6s ease;
 }
 
-.assessment-result-container h1 {
-  font-size: 2rem;
-  color: #333;
+/* ---------- 제목 ---------- */
+.assessment-container.assessment-result h1 {
+  color: #1b2141;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  border-bottom: 3px solid #6a5acd;
+  display: inline-block;
+  padding-bottom: 8px;
 }
 
-/* 결과 섹션 */
-.assessment-result {
-  text-align: left;
+.assessment-container.assessment-result p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 40px;
 }
 
-/* 결과 요약 상단 (텍스트 + 그래프) */
+/* ---------- 결과 주요 섹션 ---------- */
 .result-main {
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 40px;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 50px;
 }
 
-/* 왼쪽 설명 */
+/* 왼쪽 텍스트 박스 */
 .result-text {
   flex: 1;
-  background: #f9fafc;
-  padding: 20px 25px;
-  border-radius: 10px;
-  border-left: 4px solid #f6c90e;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  background: #fafbff;
+  padding: 28px 30px;
+  border-radius: 14px;
+  border-left: 5px solid #6a5acd;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  text-align: left;
+  animation: fadeIn 0.5s ease-in-out;
 }
 
 .result-text h3 {
-  color: #0e1a3a;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
+  color: #1b2141;
+  font-weight: 700;
   margin-bottom: 15px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  padding-bottom: 8px;
 }
 
 .result-text ul {
@@ -60,35 +87,94 @@
 
 .result-text li {
   margin-bottom: 10px;
-  font-size: 0.95rem;
+  font-size: 1rem;
   color: #1a2755;
+  line-height: 1.5;
 }
 
-/* 오른쪽 그래프 */
+/* 오른쪽 레이더 차트 */
 .result-chart {
   flex: 1;
-  background: #fffef9;
-  border-radius: 10px;
-  padding: 20px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 25px 30px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.7s ease-in-out;
 }
 
-/* 결과 요약 박스 */
+/* ---------- GPT 분석 카드 ---------- */
 .result-summary-card {
-  margin-top: 35px;
-  background: #f6f7fb;
-  border-left: 5px solid #f6c90e;
-  padding: 20px 25px;
-  border-radius: 8px;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  background: #f7f8fc;
+  border-left: 5px solid #6a5acd;
+  border-radius: 12px;
+  padding: 30px 35px;
+  margin-top: 25px;
+  text-align: left;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.07);
+  animation: fadeIn 0.8s ease;
 }
 
 .result-summary-card h3 {
-  color: #0e1a3a;
-  margin-bottom: 12px;
+  color: #1b2141;
+  font-size: 1.3rem;
+  margin-bottom: 15px;
+  font-weight: 700;
 }
 
-/* 애니메이션 */
+.result-summary-card h4 {
+  color: #3c3f63;
+  font-size: 1.05rem;
+  margin-top: 20px;
+  margin-bottom: 8px;
+}
+
+.result-summary-card p {
+  color: #333;
+  font-size: 1rem;
+  margin: 5px 0;
+  line-height: 1.6;
+}
+
+.result-summary-card ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  color: #2b2b2b;
+  font-size: 0.95rem;
+}
+
+/* ---------- 메인으로 버튼 ---------- */
+.assessment-result button {
+  background-color: #6a5acd;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 1.05rem;
+  border: none;
+  border-radius: 10px;
+  padding: 14px 30px;
+  cursor: pointer;
+  margin-top: 40px;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 14px rgba(106, 90, 205, 0.25);
+}
+
+.assessment-result button:hover {
+  background-color: #5f7de6;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(106, 90, 205, 0.35);
+}
+
+/* ---------- 에러 텍스트 ---------- */
+.error-text {
+  color: #e63946;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* ---------- 애니메이션 ---------- */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -100,28 +186,37 @@
   }
 }
 
-/* 반응형 */
-@media (max-width: 768px) {
-  .assessment-container {
-    padding: 30px 20px;
+/* ---------- 반응형 ---------- */
+@media (max-width: 992px) {
+  .assessment-container.assessment-result {
+    padding: 40px 25px;
   }
 
   .result-main {
     flex-direction: column;
+    gap: 30px;
   }
 
-  .scale-label {
-    display: none;
+  .result-chart {
+    padding: 20px;
   }
 
-  .scale-button {
-    min-width: 100%;
-  }
-
-  .navigation {
-    flex-direction: column;
-    gap: 10px;
+  .result-summary-card {
+    padding: 25px 20px;
   }
 }
 
+@media (max-width: 600px) {
+  .assessment-container.assessment-result h1 {
+    font-size: 1.8rem;
+  }
 
+  .result-text li {
+    font-size: 0.9rem;
+  }
+
+  .result-summary-card p,
+  .result-summary-card li {
+    font-size: 0.9rem;
+  }
+}
