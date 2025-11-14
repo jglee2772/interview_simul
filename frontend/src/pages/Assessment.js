@@ -3,7 +3,7 @@
  * 역할: 인적성검사 질문/답변 UI 및 로직 + 사이드바 연동
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import assessmentAPI from '../services/assessmentAPI';
 import './Assessment.css';
@@ -17,14 +17,14 @@ const Assessment = () => {
   const [assessmentId, setAssessmentId] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [loading, setLoading] = useState(false);   // 🔥 로딩 전역 상태
+  const [loading, setLoading] = useState(false);     // 🔥 반드시 필요!
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [showSidebar, setShowSidebar] = useState(true);
 
-  const toggleSidebar = () => setShowSidebar((prev) => !prev);
+  // 진행률 별도 관리
+  const [progress, setProgress] = useState(0);
 
-  // -------------------- 상수 정의 --------------------
   const questionsPerPage = 4;
   const totalPages = Math.ceil(questions.length / questionsPerPage);
   const startIndex = currentPage * questionsPerPage;
@@ -32,14 +32,32 @@ const Assessment = () => {
   const pagedQuestions = questions.slice(startIndex, endIndex);
 
   // -------------------- 진행률 계산 --------------------
-  const progress =
-    (answers.filter((a) => a !== null).length / questions.length) * 100;
+  useEffect(() => {
+    if (!questions.length) {
+      setProgress(0);
+      return;
+    }
 
-  const getProgressColor = (progress) => {
-    if (progress < 50) return '#e74c3c';
-    if (progress < 80) return '#f1c40f';
+    const answered = answers.filter((a) => a !== null).length;
+    const percent = Math.round((answered / questions.length) * 100);
+    setProgress(percent);
+  }, [answers, questions]);
+
+  const getProgressColor = (value) => {
+    if (value < 50) return '#e74c3c';
+    if (value < 80) return '#f1c40f';
     return '#2ecc71';
   };
+
+  // -------------------- 로딩창 (가장 위에서 return) --------------------
+  if (loading) {
+    return (
+      <div className="assessment-loading-overlay">
+        <div className="loading-spinner"></div>
+        <p>결과를 불러오고 있습니다…</p>
+      </div>
+    );
+  }
 
   // -------------------- 검사 시작 --------------------
   const startAssessment = async () => {
@@ -50,14 +68,14 @@ const Assessment = () => {
 
     try {
       setLoading(true);
-      setError('');
       const res = await assessmentAPI.startAssessment({ name });
+
       const { assessment, questions } = res.data;
       setAssessmentId(assessment.id);
       setQuestions(questions);
       setAnswers(new Array(questions.length).fill(null));
+      setCurrentPage(0);
     } catch (e) {
-      console.error(e);
       setError('인적성검사를 시작하는 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
@@ -66,9 +84,11 @@ const Assessment = () => {
 
   // -------------------- 답변 선택 --------------------
   const handleAnswer = (index, value) => {
-    const updated = [...answers];
-    updated[index] = value;
-    setAnswers(updated);
+    setAnswers((prev) => {
+      const updated = [...prev];
+      updated[index] = value;
+      return updated;
+    });
   };
 
   // -------------------- 결과 제출 --------------------
@@ -79,124 +99,98 @@ const Assessment = () => {
     }
 
     try {
-      setLoading(true);   // 🔥 제출 클릭 시 바로 로딩 오버레이 ON
-      setError('');
+      setLoading(true);
 
       const res = await assessmentAPI.submitAnswer(assessmentId, answers);
       const payload = res.data;
-      const resultData = payload.result || payload;
 
       navigate(`/assessment-result/${assessmentId}`, {
         state: {
           name,
-          result: resultData,
-          analysis: res.data.analysis ?? null,
-          loading: false
+          result: payload.result || payload,
+          analysis: payload.analysis ?? null,
         },
       });
-
     } catch (e) {
-      console.error(e);
       setError('답변 제출 중 오류가 발생했습니다.');
       setLoading(false);
     }
   };
 
-  // -------------------- 로딩 오버레이 (전 화면 덮기) --------------------
-  if (loading) {
-    return (
-      <div className="assessment-loading-overlay">
-        <div className="loading-spinner"></div>
-        <p>결과를 생성하는 중입니다… 조금만 기다려 주세요!</p>
-      </div>
-    );
-  }
-
-  // -------------------- 1) 이름 입력 화면 --------------------
+  // -------------------- 이름 입력 화면 --------------------
   if (!assessmentId) {
     return (
-      <div className="assessment">
-        <div className="assessment-container">
+      <div className="assessment-start-wrapper">
+        <div className="assessment-start-container">
           <h1>인적성 검사 시작</h1>
-          <div>
-            <label htmlFor="name">이름</label>
-            <input
-              id="name"
-              type="text"
-              placeholder="테스트용 이름 입력 창"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-            />
-          </div>
+
+          <label htmlFor="name">이름</label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            placeholder="이름 입력"
+            onChange={(e) => setName(e.target.value)}
+          />
 
           {error && <p className="error-text">{error}</p>}
 
-          <button onClick={startAssessment} disabled={loading}>
-            {loading ? '준비 중...' : '검사 시작하기'}
-          </button>
+          <button onClick={startAssessment}>검사 시작하기</button>
         </div>
       </div>
     );
   }
 
-  // -------------------- 2) 검사 진행 화면 --------------------
-return (
-  <div className="assessment-wrapper">  {/* ← 새 최상위 컨테이너 */}
+  // -------------------- 검사 진행 화면 --------------------
+  return (
+    <div className="assessment-wrapper">
+      <div className="assessment-layout">
+        <AnswerAsidebar
+          show={showSidebar}
+          toggleSidebar={() => setShowSidebar((p) => !p)}
+          questions={questions}
+          answers={answers}
+          onSelectQuestion={(index) => {
+            const p = Math.floor(index / questionsPerPage);
+            setCurrentPage(p);
+          }}
+        />
 
-    <div className="assessment-layout">
+        <div className="assessment-page">
+          <div className="assessment-container">
+            <h1>인적성 검사</h1>
 
-      <AnswerAsidebar
-        show={showSidebar}
-        toggleSidebar={toggleSidebar}
-        questions={questions}
-        answers={answers}
-        onSelectQuestion={(index) => {
-          const targetPage = Math.floor(index / questionsPerPage);
-          setCurrentPage(targetPage);
-        }}
-      />
+            <p>
+              <strong>{name}</strong> 님, 총 {questions.length}문항 중{' '}
+              {answers.filter((a) => a !== null).length}문항을 완료했습니다.
+            </p>
 
-      <div className="assessment-page">
-        <div className="assessment-container">
-          <h1>인적성 검사</h1>
+            {/* 진행률 바 */}
+            <div className="progress-bar-container">
+              <div
+                className="progress-bar"
+                style={{
+                  width: `${progress}%`,
+                  backgroundColor: getProgressColor(progress),
+                }}
+              ></div>
+            </div>
 
-          <p>
-            <strong>{name}</strong> 님, 총 {questions.length}문항 중{' '}
-            {answers.filter((a) => a !== null).length}문항을 완료했습니다.
-          </p>
+            {/* 질문 */}
+            <div className="question-list">
+              {pagedQuestions.map((q, idx) => {
+                const globalIndex = startIndex + idx;
+                return (
+                  <div key={q.id || globalIndex} className="question-item">
+                    <p className="question-text">
+                      {q.number}. {q.text}
+                    </p>
 
-          {/* 진행률 바 */}
-          <div className="progress-bar-container">
-            <div
-              className="progress-bar"
-              style={{
-                width: `${progress}%`,
-                backgroundColor: getProgressColor(progress),
-                transition: 'width 0.4s ease, background-color 0.4s ease',
-              }}
-            />
-          </div>
+                    <div className="scale-row">
+                      <span className="scale-label">전혀 아니다</span>
 
-          {/* 현재 페이지 문항 */}
-          <div className="question-list">
-            {pagedQuestions.map((q, index) => {
-              const globalIndex = startIndex + index;
-              return (
-                <div
-                  key={q.id || globalIndex}
-                  className={`question-item ${
-                    answers[globalIndex] ? 'answered' : 'unanswered'
-                  }`}
-                >
-                  <p className="question-text">
-                    {q.number}. {q.text}
-                  </p>
-
-                  <div className="answer-options">
-                    {['전혀 아니다', '아니다', '보통이다', '그렇다', '매우 그렇다'].map(
-                      (label, i) => {
-                        const value = i + 1;
-                        return (
+                      <div className="answer-options">
+                        {[1, 2, 3, 4, 5].map((value) => (
                           <button
                             key={value}
                             type="button"
@@ -204,56 +198,54 @@ return (
                               answers[globalIndex] === value ? 'selected' : ''
                             }`}
                             onClick={() => handleAnswer(globalIndex, value)}
-                          >
-                            {label}
-                          </button>
-                        );
-                      }
-                    )}
+                          />
+                        ))}
+                      </div>
+
+                      <span className="scale-label">매우 그렇다</span>
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
 
-          {error && <p className="error-text">{error}</p>}
+            {error && <p className="error-text">{error}</p>}
 
-          {/* 페이지 네비게이션 */}
-          <div className="navigation">
-            <button
-              onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 0))}
-              disabled={currentPage === 0}
-            >
-              이전
-            </button>
-
-            <span>
-              페이지 {currentPage + 1} / {totalPages}
-            </span>
-
-            {currentPage === totalPages - 1 ? (
+            {/* 페이지 네비 */}
+            <div className="navigation">
               <button
-                onClick={submitAssessment}
-                disabled={!answers.every((v) => v !== null)}
+                onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
+                disabled={currentPage === 0}
               >
-                검사 제출하기
+                이전
               </button>
-            ) : (
-              <button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1))
-                }
-              >
-                다음
-              </button>
-            )}
+
+              <span>
+                페이지 {currentPage + 1} / {totalPages}
+              </span>
+
+              {currentPage === totalPages - 1 ? (
+                <button
+                  onClick={submitAssessment}
+                  disabled={answers.some((v) => v === null)}
+                >
+                  검사 제출하기
+                </button>
+              ) : (
+                <button
+                  onClick={() =>
+                    setCurrentPage((p) => Math.min(p + 1, totalPages - 1))
+                  }
+                >
+                  다음
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
-
     </div>
-  </div>
-)
+  );
 };
 
 export default Assessment;
