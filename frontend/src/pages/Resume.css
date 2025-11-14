@@ -60,8 +60,12 @@
 }
 
 .resume-section {
-  margin-bottom: 24px;
+  margin-bottom: 6px;
   page-break-inside: avoid;
+}
+
+.resume-section:last-child {
+  margin-bottom: 0;
 }
 
 .section-title {
@@ -70,7 +74,7 @@
   color: #0d1b3d;
   border-left: 3px solid #1e4d8b;
   padding-left: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 6px;
   letter-spacing: -0.3px;
 }
 
@@ -78,20 +82,20 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-bottom: 4px;
 }
 
 .personal-info-box {
   display: grid;
   grid-template-columns: 128px repeat(4, 1fr);
   column-gap: 10px;
-  row-gap: 8px;
+  row-gap: 6px;
   align-items: flex-start;
   background-color: #f9fafc;
   border: 1px solid #e1e4eb;
   border-left: 3px solid #1e4d8b;
   border-radius: 5px;
-  padding: 16px 20px;
+  padding: 14px 18px;
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.03);
 }
 
@@ -152,6 +156,10 @@
   background-color: #c62828;
 }
 
+.personal-info-box .form-group {
+  margin-bottom: 0;
+}
+
 .personal-info-box .form-group:nth-of-type(2) {
   grid-column: 2;
   grid-row: 1;
@@ -187,7 +195,8 @@
 
 .personal-info-box .resume-input {
   font-size: 0.85rem;
-  padding: 7px 10px;
+  padding: 6px 10px;
+  margin-bottom: 0;
 }
 
 .resume-input {
@@ -199,7 +208,7 @@
   background-color: #fafcff;
   outline: none;
   transition: all 0.25s ease;
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 
 .resume-input:focus {
@@ -217,14 +226,28 @@
 .training-item {
   background-color: #f9fafc;
   border-radius: 5px;
-  padding: 12px 14px 12px 12px;
-  margin-bottom: 10px;
+  padding: 8px 10px 4px 8px;
+  margin-bottom: 3px;
   border-left: 3px solid #1e4d8b;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-  gap: 8px;
+  gap: 5px;
   position: relative;
+}
+
+.education-item .form-group,
+.experience-item .form-group,
+.certificate-item .form-group,
+.training-item .form-group {
+  margin-bottom: 0;
+}
+
+.education-item:last-child,
+.experience-item:last-child,
+.certificate-item:last-child,
+.training-item:last-child {
+  margin-bottom: 0;
 }
 
 .add-button,
@@ -276,6 +299,10 @@
 
 .form-group {
   position: relative;
+  margin-bottom: 0;
+}
+
+.cover-letter .form-group {
   margin-bottom: 50px;
 }
 
@@ -437,6 +464,17 @@
   transform: translateY(-2px);
 }
 
+.validation-error-message {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 4px;
+  color: #856404;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
 .feedback-panel {
   position: fixed;
   right: 0;
@@ -558,6 +596,7 @@
     transform: translateX(100%);
   }
 }
+
 @media (max-width: 768px) {
   .resume-container {
     width: 100%;

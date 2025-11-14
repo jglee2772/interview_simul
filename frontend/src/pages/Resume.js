@@ -53,7 +53,7 @@ const formatPhoneNumber = (value) => {
 };
 
 const formatDate = (value) => {
-  const numbers = value.replace(/[^\d-]/g, '').replace(/-/g, '');
+  const numbers = value.replace(/[^\d]/g, '');
   if (numbers.length <= 4) return numbers;
   if (numbers.length <= 6) return `${numbers.slice(0, 4)}-${numbers.slice(4)}`;
   return `${numbers.slice(0, 4)}-${numbers.slice(4, 6)}-${numbers.slice(6, 8)}`;
@@ -261,15 +261,13 @@ const Resume = () => {
     const setError = errorSetters[section];
     if (setError) {
       setError(prevErrors => {
-        const updated = { ...prevErrors };
-        delete updated[index];
         const reindexed = {};
-        Object.keys(updated).forEach(key => {
+        Object.entries(prevErrors).forEach(([key, value]) => {
           const oldIndex = parseInt(key);
-          if (oldIndex > index) {
-            reindexed[oldIndex - 1] = updated[oldIndex];
-          } else if (oldIndex < index) {
-            reindexed[oldIndex] = updated[oldIndex];
+          if (oldIndex < index) {
+            reindexed[oldIndex] = value;
+          } else if (oldIndex > index) {
+            reindexed[oldIndex - 1] = value;
           }
         });
         return reindexed;
@@ -476,9 +474,7 @@ const Resume = () => {
                           className="photo-input"
                           style={{ display: 'none' }}
                         />
-                    <div className="photo-upload-placeholder">
-                      <span>+사진</span>
-                    </div>
+                        <span>+사진</span>
                       </label>
                     )}
                   </div>
