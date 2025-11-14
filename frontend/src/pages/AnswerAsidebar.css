@@ -1,3 +1,4 @@
+/* ---------- 사이드바 ---------- */
 .asidebar {
   width: 260px;
   display: flex;
@@ -6,8 +7,14 @@
   padding: 0;
   margin-top: 20px;
   background: transparent;
-}
 
+  /* ✅ 스크롤 고정 설정 */
+  position: sticky;
+  top: 40px; /* 상단 여백 (헤더나 제목 영역 피해서) */
+  height: fit-content;
+  align-self: flex-start;
+  z-index: 20;
+}
 /* 내부 박스 */
 .aside-inner-box {
   width: 100%;
