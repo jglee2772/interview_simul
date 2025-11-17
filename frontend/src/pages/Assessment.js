@@ -3,7 +3,7 @@
  * 역할: 인적성검사 질문/답변 UI 및 사이드바 연동
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import assessmentAPI from '../services/assessmentAPI';
 import './Assessment.css';
@@ -22,6 +22,7 @@ const Assessment = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [showSidebar, setShowSidebar] = useState(true);
   const [progress, setProgress] = useState(0);
+  const hasCheckedName = useRef(false);
 
   const questionsPerPage = 4;
   const totalPages = Math.ceil(questions.length / questionsPerPage);
@@ -31,6 +32,10 @@ const Assessment = () => {
 
   // -------------------- 페이지 로드 시 이름 확인 --------------------
   useEffect(() => {
+    // 이미 실행되었으면 중복 실행 방지
+    if (hasCheckedName.current) return;
+    hasCheckedName.current = true;
+
     const savedData = localStorage.getItem('resumeData');
     const savedName = savedData ? JSON.parse(savedData).name : '';
 
