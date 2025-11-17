@@ -201,13 +201,22 @@ const Home = () => {
           </div>
 
           <div className="card" onClick={() => navigate('/interview')}>
-            <div className="card-icon"></div>
-            <span className="card-title">면접 시뮬레이션 가기</span>
+            <img
+              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDAyMjZfNTgg%2FMDAxNTgyNzI3MTgzODIz.kAibumvO911S6QYqh4OSpjUKvsCcrXSen4g_6gR2fQwg.nHNIAJWxrU-2cIdtHAWcpKhszRVPfnolRM1Vta5w_Zgg.PNG.kicox1964%2F002.png&type=a340"
+              alt="ai 면접 아이콘"
+              className="resume-icon"
+            />
+              <h3>가상 면접 시뮬레이션</h3>
           </div>
 
           <div className="card" onClick={() => navigate('/assessment')}>
-            <div className="card-icon"></div>
-            <span className="card-title">인적성검사 가기</span>
+              <img
+              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMjBfNTcg%2FMDAxNjA4NDM3OTgyNDM4.QkSTzzrWOLthFGb869TsZOZsWULt6jxWbpiHgV5mLO8g.To4Xw0N6DVYBEtqKC54H77CFrtd2XN_GpnBHXG5Tkygg.PNG.rykim09%2F3.png&type=sc960_832"
+              alt="ai 면접 아이콘"
+              className="resume-icon"
+            />
+            <h3>인적성 검사 바로가기</h3>
+
           </div>
         </div>
 
