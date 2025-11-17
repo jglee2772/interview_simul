@@ -231,10 +231,38 @@ const Home = () => {
             <h3>이력서 작성해보기</h3>
           </div>
 
-          <div className="job-section">
+         <div className="job-section">
             <h3>구인사이트</h3>
-            <p>추천 채용 사이트나 링크를 여기에 배치할 수 있습니다.</p>
-          </div>
+            <p>아래 사이트를 통해 최신 채용 정보를 확인해보세요.</p>
+
+             <div className="job-box-container">
+               {/* 사람인 */}
+                 <a
+                   href="https://www.saramin.co.kr/zf_user/?NaPm=ct%3Dmi2jbdq3%7Cci%3Dcheckout%7Ctr%3Dds%7Ctrx%3Dnull%7Chk%3D421c780be98f757d363ab47053b9e738bd21c73e"
+                   target="_blank"
+                    rel="noopener noreferrer"
+                   className="job-card-box"
+                                >
+                          <img
+                           src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxOTAxMTVfMjcw%2FMDAxNTQ3NTI0MDIyMTYx.WOjbU7yxId3APzJ9JZxyTd-Y5zWdjawv916XG3HXEgkg.jV_wmIhqmvhFNlejrwUmhC7ZyMUhXEm2pHAfpHwC0c0g.JPEG.ghdeodutls%2F00500067_20160812.JPG&type=a340"
+                         alt="사람인"
+                            />
+                    <span>사람인 바로가기</span>
+                      </a>           {/* 잡코리아 */}  <a
+      href="https://www.jobkorea.co.kr/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="job-card-box"
+    >
+      <img
+        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MjJfMjk2%2FMDAxNzI0MzMzODM2OTU3.w3j6fK-zuFCycDt6wR6l27sDnshYvKjYD_NRHwhN7bog.XDD5_e1F-1emlEU5kvI8RCnAX-CSjzUddjpEh6KQGwkg.JPEG%2F%25BD%25C9%25BA%25BC1.jpg&type=l340_165"
+        alt="잡코리아"
+      />
+      <span>잡코리아 바로가기</span>
+    </a>
+  </div>
+</div>  
+
         </div>
       </div>
     </div>

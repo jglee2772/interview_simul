@@ -249,3 +249,83 @@
     height: 65px;
   }
 }
+/* ===== 구인사이트 섹션 (수정버전) ===== */
+
+.job-section {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 30px 40px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  text-align: center;
+}
+
+.job-section h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0e1a3a;
+  margin-bottom: 8px;
+}
+
+.job-section p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 25px;
+}
+
+/* 🔹 카드 두 개 가로 정렬 */
+.job-box-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* 🔹 개별 카드 */
+.job-card-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 45%;
+  max-width: 350px;
+  min-width: 280px;
+  background-color: #fafbff;
+  border-radius: 14px;
+  padding: 25px 20px;
+  text-decoration: none;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.job-card-box:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 18px rgba(246, 201, 14, 0.25);
+}
+
+/* 🔹 이미지 */
+.job-card-box img {
+  width: 150px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 15px;
+}
+
+/* 🔹 텍스트 */
+.job-card-box span {
+  color: #0e1a3a;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ✅ 반응형: 모바일에서는 세로 배치 */
+@media (max-width: 768px) {
+  .job-box-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .job-card-box {
+    width: 100%;
+  }
+}
