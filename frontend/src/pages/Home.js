@@ -138,6 +138,33 @@ const Home = () => {
     }
   };
 
+    const handleNavigateToAssessment = () => {
+    try {
+      // 기존 저장된 데이터가 있으면 불러오기
+      const existingData = localStorage.getItem(STORAGE_KEY);
+      let resumeData = {};
+      
+      if (existingData) {
+        resumeData = JSON.parse(existingData);
+      }
+      
+      // 기본정보를 병합하여 저장
+      const updatedData = {
+        ...resumeData,
+        ...basicInfo,
+        // photo는 유지 (기존 데이터가 있으면)
+        photo: resumeData.photo || null,
+        photoBase64: resumeData.photoBase64 || null
+      };
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+      navigate('/Assessment');
+    } catch (error) {
+      console.error('데이터 저장 중 오류:', error);
+      navigate('/Assessment');
+    }
+  };
+
   return (
     <div className="home">
       <div className="home-container">
@@ -209,7 +236,7 @@ const Home = () => {
               <h3>가상 면접 시뮬레이션</h3>
           </div>
 
-          <div className="card" onClick={() => navigate('/assessment')}>
+          <div className="card" onClick={handleNavigateToAssessment}>
               <img
               src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMjBfNTcg%2FMDAxNjA4NDM3OTgyNDM4.QkSTzzrWOLthFGb869TsZOZsWULt6jxWbpiHgV5mLO8g.To4Xw0N6DVYBEtqKC54H77CFrtd2XN_GpnBHXG5Tkygg.PNG.rykim09%2F3.png&type=sc960_832"
               alt="ai 면접 아이콘"
