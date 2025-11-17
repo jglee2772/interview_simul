@@ -1,6 +1,6 @@
 /**
  * 페이지: 인적성검사 페이지
- * 역할: 인적성검사 질문/답변 UI 및 로직 + 사이드바 연동
+ * 역할: 인적성검사 질문/답변 UI 및 사이드바 연동
  */
 
 import React, { useState, useEffect } from 'react';
@@ -17,12 +17,10 @@ const Assessment = () => {
   const [assessmentId, setAssessmentId] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [loading, setLoading] = useState(false);     // 🔥 반드시 필요!
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [currentPage, setCurrentPage] = useState(0);
   const [showSidebar, setShowSidebar] = useState(true);
-
-  // 진행률 별도 관리
   const [progress, setProgress] = useState(0);
 
   const questionsPerPage = 4;
@@ -31,13 +29,26 @@ const Assessment = () => {
   const endIndex = startIndex + questionsPerPage;
   const pagedQuestions = questions.slice(startIndex, endIndex);
 
+  // -------------------- 페이지 로드 시 이름 확인 --------------------
+  useEffect(() => {
+    const savedData = localStorage.getItem('resumeData');
+    const savedName = savedData ? JSON.parse(savedData).name : '';
+
+    if (!savedName) {
+      alert("인적사항이 입력되지 않았습니다. 먼저 홈에서 이름을 작성해주세요!");
+      navigate('/'); // 홈으로 이동
+      return;
+    }
+
+    setName(savedName);
+  }, [navigate]);
+
   // -------------------- 진행률 계산 --------------------
   useEffect(() => {
     if (!questions.length) {
       setProgress(0);
       return;
     }
-
     const answered = answers.filter((a) => a !== null).length;
     const percent = Math.round((answered / questions.length) * 100);
     setProgress(percent);
@@ -49,34 +60,25 @@ const Assessment = () => {
     return '#2ecc71';
   };
 
-  // -------------------- 로딩창 (가장 위에서 return) --------------------
-  if (loading) {
-    return (
-      <div className="assessment-loading-overlay">
-        <div className="loading-spinner"></div>
-        <p>결과를 불러오고 있습니다…</p>
-      </div>
-    );
-  }
-
   // -------------------- 검사 시작 --------------------
-  const startAssessment = async () => {
-    if (!name.trim()) {
-      setError('이름을 입력해 주세요.');
+  const startAssessment = async (inputName) => {
+    const userName = inputName || name;
+    if (!userName) {
+      setError("이름을 입력해주세요!");
       return;
     }
 
     try {
       setLoading(true);
-      const res = await assessmentAPI.startAssessment({ name });
-
+      const res = await assessmentAPI.startAssessment({ name: userName });
       const { assessment, questions } = res.data;
       setAssessmentId(assessment.id);
       setQuestions(questions);
       setAnswers(new Array(questions.length).fill(null));
       setCurrentPage(0);
+      setError('');
     } catch (e) {
-      setError('인적성검사를 시작하는 중 오류가 발생했습니다.');
+      setError("인적성검사 시작 중 오류가 발생했습니다.");
     } finally {
       setLoading(false);
     }
@@ -100,7 +102,6 @@ const Assessment = () => {
 
     try {
       setLoading(true);
-
       const res = await assessmentAPI.submitAnswer(assessmentId, answers);
       const payload = res.data;
 
@@ -117,29 +118,45 @@ const Assessment = () => {
     }
   };
 
-  // -------------------- 이름 입력 화면 --------------------
-  if (!assessmentId) {
+  // -------------------- 로딩창 --------------------
+  if (loading) {
     return (
-      <div className="assessment-start-wrapper">
-        <div className="assessment-start-container">
-          <h1>인적성 검사 시작</h1>
-
-          <label htmlFor="name">이름</label>
-          <input
-            id="name"
-            type="text"
-            value={name}
-            placeholder="이름 입력"
-            onChange={(e) => setName(e.target.value)}
-          />
-
-          {error && <p className="error-text">{error}</p>}
-
-          <button onClick={startAssessment}>검사 시작하기</button>
-        </div>
+      <div className="assessment-loading-overlay">
+        <div className="loading-spinner"></div>
+        <p>결과를 불러오고 있습니다…</p>
       </div>
     );
   }
+
+  // -------------------- 이름 입력 화면 --------------------
+if (!assessmentId) {
+  return (
+    <div className="assessment-start-wrapper">
+      <div className="assessment-start-container">
+        <h1>인적성 검사 안내</h1>
+
+        <p>이 검사는 참고용입니다. <br />
+          실제 검사와는 많은 차이가 있습니다</p>
+
+        {/* 이름 입력창은 홈에서 가져오기 때문에 주석 처리 */}
+        {/* <label htmlFor="name"></label>
+        <input
+          id="name"
+          type="text"
+          value={name}
+          placeholder="이름 입력"
+          onChange={(e) => setName(e.target.value)}
+        /> */}
+
+        {error && <p className="error-text">{error}</p>}
+
+        <button onClick={() => startAssessment()} disabled={loading}>
+          {loading ? "로딩 중..." : "동의하고 검사 시작"}
+        </button>
+      </div>
+    </div>
+  );
+}
 
   // -------------------- 검사 진행 화면 --------------------
   return (
@@ -165,7 +182,6 @@ const Assessment = () => {
               {answers.filter((a) => a !== null).length}문항을 완료했습니다.
             </p>
 
-            {/* 진행률 바 */}
             <div className="progress-bar-container">
               <div
                 className="progress-bar"
@@ -176,7 +192,6 @@ const Assessment = () => {
               ></div>
             </div>
 
-            {/* 질문 */}
             <div className="question-list">
               {pagedQuestions.map((q, idx) => {
                 const globalIndex = startIndex + idx;
@@ -211,7 +226,6 @@ const Assessment = () => {
 
             {error && <p className="error-text">{error}</p>}
 
-            {/* 페이지 네비 */}
             <div className="navigation">
               <button
                 onClick={() => setCurrentPage((p) => Math.max(p - 1, 0))}
