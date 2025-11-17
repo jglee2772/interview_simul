@@ -227,21 +227,11 @@ const Home = () => {
             </div>
           </div>
 
-          <div className="card" onClick={() => navigate('/interview')}>
-            <img
-              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDAyMjZfNTgg%2FMDAxNTgyNzI3MTgzODIz.kAibumvO911S6QYqh4OSpjUKvsCcrXSen4g_6gR2fQwg.nHNIAJWxrU-2cIdtHAWcpKhszRVPfnolRM1Vta5w_Zgg.PNG.kicox1964%2F002.png&type=a340"
-              alt="ai 면접 아이콘"
-              className="resume-icon"
-            />
-              <h3>가상 면접 시뮬레이션</h3>
+          <div className="card card-interview" onClick={() => navigate('/interview')}>
+            <h3>가상 면접 시뮬레이션</h3>
           </div>
 
-          <div className="card" onClick={handleNavigateToAssessment}>
-              <img
-              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMjBfNTcg%2FMDAxNjA4NDM3OTgyNDM4.QkSTzzrWOLthFGb869TsZOZsWULt6jxWbpiHgV5mLO8g.To4Xw0N6DVYBEtqKC54H77CFrtd2XN_GpnBHXG5Tkygg.PNG.rykim09%2F3.png&type=sc960_832"
-              alt="ai 면접 아이콘"
-              className="resume-icon"
-            />
+          <div className="card card-assessment" onClick={handleNavigateToAssessment}>
             <h3>인적성 검사 바로가기</h3>
 
           </div>
@@ -274,21 +264,21 @@ const Home = () => {
                            src="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2FMjAxOTAxMTVfMjcw%2FMDAxNTQ3NTI0MDIyMTYx.WOjbU7yxId3APzJ9JZxyTd-Y5zWdjawv916XG3HXEgkg.jV_wmIhqmvhFNlejrwUmhC7ZyMUhXEm2pHAfpHwC0c0g.JPEG.ghdeodutls%2F00500067_20160812.JPG&type=a340"
                          alt="사람인"
                             />
-                    <span>사람인 바로가기</span>
-                      </a>           {/* 잡코리아 */}  <a
-      href="https://www.jobkorea.co.kr/"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="job-card-box"
-    >
-      <img
-        src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MjJfMjk2%2FMDAxNzI0MzMzODM2OTU3.w3j6fK-zuFCycDt6wR6l27sDnshYvKjYD_NRHwhN7bog.XDD5_e1F-1emlEU5kvI8RCnAX-CSjzUddjpEh6KQGwkg.JPEG%2F%25BD%25C9%25BA%25BC1.jpg&type=l340_165"
-        alt="잡코리아"
-      />
-      <span>잡코리아 바로가기</span>
-    </a>
-  </div>
-</div>  
+                          <span>사람인 바로가기</span>
+                            </a>           {/* 잡코리아 */}  <a
+                  href="https://www.jobkorea.co.kr/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="job-card-box"
+                >
+            <img
+              src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDA4MjJfMjk2%2FMDAxNzI0MzMzODM2OTU3.w3j6fK-zuFCycDt6wR6l27sDnshYvKjYD_NRHwhN7bog.XDD5_e1F-1emlEU5kvI8RCnAX-CSjzUddjpEh6KQGwkg.JPEG%2F%25BD%25C9%25BA%25BC1.jpg&type=l340_165"
+              alt="잡코리아"
+            />
+                <span>잡코리아 바로가기</span>
+              </a>
+            </div>
+          </div>  
 
         </div>
       </div>

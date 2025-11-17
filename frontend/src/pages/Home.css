@@ -84,6 +84,64 @@
   box-shadow: 0 8px 22px rgba(246, 201, 14, 0.4);
 }
 
+.card-interview {
+  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDAyMjZfNTgg%2FMDAxNTgyNzI3MTgzODIz.kAibumvO911S6QYqh4OSpjUKvsCcrXSen4g_6gR2fQwg.nHNIAJWxrU-2cIdtHAWcpKhszRVPfnolRM1Vta5w_Zgg.PNG.kicox1964%2F002.png&type=a340');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 200px;
+}
+
+.card-interview::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  z-index: 0;
+}
+
+.card-interview h3 {
+  position: relative;
+  z-index: 1;
+  color: #0e1a3a;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+
+.card-assessment {
+  background-image: url('https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMjBfNTcg%2FMDAxNjA4NDM3OTgyNDM4.QkSTzzrWOLthFGb869TsZOZsWULt6jxWbpiHgV5mLO8g.To4Xw0N6DVYBEtqKC54H77CFrtd2XN_GpnBHXG5Tkygg.PNG.rykim09%2F3.png&type=sc960_832');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  min-height: 200px;
+}
+
+.card-assessment::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 16px;
+  z-index: 0;
+}
+
+.card-assessment h3 {
+  position: relative;
+  z-index: 1;
+  color: #0e1a3a;
+  text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+
 .card-icon {
   width: 80px;
   height: 80px;
@@ -174,6 +232,7 @@
 
 /* ✅ 이력서 카드 */
 .resume-card {
+  height: 120px;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
