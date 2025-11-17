@@ -110,6 +110,61 @@
   transition: all 0.3s ease;
 }
 
+.card-info input,
+.card-info select {
+  width: 100%;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  border: 1px solid #cfd5e2;
+  border-radius: 6px;
+  background-color: #fafcff;
+  outline: none;
+  transition: all 0.25s ease;
+  margin-bottom: 12px;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.card-info input:focus,
+.card-info select:focus {
+  border-color: #1e4d8b;
+  box-shadow: 0 0 10px rgba(30, 77, 139, 0.3);
+  background-color: #fff;
+}
+
+.card-info input.error,
+.card-info select.error {
+  border-color: #f44336;
+  background-color: #fff5f5;
+}
+
+.card-info input.error:focus,
+.card-info select.error:focus {
+  border-color: #f44336;
+  box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
+}
+
+.card-info select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 40px;
+}
+
+.card-info select.placeholder {
+  color: #9ca3af;
+}
+
+.error-message {
+  display: block;
+  color: #f44336;
+  font-size: 0.8rem;
+  margin-top: -8px;
+  margin-bottom: 12px;
+  padding-left: 4px;
+}
+
 /* 하단 섹션 */
 .bottom-section {
   display: flex;
