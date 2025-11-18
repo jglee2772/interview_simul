@@ -1,79 +1,97 @@
 /**
  * 파일: Navbar.css
- * 역할: 왼쪽 고정 사이드바 스타일 정의
- * 기능:
- * - 홈 버튼 상단 고정
- * - 나머지 메뉴 중앙 정렬
- * - hover 시 이모지 → 텍스트 전환
+ * 역할: 왼쪽 고정형 사이드바 (연보라+유리질감)
+ * 디자인: 현대적 Glass / Gradient + 아이콘 hover glow
  */
 
- 
-/* 왼쪽 고정형 사이드바 */
+/* =============================
+   전체 사이드바 컨테이너
+============================= */
 .sidebar {
   position: fixed;
   top: 0;
   left: 0;
-  width: 130px;
+  width: 120px;
   height: 100vh;
-  background: linear-gradient(180deg, #0e1a3a 0%, #1a2755 100%);
+  background: linear-gradient(180deg, #d8d6ff 0%, #b1b5ff 100%);
+  backdrop-filter: blur(12px);
+  box-shadow: 3px 0 18px rgba(160, 140, 255, 0.3);
+  border-right: 1px solid rgba(255, 255, 255, 0.25);
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  box-shadow: 3px 0 8px rgba(0, 0, 0, 0.3);
+  justify-content: flex-start;
+  padding-top: 40px;
   z-index: 100;
+  transition: all 0.3s ease;
 }
 
-/* 홈 버튼 위치 */
+/* =============================
+   홈 버튼 (상단 고정)
+============================= */
 .sidebar-top {
-  position: absolute;
-  top: 40px;
-  left: 50%;
-  transform: translateX(-50%);
+  margin-bottom: 60px;
 }
 
-/* 메뉴 버튼 컨테이너 */
+.sidebar-top .sidebar-link {
+  background: linear-gradient(135deg, #fefefe 0%, #ecebff 100%);
+  box-shadow: 0 6px 16px rgba(160, 140, 255, 0.3);
+}
+
+/* =============================
+   메뉴 리스트
+============================= */
 .sidebar-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  margin-top: 150px; /* 홈 아래 여백 */
+  gap: 22px;
 }
 
-/* 둥근 원형 버튼 */
+/* =============================
+   개별 버튼
+============================= */
 .sidebar-link {
   position: relative;
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-  background-color: #1c2750;
-  color: #f0f3fa;
+  width: 80px;
+  height: 80px;
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.6);
+  color: #5c4db8;
   text-decoration: none;
-  font-size: 2.4rem; /* 이모지 크기 */
-  font-weight: 600;
+  font-size: 2rem;
+  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.35s ease;
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.5),
+              0 2px 8px rgba(140, 130, 255, 0.25);
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
-/* hover 시 색상 변화 */
+/* =============================
+   Hover 효과
+============================= */
 .sidebar-link:hover {
-  background-color: #f6c90e;
-  color: #0e1a3a;
-  transform: scale(1.1);
+  background: linear-gradient(135deg, #b7a8ff 0%, #d6c8ff 100%);
+  color: #fff;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 18px rgba(160, 140, 255, 0.5);
 }
 
 /* 활성화된 버튼 */
 .sidebar-link.active {
-  background-color: #f6c90e;
-  color: #0e1a3a;
-  box-shadow: 0 0 18px rgba(246, 201, 14, 0.6);
+  background: linear-gradient(135deg, #a88cff 0%, #cbb8ff 100%);
+  color: #fff;
+  box-shadow: 0 0 15px rgba(165, 145, 255, 0.6);
+  transform: scale(1.05);
 }
 
-/* 내부 이모지 & 텍스트 */
+/* =============================
+   이모지 & 텍스트 전환 효과
+============================= */
 .sidebar-link .emoji {
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -81,14 +99,14 @@
 .sidebar-link .label {
   position: absolute;
   font-size: 0.9rem;
-  font-weight: 700;
-  color: #0e1a3a;
+  font-weight: 600;
+  color: #fff;
+  letter-spacing: -0.3px;
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* hover 시 전환 효과 */
 .sidebar-link:hover .emoji {
   opacity: 0;
   transform: translateY(-10px);
@@ -97,4 +115,40 @@
 .sidebar-link:hover .label {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* =============================
+   반응형 디자인
+============================= */
+@media (max-width: 768px) {
+  .sidebar {
+    flex-direction: row;
+    height: 80px;
+    width: 100%;
+    bottom: 0;
+    top: auto;
+    padding: 0 20px;
+    justify-content: space-around;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    border-right: none;
+  }
+
+  .sidebar-link {
+    width: 60px;
+    height: 60px;
+    border-radius: 18px;
+    font-size: 1.6rem;
+  }
+
+  .sidebar-content {
+    flex-direction: row;
+    gap: 14px;
+    margin-top: 0;
+  }
+
+  .sidebar-top {
+    position: static;
+    transform: none;
+    margin-bottom: 0;
+  }
 }
