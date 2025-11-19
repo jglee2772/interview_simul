@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
@@ -59,6 +59,12 @@ const formatDate = (value) => {
   return `${numbers.slice(0, 4)}-${numbers.slice(4, 6)}-${numbers.slice(6, 8)}`;
 };
 
+const formatDateYearMonth = (value) => {
+  const numbers = value.replace(/[^\d]/g, '');
+  if (numbers.length <= 4) return numbers;
+  return `${numbers.slice(0, 4)}.${numbers.slice(4, 6)}`;
+};
+
 const isValidDate = (dateString) => {
   if (!dateString || dateString.length !== 10) return false;
   if (!/^\d{4}-\d{2}-\d{2}$/.test(dateString)) return false;
@@ -66,6 +72,16 @@ const isValidDate = (dateString) => {
   const date = new Date(dateString);
   const [year, month, day] = dateString.split('-').map(Number);
   return date.getFullYear() === year && date.getMonth() === month - 1 && date.getDate() === day;
+};
+
+const isValidYearMonth = (dateString) => {
+  if (!dateString || dateString.length !== 7) return false;
+  if (!/^\d{4}\.\d{2}$/.test(dateString)) return false;
+  
+  const [year, month] = dateString.split('.').map(Number);
+  if (year < 1900 || year > 2100) return false;
+  if (month < 1 || month > 12) return false;
+  return true;
 };
 
 const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -77,6 +93,32 @@ const getToday = () => {
 };
 
 const DATE_FORMAT_ERROR = '올바른 날짜 형식을 입력해주세요.';
+const DATE_FORMAT_ERROR_YEAR_MONTH = '올바른 날짜 형식을 입력해주세요. (예: 2011.03)';
+const DATE_FORMAT_ERROR_EDUCATION = '올바른 날짜 형식을 입력해주세요. (예: 2014.02)';
+const DATE_FORMAT_ERROR_TRAINING = '올바른 날짜 형식을 입력해주세요. (예: 2025.12)';
+const DATE_FUTURE_ERROR = '날짜는 오늘 이전이어야 합니다.';
+const DATE_TOO_OLD_ERROR = '날짜가 너무 이전입니다.';
+const START_DATE_FUTURE_ERROR = '시작일은 오늘 이전이어야 합니다.';
+const END_DATE_FUTURE_ERROR = '종료일은 오늘 이전이어야 합니다.';
+const END_DATE_BEFORE_START_ERROR = '종료일은 시작일 이후여야 합니다.';
+const BIRTH_DATE_FUTURE_ERROR = '생년월일은 오늘 이전이어야 합니다.';
+const BIRTH_DATE_TOO_OLD_ERROR = '생년월일은 1900년 이후여야 합니다.';
+const CERTIFICATE_DATE_FUTURE_ERROR = '취득일은 오늘 이전이어야 합니다.';
+const EMAIL_FORMAT_ERROR = '올바른 이메일 형식을 입력해주세요. (예: example@email.com)';
+const NAME_REQUIRED_ERROR = '이름을 입력해주세요.';
+const EMAIL_REQUIRED_ERROR = '이메일을 입력해주세요.';
+const BIRTH_DATE_REQUIRED_ERROR = '생년월일을 입력해주세요.';
+const FILE_SIZE_ERROR = `파일 크기는 ${MAX_FILE_SIZE / (1024 * 1024)}MB 이하여야 합니다.`;
+const FILE_TYPE_ERROR = '이미지 파일만 업로드 가능합니다.';
+const FILE_READ_ERROR = '파일을 읽는 중 오류가 발생했습니다.';
+const DELETE_CONFIRM_MESSAGE = '모든 입력 내용을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.';
+const DELETE_SUCCESS_MESSAGE = '모든 내용이 삭제되었습니다.';
+const SAVE_SUCCESS_MESSAGE = '저장 되었습니다.';
+const SAVE_ERROR_MESSAGE = '저장 중 오류가 발생했습니다.';
+const STORAGE_QUOTA_ERROR = '저장 공간이 부족합니다. 일부 데이터를 삭제한 후 다시 시도해주세요.';
+const NO_CONTENT_ERROR = '분석할 내용이 없습니다.';
+const AI_ANALYSIS_ERROR = 'AI 분석 중 오류가 발생했습니다.';
+const NO_FEEDBACK_ERROR = '저장할 피드백 내용이 없습니다.';
 
 const validateDateRange = (dateString, options = {}) => {
   if (!dateString) return '';
@@ -85,9 +127,9 @@ const validateDateRange = (dateString, options = {}) => {
   const date = new Date(dateString);
   const today = getToday();
   
-  if (date > today) return options.futureError || '날짜는 오늘 이전이어야 합니다.';
+  if (date > today) return options.futureError || DATE_FUTURE_ERROR;
   if (options.minDate && date < options.minDate) {
-    return options.minDateError || '날짜가 너무 이전입니다.';
+    return options.minDateError || DATE_TOO_OLD_ERROR;
   }
   return '';
 };
@@ -95,29 +137,47 @@ const validateDateRange = (dateString, options = {}) => {
 const validateBirthDate = (dateString) => {
   return validateDateRange(dateString, {
     minDate: new Date('1900-01-01'),
-    futureError: '생년월일은 오늘 이전이어야 합니다.',
-    minDateError: '생년월일은 1900년 이후여야 합니다.'
+    futureError: BIRTH_DATE_FUTURE_ERROR,
+    minDateError: BIRTH_DATE_TOO_OLD_ERROR
   });
 };
 
-const validateExperienceDates = (startDate, endDate) => {
+const validateYearMonthRange = (dateString, options = {}) => {
+  if (!dateString) return '';
+  if (!isValidYearMonth(dateString)) return DATE_FORMAT_ERROR_YEAR_MONTH;
+  
+  const [year, month] = dateString.split('.').map(Number);
+  const date = new Date(year, month - 1, 1);
+  const today = getToday();
+  const todayYearMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+  
+  if (date > todayYearMonth) return options.futureError || DATE_FUTURE_ERROR;
+  return '';
+};
+
+const validateYearMonthDates = (startDate, endDate, errorMessages = {}) => {
   const errors = { startDate: '', endDate: '' };
+  const formatError = errorMessages.formatError || DATE_FORMAT_ERROR_YEAR_MONTH;
   
   if (startDate) {
-    errors.startDate = validateDateRange(startDate, {
-      futureError: '시작일은 오늘 이전이어야 합니다.'
+    errors.startDate = validateYearMonthRange(startDate, {
+      futureError: START_DATE_FUTURE_ERROR
     });
   }
   
   if (endDate) {
-    if (!isValidDate(endDate)) {
-      errors.endDate = DATE_FORMAT_ERROR;
-    } else {
-      const end = new Date(endDate);
-      if (end > getToday()) {
-        errors.endDate = '종료일은 오늘 이전이어야 합니다.';
-      } else if (startDate && isValidDate(startDate) && end < new Date(startDate)) {
-        errors.endDate = '종료일은 시작일 이후여야 합니다.';
+    const endDateError = validateYearMonthRange(endDate, {
+      futureError: END_DATE_FUTURE_ERROR
+    });
+    if (endDateError) {
+      errors.endDate = endDateError === DATE_FORMAT_ERROR_YEAR_MONTH ? formatError : endDateError;
+    } else if (startDate && isValidYearMonth(startDate) && isValidYearMonth(endDate)) {
+      const [startYear, startMonth] = startDate.split('.').map(Number);
+      const [endYear, endMonth] = endDate.split('.').map(Number);
+      const startDateObj = new Date(startYear, startMonth - 1, 1);
+      const endDateObj = new Date(endYear, endMonth - 1, 1);
+      if (endDateObj < startDateObj) {
+        errors.endDate = END_DATE_BEFORE_START_ERROR;
       }
     }
   }
@@ -125,11 +185,65 @@ const validateExperienceDates = (startDate, endDate) => {
   return errors;
 };
 
+const validateEducationDates = (startDate, endDate) => 
+  validateYearMonthDates(startDate, endDate, {
+    formatError: DATE_FORMAT_ERROR_EDUCATION
+  });
+
+const validateExperienceDates = (startDate, endDate) => {
+  const errors = { startDate: '', endDate: '' };
+  
+  if (startDate) {
+    errors.startDate = validateDateRange(startDate, {
+      futureError: START_DATE_FUTURE_ERROR
+    });
+  }
+  
+  if (endDate) {
+    const endDateError = validateDateRange(endDate, {
+      futureError: END_DATE_FUTURE_ERROR
+    });
+    if (endDateError) {
+      errors.endDate = endDateError;
+    } else if (startDate && isValidDate(startDate) && isValidDate(endDate)) {
+      const start = new Date(startDate);
+      const end = new Date(endDate);
+      if (end < start) {
+        errors.endDate = END_DATE_BEFORE_START_ERROR;
+      }
+    }
+  }
+  
+  return errors;
+};
+
+const validateTrainingDates = (startDate, endDate) => 
+  validateYearMonthDates(startDate, endDate, {
+    formatError: DATE_FORMAT_ERROR_TRAINING
+  });
+
 const validateCertificateDate = (dateString) => {
   return validateDateRange(dateString, {
-    futureError: '취득일은 오늘 이전이어야 합니다.'
+    futureError: CERTIFICATE_DATE_FUTURE_ERROR
   });
 };
+
+const COVER_LETTER_SECTIONS = [
+  { key: 'growthProcess', label: '성장과정' },
+  { key: 'strengthsWeaknesses', label: '성격의 장단점' },
+  { key: 'academicLife', label: '학업생활' },
+  { key: 'motivation', label: '지원동기와 입사 후 포부' },
+];
+
+const DATE_FIELDS = ['startDate', 'endDate', 'date'];
+const DATE_RANGE_FIELDS = ['startDate', 'endDate'];
+const YEAR_MONTH_SECTIONS = ['educations', 'trainings'];
+const DATE_VALIDATORS = {
+  educations: validateEducationDates,
+  trainings: validateTrainingDates,
+  experiences: validateExperienceDates
+};
+const ARRAY_FIELDS = ['educations', 'experiences', 'trainings', 'certificates'];
 
 const loadFromStorage = () => {
   try {
@@ -137,12 +251,11 @@ const loadFromStorage = () => {
     if (!saved) return { formData: defaultFormData, photoPreview: null };
     
     const parsed = JSON.parse(saved);
-    const arrayFields = ['educations', 'experiences', 'trainings', 'certificates'];
     const mergedData = {
       ...defaultFormData,
       ...parsed,
       photo: null,
-      ...arrayFields.reduce((acc, field) => ({
+      ...ARRAY_FIELDS.reduce((acc, field) => ({
         ...acc,
         [field]: parsed[field] || defaultFormData[field]
       }), {})
@@ -161,11 +274,15 @@ const saveToStorage = (formData, photoPreview) => {
       photo: null,
       photoBase64: photoPreview,
     };
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(dataToSave));
-    return true;
+    const dataString = JSON.stringify(dataToSave);
+    localStorage.setItem(STORAGE_KEY, dataString);
+    return { success: true };
   } catch (error) {
     console.error('저장 중 오류:', error);
-    return false;
+    if (error.name === 'QuotaExceededError') {
+      return { success: false, error: STORAGE_QUOTA_ERROR };
+    }
+    return { success: false, error: SAVE_ERROR_MESSAGE };
   }
 };
 
@@ -184,18 +301,18 @@ const Resume = () => {
   const [feedbackText, setFeedbackText] = useState('');
   const [activeTab, setActiveTab] = useState('resume');
 
-  const coverLetterSections = [
-    { key: 'growthProcess', label: '성장과정' },
-    { key: 'strengthsWeaknesses', label: '성격의 장단점' },
-    { key: 'academicLife', label: '학업생활' },
-    { key: 'motivation', label: '지원동기와 입사 후 포부' },
-  ];
-
   useEffect(() => {
     const { formData: savedData, photoPreview: savedPreview } = loadFromStorage();
     setFormData(savedData);
     setPhotoPreview(savedPreview);
   }, []);
+
+  const errorSetters = useMemo(() => ({
+    educations: setEducationErrors,
+    trainings: setTrainingErrors,
+    experiences: setExperienceErrors,
+    certificates: setCertificateErrors
+  }), []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -212,23 +329,26 @@ const Resume = () => {
   };
 
   const handleArrayChange = (section, index, field, value) => {
-    const isDateField = ['startDate', 'endDate', 'date'].includes(field);
-    const formattedValue = isDateField ? formatDate(value) : value;
+    const isDateField = DATE_FIELDS.includes(field);
+    const isYearMonthFormat = YEAR_MONTH_SECTIONS.includes(section) && DATE_RANGE_FIELDS.includes(field);
+    const formattedValue = isDateField 
+      ? (isYearMonthFormat ? formatDateYearMonth(value) : formatDate(value))
+      : value;
     
     setFormData(prev => {
       const updatedSection = prev[section].map((item, i) =>
         i === index ? { ...item, [field]: formattedValue } : item
       );
       
-      if (['startDate', 'endDate'].includes(field)) {
+      if (DATE_RANGE_FIELDS.includes(field)) {
         const item = updatedSection[index];
-        const errors = validateExperienceDates(item.startDate, item.endDate);
-        const errorSetters = {
-          educations: setEducationErrors,
-          trainings: setTrainingErrors,
-          experiences: setExperienceErrors
-        };
-        errorSetters[section]?.(prevErrors => ({ ...prevErrors, [index]: errors }));
+        const validator = DATE_VALIDATORS[section];
+        const setError = errorSetters[section];
+        
+        if (validator && setError) {
+          const errors = validator(item.startDate, item.endDate);
+          setError(prevErrors => ({ ...prevErrors, [index]: errors }));
+        }
       } else if (section === 'certificates' && field === 'date') {
         const error = validateCertificateDate(formattedValue);
         setCertificateErrors(prevErrors => ({ ...prevErrors, [index]: { date: error } }));
@@ -251,13 +371,6 @@ const Resume = () => {
       [section]: prev[section].filter((_, i) => i !== index)
     }));
     
-    const errorSetters = {
-      educations: setEducationErrors,
-      trainings: setTrainingErrors,
-      experiences: setExperienceErrors,
-      certificates: setCertificateErrors
-    };
-    
     const setError = errorSetters[section];
     if (setError) {
       setError(prevErrors => {
@@ -279,7 +392,7 @@ const Resume = () => {
     const value = e.target.value;
     setFormData(prev => ({ ...prev, email: value }));
     setEmailError(value && !validateEmail(value) 
-      ? '올바른 이메일 형식을 입력해주세요. (예: example@email.com)' 
+      ? EMAIL_FORMAT_ERROR 
       : '');
   };
 
@@ -288,12 +401,12 @@ const Resume = () => {
     if (!file) return;
     
     if (file.size > MAX_FILE_SIZE) {
-      alert('파일 크기는 5MB 이하여야 합니다.');
+      alert(FILE_SIZE_ERROR);
       return;
     }
     
     if (!file.type.startsWith('image/')) {
-      alert('이미지 파일만 업로드 가능합니다.');
+      alert(FILE_TYPE_ERROR);
       return;
     }
     
@@ -301,6 +414,10 @@ const Resume = () => {
     
     const reader = new FileReader();
     reader.onloadend = () => setPhotoPreview(reader.result);
+    reader.onerror = () => {
+      alert(FILE_READ_ERROR);
+      setFormData(prev => ({ ...prev, photo: null }));
+    };
     reader.readAsDataURL(file);
   };
 
@@ -309,16 +426,16 @@ const Resume = () => {
     setPhotoPreview(null);
   };
 
-  const hasSectionData = (item, fields) => fields.some(field => item[field]?.trim());
-
-  const getValidationErrorMessage = () => {
-    if (!formData.name.trim()) return '이름을 입력해주세요.';
-    if (!formData.email.trim()) return '이메일을 입력해주세요.';
-    if (!formData.birthDate.trim()) return '생년월일을 입력해주세요.';
+  const errorMessage = useMemo(() => {
+    if (!formData.name.trim()) return NAME_REQUIRED_ERROR;
+    if (!formData.email.trim()) return EMAIL_REQUIRED_ERROR;
+    if (!formData.birthDate.trim()) return BIRTH_DATE_REQUIRED_ERROR;
     if (emailError || (formData.email && !validateEmail(formData.email))) {
-      return emailError || '올바른 이메일 형식을 입력해주세요. (예: example@email.com)';
+      return emailError || EMAIL_FORMAT_ERROR;
     }
     if (formData.birthDate && birthDateError) return birthDateError;
+    
+    const hasSectionData = (item, fields) => fields.some(field => item[field]?.trim());
     
     const findError = (items, errors, fields, name) => {
       const index = items.findIndex((item, i) => 
@@ -333,9 +450,10 @@ const Resume = () => {
     
     return findError(formData.educations, educationErrors, ['school', 'major', 'startDate', 'endDate'], '학력') ||
            findError(formData.experiences, experienceErrors, ['company', 'position', 'startDate', 'endDate', 'description'], '경력') ||
+           findError(formData.trainings, trainingErrors, ['startDate', 'endDate', 'content', 'institution'], '교육사항') ||
            findError(formData.certificates, certificateErrors, ['name', 'issuer', 'date'], '자격증') ||
            null;
-  };
+  }, [formData, emailError, birthDateError, educationErrors, experienceErrors, trainingErrors, certificateErrors]);
 
   const clearAllErrors = () => {
     setEmailError('');
@@ -347,74 +465,91 @@ const Resume = () => {
   };
 
   const clearAllData = () => {
-    if (window.confirm('모든 입력 내용을 삭제하시겠습니까? 이 작업은 되돌릴 수 없습니다.')) {
+    if (window.confirm(DELETE_CONFIRM_MESSAGE)) {
       setFormData(defaultFormData);
       setPhotoPreview(null);
       clearAllErrors();
       setFeedbackText('');
       localStorage.removeItem(STORAGE_KEY);
-      alert('모든 내용이 삭제되었습니다.');
+      alert(DELETE_SUCCESS_MESSAGE);
     }
   };
 
   const saveResume = () => {
-    const errorMessage = getValidationErrorMessage();
     if (errorMessage) {
       alert(errorMessage);
       return;
     }
-    if (saveToStorage(formData, photoPreview)) {
-      alert('저장 되었습니다.');
+    const result = saveToStorage(formData, photoPreview);
+    if (result.success) {
+      alert(SAVE_SUCCESS_MESSAGE);
     } else {
-      alert('저장 중 오류가 발생했습니다.');
+      alert(result.error || SAVE_ERROR_MESSAGE);
+    }
+  };
+
+  const performAnalysis = async (apiCall, sectionKey) => {
+    setIsAnalyzing(true);
+    setCurrentSection(sectionKey);
+    setFeedbackText('');
+    
+    try {
+      const response = await apiCall();
+      setFeedbackText(response.data.feedback);
+    } catch (error) {
+      alert(error.response?.data?.error || error.message || AI_ANALYSIS_ERROR);
+      setFeedbackText('');
+    } finally {
+      setIsAnalyzing(false);
+      setCurrentSection('');
     }
   };
 
   const handleAnalyze = async (section) => {
     const content = formData[section];
     if (!content || !content.trim()) {
-      alert('분석할 내용이 없습니다.');
+      alert(NO_CONTENT_ERROR);
       return;
     }
     
-    setIsAnalyzing(true);
-    setCurrentSection(section);
-    setFeedbackText('');
-    
-    try {
-      const response = await resumeAPI.analyzeSection(section, content);
-      setFeedbackText(response.data.feedback);
-    } catch (error) {
-      alert(error.response?.data?.error || 'AI 분석 중 오류가 발생했습니다.');
-      setFeedbackText('');
-    } finally {
-      setIsAnalyzing(false);
-      setCurrentSection('');
-    }
+    await performAnalysis(
+      () => resumeAPI.analyzeSection(section, content),
+      section
+    );
   };
 
   const handleAnalyzeFull = async () => {
-    const errorMessage = getValidationErrorMessage();
     if (errorMessage) {
       alert(errorMessage);
       return;
     }
     
-    setIsAnalyzing(true);
-    setCurrentSection('full');
-    setFeedbackText('');
-    
-    try {
-      const { photo, ...resumeData } = formData;
-      const response = await resumeAPI.analyzeFull(resumeData);
-      setFeedbackText(response.data.feedback);
-    } catch (error) {
-      alert(error.response?.data?.error || error.message || 'AI 분석 중 오류가 발생했습니다.');
-      setFeedbackText('');
-    } finally {
-      setIsAnalyzing(false);
-      setCurrentSection('');
+    await performAnalysis(
+      () => {
+        const { photo, ...resumeData } = formData;
+        return resumeAPI.analyzeFull(resumeData);
+      },
+      'full'
+    );
+  };
+
+  const handleDownloadFeedback = () => {
+    if (!feedbackText || !feedbackText.trim()) {
+      alert(NO_FEEDBACK_ERROR);
+      return;
     }
+
+    const blob = new Blob([feedbackText], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    const fileName = `AI_피드백_${new Date().toISOString().slice(0, 10).replace(/-/g, '')}.txt`;
+    
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
   };
 
   return (
@@ -876,7 +1011,7 @@ const Resume = () => {
           <section className="resume-section cover-letter">
             <h2 className="section-title">자기소개서</h2>
             
-            {coverLetterSections.map(({ key, label }) => (
+            {COVER_LETTER_SECTIONS.map(({ key, label }) => (
               <div key={key} className="form-group">
                 <label className="cover-letter-label">
                   {label}
@@ -905,33 +1040,26 @@ const Resume = () => {
         )}
 
         <div className="resume-actions">
-          {(() => {
-            const errorMessage = getValidationErrorMessage();
-            return (
-              <>
-                <button
-                  type="button"
-                  className="save-button"
-                  onClick={saveResume}
-                  disabled={!!errorMessage}
-                >
-                  저장
-                </button>
-                <button
-                  type="button"
-                  className="clear-button"
-                  onClick={clearAllData}
-                >
-                  모두 지우기
-                </button>
-                {errorMessage && (
-                  <div className="validation-error-message">
-                    {errorMessage}
-                  </div>
-                )}
-              </>
-            );
-          })()}
+          <button
+            type="button"
+            className="save-button"
+            onClick={saveResume}
+            disabled={!!errorMessage}
+          >
+            저장
+          </button>
+          <button
+            type="button"
+            className="clear-button"
+            onClick={clearAllData}
+          >
+            모두 지우기
+          </button>
+          {errorMessage && (
+            <div className="validation-error-message">
+              {errorMessage}
+            </div>
+          )}
         </div>
       </div>
       
@@ -939,7 +1067,7 @@ const Resume = () => {
         <button 
           type="button"
           className="panel-toggle"
-          onClick={() => setIsPanelOpen(!isPanelOpen)}
+          onClick={() => setIsPanelOpen(prev => !prev)}
           aria-label={isPanelOpen ? '패널 닫기' : '패널 열기'}
         >
           {isPanelOpen ? '>' : '<'}
@@ -960,6 +1088,17 @@ const Resume = () => {
                 </p>
               )}
             </div>
+            {feedbackText && (
+              <div className="feedback-actions">
+                <button
+                  type="button"
+                  className="download-feedback-button"
+                  onClick={handleDownloadFeedback}
+                >
+                  피드백 저장 (TXT)
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>
