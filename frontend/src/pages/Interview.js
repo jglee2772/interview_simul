@@ -1,170 +1,208 @@
-/**
- * 페이지: 면접 시뮬레이션 페이지
- * 역할: 면접 시뮬레이션 UI 및 로직 작성
- * 설명:
- * - 면접 시뮬레이션 채팅 인터페이스를 작성합니다
- * - 면접 시작, 질문/답변, 면접 종료 등의 기능을 구현합니다
- * - API 서비스를 통해 백엔드와 통신합니다
- * - React 컴포넌트와 상태 관리 로직을 작성합니다
- */
+import React, { useState, useRef } from 'react';
+import './Interview.css';
+// 이미지를 import 합니다. (파일 경로와 이름 확인 필수!)
+import interviewersImage from '../assets/interview.gif'; 
 
-import React, { useState, useEffect, useRef } from 'react';
-import './Interview.css'; // CSS 파일 임포트
-
-// Django API 서버 주소 (환경 변수로   빼는 것이 가장 좋습니다)
 const API_BASE_URL = 'http://127.0.0.1:8000/api/interview';
 
 function Interview() {
-  // 1. 상태(State) 변수 정의
-  const [jobTopic, setJobTopic] = useState('React'); // 면접 주제
-  const [conversation, setConversation] = useState([]); // 전체 대화 내역 (채팅창)
-  const [currentInput, setCurrentInput] = useState(''); // 사용자가 입력 중인 답변
-  const [isLoading, setIsLoading] = useState(false); // AI가 답변 생성 중인지 (로딩 스피너용)
-  const [currentExchangeId, setCurrentExchangeId] = useState(null); // (★핵심) 현재 답변해야 할 질문의 ID
-  const [isSessionStarted, setIsSessionStarted] = useState(false); // 면접 시작 여부
+  // -----------------------------------------------------------
+  // 1. 상태(State) 관리
+  // -----------------------------------------------------------
+  const [jobTopic, setJobTopic] = useState('');       // 주제
+  const [conversation, setConversation] = useState([]); // 대화 기록
+  const [currentInput, setCurrentInput] = useState(''); // 답변 입력
+  const [isLoading, setIsLoading] = useState(false);    // 로딩 중 여부
+  const [currentExchangeId, setCurrentExchangeId] = useState(null); // 현재 질문 ID
+  
+  const [isSessionStarted, setIsSessionStarted] = useState(false); // 시작 여부
+  const [isFinished, setIsFinished] = useState(false);             // 종료 여부
 
-  // (보너스) 채팅창 스크롤을 항상 아래로 내리기 위한 Ref
-  const chatWindowRef = useRef(null);
+  // -----------------------------------------------------------
+  // 2. 헬퍼: 가장 최근 AI 메시지 찾기 (말풍선용)
+  // -----------------------------------------------------------
+  // 대화 기록 중 'ai'가 보낸 마지막 메시지를 찾아 화면에 보여줍니다.
+  const lastAiMessage = conversation.filter(msg => msg.sender === 'ai').slice(-1)[0];
 
-  useEffect(() => {
-    if (chatWindowRef.current) {
-      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
-    }
-  }, [conversation]); // conversation이 업데이트될 때마다 스크롤
-
-  // 2. 면접 시작 함수 (API 호출 1)
+  // -----------------------------------------------------------
+  // 3. API 통신 함수 (면접 시작 & 답변 제출)
+  // -----------------------------------------------------------
   const handleStartInterview = async () => {
-    if (!jobTopic) {
-      alert('면접 주제를 입력하세요.');
+    if (!jobTopic.trim()) {
+      alert('면접 주제를 입력해주세요.');
       return;
     }
-    
     setIsLoading(true);
-    setConversation([]); // 이전 대화 내용 초기화
-    setIsSessionStarted(true); // 면접 시작됨
-    
+    setConversation([]);
+    setIsFinished(false);
+
     try {
       const response = await fetch(`${API_BASE_URL}/start/`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          // (참고) Django의 CSRF 토큰 설정에 따라 헤더가 더 필요할 수 있습니다.
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ job_topic: jobTopic }),
       });
 
-      if (!response.ok) {
-        throw new Error(`API 요청 실패: ${response.statusText}`);
-      }
-
+      if (!response.ok) throw new Error(response.statusText);
       const data = await response.json();
-      
-      // AI의 첫 질문을 대화 내역에 추가
-      setConversation([{ sender: 'ai', text: data.question_text }]);
-      // (★핵심) 이 질문의 ID를 저장 -> 나중에 답변 보낼 때 사용
-      setCurrentExchangeId(data.id); 
+
+      setIsSessionStarted(true);
+      // 첫 질문 저장 (interviewer 정보가 있다면 같이 저장됨)
+      setConversation([{ 
+        sender: 'ai', 
+        text: data.question_text,
+        interviewer: data.interviewer // 백엔드에서 면접관 정보도 보내준다면 활용
+      }]);
+      setCurrentExchangeId(data.id);
 
     } catch (error) {
-      console.error('면접 시작 오류:', error);
-      setConversation([{ sender: 'ai', text: `오류가 발생했습니다: ${error.message}` }]);
-      setIsSessionStarted(false); // 오류 시 세션 시작 취소
+      console.error(error);
+      alert('면접 시작 오류가 발생했습니다.');
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 3. 답변 제출 함수 (API 호출 2)
   const handleSubmitAnswer = async (e) => {
-    e.preventDefault(); // Form의 기본 새로고침 동작 방지
-    if (!currentInput.trim()) return; // 빈 답변 제출 방지
+    e.preventDefault();
+    if (!currentInput.trim()) return;
 
     const userAnswer = currentInput;
+    setCurrentInput('');
     setIsLoading(true);
-    setCurrentInput(''); // 입력창 비우기
 
-    // 사용자의 답변을 대화 내역에 즉시 추가 (UI UX)
+    // 내 답변도 기록에 남김 (로그용)
     setConversation(prev => [...prev, { sender: 'user', text: userAnswer }]);
 
     try {
       const response = await fetch(`${API_BASE_URL}/answer/`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          exchange_id: currentExchangeId, // (★핵심) 아까 저장해둔 질문 ID
-          user_answer: userAnswer,        // (★핵심) 방금 입력한 답변
+          exchange_id: currentExchangeId,
+          user_answer: userAnswer,
         }),
       });
 
-      if (!response.ok) {
-        throw new Error(`API 요청 실패: ${response.statusText}`);
-      }
-
+      if (!response.ok) throw new Error(response.statusText);
       const data = await response.json();
 
-      // AI의 다음 질문을 대화 내역에 추가
-      setConversation(prev => [...prev, { sender: 'ai', text: data.question_text }]);
-      // (★핵심) 다음 질문에 답변하기 위해 '새 질문 ID'로 업데이트
-      setCurrentExchangeId(data.id);
+      // AI 답변 저장
+      setConversation(prev => [...prev, { 
+        sender: 'ai', 
+        text: data.question_text,
+        interviewer: data.interviewer 
+      }]);
+
+      if (data.is_finished) {
+        setIsFinished(true);
+        setCurrentExchangeId(null);
+      } else {
+        setCurrentExchangeId(data.id);
+      }
 
     } catch (error) {
-      console.error('답변 제출 오류:', error);
-      setConversation(prev => [...prev, { sender: 'ai', text: `오류가 발생했습니다: ${error.message}` }]);
+      console.error(error);
     } finally {
       setIsLoading(false);
     }
   };
 
-  // 4. 화면 렌더링 (JSX)
+  const handleRestart = () => {
+    setIsSessionStarted(false);
+    setIsFinished(false);
+    setJobTopic('');
+    setConversation([]);
+    setCurrentExchangeId(null);
+  };
+
+  // -----------------------------------------------------------
+  // 4. 화면 렌더링
+  // -----------------------------------------------------------
   return (
     <div className="interview-page">
-      <h1>AI 면접 시뮬레이션</h1>
-
-      {/* 면접 시작 전 화면 */}
+      
+      {/* A. 시작 전 화면 */}
       {!isSessionStarted ? (
-        <div className="start-form">
-          <input
-            type="text"
-            value={jobTopic}
-            onChange={(e) => setJobTopic(e.target.value)}
-            placeholder="면접 주제 (예: React, Django)"
-            disabled={isLoading}
-          />
-          <button onClick={handleStartInterview} disabled={isLoading}>
-            {isLoading ? '로딩 중...' : '면접 시작'}
-          </button>
+        <div className="start-container">
+          <h1 className="title">AI 면접 시뮬레이터</h1>
+          <div className="start-card">
+            <img src={interviewersImage} alt="Interviewers" className="preview-img" />
+            <p>준비되셨나요? 희망 직무를 입력하고 면접관들을 만나보세요.</p>
+            <input
+              type="text"
+              value={jobTopic}
+              onChange={(e) => setJobTopic(e.target.value)}
+              placeholder="예: 백엔드 개발자, 마케터"
+              onKeyPress={(e) => e.key === 'Enter' && handleStartInterview()}
+            />
+            <button onClick={handleStartInterview} disabled={isLoading}>
+              {isLoading ? '면접장 입장 중...' : '면접 시작하기'}
+            </button>
+          </div>
         </div>
       ) : (
-        <>
-          {/* 면접 중 채팅창 */}
-          <div className="chat-window" ref={chatWindowRef}>
-            {conversation.map((msg, index) => (
-              <div key={index} className={`chat-bubble ${msg.sender}`}>
-                <p>{msg.text}</p>
+        /* B. 면접 진행 화면 (비주얼 노벨 스타일) */
+        <div className="interview-container">
+          
+          {/* 1. 상단 스테이지 (이미지 + 말풍선) */}
+          <div className="stage-area">
+            <img src={interviewersImage} alt="Interviewers" className="stage-img" />
+            
+            {/* 말풍선: 로딩 중이거나, AI 메시지가 있을 때 표시 */}
+            {(isLoading || (lastAiMessage && !isFinished)) && (
+              <div className="speech-bubble">
+                {/* 말풍선 꼬리 */}
+                <div className="bubble-tail"></div>
+                
+                <div className="bubble-content">
+                  {/* 면접관 이름 (데이터가 있으면 표시) */}
+                  {lastAiMessage?.interviewer && (
+                    <span className="interviewer-badge">
+                      {lastAiMessage.interviewer.role || '면접관'}
+                    </span>
+                  )}
+                  
+                  {/* 텍스트: 로딩 중이면 ... 표시 */}
+                  <p>
+                    {isLoading ? "답변을 분석하고 있습니다..." : lastAiMessage?.text}
+                  </p>
+                </div>
               </div>
-            ))}
-            {isLoading && (
-              <div className="chat-bubble ai">
-                <p>...AI가 생각 중입니다...</p>
+            )}
+
+            {/* 종료 메시지 */}
+            {isFinished && (
+              <div className="speech-bubble finished">
+                <div className="bubble-content">
+                  <h3>🎉 면접 종료</h3>
+                  <p>{lastAiMessage?.text || "수고하셨습니다."}</p>
+                </div>
               </div>
             )}
           </div>
 
-          {/* 답변 입력 폼 */}
-          <form className="answer-form" onSubmit={handleSubmitAnswer}>
-            <textarea
-              value={currentInput}
-              onChange={(e) => setCurrentInput(e.target.value)}
-              placeholder="답변을 입력하세요..."
-              disabled={isLoading}
-              rows={3}
-            />
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? '전송 중...' : '답변 제출'}
-            </button>
-          </form>
-        </>
+          {/* 2. 하단 인터랙션 영역 (답변 입력) */}
+          <div className="interaction-area">
+            {!isFinished ? (
+              <form className="answer-box" onSubmit={handleSubmitAnswer}>
+                <textarea
+                  value={currentInput}
+                  onChange={(e) => setCurrentInput(e.target.value)}
+                  placeholder="답변을 입력하세요..."
+                  disabled={isLoading}
+                />
+                <button type="submit" disabled={isLoading || !currentInput}>
+                  제출
+                </button>
+              </form>
+            ) : (
+              <button className="restart-btn" onClick={handleRestart}>
+                처음으로 돌아가기
+              </button>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
