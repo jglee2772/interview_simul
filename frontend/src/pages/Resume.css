@@ -1,5 +1,5 @@
 /* =========================================
-   🧾 Resume.css — 최신 완성본 (AI분석·글자수 상단 고정)
+   Resume.css - 이력서 작성 페이지 스타일
    ========================================= */
 
 :root {
@@ -38,11 +38,9 @@
   --error-bg: #fff3cd;
   --error-border: #ffc107;
   --error-text: #856404;
-  --error-red-dark: #c62828;
   
   /* Disabled Colors */
   --accent-disabled: #b6c4db;
-  --accent-disabled-dark: #9ca3af;
 }
 
 .resume {
@@ -294,7 +292,7 @@
 }
 
 /* =========================================
-   🎓 학력 / 💼 경력 / 🧾 자격증 / 📚 교육사항
+   학력 / 경력 / 자격증 / 교육사항
    ========================================= */
 .education-item,
 .experience-item,
@@ -516,6 +514,7 @@
 }
 
 .save-button,
+.download-pdf-button,
 .clear-button {
   font-weight: 700;
   font-size: 0.9rem;
@@ -540,12 +539,24 @@
   box-shadow: 0 6px 16px rgba(160, 140, 255, 0.4);
 }
 
-.save-button:disabled {
+.save-button:disabled,
+.download-pdf-button:disabled {
   background: rgba(182, 196, 219, 0.6);
   color: rgba(255, 255, 255, 0.7);
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+.download-pdf-button {
+  background: linear-gradient(135deg, #51cf66 0%, #69db7c 100%);
+  color: #fff;
+}
+
+.download-pdf-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #40c057 0%, #51cf66 100%);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(81, 207, 102, 0.4);
 }
 
 .clear-button {
@@ -726,6 +737,55 @@
   }
 }
 
+.toast-message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 14px 24px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  z-index: 10000;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+  animation: toastSlideIn 0.3s ease, toastFadeOut 0.3s ease 3.7s;
+  max-width: 500px;
+  text-align: center;
+  word-wrap: break-word;
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #51cf66 0%, #69db7c 100%);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+@keyframes toastSlideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes toastFadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @media (max-width: 992px) {
   .resume-container {
     width: 95%;
@@ -741,9 +801,108 @@
   }
 }
 
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10001;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-content {
+  background: var(--bg-primary);
+  border-radius: 12px;
+  padding: 30px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease;
+}
+
+.modal-content h3 {
+  margin: 0 0 15px 0;
+  font-size: 1.3rem;
+  color: var(--text-primary);
+  font-weight: 700;
+}
+
+.modal-content p {
+  margin: 0 0 25px 0;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.modal-button {
+  padding: 10px 24px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.modal-button-danger {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+  color: #fff;
+}
+
+.modal-button-danger:hover {
+  background: linear-gradient(135deg, #ff5252 0%, #ff7070 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+}
+
+.modal-button-cancel {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+}
+
+.modal-button-cancel:hover {
+  background: var(--bg-tertiary);
+  transform: translateY(-1px);
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
 @media (max-width: 768px) {
   .resume-container {
     width: 100%;
     padding: 12px 12px;
+  }
+
+  .modal-content {
+    padding: 24px 20px;
+  }
+
+  .modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .modal-button {
+    width: 100%;
   }
 }

@@ -1,4 +1,14 @@
-import React, { useState, useEffect, useMemo } from 'react';
+/**
+ * Resume.js - 이력서 작성 페이지 컴포넌트
+ * 
+ * 주요 기능:
+ * - 이력서 및 자기소개서 작성
+ * - 로컬 스토리지 자동 저장/불러오기
+ * - AI 기반 이력서 분석 및 피드백
+ * - 실시간 유효성 검사
+ */
+
+import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
@@ -228,6 +238,10 @@ const validateCertificateDate = (dateString) => {
   });
 };
 
+const sanitizeFileName = (name) => {
+  return name.replace(/[<>:"/\\|?*]/g, '_').trim() || '이름';
+};
+
 const COVER_LETTER_SECTIONS = [
   { key: 'growthProcess', label: '성장과정' },
   { key: 'strengthsWeaknesses', label: '성격의 장단점' },
@@ -255,11 +269,14 @@ const loadFromStorage = () => {
       ...defaultFormData,
       ...parsed,
       photo: null,
-      ...ARRAY_FIELDS.reduce((acc, field) => ({
-        ...acc,
-        [field]: parsed[field] || defaultFormData[field]
-      }), {})
     };
+    
+    ARRAY_FIELDS.forEach(field => {
+      if (!parsed[field] || !Array.isArray(parsed[field])) {
+        mergedData[field] = defaultFormData[field];
+      }
+    });
+    
     return { formData: mergedData, photoPreview: parsed.photoBase64 || null };
   } catch (error) {
     console.error('저장된 데이터 불러오기 실패:', error);
@@ -300,12 +317,76 @@ const Resume = () => {
   const [currentSection, setCurrentSection] = useState('');
   const [feedbackText, setFeedbackText] = useState('');
   const [activeTab, setActiveTab] = useState('resume');
+  const [toastMessage, setToastMessage] = useState('');
+  const [toastType, setToastType] = useState('error');
+  const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
+  const toastTimerRef = useRef(null);
+  const fileReaderRef = useRef(null);
 
   useEffect(() => {
     const { formData: savedData, photoPreview: savedPreview } = loadFromStorage();
     setFormData(savedData);
     setPhotoPreview(savedPreview);
   }, []);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) {
+        clearTimeout(toastTimerRef.current);
+      }
+      if (fileReaderRef.current) {
+        fileReaderRef.current.abort();
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (showDeleteConfirm) {
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [showDeleteConfirm]);
+
+  const showToast = (message, type = 'error') => {
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+    }
+    setToastMessage(message);
+    setToastType(type);
+    toastTimerRef.current = setTimeout(() => {
+      setToastMessage('');
+      toastTimerRef.current = null;
+    }, 4000);
+  };
+
+  const downloadFile = (content, fileName, mimeType, successMessage) => {
+    let url = null;
+    let link = null;
+    try {
+      const blob = new Blob([content], { type: mimeType });
+      url = URL.createObjectURL(blob);
+      link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      if (successMessage) {
+        showToast(successMessage, 'success');
+      }
+    } catch (error) {
+      console.error('파일 다운로드 실패:', error);
+      showToast('파일 다운로드 중 오류가 발생했습니다.', 'error');
+    } finally {
+      if (link && link.parentNode) {
+        document.body.removeChild(link);
+      }
+      if (url) {
+        URL.revokeObjectURL(url);
+      }
+    }
+  };
 
   const errorSetters = useMemo(() => ({
     educations: setEducationErrors,
@@ -330,7 +411,8 @@ const Resume = () => {
 
   const handleArrayChange = (section, index, field, value) => {
     const isDateField = DATE_FIELDS.includes(field);
-    const isYearMonthFormat = YEAR_MONTH_SECTIONS.includes(section) && DATE_RANGE_FIELDS.includes(field);
+    const isDateRangeField = DATE_RANGE_FIELDS.includes(field);
+    const isYearMonthFormat = YEAR_MONTH_SECTIONS.includes(section) && isDateRangeField;
     const formattedValue = isDateField 
       ? (isYearMonthFormat ? formatDateYearMonth(value) : formatDate(value))
       : value;
@@ -340,7 +422,7 @@ const Resume = () => {
         i === index ? { ...item, [field]: formattedValue } : item
       );
       
-      if (DATE_RANGE_FIELDS.includes(field)) {
+      if (isDateRangeField) {
         const item = updatedSection[index];
         const validator = DATE_VALIDATORS[section];
         const setError = errorSetters[section];
@@ -375,14 +457,14 @@ const Resume = () => {
     if (setError) {
       setError(prevErrors => {
         const reindexed = {};
-        Object.entries(prevErrors).forEach(([key, value]) => {
+        for (const [key, value] of Object.entries(prevErrors)) {
           const oldIndex = parseInt(key);
           if (oldIndex < index) {
             reindexed[oldIndex] = value;
           } else if (oldIndex > index) {
             reindexed[oldIndex - 1] = value;
           }
-        });
+        }
         return reindexed;
       });
     }
@@ -401,22 +483,40 @@ const Resume = () => {
     if (!file) return;
     
     if (file.size > MAX_FILE_SIZE) {
-      alert(FILE_SIZE_ERROR);
+      showToast(FILE_SIZE_ERROR, 'error');
+      e.target.value = '';
       return;
     }
     
     if (!file.type.startsWith('image/')) {
-      alert(FILE_TYPE_ERROR);
+      showToast(FILE_TYPE_ERROR, 'error');
+      e.target.value = '';
       return;
+    }
+    
+    if (fileReaderRef.current) {
+      fileReaderRef.current.abort();
     }
     
     setFormData(prev => ({ ...prev, photo: file }));
     
     const reader = new FileReader();
-    reader.onloadend = () => setPhotoPreview(reader.result);
+    fileReaderRef.current = reader;
+    
+    reader.onloadend = () => {
+      if (fileReaderRef.current === reader) {
+        setPhotoPreview(reader.result);
+        fileReaderRef.current = null;
+      }
+      e.target.value = '';
+    };
     reader.onerror = () => {
-      alert(FILE_READ_ERROR);
-      setFormData(prev => ({ ...prev, photo: null }));
+      if (fileReaderRef.current === reader) {
+        showToast(FILE_READ_ERROR, 'error');
+        setFormData(prev => ({ ...prev, photo: null }));
+        fileReaderRef.current = null;
+      }
+      e.target.value = '';
     };
     reader.readAsDataURL(file);
   };
@@ -438,12 +538,14 @@ const Resume = () => {
     const hasSectionData = (item, fields) => fields.some(field => item[field]?.trim());
     
     const findError = (items, errors, fields, name) => {
-      const index = items.findIndex((item, i) => 
-        hasSectionData(item, fields) && Object.values(errors[i] || {}).some(e => e)
-      );
-      if (index !== -1) {
-        const error = Object.values(errors[index] || {}).find(e => e) || '';
-        return error ? `${name} ${index + 1}번 항목: ${error}` : null;
+      for (let i = 0; i < items.length; i++) {
+        if (hasSectionData(items[i], fields)) {
+          const itemErrors = Object.values(errors[i] || {});
+          const error = itemErrors.find(e => e);
+          if (error) {
+            return `${name} ${i + 1}번 항목: ${error}`;
+          }
+        }
       }
       return null;
     };
@@ -455,36 +557,35 @@ const Resume = () => {
            null;
   }, [formData, emailError, birthDateError, educationErrors, experienceErrors, trainingErrors, certificateErrors]);
 
-  const clearAllErrors = () => {
+  const clearAllData = () => {
+    setShowDeleteConfirm(true);
+  };
+
+  const confirmDelete = () => {
+    setFormData(defaultFormData);
+    setPhotoPreview(null);
     setEmailError('');
     setBirthDateError('');
     setEducationErrors({});
     setExperienceErrors({});
     setTrainingErrors({});
     setCertificateErrors({});
-  };
-
-  const clearAllData = () => {
-    if (window.confirm(DELETE_CONFIRM_MESSAGE)) {
-      setFormData(defaultFormData);
-      setPhotoPreview(null);
-      clearAllErrors();
-      setFeedbackText('');
-      localStorage.removeItem(STORAGE_KEY);
-      alert(DELETE_SUCCESS_MESSAGE);
-    }
+    setFeedbackText('');
+    localStorage.removeItem(STORAGE_KEY);
+    setShowDeleteConfirm(false);
+    showToast(DELETE_SUCCESS_MESSAGE, 'success');
   };
 
   const saveResume = () => {
     if (errorMessage) {
-      alert(errorMessage);
+      showToast(errorMessage, 'error');
       return;
     }
     const result = saveToStorage(formData, photoPreview);
     if (result.success) {
-      alert(SAVE_SUCCESS_MESSAGE);
+      showToast(SAVE_SUCCESS_MESSAGE, 'success');
     } else {
-      alert(result.error || SAVE_ERROR_MESSAGE);
+      showToast(result.error || SAVE_ERROR_MESSAGE, 'error');
     }
   };
 
@@ -497,7 +598,7 @@ const Resume = () => {
       const response = await apiCall();
       setFeedbackText(response.data.feedback);
     } catch (error) {
-      alert(error.response?.data?.error || error.message || AI_ANALYSIS_ERROR);
+      showToast(error.response?.data?.error || error.message || AI_ANALYSIS_ERROR, 'error');
       setFeedbackText('');
     } finally {
       setIsAnalyzing(false);
@@ -508,7 +609,7 @@ const Resume = () => {
   const handleAnalyze = async (section) => {
     const content = formData[section];
     if (!content || !content.trim()) {
-      alert(NO_CONTENT_ERROR);
+      showToast(NO_CONTENT_ERROR, 'error');
       return;
     }
     
@@ -520,7 +621,7 @@ const Resume = () => {
 
   const handleAnalyzeFull = async () => {
     if (errorMessage) {
-      alert(errorMessage);
+      showToast(errorMessage, 'error');
       return;
     }
     
@@ -535,25 +636,274 @@ const Resume = () => {
 
   const handleDownloadFeedback = () => {
     if (!feedbackText || !feedbackText.trim()) {
-      alert(NO_FEEDBACK_ERROR);
+      showToast(NO_FEEDBACK_ERROR, 'error');
       return;
     }
-
-    const blob = new Blob([feedbackText], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
     const fileName = `AI_피드백_${new Date().toISOString().slice(0, 10).replace(/-/g, '')}.txt`;
-    
-    link.href = url;
-    link.download = fileName;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    downloadFile(feedbackText, fileName, 'text/plain;charset=utf-8', '피드백이 다운로드되었습니다.');
+  };
+
+  const generateResumeHTML = useCallback(() => {
+    const escapeHtml = (text) => {
+      if (!text) return '';
+      const div = document.createElement('div');
+      div.textContent = text;
+      return div.innerHTML;
+    };
+
+    const formatItem = (date, details, description = '') => {
+      if (!date && !details && !description) return '';
+      const descriptionHtml = description ? `<div class="item-description">${escapeHtml(description)}</div>` : '';
+      return `<div class="resume-item"><span class="item-date">${escapeHtml(date)}</span><span class="item-content">${escapeHtml(details)}</span>${descriptionHtml}</div>`;
+    };
+
+    const getDateRange = (startDate, endDate) => {
+      if (startDate && endDate) return `${startDate} ~ ${endDate}`;
+      return startDate || '';
+    };
+
+    const formatItems = (items, getDate, getDetails, getDescription = null, separator = ' | ') => {
+      if (!items || items.length === 0) return '';
+      return items.map((item) => {
+        const date = getDate(item);
+        const details = getDetails(item).filter(Boolean).join(separator);
+        const description = getDescription ? getDescription(item) : '';
+        return formatItem(date, details, description);
+      }).filter(Boolean).join('');
+    };
+
+    const formatEducation = (items) => formatItems(
+      items,
+      (item) => getDateRange(item.startDate, item.endDate),
+      (item) => [item.school, item.major, item.graduationStatus, item.location && `(${item.location})`]
+    );
+
+    const formatExperience = (items) => formatItems(
+      items,
+      (item) => getDateRange(item.startDate, item.endDate),
+      (item) => [item.company, item.position, item.rank && `(${item.rank})`],
+      (item) => item.description || ''
+    );
+
+    const formatCertificate = (items) => formatItems(
+      items,
+      (item) => item.date || '',
+      (item) => [item.name, item.issuer && `(${item.issuer})`],
+      null,
+      ' '
+    );
+
+    const formatTraining = (items) => formatItems(
+      items,
+      (item) => getDateRange(item.startDate, item.endDate),
+      (item) => [item.content, item.institution && `(${item.institution})`]
+    );
+
+    const renderSection = (title, items, checkFn, formatFn) => {
+      if (!items || !items.some(checkFn)) return '';
+      return `<div class="section"><h2>${title}</h2>${formatFn(items)}</div>`;
+    };
+
+    const html = `
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이력서 - ${escapeHtml(formData.name || '이름')}</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Noto Sans KR', 'Malgun Gothic', sans-serif; 
+      padding: 30px; 
+      max-width: 210mm; 
+      margin: 0 auto; 
+      line-height: 1.6; 
+      background: #fff;
+      color: #333;
+    }
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      padding-bottom: 15px;
+      border-bottom: 3px solid #5c4db8;
+    }
+    h1 { 
+      color: #5c4db8; 
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    .personal-section {
+      display: flex;
+      gap: 30px;
+      margin-bottom: 25px;
+      padding: 20px;
+      background: #f9fafc;
+      border-radius: 8px;
+    }
+    .photo-container {
+      flex-shrink: 0;
+      width: 120px;
+      height: 150px;
+    }
+    .photo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border: 2px solid #d0d8e3;
+      border-radius: 4px;
+    }
+    .personal-info {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px 20px;
+    }
+    .personal-info p {
+      margin: 0;
+      font-size: 14px;
+    }
+    .personal-info strong {
+      display: inline-block;
+      width: 75px;
+      color: #5c4db8;
+    }
+    h2 { 
+      color: #5c4db8; 
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px; 
+      padding-bottom: 8px;
+      border-bottom: 2px solid #a88cff;
+    }
+    h3 { 
+      color: #5c4db8; 
+      font-size: 16px;
+      margin: 15px 0 8px 0;
+    }
+    .section { 
+      margin-bottom: 25px;
+      page-break-inside: avoid;
+    }
+    .resume-item {
+      display: flex;
+      padding: 8px 0;
+      margin-bottom: 4px;
+      font-size: 14px;
+      line-height: 1.7;
+      gap: 20px;
+      align-items: flex-start;
+    }
+    .resume-item:last-child {
+      margin-bottom: 0;
+    }
+    .item-date {
+      flex-shrink: 0;
+      min-width: 200px;
+      width: 200px;
+      color: #5c4db8;
+      font-weight: 500;
+      white-space: nowrap;
+    }
+    .item-content {
+      flex: 1;
+      color: #333;
+      min-width: 0;
+    }
+    .item-description {
+      margin-top: 6px;
+      padding-left: 220px;
+      font-size: 13px;
+      color: #666;
+      line-height: 1.6;
+    }
+    .cover-letter-section {
+      margin-top: 20px;
+      padding: 20px;
+      background: #f9fafc;
+      border-radius: 8px;
+    }
+    .cover-letter-section h3 {
+      margin-top: 0;
+    }
+    .cover-letter-section p {
+      white-space: pre-wrap;
+      line-height: 1.8;
+      margin: 10px 0;
+      font-size: 13px;
+    }
+    @media print { 
+      body { 
+        padding: 15mm; 
+        max-width: 210mm;
+      }
+      .section {
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>이력서</h1>
+  </div>
+  
+  <div class="personal-section">
+    ${photoPreview ? `
+    <div class="photo-container">
+      <img src="${photoPreview}" alt="증명사진" />
+    </div>
+    ` : ''}
+    <div class="personal-info">
+      ${formData.name ? `<p><strong>이름</strong> ${escapeHtml(formData.name)}</p>` : ''}
+      ${formData.gender ? `<p><strong>성별</strong> ${escapeHtml(formData.gender)}</p>` : ''}
+      ${formData.birthDate ? `<p><strong>생년월일</strong> ${escapeHtml(formData.birthDate)}</p>` : ''}
+      ${formData.phone ? `<p><strong>전화번호</strong> ${escapeHtml(formData.phone)}</p>` : ''}
+      ${formData.email ? `<p><strong>이메일</strong> ${escapeHtml(formData.email)}</p>` : ''}
+      ${formData.address ? `<p><strong>주소</strong> ${escapeHtml(formData.address)}</p>` : ''}
+      ${formData.applicationField ? `<p><strong>지원분야</strong> ${escapeHtml(formData.applicationField)}</p>` : ''}
+      ${formData.portfolio ? `<p style="grid-column: 1 / -1;"><strong>포트폴리오</strong> ${escapeHtml(formData.portfolio)}</p>` : ''}
+    </div>
+  </div>
+
+  ${renderSection('학력', formData.educations, e => e.school || e.major, formatEducation)}
+  ${renderSection('자격증', formData.certificates, c => c.name, formatCertificate)}
+  ${renderSection('경력', formData.experiences, e => e.company || e.position, formatExperience)}
+  ${renderSection('교육사항', formData.trainings, t => t.content || t.institution, formatTraining)}
+
+  ${(formData.growthProcess || formData.strengthsWeaknesses || formData.academicLife || formData.motivation) ? `
+  <div class="cover-letter-section">
+    <h2>자기소개서</h2>
+    ${formData.growthProcess ? `<div><h3>성장과정</h3><p>${escapeHtml(formData.growthProcess)}</p></div>` : ''}
+    ${formData.strengthsWeaknesses ? `<div><h3>성격의 장단점</h3><p>${escapeHtml(formData.strengthsWeaknesses)}</p></div>` : ''}
+    ${formData.academicLife ? `<div><h3>학업생활</h3><p>${escapeHtml(formData.academicLife)}</p></div>` : ''}
+    ${formData.motivation ? `<div><h3>지원동기와 입사 후 포부</h3><p>${escapeHtml(formData.motivation)}</p></div>` : ''}
+  </div>
+  ` : ''}
+</body>
+</html>
+    `;
+    return html;
+  }, [formData, photoPreview]);
+
+  const handleDownloadPDF = () => {
+    if (errorMessage) {
+      showToast(errorMessage, 'error');
+      return;
+    }
+    const html = generateResumeHTML();
+    const sanitizedName = sanitizeFileName(formData.name);
+    const fileName = `이력서_${sanitizedName}_${new Date().toISOString().slice(0, 10).replace(/-/g, '')}.html`;
+    downloadFile(html, fileName, 'text/html;charset=utf-8', '이력서가 다운로드되었습니다. 브라우저에서 열어 인쇄하여 PDF로 저장하세요.');
   };
 
   return (
     <div className="resume">
+      {toastMessage && (
+        <div className={`toast-message toast-${toastType}`}>
+          {toastMessage}
+        </div>
+      )}
       <div className="resume-container">
         <div className="resume-tabs">
           <button
@@ -596,7 +946,11 @@ const Resume = () => {
                     {photoPreview ? (
                       <div className="photo-preview-wrapper">
                         <img src={photoPreview} alt="증명사진 미리보기" className="photo-preview" />
-                        <button type="button" className="photo-remove-button" onClick={handlePhotoRemove}>
+                        <button 
+                          type="button" 
+                          className="photo-remove-button" 
+                          onClick={handlePhotoRemove}
+                        >
                           삭제
                         </button>
                       </div>
@@ -656,7 +1010,7 @@ const Resume = () => {
                 </div>
                 <div className="form-group">
                   <input
-                    className="resume-input"
+                    className={`resume-input ${emailError ? 'error' : ''}`}
                     name="email"
                     type="email"
                     value={formData.email}
@@ -1050,25 +1404,60 @@ const Resume = () => {
           </button>
           <button
             type="button"
+            className="download-pdf-button"
+            onClick={handleDownloadPDF}
+            disabled={!!errorMessage}
+          >
+            PDF 다운로드
+          </button>
+          <button
+            type="button"
             className="clear-button"
             onClick={clearAllData}
           >
             모두 지우기
           </button>
           {errorMessage && (
-            <div className="validation-error-message">
-              {errorMessage}
+            <div className="validation-error-message" role="alert">
+              {errorMessage.length > 100 ? `${errorMessage.substring(0, 100)}...` : errorMessage}
             </div>
           )}
         </div>
       </div>
+
+      {showDeleteConfirm && (
+        <div 
+          className="modal-overlay" 
+          onClick={() => setShowDeleteConfirm(false)}
+        >
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            <h3>확인</h3>
+            <p>{DELETE_CONFIRM_MESSAGE}</p>
+            <div className="modal-actions">
+              <button
+                type="button"
+                className="modal-button modal-button-danger"
+                onClick={confirmDelete}
+              >
+                삭제
+              </button>
+              <button
+                type="button"
+                className="modal-button modal-button-cancel"
+                onClick={() => setShowDeleteConfirm(false)}
+              >
+                취소
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
       
       <div className={`feedback-panel ${isPanelOpen ? 'open' : 'closed'}`}>
         <button 
           type="button"
           className="panel-toggle"
           onClick={() => setIsPanelOpen(prev => !prev)}
-          aria-label={isPanelOpen ? '패널 닫기' : '패널 열기'}
         >
           {isPanelOpen ? '>' : '<'}
         </button>
