@@ -211,29 +211,29 @@ class AssessmentViewSet(viewsets.ModelViewSet):
             status=status.HTTP_200_OK,
         )
 
-@action(detail=True, methods=["get"])
-def result(self, request, pk=None):
-    assessment = get_object_or_404(Assessment, pk=pk)
+    @action(detail=True, methods=["get"])
+    def result(self, request, pk=None):
+        assessment = get_object_or_404(Assessment, pk=pk)
 
-    try:
-        result = assessment.result
-    except AssessmentResult.DoesNotExist:
+        try:
+            result = assessment.result
+        except AssessmentResult.DoesNotExist:
+            return Response(
+                {"error": "아직 이 세션에 대한 결과가 존재하지 않습니다."},
+                status=status.HTTP_404_NOT_FOUND,
+            )
+
+        result_data = AssessmentResultSerializer(result).data
+
+        # 🔥 GPT 분석 다시 생성 (또는 DB에 저장해두고 가져와도 됨)
+        analysis = generate_personality_analysis(result)
+
         return Response(
-            {"error": "아직 이 세션에 대한 결과가 존재하지 않습니다."},
-            status=status.HTTP_404_NOT_FOUND,
+            {
+                "assessment_id": assessment.id,
+                "name": assessment.name,
+                "result": result_data,
+                "analysis": analysis,   # ✔ 반드시 포함
+            },
+            status=status.HTTP_200_OK,
         )
-
-    result_data = AssessmentResultSerializer(result).data
-
-    # 🔥 GPT 분석 다시 생성 (또는 DB에 저장해두고 가져와도 됨)
-    analysis = generate_personality_analysis(result)
-
-    return Response(
-        {
-            "assessment_id": assessment.id,
-            "name": assessment.name,
-            "result": result_data,
-            "analysis": analysis,   # ✔ 반드시 포함
-        },
-        status=status.HTTP_200_OK,
-    )

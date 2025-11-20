@@ -223,6 +223,49 @@
   padding-left: 4px;
 }
 
+/* 버튼 그룹 */
+.button-group {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.info-save,
+.info-clear {
+  flex: 1;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+}
+
+.info-save {
+  background-color: #1e4d8b;
+  color: #ffffff;
+}
+
+.info-save:hover {
+  background-color: #153a6b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(30, 77, 139, 0.3);
+}
+
+.info-clear {
+  background-color: #6c757d;
+  color: #ffffff;
+}
+
+.info-clear:hover {
+  background-color: #5a6268;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
 /* 하단 섹션 */
 .bottom-section {
   display: flex;

@@ -7,7 +7,7 @@
  * - React 컴포넌트로 작성하며, CSS 파일로 스타일링합니다
  */
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -109,6 +109,101 @@ const Home = () => {
     setEmailError(value && !validateEmail(value) 
       ? '올바른 이메일 형식을 입력해주세요. (예: example@email.com)' 
       : '');
+  };
+
+  // 컴포넌트 마운트 시 로컬 스토리지에서 기본정보 불러오기
+  useEffect(() => {
+    try {
+      const savedData = localStorage.getItem(STORAGE_KEY);
+      if (savedData) {
+        const parsedData = JSON.parse(savedData);
+        // 기본정보 필드만 추출하여 상태에 설정
+        const basicInfoFields = {
+          name: parsedData.name || '',
+          gender: parsedData.gender || '',
+          birthDate: parsedData.birthDate || '',
+          phone: parsedData.phone || '',
+          email: parsedData.email || ''
+        };
+        setBasicInfo(basicInfoFields);
+        
+        // 에러 상태도 확인하여 설정
+        if (parsedData.birthDate) {
+          setBirthDateError(validateBirthDate(parsedData.birthDate));
+        }
+        if (parsedData.email) {
+          setEmailError(parsedData.email && !validateEmail(parsedData.email) 
+            ? '올바른 이메일 형식을 입력해주세요. (예: example@email.com)' 
+            : '');
+        }
+      }
+    } catch (error) {
+      console.error('로컬 스토리지 데이터 불러오기 중 오류:', error);
+    }
+  }, []);
+
+  // 기본정보 저장 함수
+  const handleSaveBasicInfo = () => {
+    try {
+      const existingData = localStorage.getItem(STORAGE_KEY);
+      let resumeData = {};
+      
+      if (existingData) {
+        resumeData = JSON.parse(existingData);
+      }
+      
+      // 기본정보를 병합하여 저장 (photo는 유지)
+      const updatedData = {
+        ...resumeData,
+        ...basicInfo,
+        photo: resumeData.photo || null,
+        photoBase64: resumeData.photoBase64 || null
+      };
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedData));
+      alert('기본정보가 저장되었습니다.');
+    } catch (error) {
+      console.error('데이터 저장 중 오류:', error);
+      alert('저장 중 오류가 발생했습니다.');
+    }
+  };
+
+  // 기본정보 모두 지우기 함수
+  const handleClearBasicInfo = () => {
+    if (window.confirm('모든 기본정보를 지우시겠습니까?')) {
+      setBasicInfo({
+        name: '',
+        gender: '',
+        birthDate: '',
+        phone: '',
+        email: ''
+      });
+      setEmailError('');
+      setBirthDateError('');
+      
+      // 로컬 스토리지에서도 기본정보 필드만 제거 (photo는 유지)
+      try {
+        const existingData = localStorage.getItem(STORAGE_KEY);
+        if (existingData) {
+          const resumeData = JSON.parse(existingData);
+          const { photo, photoBase64, ...otherData } = resumeData;
+          // 기본정보 필드 제거
+          const { name, gender, birthDate, phone, email, ...restData } = otherData;
+          
+          // photo만 남기고 저장
+          const cleanedData = {
+            ...restData,
+            photo: photo || null,
+            photoBase64: photoBase64 || null
+          };
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(cleanedData));
+        }
+      } catch (error) {
+        console.error('데이터 삭제 중 오류:', error);
+      }
+      
+      alert('기본정보가 모두 지워졌습니다.');
+    }
   };
 
   const handleNavigateToResume = () => {
@@ -224,6 +319,10 @@ const Home = () => {
                 className={emailError ? 'error' : ''}
               />
               {emailError && <span className="error-message">{emailError}</span>}
+              <div className="button-group">
+                <button type='button' className='info-save' onClick={handleSaveBasicInfo}>기본정보 저장</button>
+                <button type='button' className='info-clear' onClick={handleClearBasicInfo}>모두 지우기</button>
+              </div>
             </div>
           </div>
 

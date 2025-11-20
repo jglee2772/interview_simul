@@ -18,6 +18,7 @@ build/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+db_30_0_text
 /media
 /staticfiles
 backend/staticfiles/

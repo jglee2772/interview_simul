@@ -1,0 +1,8942 @@
+[
+  {
+    "soc_code": "11-1011.00",
+    "title": "Chief Executives",
+    "COMM": 3.92,
+    "RESP": 4.62,
+    "PROB": 3.81,
+    "GROW": 3.19,
+    "STRE": 4.32,
+    "ADAP": 3.49
+  },
+  {
+    "soc_code": "11-1021.00",
+    "title": "General and Operations Managers",
+    "COMM": 3.62,
+    "RESP": 4.64,
+    "PROB": 3.27,
+    "GROW": 2.88,
+    "STRE": 4.39,
+    "ADAP": 3.25
+  },
+  {
+    "soc_code": "11-2011.00",
+    "title": "Advertising and Promotions Managers",
+    "COMM": 3.58,
+    "RESP": 4.37,
+    "PROB": 3.31,
+    "GROW": 2.88,
+    "STRE": 4.26,
+    "ADAP": 3.27
+  },
+  {
+    "soc_code": "11-2021.00",
+    "title": "Marketing Managers",
+    "COMM": 3.46,
+    "RESP": 4.27,
+    "PROB": 3.32,
+    "GROW": 3.11,
+    "STRE": 3.94,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "11-2033.00",
+    "title": "Fundraising Managers",
+    "COMM": 3.59,
+    "RESP": 4.36,
+    "PROB": 3.17,
+    "GROW": 2.64,
+    "STRE": 4.14,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "11-3012.00",
+    "title": "Administrative Services Managers",
+    "COMM": 3.47,
+    "RESP": 4.44,
+    "PROB": 3.05,
+    "GROW": 2.71,
+    "STRE": 4.49,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "11-3013.00",
+    "title": "Facilities Managers",
+    "COMM": 3.49,
+    "RESP": 4.51,
+    "PROB": 3.13,
+    "GROW": 2.67,
+    "STRE": 4.57,
+    "ADAP": 3.03
+  },
+  {
+    "soc_code": "11-3021.00",
+    "title": "Computer and Information Systems Managers",
+    "COMM": 3.51,
+    "RESP": 4.48,
+    "PROB": 3.41,
+    "GROW": 2.98,
+    "STRE": 4.13,
+    "ADAP": 3.03
+  },
+  {
+    "soc_code": "11-3031.00",
+    "title": "Financial Managers",
+    "COMM": 3.6,
+    "RESP": 4.37,
+    "PROB": 3.43,
+    "GROW": 2.94,
+    "STRE": 4.14,
+    "ADAP": 3.25
+  },
+  {
+    "soc_code": "11-3031.03",
+    "title": "Investment Fund Managers",
+    "COMM": 3.29,
+    "RESP": 4.58,
+    "PROB": 3.42,
+    "GROW": 2.91,
+    "STRE": 4.33,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "11-3051.00",
+    "title": "Industrial Production Managers",
+    "COMM": 3.54,
+    "RESP": 4.46,
+    "PROB": 3.4,
+    "GROW": 3.27,
+    "STRE": 4.27,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "11-3051.01",
+    "title": "Quality Control Systems Managers",
+    "COMM": 3.56,
+    "RESP": 4.49,
+    "PROB": 3.5,
+    "GROW": 3.02,
+    "STRE": 4.22,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "11-3051.02",
+    "title": "Geothermal Production Managers",
+    "COMM": 3.42,
+    "RESP": 4.35,
+    "PROB": 3.31,
+    "GROW": 2.87,
+    "STRE": 4.27,
+    "ADAP": 2.95
+  },
+  {
+    "soc_code": "11-3051.03",
+    "title": "Biofuels Production Managers",
+    "COMM": 3.36,
+    "RESP": 4.38,
+    "PROB": 3.19,
+    "GROW": 2.93,
+    "STRE": 4.07,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "11-3051.04",
+    "title": "Biomass Power Plant Managers",
+    "COMM": 3.43,
+    "RESP": 4.22,
+    "PROB": 3.44,
+    "GROW": 2.69,
+    "STRE": 4.33,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "11-3051.06",
+    "title": "Hydroelectric Production Managers",
+    "COMM": 3.44,
+    "RESP": 4.31,
+    "PROB": 3.28,
+    "GROW": 3.13,
+    "STRE": 4.07,
+    "ADAP": 3.04
+  },
+  {
+    "soc_code": "11-9031.00",
+    "title": "Education and Childcare Administrators, Preschool and Daycare",
+    "COMM": 3.59,
+    "RESP": 4.4,
+    "PROB": 3.36,
+    "GROW": 3.17,
+    "STRE": 4.61,
+    "ADAP": 3.39
+  },
+  {
+    "soc_code": "11-9032.00",
+    "title": "Education Administrators, Kindergarten through Secondary",
+    "COMM": 4.02,
+    "RESP": 4.39,
+    "PROB": 3.76,
+    "GROW": 3.78,
+    "STRE": 4.36,
+    "ADAP": 3.69
+  },
+  {
+    "soc_code": "11-9033.00",
+    "title": "Education Administrators, Postsecondary",
+    "COMM": 3.63,
+    "RESP": 4.49,
+    "PROB": 3.45,
+    "GROW": 3.34,
+    "STRE": 4.31,
+    "ADAP": 3.36
+  },
+  {
+    "soc_code": "11-9041.00",
+    "title": "Architectural and Engineering Managers",
+    "COMM": 3.5,
+    "RESP": 4.46,
+    "PROB": 3.46,
+    "GROW": 3.03,
+    "STRE": 4.2,
+    "ADAP": 3.06
+  },
+  {
+    "soc_code": "11-9041.01",
+    "title": "Biofuels/Biodiesel Technology and Product Development Managers",
+    "COMM": 3.12,
+    "RESP": 4.14,
+    "PROB": 3.36,
+    "GROW": 2.78,
+    "STRE": 3.9,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "11-9051.00",
+    "title": "Food Service Managers",
+    "COMM": 3.54,
+    "RESP": 4.3,
+    "PROB": 2.98,
+    "GROW": 2.79,
+    "STRE": 4.36,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "11-9071.00",
+    "title": "Gambling Managers",
+    "COMM": 3.5,
+    "RESP": 4.51,
+    "PROB": 3.24,
+    "GROW": 2.94,
+    "STRE": 4.46,
+    "ADAP": 3.35
+  },
+  {
+    "soc_code": "11-9072.00",
+    "title": "Entertainment and Recreation Managers, Except Gambling",
+    "COMM": 3.61,
+    "RESP": 4.45,
+    "PROB": 3.02,
+    "GROW": 2.94,
+    "STRE": 4.18,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "11-9081.00",
+    "title": "Lodging Managers",
+    "COMM": 3.7,
+    "RESP": 4.84,
+    "PROB": 3.16,
+    "GROW": 3.12,
+    "STRE": 4.77,
+    "ADAP": 3.61
+  },
+  {
+    "soc_code": "11-9121.00",
+    "title": "Natural Sciences Managers",
+    "COMM": 3.48,
+    "RESP": 4.47,
+    "PROB": 3.59,
+    "GROW": 3.29,
+    "STRE": 4.2,
+    "ADAP": 3.06
+  },
+  {
+    "soc_code": "11-9121.01",
+    "title": "Clinical Research Coordinators",
+    "COMM": 3.65,
+    "RESP": 4.49,
+    "PROB": 3.32,
+    "GROW": 2.94,
+    "STRE": 4.46,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "11-9131.00",
+    "title": "Postmasters and Mail Superintendents",
+    "COMM": 3.48,
+    "RESP": 4.56,
+    "PROB": 3.02,
+    "GROW": 2.79,
+    "STRE": 4.5,
+    "ADAP": 3.22
+  },
+  {
+    "soc_code": "11-9151.00",
+    "title": "Social and Community Service Managers",
+    "COMM": 3.64,
+    "RESP": 4.61,
+    "PROB": 3.38,
+    "GROW": 3.24,
+    "STRE": 4.63,
+    "ADAP": 3.54
+  },
+  {
+    "soc_code": "11-9171.00",
+    "title": "Funeral Home Managers",
+    "COMM": 3.33,
+    "RESP": 4.49,
+    "PROB": 2.84,
+    "GROW": 2.51,
+    "STRE": 4.4,
+    "ADAP": 3.38
+  },
+  {
+    "soc_code": "11-9179.02",
+    "title": "Spa Managers",
+    "COMM": 3.57,
+    "RESP": 4.53,
+    "PROB": 3.17,
+    "GROW": 3.06,
+    "STRE": 4.46,
+    "ADAP": 3.4
+  },
+  {
+    "soc_code": "11-9199.02",
+    "title": "Compliance Managers",
+    "COMM": 3.46,
+    "RESP": 4.59,
+    "PROB": 3.41,
+    "GROW": 3.07,
+    "STRE": 4.48,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "11-9199.09",
+    "title": "Wind Energy Operations Managers",
+    "COMM": 3.44,
+    "RESP": 4.19,
+    "PROB": 3.27,
+    "GROW": 2.7,
+    "STRE": 3.93,
+    "ADAP": 3.13
+  },
+  {
+    "soc_code": "11-9199.10",
+    "title": "Wind Energy Development Managers",
+    "COMM": 3.35,
+    "RESP": 4.19,
+    "PROB": 3.35,
+    "GROW": 2.76,
+    "STRE": 3.92,
+    "ADAP": 3.03
+  },
+  {
+    "soc_code": "13-1011.00",
+    "title": "Agents and Business Managers of Artists, Performers, and Athletes",
+    "COMM": 3.52,
+    "RESP": 4.4,
+    "PROB": 3.16,
+    "GROW": 2.65,
+    "STRE": 3.71,
+    "ADAP": 3.23
+  },
+  {
+    "soc_code": "13-1021.00",
+    "title": "Buyers and Purchasing Agents, Farm Products",
+    "COMM": 3.22,
+    "RESP": 4.39,
+    "PROB": 2.94,
+    "GROW": 2.5,
+    "STRE": 4.27,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "13-1022.00",
+    "title": "Wholesale and Retail Buyers, Except Farm Products",
+    "COMM": 3.35,
+    "RESP": 4.16,
+    "PROB": 3.05,
+    "GROW": 2.84,
+    "STRE": 3.94,
+    "ADAP": 3.15
+  },
+  {
+    "soc_code": "13-1031.00",
+    "title": "Claims Adjusters, Examiners, and Investigators",
+    "COMM": 3.43,
+    "RESP": 4.55,
+    "PROB": 3.36,
+    "GROW": 2.55,
+    "STRE": 4.52,
+    "ADAP": 2.93
+  },
+  {
+    "soc_code": "13-1032.00",
+    "title": "Insurance Appraisers, Auto Damage",
+    "COMM": 3.05,
+    "RESP": 4.08,
+    "PROB": 2.9,
+    "GROW": 2.05,
+    "STRE": 3.92,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "13-1041.03",
+    "title": "Equal Opportunity Representatives and Officers",
+    "COMM": 3.43,
+    "RESP": 4.45,
+    "PROB": 3.47,
+    "GROW": 3.01,
+    "STRE": 4.39,
+    "ADAP": 3.21
+  },
+  {
+    "soc_code": "13-1041.04",
+    "title": "Government Property Inspectors and Investigators",
+    "COMM": 3.44,
+    "RESP": 4.35,
+    "PROB": 3.41,
+    "GROW": 2.79,
+    "STRE": 4.31,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "13-1071.00",
+    "title": "Human Resources Specialists",
+    "COMM": 3.51,
+    "RESP": 4.38,
+    "PROB": 3.11,
+    "GROW": 2.75,
+    "STRE": 4.48,
+    "ADAP": 3.04
+  },
+  {
+    "soc_code": "13-1074.00",
+    "title": "Farm Labor Contractors",
+    "COMM": 3.04,
+    "RESP": 3.99,
+    "PROB": 2.52,
+    "GROW": 1.96,
+    "STRE": 3.52,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "13-1121.00",
+    "title": "Meeting, Convention, and Event Planners",
+    "COMM": 3.69,
+    "RESP": 4.6,
+    "PROB": 3.22,
+    "GROW": 2.51,
+    "STRE": 4.71,
+    "ADAP": 3.42
+  },
+  {
+    "soc_code": "13-1199.06",
+    "title": "Online Merchants",
+    "COMM": 3.02,
+    "RESP": 4.27,
+    "PROB": 2.87,
+    "GROW": 2.32,
+    "STRE": 3.62,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "13-2031.00",
+    "title": "Budget Analysts",
+    "COMM": 3.04,
+    "RESP": 4.51,
+    "PROB": 3.22,
+    "GROW": 2.46,
+    "STRE": 4.05,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "13-2072.00",
+    "title": "Loan Officers",
+    "COMM": 3.3,
+    "RESP": 4.24,
+    "PROB": 3.14,
+    "GROW": 2.49,
+    "STRE": 3.92,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "13-2081.00",
+    "title": "Tax Examiners and Collectors, and Revenue Agents",
+    "COMM": 3.31,
+    "RESP": 4.38,
+    "PROB": 3.17,
+    "GROW": 2.74,
+    "STRE": 4.37,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "15-1211.00",
+    "title": "Computer Systems Analysts",
+    "COMM": 3.16,
+    "RESP": 3.8,
+    "PROB": 3.36,
+    "GROW": 2.94,
+    "STRE": 3.24,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "15-1212.00",
+    "title": "Information Security Analysts",
+    "COMM": 3.2,
+    "RESP": 4.41,
+    "PROB": 3.4,
+    "GROW": 2.78,
+    "STRE": 3.98,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "15-1221.00",
+    "title": "Computer and Information Research Scientists",
+    "COMM": 3.26,
+    "RESP": 3.84,
+    "PROB": 3.61,
+    "GROW": 3.12,
+    "STRE": 3.31,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "15-1231.00",
+    "title": "Computer Network Support Specialists",
+    "COMM": 3.08,
+    "RESP": 4.36,
+    "PROB": 3.15,
+    "GROW": 2.65,
+    "STRE": 4.24,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "15-1232.00",
+    "title": "Computer User Support Specialists",
+    "COMM": 3.33,
+    "RESP": 4.5,
+    "PROB": 3.07,
+    "GROW": 2.7,
+    "STRE": 4.27,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "15-1242.00",
+    "title": "Database Administrators",
+    "COMM": 3.14,
+    "RESP": 4.07,
+    "PROB": 3.4,
+    "GROW": 2.94,
+    "STRE": 3.68,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "15-1244.00",
+    "title": "Network and Computer Systems Administrators",
+    "COMM": 3.16,
+    "RESP": 4.39,
+    "PROB": 3.33,
+    "GROW": 2.78,
+    "STRE": 3.94,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "15-1251.00",
+    "title": "Computer Programmers",
+    "COMM": 3.12,
+    "RESP": 4.58,
+    "PROB": 3.25,
+    "GROW": 2.42,
+    "STRE": 4.01,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "15-1252.00",
+    "title": "Software Developers",
+    "COMM": 3.04,
+    "RESP": 4.15,
+    "PROB": 3.21,
+    "GROW": 2.73,
+    "STRE": 3.69,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "15-2099.01",
+    "title": "Bioinformatics Technicians",
+    "COMM": 2.99,
+    "RESP": 3.92,
+    "PROB": 3.12,
+    "GROW": 2.77,
+    "STRE": 3.33,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "17-1021.00",
+    "title": "Cartographers and Photogrammetrists",
+    "COMM": 2.87,
+    "RESP": 4.07,
+    "PROB": 2.98,
+    "GROW": 2.67,
+    "STRE": 3.17,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "17-2011.00",
+    "title": "Aerospace Engineers",
+    "COMM": 3.27,
+    "RESP": 4.2,
+    "PROB": 3.57,
+    "GROW": 3.11,
+    "STRE": 3.64,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "17-2071.00",
+    "title": "Electrical Engineers",
+    "COMM": 3.33,
+    "RESP": 4.22,
+    "PROB": 3.48,
+    "GROW": 2.95,
+    "STRE": 3.77,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "17-2072.00",
+    "title": "Electronics Engineers, Except Computer",
+    "COMM": 3.18,
+    "RESP": 4.31,
+    "PROB": 3.48,
+    "GROW": 2.78,
+    "STRE": 3.5,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "17-2072.01",
+    "title": "Radio Frequency Identification Device Specialists",
+    "COMM": 3.2,
+    "RESP": 4.25,
+    "PROB": 3.27,
+    "GROW": 2.64,
+    "STRE": 4.04,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "17-2112.00",
+    "title": "Industrial Engineers",
+    "COMM": 3.3,
+    "RESP": 4.4,
+    "PROB": 3.45,
+    "GROW": 2.73,
+    "STRE": 4.19,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "17-2141.00",
+    "title": "Mechanical Engineers",
+    "COMM": 3.19,
+    "RESP": 4.25,
+    "PROB": 3.52,
+    "GROW": 2.96,
+    "STRE": 4.17,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "17-2151.00",
+    "title": "Mining and Geological Engineers, Including Mining Safety Engineers",
+    "COMM": 3.4,
+    "RESP": 4.18,
+    "PROB": 3.65,
+    "GROW": 2.99,
+    "STRE": 3.78,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "17-2171.00",
+    "title": "Petroleum Engineers",
+    "COMM": 3.39,
+    "RESP": 4.22,
+    "PROB": 3.45,
+    "GROW": 2.92,
+    "STRE": 3.8,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "17-2199.05",
+    "title": "Mechatronics Engineers",
+    "COMM": 3.06,
+    "RESP": 4.11,
+    "PROB": 3.44,
+    "GROW": 2.83,
+    "STRE": 3.75,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "17-2199.06",
+    "title": "Microsystems Engineers",
+    "COMM": 3.17,
+    "RESP": 4.21,
+    "PROB": 3.47,
+    "GROW": 2.98,
+    "STRE": 3.64,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "17-2199.10",
+    "title": "Wind Energy Engineers",
+    "COMM": 3.09,
+    "RESP": 4.39,
+    "PROB": 3.3,
+    "GROW": 2.62,
+    "STRE": 4.1,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "17-3012.00",
+    "title": "Electrical and Electronics Drafters",
+    "COMM": 2.97,
+    "RESP": 3.97,
+    "PROB": 2.92,
+    "GROW": 2.49,
+    "STRE": 3.58,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "17-3013.00",
+    "title": "Mechanical Drafters",
+    "COMM": 3.0,
+    "RESP": 4.22,
+    "PROB": 2.79,
+    "GROW": 2.69,
+    "STRE": 3.9,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "17-3021.00",
+    "title": "Aerospace Engineering and Operations Technologists and Technicians",
+    "COMM": 2.99,
+    "RESP": 4.51,
+    "PROB": 3.29,
+    "GROW": 2.52,
+    "STRE": 3.9,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "17-3022.00",
+    "title": "Civil Engineering Technologists and Technicians",
+    "COMM": 3.2,
+    "RESP": 4.41,
+    "PROB": 3.12,
+    "GROW": 2.29,
+    "STRE": 4.0,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "17-3024.00",
+    "title": "Electro-Mechanical and Mechatronics Technologists and Technicians",
+    "COMM": 2.86,
+    "RESP": 4.42,
+    "PROB": 3.12,
+    "GROW": 2.62,
+    "STRE": 3.87,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "17-3025.00",
+    "title": "Environmental Engineering Technologists and Technicians",
+    "COMM": 3.16,
+    "RESP": 4.05,
+    "PROB": 3.27,
+    "GROW": 2.92,
+    "STRE": 3.64,
+    "ADAP": 2.68
+  },
+  {
+    "soc_code": "17-3026.00",
+    "title": "Industrial Engineering Technologists and Technicians",
+    "COMM": 3.13,
+    "RESP": 4.17,
+    "PROB": 3.37,
+    "GROW": 2.62,
+    "STRE": 4.07,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "17-3027.00",
+    "title": "Mechanical Engineering Technologists and Technicians",
+    "COMM": 3.08,
+    "RESP": 4.01,
+    "PROB": 3.25,
+    "GROW": 2.58,
+    "STRE": 3.51,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "19-1023.00",
+    "title": "Zoologists and Wildlife Biologists",
+    "COMM": 3.37,
+    "RESP": 4.29,
+    "PROB": 3.39,
+    "GROW": 2.88,
+    "STRE": 3.85,
+    "ADAP": 2.92
+  },
+  {
+    "soc_code": "19-1029.01",
+    "title": "Bioinformatics Scientists",
+    "COMM": 3.31,
+    "RESP": 4.5,
+    "PROB": 3.63,
+    "GROW": 3.06,
+    "STRE": 3.26,
+    "ADAP": 2.92
+  },
+  {
+    "soc_code": "19-1029.04",
+    "title": "Biologists",
+    "COMM": 3.29,
+    "RESP": 4.42,
+    "PROB": 3.6,
+    "GROW": 3.27,
+    "STRE": 3.74,
+    "ADAP": 2.68
+  },
+  {
+    "soc_code": "19-1031.02",
+    "title": "Range Managers",
+    "COMM": 3.32,
+    "RESP": 4.15,
+    "PROB": 3.34,
+    "GROW": 2.68,
+    "STRE": 3.85,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "19-1031.03",
+    "title": "Park Naturalists",
+    "COMM": 3.47,
+    "RESP": 3.97,
+    "PROB": 2.94,
+    "GROW": 2.81,
+    "STRE": 4.23,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "19-1032.00",
+    "title": "Foresters",
+    "COMM": 3.39,
+    "RESP": 4.08,
+    "PROB": 3.36,
+    "GROW": 2.71,
+    "STRE": 3.69,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "19-1042.00",
+    "title": "Medical Scientists, Except Epidemiologists",
+    "COMM": 3.4,
+    "RESP": 4.18,
+    "PROB": 3.74,
+    "GROW": 3.46,
+    "STRE": 3.87,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "19-2012.00",
+    "title": "Physicists",
+    "COMM": 3.27,
+    "RESP": 4.1,
+    "PROB": 3.86,
+    "GROW": 3.84,
+    "STRE": 3.26,
+    "ADAP": 2.81
+  },
+  {
+    "soc_code": "19-2031.00",
+    "title": "Chemists",
+    "COMM": 3.21,
+    "RESP": 4.28,
+    "PROB": 3.54,
+    "GROW": 2.95,
+    "STRE": 3.91,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "19-2041.00",
+    "title": "Environmental Scientists and Specialists, Including Health",
+    "COMM": 3.43,
+    "RESP": 4.24,
+    "PROB": 3.56,
+    "GROW": 3.11,
+    "STRE": 3.85,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "19-3034.00",
+    "title": "School Psychologists",
+    "COMM": 3.8,
+    "RESP": 4.72,
+    "PROB": 3.48,
+    "GROW": 3.17,
+    "STRE": 4.64,
+    "ADAP": 3.52
+  },
+  {
+    "soc_code": "19-3093.00",
+    "title": "Historians",
+    "COMM": 3.3,
+    "RESP": 4.04,
+    "PROB": 3.18,
+    "GROW": 3.17,
+    "STRE": 3.23,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "19-4012.00",
+    "title": "Agricultural Technicians",
+    "COMM": 2.87,
+    "RESP": 4.09,
+    "PROB": 2.87,
+    "GROW": 2.59,
+    "STRE": 3.38,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "19-4013.00",
+    "title": "Food Science Technicians",
+    "COMM": 2.95,
+    "RESP": 4.17,
+    "PROB": 2.89,
+    "GROW": 2.56,
+    "STRE": 3.68,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "19-4021.00",
+    "title": "Biological Technicians",
+    "COMM": 3.05,
+    "RESP": 4.37,
+    "PROB": 3.21,
+    "GROW": 2.78,
+    "STRE": 3.96,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "19-4031.00",
+    "title": "Chemical Technicians",
+    "COMM": 2.96,
+    "RESP": 4.14,
+    "PROB": 3.2,
+    "GROW": 2.79,
+    "STRE": 3.38,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "19-4051.02",
+    "title": "Nuclear Monitoring Technicians",
+    "COMM": 3.03,
+    "RESP": 4.21,
+    "PROB": 3.3,
+    "GROW": 2.67,
+    "STRE": 3.83,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "19-4061.00",
+    "title": "Social Science Research Assistants",
+    "COMM": 3.19,
+    "RESP": 4.53,
+    "PROB": 2.97,
+    "GROW": 2.73,
+    "STRE": 4.08,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "19-4071.00",
+    "title": "Forest and Conservation Technicians",
+    "COMM": 3.16,
+    "RESP": 4.22,
+    "PROB": 3.0,
+    "GROW": 2.57,
+    "STRE": 3.81,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "19-4092.00",
+    "title": "Forensic Science Technicians",
+    "COMM": 3.14,
+    "RESP": 4.3,
+    "PROB": 3.37,
+    "GROW": 2.87,
+    "STRE": 3.58,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "19-4099.01",
+    "title": "Quality Control Analysts",
+    "COMM": 2.97,
+    "RESP": 4.42,
+    "PROB": 3.01,
+    "GROW": 2.54,
+    "STRE": 3.96,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "19-4099.03",
+    "title": "Remote Sensing Technicians",
+    "COMM": 3.03,
+    "RESP": 4.15,
+    "PROB": 3.14,
+    "GROW": 2.6,
+    "STRE": 3.59,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "21-1011.00",
+    "title": "Substance Abuse and Behavioral Disorder Counselors",
+    "COMM": 3.77,
+    "RESP": 4.67,
+    "PROB": 3.39,
+    "GROW": 3.13,
+    "STRE": 4.69,
+    "ADAP": 3.59
+  },
+  {
+    "soc_code": "21-1012.00",
+    "title": "Educational, Guidance, and Career Counselors and Advisors",
+    "COMM": 3.7,
+    "RESP": 4.21,
+    "PROB": 3.34,
+    "GROW": 3.26,
+    "STRE": 4.19,
+    "ADAP": 3.55
+  },
+  {
+    "soc_code": "21-1013.00",
+    "title": "Marriage and Family Therapists",
+    "COMM": 3.82,
+    "RESP": 4.45,
+    "PROB": 3.51,
+    "GROW": 3.15,
+    "STRE": 4.73,
+    "ADAP": 3.71
+  },
+  {
+    "soc_code": "21-1015.00",
+    "title": "Rehabilitation Counselors",
+    "COMM": 3.56,
+    "RESP": 4.49,
+    "PROB": 3.22,
+    "GROW": 2.81,
+    "STRE": 4.25,
+    "ADAP": 3.5
+  },
+  {
+    "soc_code": "21-1021.00",
+    "title": "Child, Family, and School Social Workers",
+    "COMM": 3.79,
+    "RESP": 4.19,
+    "PROB": 3.42,
+    "GROW": 2.85,
+    "STRE": 4.22,
+    "ADAP": 3.58
+  },
+  {
+    "soc_code": "21-1023.00",
+    "title": "Mental Health and Substance Abuse Social Workers",
+    "COMM": 3.68,
+    "RESP": 4.37,
+    "PROB": 3.54,
+    "GROW": 3.14,
+    "STRE": 4.59,
+    "ADAP": 3.7
+  },
+  {
+    "soc_code": "21-1091.00",
+    "title": "Health Education Specialists",
+    "COMM": 3.54,
+    "RESP": 4.49,
+    "PROB": 3.1,
+    "GROW": 3.35,
+    "STRE": 4.14,
+    "ADAP": 3.14
+  },
+  {
+    "soc_code": "21-1092.00",
+    "title": "Probation Officers and Correctional Treatment Specialists",
+    "COMM": 3.4,
+    "RESP": 4.38,
+    "PROB": 3.33,
+    "GROW": 2.46,
+    "STRE": 4.54,
+    "ADAP": 3.23
+  },
+  {
+    "soc_code": "21-1093.00",
+    "title": "Social and Human Service Assistants",
+    "COMM": 3.6,
+    "RESP": 4.39,
+    "PROB": 3.1,
+    "GROW": 2.65,
+    "STRE": 4.38,
+    "ADAP": 3.4
+  },
+  {
+    "soc_code": "21-1094.00",
+    "title": "Community Health Workers",
+    "COMM": 3.65,
+    "RESP": 4.38,
+    "PROB": 3.13,
+    "GROW": 3.07,
+    "STRE": 4.27,
+    "ADAP": 3.5
+  },
+  {
+    "soc_code": "21-2011.00",
+    "title": "Clergy",
+    "COMM": 3.89,
+    "RESP": 4.54,
+    "PROB": 3.36,
+    "GROW": 3.23,
+    "STRE": 4.46,
+    "ADAP": 3.7
+  },
+  {
+    "soc_code": "21-2021.00",
+    "title": "Directors, Religious Activities and Education",
+    "COMM": 3.64,
+    "RESP": 4.46,
+    "PROB": 3.17,
+    "GROW": 3.29,
+    "STRE": 4.54,
+    "ADAP": 3.38
+  },
+  {
+    "soc_code": "23-1011.00",
+    "title": "Lawyers",
+    "COMM": 3.72,
+    "RESP": 4.66,
+    "PROB": 3.65,
+    "GROW": 3.01,
+    "STRE": 4.36,
+    "ADAP": 3.39
+  },
+  {
+    "soc_code": "23-1012.00",
+    "title": "Judicial Law Clerks",
+    "COMM": 3.14,
+    "RESP": 4.5,
+    "PROB": 3.34,
+    "GROW": 2.96,
+    "STRE": 3.56,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "23-1021.00",
+    "title": "Administrative Law Judges, Adjudicators, and Hearing Officers",
+    "COMM": 3.53,
+    "RESP": 4.49,
+    "PROB": 3.67,
+    "GROW": 2.94,
+    "STRE": 4.64,
+    "ADAP": 3.06
+  },
+  {
+    "soc_code": "23-1023.00",
+    "title": "Judges, Magistrate Judges, and Magistrates",
+    "COMM": 3.73,
+    "RESP": 4.76,
+    "PROB": 3.95,
+    "GROW": 3.03,
+    "STRE": 4.9,
+    "ADAP": 3.09
+  },
+  {
+    "soc_code": "23-2011.00",
+    "title": "Paralegals and Legal Assistants",
+    "COMM": 3.17,
+    "RESP": 4.56,
+    "PROB": 2.74,
+    "GROW": 2.27,
+    "STRE": 4.18,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "23-2093.00",
+    "title": "Title Examiners, Abstractors, and Searchers",
+    "COMM": 3.06,
+    "RESP": 4.16,
+    "PROB": 2.82,
+    "GROW": 2.28,
+    "STRE": 3.82,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "25-1011.00",
+    "title": "Business Teachers, Postsecondary",
+    "COMM": 3.48,
+    "RESP": 4.58,
+    "PROB": 3.25,
+    "GROW": 3.6,
+    "STRE": 4.23,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "25-1021.00",
+    "title": "Computer Science Teachers, Postsecondary",
+    "COMM": 3.49,
+    "RESP": 4.51,
+    "PROB": 3.3,
+    "GROW": 3.46,
+    "STRE": 4.06,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "25-1022.00",
+    "title": "Mathematical Science Teachers, Postsecondary",
+    "COMM": 3.36,
+    "RESP": 4.32,
+    "PROB": 3.22,
+    "GROW": 3.4,
+    "STRE": 3.93,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "25-1031.00",
+    "title": "Architecture Teachers, Postsecondary",
+    "COMM": 3.57,
+    "RESP": 4.45,
+    "PROB": 3.4,
+    "GROW": 3.59,
+    "STRE": 4.3,
+    "ADAP": 2.97
+  },
+  {
+    "soc_code": "25-1032.00",
+    "title": "Engineering Teachers, Postsecondary",
+    "COMM": 3.49,
+    "RESP": 4.49,
+    "PROB": 3.24,
+    "GROW": 3.43,
+    "STRE": 4.1,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "25-1041.00",
+    "title": "Agricultural Sciences Teachers, Postsecondary",
+    "COMM": 3.72,
+    "RESP": 4.45,
+    "PROB": 3.38,
+    "GROW": 3.66,
+    "STRE": 4.32,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "25-1042.00",
+    "title": "Biological Science Teachers, Postsecondary",
+    "COMM": 3.39,
+    "RESP": 4.54,
+    "PROB": 3.29,
+    "GROW": 3.62,
+    "STRE": 4.15,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "25-1043.00",
+    "title": "Forestry and Conservation Science Teachers, Postsecondary",
+    "COMM": 3.46,
+    "RESP": 4.65,
+    "PROB": 3.33,
+    "GROW": 3.52,
+    "STRE": 4.64,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "25-1051.00",
+    "title": "Atmospheric, Earth, Marine, and Space Sciences Teachers, Postsecondary",
+    "COMM": 3.49,
+    "RESP": 4.33,
+    "PROB": 3.42,
+    "GROW": 3.46,
+    "STRE": 4.08,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "25-1052.00",
+    "title": "Chemistry Teachers, Postsecondary",
+    "COMM": 3.33,
+    "RESP": 4.46,
+    "PROB": 3.43,
+    "GROW": 3.43,
+    "STRE": 3.92,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "25-1053.00",
+    "title": "Environmental Science Teachers, Postsecondary",
+    "COMM": 3.43,
+    "RESP": 4.43,
+    "PROB": 3.32,
+    "GROW": 3.49,
+    "STRE": 3.99,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "25-1054.00",
+    "title": "Physics Teachers, Postsecondary",
+    "COMM": 3.47,
+    "RESP": 4.29,
+    "PROB": 3.44,
+    "GROW": 3.56,
+    "STRE": 3.88,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "25-1062.00",
+    "title": "Area, Ethnic, and Cultural Studies Teachers, Postsecondary",
+    "COMM": 3.47,
+    "RESP": 4.45,
+    "PROB": 3.15,
+    "GROW": 3.43,
+    "STRE": 4.21,
+    "ADAP": 2.93
+  },
+  {
+    "soc_code": "25-1063.00",
+    "title": "Economics Teachers, Postsecondary",
+    "COMM": 3.24,
+    "RESP": 4.21,
+    "PROB": 3.23,
+    "GROW": 3.36,
+    "STRE": 3.68,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "25-1064.00",
+    "title": "Geography Teachers, Postsecondary",
+    "COMM": 3.35,
+    "RESP": 4.5,
+    "PROB": 3.22,
+    "GROW": 3.37,
+    "STRE": 3.75,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "25-1065.00",
+    "title": "Political Science Teachers, Postsecondary",
+    "COMM": 3.43,
+    "RESP": 4.33,
+    "PROB": 3.14,
+    "GROW": 3.4,
+    "STRE": 4.22,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "25-1066.00",
+    "title": "Psychology Teachers, Postsecondary",
+    "COMM": 3.62,
+    "RESP": 4.71,
+    "PROB": 3.3,
+    "GROW": 3.75,
+    "STRE": 4.44,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "25-1067.00",
+    "title": "Sociology Teachers, Postsecondary",
+    "COMM": 3.42,
+    "RESP": 4.52,
+    "PROB": 3.18,
+    "GROW": 3.56,
+    "STRE": 4.38,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "25-1071.00",
+    "title": "Health Specialties Teachers, Postsecondary",
+    "COMM": 3.59,
+    "RESP": 4.39,
+    "PROB": 3.27,
+    "GROW": 3.45,
+    "STRE": 4.14,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "25-1072.00",
+    "title": "Nursing Instructors and Teachers, Postsecondary",
+    "COMM": 3.76,
+    "RESP": 4.69,
+    "PROB": 3.36,
+    "GROW": 3.47,
+    "STRE": 4.43,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "25-1081.00",
+    "title": "Education Teachers, Postsecondary",
+    "COMM": 3.54,
+    "RESP": 4.39,
+    "PROB": 3.35,
+    "GROW": 3.59,
+    "STRE": 3.86,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "25-1082.00",
+    "title": "Library Science Teachers, Postsecondary",
+    "COMM": 3.52,
+    "RESP": 4.33,
+    "PROB": 3.28,
+    "GROW": 3.56,
+    "STRE": 4.08,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "25-1111.00",
+    "title": "Criminal Justice and Law Enforcement Teachers, Postsecondary",
+    "COMM": 3.59,
+    "RESP": 4.42,
+    "PROB": 3.22,
+    "GROW": 3.43,
+    "STRE": 4.41,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "25-1112.00",
+    "title": "Law Teachers, Postsecondary",
+    "COMM": 3.57,
+    "RESP": 4.58,
+    "PROB": 3.42,
+    "GROW": 3.71,
+    "STRE": 4.12,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "25-1113.00",
+    "title": "Social Work Teachers, Postsecondary",
+    "COMM": 3.7,
+    "RESP": 4.56,
+    "PROB": 3.36,
+    "GROW": 3.81,
+    "STRE": 4.5,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "25-1121.00",
+    "title": "Art, Drama, and Music Teachers, Postsecondary",
+    "COMM": 3.58,
+    "RESP": 4.4,
+    "PROB": 3.04,
+    "GROW": 3.55,
+    "STRE": 4.26,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "25-1122.00",
+    "title": "Communications Teachers, Postsecondary",
+    "COMM": 3.49,
+    "RESP": 4.61,
+    "PROB": 3.18,
+    "GROW": 3.56,
+    "STRE": 4.4,
+    "ADAP": 2.96
+  },
+  {
+    "soc_code": "25-1123.00",
+    "title": "English Language and Literature Teachers, Postsecondary",
+    "COMM": 3.57,
+    "RESP": 4.42,
+    "PROB": 3.16,
+    "GROW": 3.58,
+    "STRE": 4.32,
+    "ADAP": 2.95
+  },
+  {
+    "soc_code": "25-1124.00",
+    "title": "Foreign Language and Literature Teachers, Postsecondary",
+    "COMM": 3.44,
+    "RESP": 4.29,
+    "PROB": 3.05,
+    "GROW": 3.4,
+    "STRE": 4.48,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "25-1125.00",
+    "title": "History Teachers, Postsecondary",
+    "COMM": 3.5,
+    "RESP": 4.43,
+    "PROB": 3.16,
+    "GROW": 3.47,
+    "STRE": 4.21,
+    "ADAP": 2.94
+  },
+  {
+    "soc_code": "25-1126.00",
+    "title": "Philosophy and Religion Teachers, Postsecondary",
+    "COMM": 3.45,
+    "RESP": 4.41,
+    "PROB": 3.26,
+    "GROW": 3.51,
+    "STRE": 3.85,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "25-1192.00",
+    "title": "Family and Consumer Sciences Teachers, Postsecondary",
+    "COMM": 3.52,
+    "RESP": 4.49,
+    "PROB": 3.04,
+    "GROW": 3.4,
+    "STRE": 4.33,
+    "ADAP": 2.78
+  },
+  {
+    "soc_code": "25-1193.00",
+    "title": "Recreation and Fitness Studies Teachers, Postsecondary",
+    "COMM": 3.46,
+    "RESP": 4.51,
+    "PROB": 3.12,
+    "GROW": 3.27,
+    "STRE": 4.36,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "25-1194.00",
+    "title": "Career/Technical Education Teachers, Postsecondary",
+    "COMM": 3.41,
+    "RESP": 4.56,
+    "PROB": 2.98,
+    "GROW": 3.4,
+    "STRE": 4.37,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "25-2011.00",
+    "title": "Preschool Teachers, Except Special Education",
+    "COMM": 3.44,
+    "RESP": 4.39,
+    "PROB": 2.84,
+    "GROW": 3.0,
+    "STRE": 4.61,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "25-2012.00",
+    "title": "Kindergarten Teachers, Except Special Education",
+    "COMM": 3.56,
+    "RESP": 4.71,
+    "PROB": 2.99,
+    "GROW": 3.06,
+    "STRE": 4.56,
+    "ADAP": 3.3
+  },
+  {
+    "soc_code": "25-2021.00",
+    "title": "Elementary School Teachers, Except Special Education",
+    "COMM": 3.66,
+    "RESP": 4.76,
+    "PROB": 3.23,
+    "GROW": 3.5,
+    "STRE": 4.6,
+    "ADAP": 3.32
+  },
+  {
+    "soc_code": "25-2022.00",
+    "title": "Middle School Teachers, Except Special and Career/Technical Education",
+    "COMM": 3.67,
+    "RESP": 4.48,
+    "PROB": 3.13,
+    "GROW": 3.46,
+    "STRE": 4.66,
+    "ADAP": 3.14
+  },
+  {
+    "soc_code": "25-2023.00",
+    "title": "Career/Technical Education Teachers, Middle School",
+    "COMM": 3.51,
+    "RESP": 4.46,
+    "PROB": 3.16,
+    "GROW": 3.21,
+    "STRE": 4.43,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "25-2031.00",
+    "title": "Secondary School Teachers, Except Special and Career/Technical Education",
+    "COMM": 3.55,
+    "RESP": 4.41,
+    "PROB": 3.22,
+    "GROW": 3.39,
+    "STRE": 4.65,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "25-2032.00",
+    "title": "Career/Technical Education Teachers, Secondary School",
+    "COMM": 3.62,
+    "RESP": 4.32,
+    "PROB": 3.37,
+    "GROW": 3.45,
+    "STRE": 4.54,
+    "ADAP": 3.26
+  },
+  {
+    "soc_code": "25-2051.00",
+    "title": "Special Education Teachers, Preschool",
+    "COMM": 3.62,
+    "RESP": 4.57,
+    "PROB": 3.28,
+    "GROW": 3.23,
+    "STRE": 4.64,
+    "ADAP": 3.28
+  },
+  {
+    "soc_code": "25-2056.00",
+    "title": "Special Education Teachers, Elementary School",
+    "COMM": 3.64,
+    "RESP": 4.88,
+    "PROB": 3.32,
+    "GROW": 3.38,
+    "STRE": 4.83,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "25-2057.00",
+    "title": "Special Education Teachers, Middle School",
+    "COMM": 3.72,
+    "RESP": 4.73,
+    "PROB": 3.25,
+    "GROW": 3.45,
+    "STRE": 4.86,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "25-2058.00",
+    "title": "Special Education Teachers, Secondary School",
+    "COMM": 3.67,
+    "RESP": 4.59,
+    "PROB": 3.27,
+    "GROW": 3.42,
+    "STRE": 4.55,
+    "ADAP": 3.32
+  },
+  {
+    "soc_code": "25-3011.00",
+    "title": "Adult Basic Education, Adult Secondary Education, and English as a Second Language Instructors",
+    "COMM": 3.33,
+    "RESP": 4.26,
+    "PROB": 2.92,
+    "GROW": 3.09,
+    "STRE": 4.18,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "25-3021.00",
+    "title": "Self-Enrichment Teachers",
+    "COMM": 3.22,
+    "RESP": 4.42,
+    "PROB": 2.6,
+    "GROW": 2.81,
+    "STRE": 4.29,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "25-3031.00",
+    "title": "Substitute Teachers, Short-Term",
+    "COMM": 3.21,
+    "RESP": 4.32,
+    "PROB": 2.73,
+    "GROW": 2.58,
+    "STRE": 4.46,
+    "ADAP": 2.93
+  },
+  {
+    "soc_code": "25-4012.00",
+    "title": "Curators",
+    "COMM": 3.39,
+    "RESP": 4.47,
+    "PROB": 3.33,
+    "GROW": 3.05,
+    "STRE": 3.89,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "25-4013.00",
+    "title": "Museum Technicians and Conservators",
+    "COMM": 3.12,
+    "RESP": 4.35,
+    "PROB": 2.8,
+    "GROW": 2.56,
+    "STRE": 3.61,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "25-4022.00",
+    "title": "Librarians and Media Collections Specialists",
+    "COMM": 3.29,
+    "RESP": 4.36,
+    "PROB": 2.74,
+    "GROW": 2.63,
+    "STRE": 4.12,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "25-4031.00",
+    "title": "Library Technicians",
+    "COMM": 3.0,
+    "RESP": 4.3,
+    "PROB": 2.44,
+    "GROW": 2.5,
+    "STRE": 4.3,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "25-9031.00",
+    "title": "Instructional Coordinators",
+    "COMM": 3.66,
+    "RESP": 4.45,
+    "PROB": 3.38,
+    "GROW": 3.62,
+    "STRE": 4.12,
+    "ADAP": 3.3
+  },
+  {
+    "soc_code": "25-9042.00",
+    "title": "Teaching Assistants, Preschool, Elementary, Middle, and Secondary School, Except Special Education",
+    "COMM": 3.3,
+    "RESP": 4.1,
+    "PROB": 2.79,
+    "GROW": 2.76,
+    "STRE": 4.33,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "25-9043.00",
+    "title": "Teaching Assistants, Special Education",
+    "COMM": 3.34,
+    "RESP": 4.25,
+    "PROB": 2.75,
+    "GROW": 2.79,
+    "STRE": 4.54,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "25-9044.00",
+    "title": "Teaching Assistants, Postsecondary",
+    "COMM": 3.17,
+    "RESP": 4.27,
+    "PROB": 2.76,
+    "GROW": 2.78,
+    "STRE": 4.13,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "27-1011.00",
+    "title": "Art Directors",
+    "COMM": 3.53,
+    "RESP": 4.42,
+    "PROB": 3.21,
+    "GROW": 2.86,
+    "STRE": 4.16,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "27-1013.00",
+    "title": "Fine Artists, Including Painters, Sculptors, and Illustrators",
+    "COMM": 2.69,
+    "RESP": 4.54,
+    "PROB": 2.59,
+    "GROW": 2.44,
+    "STRE": 4.15,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "27-1014.00",
+    "title": "Special Effects Artists and Animators",
+    "COMM": 3.2,
+    "RESP": 4.21,
+    "PROB": 2.98,
+    "GROW": 2.64,
+    "STRE": 3.94,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "27-1021.00",
+    "title": "Commercial and Industrial Designers",
+    "COMM": 3.21,
+    "RESP": 4.21,
+    "PROB": 3.27,
+    "GROW": 2.67,
+    "STRE": 3.39,
+    "ADAP": 2.81
+  },
+  {
+    "soc_code": "27-1022.00",
+    "title": "Fashion Designers",
+    "COMM": 3.43,
+    "RESP": 4.03,
+    "PROB": 3.06,
+    "GROW": 2.85,
+    "STRE": 3.7,
+    "ADAP": 3.19
+  },
+  {
+    "soc_code": "27-1023.00",
+    "title": "Floral Designers",
+    "COMM": 3.12,
+    "RESP": 4.13,
+    "PROB": 2.54,
+    "GROW": 2.21,
+    "STRE": 3.63,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "27-1026.00",
+    "title": "Merchandise Displayers and Window Trimmers",
+    "COMM": 2.98,
+    "RESP": 4.18,
+    "PROB": 2.65,
+    "GROW": 2.21,
+    "STRE": 3.89,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "27-2011.00",
+    "title": "Actors",
+    "COMM": 3.49,
+    "RESP": 4.4,
+    "PROB": 2.53,
+    "GROW": 2.26,
+    "STRE": 4.58,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "27-2012.00",
+    "title": "Producers and Directors",
+    "COMM": 3.78,
+    "RESP": 4.56,
+    "PROB": 3.31,
+    "GROW": 2.84,
+    "STRE": 4.25,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "27-2012.03",
+    "title": "Media Programming Directors",
+    "COMM": 3.6,
+    "RESP": 4.37,
+    "PROB": 3.36,
+    "GROW": 2.97,
+    "STRE": 3.96,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "27-2012.04",
+    "title": "Talent Directors",
+    "COMM": 3.52,
+    "RESP": 4.5,
+    "PROB": 3.07,
+    "GROW": 2.46,
+    "STRE": 4.17,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "27-2012.05",
+    "title": "Media Technical Directors/Managers",
+    "COMM": 3.6,
+    "RESP": 3.97,
+    "PROB": 3.3,
+    "GROW": 2.93,
+    "STRE": 4.41,
+    "ADAP": 3.0
+  },
+  {
+    "soc_code": "27-2021.00",
+    "title": "Athletes and Sports Competitors",
+    "COMM": 3.31,
+    "RESP": 4.33,
+    "PROB": 2.82,
+    "GROW": 2.54,
+    "STRE": 4.5,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "27-2022.00",
+    "title": "Coaches and Scouts",
+    "COMM": 3.66,
+    "RESP": 4.32,
+    "PROB": 3.34,
+    "GROW": 3.43,
+    "STRE": 4.26,
+    "ADAP": 3.5
+  },
+  {
+    "soc_code": "27-2031.00",
+    "title": "Dancers",
+    "COMM": 3.06,
+    "RESP": 4.15,
+    "PROB": 2.28,
+    "GROW": 2.32,
+    "STRE": 4.15,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "27-2041.00",
+    "title": "Music Directors and Composers",
+    "COMM": 3.35,
+    "RESP": 4.56,
+    "PROB": 2.93,
+    "GROW": 2.67,
+    "STRE": 4.05,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "27-2042.00",
+    "title": "Musicians and Singers",
+    "COMM": 3.07,
+    "RESP": 4.2,
+    "PROB": 2.38,
+    "GROW": 2.28,
+    "STRE": 4.12,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "27-3011.00",
+    "title": "Broadcast Announcers and Radio Disc Jockeys",
+    "COMM": 3.51,
+    "RESP": 4.52,
+    "PROB": 2.83,
+    "GROW": 2.22,
+    "STRE": 4.25,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "27-3041.00",
+    "title": "Editors",
+    "COMM": 3.34,
+    "RESP": 4.33,
+    "PROB": 3.0,
+    "GROW": 2.73,
+    "STRE": 4.08,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "27-3042.00",
+    "title": "Technical Writers",
+    "COMM": 3.13,
+    "RESP": 4.4,
+    "PROB": 2.91,
+    "GROW": 2.49,
+    "STRE": 3.83,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "27-3043.00",
+    "title": "Writers and Authors",
+    "COMM": 3.31,
+    "RESP": 4.44,
+    "PROB": 2.82,
+    "GROW": 2.63,
+    "STRE": 4.24,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "27-3091.00",
+    "title": "Interpreters and Translators",
+    "COMM": 3.41,
+    "RESP": 4.38,
+    "PROB": 2.82,
+    "GROW": 2.62,
+    "STRE": 4.14,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "27-3092.00",
+    "title": "Court Reporters and Simultaneous Captioners",
+    "COMM": 2.89,
+    "RESP": 4.78,
+    "PROB": 2.21,
+    "GROW": 1.86,
+    "STRE": 4.69,
+    "ADAP": 2.05
+  },
+  {
+    "soc_code": "27-4011.00",
+    "title": "Audio and Video Technicians",
+    "COMM": 2.96,
+    "RESP": 4.22,
+    "PROB": 2.96,
+    "GROW": 2.51,
+    "STRE": 4.14,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "27-4012.00",
+    "title": "Broadcast Technicians",
+    "COMM": 2.97,
+    "RESP": 4.02,
+    "PROB": 2.92,
+    "GROW": 2.59,
+    "STRE": 3.87,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "27-4031.00",
+    "title": "Camera Operators, Television, Video, and Film",
+    "COMM": 3.06,
+    "RESP": 4.36,
+    "PROB": 2.77,
+    "GROW": 2.46,
+    "STRE": 3.79,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "27-4032.00",
+    "title": "Film and Video Editors",
+    "COMM": 3.24,
+    "RESP": 4.79,
+    "PROB": 2.86,
+    "GROW": 2.54,
+    "STRE": 4.86,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "29-1011.00",
+    "title": "Chiropractors",
+    "COMM": 3.45,
+    "RESP": 4.45,
+    "PROB": 3.47,
+    "GROW": 2.81,
+    "STRE": 4.6,
+    "ADAP": 3.15
+  },
+  {
+    "soc_code": "29-1021.00",
+    "title": "Dentists, General",
+    "COMM": 3.48,
+    "RESP": 4.4,
+    "PROB": 3.76,
+    "GROW": 3.22,
+    "STRE": 4.24,
+    "ADAP": 3.37
+  },
+  {
+    "soc_code": "29-1022.00",
+    "title": "Oral and Maxillofacial Surgeons",
+    "COMM": 3.52,
+    "RESP": 4.84,
+    "PROB": 3.74,
+    "GROW": 3.1,
+    "STRE": 4.75,
+    "ADAP": 3.15
+  },
+  {
+    "soc_code": "29-1023.00",
+    "title": "Orthodontists",
+    "COMM": 3.63,
+    "RESP": 4.7,
+    "PROB": 3.51,
+    "GROW": 3.09,
+    "STRE": 4.5,
+    "ADAP": 3.18
+  },
+  {
+    "soc_code": "29-1024.00",
+    "title": "Prosthodontists",
+    "COMM": 3.36,
+    "RESP": 4.64,
+    "PROB": 3.42,
+    "GROW": 2.59,
+    "STRE": 4.26,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "29-1051.00",
+    "title": "Pharmacists",
+    "COMM": 3.56,
+    "RESP": 4.48,
+    "PROB": 3.42,
+    "GROW": 3.02,
+    "STRE": 4.5,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "29-1071.01",
+    "title": "Anesthesiologist Assistants",
+    "COMM": 3.42,
+    "RESP": 4.75,
+    "PROB": 3.22,
+    "GROW": 2.82,
+    "STRE": 4.8,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "29-1081.00",
+    "title": "Podiatrists",
+    "COMM": 3.52,
+    "RESP": 4.71,
+    "PROB": 3.71,
+    "GROW": 3.31,
+    "STRE": 4.52,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "29-1123.00",
+    "title": "Physical Therapists",
+    "COMM": 3.64,
+    "RESP": 4.49,
+    "PROB": 3.3,
+    "GROW": 2.7,
+    "STRE": 4.51,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "29-1124.00",
+    "title": "Radiation Therapists",
+    "COMM": 3.33,
+    "RESP": 4.54,
+    "PROB": 2.99,
+    "GROW": 2.54,
+    "STRE": 4.38,
+    "ADAP": 2.93
+  },
+  {
+    "soc_code": "29-1126.00",
+    "title": "Respiratory Therapists",
+    "COMM": 3.47,
+    "RESP": 4.62,
+    "PROB": 3.25,
+    "GROW": 2.87,
+    "STRE": 4.72,
+    "ADAP": 3.14
+  },
+  {
+    "soc_code": "29-1127.00",
+    "title": "Speech-Language Pathologists",
+    "COMM": 3.65,
+    "RESP": 4.59,
+    "PROB": 3.48,
+    "GROW": 3.46,
+    "STRE": 4.64,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "29-1131.00",
+    "title": "Veterinarians",
+    "COMM": 3.56,
+    "RESP": 4.64,
+    "PROB": 3.57,
+    "GROW": 3.07,
+    "STRE": 4.55,
+    "ADAP": 3.01
+  },
+  {
+    "soc_code": "29-1141.00",
+    "title": "Registered Nurses",
+    "COMM": 3.69,
+    "RESP": 4.41,
+    "PROB": 3.5,
+    "GROW": 3.07,
+    "STRE": 4.31,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "29-1211.00",
+    "title": "Anesthesiologists",
+    "COMM": 3.45,
+    "RESP": 4.65,
+    "PROB": 3.9,
+    "GROW": 3.06,
+    "STRE": 4.42,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "29-1213.00",
+    "title": "Dermatologists",
+    "COMM": 3.54,
+    "RESP": 4.67,
+    "PROB": 3.68,
+    "GROW": 2.99,
+    "STRE": 4.49,
+    "ADAP": 3.38
+  },
+  {
+    "soc_code": "29-1215.00",
+    "title": "Family Medicine Physicians",
+    "COMM": 3.65,
+    "RESP": 4.81,
+    "PROB": 3.84,
+    "GROW": 3.11,
+    "STRE": 4.46,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "29-1216.00",
+    "title": "General Internal Medicine Physicians",
+    "COMM": 3.49,
+    "RESP": 4.54,
+    "PROB": 3.84,
+    "GROW": 3.11,
+    "STRE": 4.34,
+    "ADAP": 3.36
+  },
+  {
+    "soc_code": "29-1217.00",
+    "title": "Neurologists",
+    "COMM": 3.75,
+    "RESP": 4.64,
+    "PROB": 3.98,
+    "GROW": 3.37,
+    "STRE": 4.6,
+    "ADAP": 3.43
+  },
+  {
+    "soc_code": "29-1218.00",
+    "title": "Obstetricians and Gynecologists",
+    "COMM": 3.7,
+    "RESP": 4.68,
+    "PROB": 4.01,
+    "GROW": 3.33,
+    "STRE": 4.63,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "29-1221.00",
+    "title": "Pediatricians, General",
+    "COMM": 3.64,
+    "RESP": 4.6,
+    "PROB": 3.81,
+    "GROW": 3.13,
+    "STRE": 4.49,
+    "ADAP": 3.28
+  },
+  {
+    "soc_code": "29-1222.00",
+    "title": "Physicians, Pathologists",
+    "COMM": 3.39,
+    "RESP": 4.67,
+    "PROB": 3.99,
+    "GROW": 3.3,
+    "STRE": 4.31,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "29-1223.00",
+    "title": "Psychiatrists",
+    "COMM": 3.84,
+    "RESP": 4.46,
+    "PROB": 3.69,
+    "GROW": 3.43,
+    "STRE": 4.49,
+    "ADAP": 3.68
+  },
+  {
+    "soc_code": "29-1224.00",
+    "title": "Radiologists",
+    "COMM": 3.54,
+    "RESP": 4.53,
+    "PROB": 3.85,
+    "GROW": 3.23,
+    "STRE": 4.07,
+    "ADAP": 3.13
+  },
+  {
+    "soc_code": "29-1229.01",
+    "title": "Allergists and Immunologists",
+    "COMM": 3.53,
+    "RESP": 4.66,
+    "PROB": 3.76,
+    "GROW": 3.4,
+    "STRE": 4.62,
+    "ADAP": 3.32
+  },
+  {
+    "soc_code": "29-1229.03",
+    "title": "Urologists",
+    "COMM": 3.65,
+    "RESP": 4.92,
+    "PROB": 3.86,
+    "GROW": 3.05,
+    "STRE": 4.71,
+    "ADAP": 3.26
+  },
+  {
+    "soc_code": "29-1229.04",
+    "title": "Physical Medicine and Rehabilitation Physicians",
+    "COMM": 3.75,
+    "RESP": 4.74,
+    "PROB": 3.69,
+    "GROW": 3.16,
+    "STRE": 4.64,
+    "ADAP": 3.43
+  },
+  {
+    "soc_code": "29-1229.06",
+    "title": "Sports Medicine Physicians",
+    "COMM": 3.69,
+    "RESP": 4.64,
+    "PROB": 3.76,
+    "GROW": 3.35,
+    "STRE": 4.06,
+    "ADAP": 3.45
+  },
+  {
+    "soc_code": "29-1241.00",
+    "title": "Ophthalmologists, Except Pediatric",
+    "COMM": 3.67,
+    "RESP": 4.68,
+    "PROB": 3.86,
+    "GROW": 3.3,
+    "STRE": 4.54,
+    "ADAP": 3.42
+  },
+  {
+    "soc_code": "29-1292.00",
+    "title": "Dental Hygienists",
+    "COMM": 3.29,
+    "RESP": 4.49,
+    "PROB": 2.8,
+    "GROW": 2.51,
+    "STRE": 4.53,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "29-2011.00",
+    "title": "Medical and Clinical Laboratory Technologists",
+    "COMM": 3.12,
+    "RESP": 4.48,
+    "PROB": 3.43,
+    "GROW": 2.77,
+    "STRE": 4.12,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "29-2012.00",
+    "title": "Medical and Clinical Laboratory Technicians",
+    "COMM": 3.05,
+    "RESP": 4.52,
+    "PROB": 2.81,
+    "GROW": 2.58,
+    "STRE": 4.17,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "29-2031.00",
+    "title": "Cardiovascular Technologists and Technicians",
+    "COMM": 3.34,
+    "RESP": 4.35,
+    "PROB": 3.16,
+    "GROW": 2.64,
+    "STRE": 4.43,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "29-2032.00",
+    "title": "Diagnostic Medical Sonographers",
+    "COMM": 3.42,
+    "RESP": 4.63,
+    "PROB": 2.94,
+    "GROW": 2.69,
+    "STRE": 4.57,
+    "ADAP": 2.98
+  },
+  {
+    "soc_code": "29-2033.00",
+    "title": "Nuclear Medicine Technologists",
+    "COMM": 3.37,
+    "RESP": 4.37,
+    "PROB": 3.04,
+    "GROW": 2.56,
+    "STRE": 4.29,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "29-2034.00",
+    "title": "Radiologic Technologists and Technicians",
+    "COMM": 3.25,
+    "RESP": 4.38,
+    "PROB": 2.89,
+    "GROW": 2.39,
+    "STRE": 4.48,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "29-2051.00",
+    "title": "Dietetic Technicians",
+    "COMM": 3.19,
+    "RESP": 4.55,
+    "PROB": 2.78,
+    "GROW": 2.67,
+    "STRE": 4.63,
+    "ADAP": 2.96
+  },
+  {
+    "soc_code": "29-2052.00",
+    "title": "Pharmacy Technicians",
+    "COMM": 3.25,
+    "RESP": 4.37,
+    "PROB": 2.75,
+    "GROW": 2.57,
+    "STRE": 4.33,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "29-2053.00",
+    "title": "Psychiatric Technicians",
+    "COMM": 3.59,
+    "RESP": 4.45,
+    "PROB": 3.11,
+    "GROW": 2.65,
+    "STRE": 4.76,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "29-2055.00",
+    "title": "Surgical Technologists",
+    "COMM": 3.15,
+    "RESP": 4.41,
+    "PROB": 2.76,
+    "GROW": 2.59,
+    "STRE": 4.54,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "29-2056.00",
+    "title": "Veterinary Technologists and Technicians",
+    "COMM": 3.28,
+    "RESP": 4.4,
+    "PROB": 3.2,
+    "GROW": 2.6,
+    "STRE": 4.43,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "29-2061.00",
+    "title": "Licensed Practical and Licensed Vocational Nurses",
+    "COMM": 3.63,
+    "RESP": 4.4,
+    "PROB": 3.2,
+    "GROW": 2.76,
+    "STRE": 4.47,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "29-2092.00",
+    "title": "Hearing Aid Specialists",
+    "COMM": 3.25,
+    "RESP": 4.72,
+    "PROB": 2.79,
+    "GROW": 2.62,
+    "STRE": 4.4,
+    "ADAP": 3.07
+  },
+  {
+    "soc_code": "29-2099.08",
+    "title": "Patient Representatives",
+    "COMM": 3.67,
+    "RESP": 4.66,
+    "PROB": 2.99,
+    "GROW": 2.66,
+    "STRE": 4.83,
+    "ADAP": 3.52
+  },
+  {
+    "soc_code": "29-9091.00",
+    "title": "Athletic Trainers",
+    "COMM": 3.42,
+    "RESP": 4.63,
+    "PROB": 3.34,
+    "GROW": 3.12,
+    "STRE": 4.56,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "29-9093.00",
+    "title": "Surgical Assistants",
+    "COMM": 3.45,
+    "RESP": 4.56,
+    "PROB": 3.04,
+    "GROW": 2.64,
+    "STRE": 4.65,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "29-9099.01",
+    "title": "Midwives",
+    "COMM": 3.54,
+    "RESP": 4.71,
+    "PROB": 3.46,
+    "GROW": 2.91,
+    "STRE": 4.75,
+    "ADAP": 3.41
+  },
+  {
+    "soc_code": "31-1121.00",
+    "title": "Home Health Aides",
+    "COMM": 3.16,
+    "RESP": 4.32,
+    "PROB": 2.82,
+    "GROW": 2.57,
+    "STRE": 4.48,
+    "ADAP": 3.03
+  },
+  {
+    "soc_code": "31-1122.00",
+    "title": "Personal Care Aides",
+    "COMM": 2.99,
+    "RESP": 4.16,
+    "PROB": 2.64,
+    "GROW": 2.39,
+    "STRE": 4.26,
+    "ADAP": 3.01
+  },
+  {
+    "soc_code": "31-1131.00",
+    "title": "Nursing Assistants",
+    "COMM": 3.13,
+    "RESP": 4.41,
+    "PROB": 2.6,
+    "GROW": 2.18,
+    "STRE": 4.53,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "31-1132.00",
+    "title": "Orderlies",
+    "COMM": 2.79,
+    "RESP": 3.82,
+    "PROB": 2.25,
+    "GROW": 1.75,
+    "STRE": 4.25,
+    "ADAP": 2.49
+  },
+  {
+    "soc_code": "31-1133.00",
+    "title": "Psychiatric Aides",
+    "COMM": 3.22,
+    "RESP": 3.9,
+    "PROB": 2.94,
+    "GROW": 2.63,
+    "STRE": 4.18,
+    "ADAP": 3.15
+  },
+  {
+    "soc_code": "31-2011.00",
+    "title": "Occupational Therapy Assistants",
+    "COMM": 3.45,
+    "RESP": 4.59,
+    "PROB": 2.9,
+    "GROW": 2.79,
+    "STRE": 4.39,
+    "ADAP": 3.22
+  },
+  {
+    "soc_code": "31-2012.00",
+    "title": "Occupational Therapy Aides",
+    "COMM": 3.34,
+    "RESP": 4.3,
+    "PROB": 2.77,
+    "GROW": 2.57,
+    "STRE": 4.38,
+    "ADAP": 3.13
+  },
+  {
+    "soc_code": "31-2021.00",
+    "title": "Physical Therapist Assistants",
+    "COMM": 3.44,
+    "RESP": 4.41,
+    "PROB": 2.92,
+    "GROW": 2.65,
+    "STRE": 4.49,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "31-2022.00",
+    "title": "Physical Therapist Aides",
+    "COMM": 3.04,
+    "RESP": 4.32,
+    "PROB": 2.55,
+    "GROW": 2.46,
+    "STRE": 3.96,
+    "ADAP": 2.83
+  },
+  {
+    "soc_code": "31-9091.00",
+    "title": "Dental Assistants",
+    "COMM": 3.12,
+    "RESP": 4.41,
+    "PROB": 2.66,
+    "GROW": 2.41,
+    "STRE": 4.49,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "31-9092.00",
+    "title": "Medical Assistants",
+    "COMM": 3.45,
+    "RESP": 4.58,
+    "PROB": 2.94,
+    "GROW": 2.75,
+    "STRE": 4.36,
+    "ADAP": 3.13
+  },
+  {
+    "soc_code": "31-9093.00",
+    "title": "Medical Equipment Preparers",
+    "COMM": 3.03,
+    "RESP": 4.42,
+    "PROB": 2.64,
+    "GROW": 2.44,
+    "STRE": 4.3,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "31-9094.00",
+    "title": "Medical Transcriptionists",
+    "COMM": 2.84,
+    "RESP": 4.33,
+    "PROB": 2.51,
+    "GROW": 2.14,
+    "STRE": 3.45,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "31-9095.00",
+    "title": "Pharmacy Aides",
+    "COMM": 3.03,
+    "RESP": 3.96,
+    "PROB": 2.48,
+    "GROW": 2.19,
+    "STRE": 4.25,
+    "ADAP": 2.59
+  },
+  {
+    "soc_code": "31-9096.00",
+    "title": "Veterinary Assistants and Laboratory Animal Caretakers",
+    "COMM": 3.05,
+    "RESP": 4.5,
+    "PROB": 2.63,
+    "GROW": 2.16,
+    "STRE": 4.36,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "31-9099.01",
+    "title": "Speech-Language Pathology Assistants",
+    "COMM": 3.42,
+    "RESP": 4.66,
+    "PROB": 2.94,
+    "GROW": 2.71,
+    "STRE": 4.58,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "33-1011.00",
+    "title": "First-Line Supervisors of Correctional Officers",
+    "COMM": 3.64,
+    "RESP": 4.59,
+    "PROB": 3.27,
+    "GROW": 2.73,
+    "STRE": 4.74,
+    "ADAP": 3.22
+  },
+  {
+    "soc_code": "33-1012.00",
+    "title": "First-Line Supervisors of Police and Detectives",
+    "COMM": 3.59,
+    "RESP": 4.57,
+    "PROB": 3.4,
+    "GROW": 3.34,
+    "STRE": 4.8,
+    "ADAP": 3.42
+  },
+  {
+    "soc_code": "33-1021.00",
+    "title": "First-Line Supervisors of Firefighting and Prevention Workers",
+    "COMM": 3.39,
+    "RESP": 4.37,
+    "PROB": 3.19,
+    "GROW": 2.77,
+    "STRE": 4.43,
+    "ADAP": 3.17
+  },
+  {
+    "soc_code": "33-1091.00",
+    "title": "First-Line Supervisors of Security Workers",
+    "COMM": 3.37,
+    "RESP": 4.61,
+    "PROB": 3.26,
+    "GROW": 2.69,
+    "STRE": 4.74,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "33-2011.00",
+    "title": "Firefighters",
+    "COMM": 3.35,
+    "RESP": 4.49,
+    "PROB": 3.22,
+    "GROW": 2.73,
+    "STRE": 4.64,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "33-2021.00",
+    "title": "Fire Inspectors and Investigators",
+    "COMM": 3.27,
+    "RESP": 4.35,
+    "PROB": 3.18,
+    "GROW": 2.64,
+    "STRE": 4.0,
+    "ADAP": 2.98
+  },
+  {
+    "soc_code": "33-2022.00",
+    "title": "Forest Fire Inspectors and Prevention Specialists",
+    "COMM": 3.29,
+    "RESP": 4.25,
+    "PROB": 3.18,
+    "GROW": 2.67,
+    "STRE": 4.42,
+    "ADAP": 2.78
+  },
+  {
+    "soc_code": "33-3011.00",
+    "title": "Bailiffs",
+    "COMM": 2.99,
+    "RESP": 4.13,
+    "PROB": 2.69,
+    "GROW": 1.95,
+    "STRE": 4.42,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "33-3012.00",
+    "title": "Correctional Officers and Jailers",
+    "COMM": 3.34,
+    "RESP": 4.13,
+    "PROB": 3.12,
+    "GROW": 2.66,
+    "STRE": 4.32,
+    "ADAP": 3.07
+  },
+  {
+    "soc_code": "33-3021.00",
+    "title": "Detectives and Criminal Investigators",
+    "COMM": 3.59,
+    "RESP": 4.6,
+    "PROB": 3.53,
+    "GROW": 2.68,
+    "STRE": 4.63,
+    "ADAP": 3.15
+  },
+  {
+    "soc_code": "33-3021.02",
+    "title": "Police Identification and Records Officers",
+    "COMM": 3.2,
+    "RESP": 4.48,
+    "PROB": 3.13,
+    "GROW": 2.51,
+    "STRE": 4.12,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "33-3031.00",
+    "title": "Fish and Game Wardens",
+    "COMM": 3.22,
+    "RESP": 4.51,
+    "PROB": 3.28,
+    "GROW": 2.63,
+    "STRE": 4.51,
+    "ADAP": 3.07
+  },
+  {
+    "soc_code": "33-3041.00",
+    "title": "Parking Enforcement Workers",
+    "COMM": 2.83,
+    "RESP": 4.11,
+    "PROB": 2.52,
+    "GROW": 2.13,
+    "STRE": 4.45,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "33-3051.00",
+    "title": "Police and Sheriff's Patrol Officers",
+    "COMM": 3.48,
+    "RESP": 4.66,
+    "PROB": 3.36,
+    "GROW": 2.73,
+    "STRE": 4.74,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "33-3051.04",
+    "title": "Customs and Border Protection Officers",
+    "COMM": 3.36,
+    "RESP": 4.3,
+    "PROB": 3.26,
+    "GROW": 2.57,
+    "STRE": 4.42,
+    "ADAP": 3.0
+  },
+  {
+    "soc_code": "33-3052.00",
+    "title": "Transit and Railroad Police",
+    "COMM": 3.32,
+    "RESP": 4.47,
+    "PROB": 3.23,
+    "GROW": 2.65,
+    "STRE": 4.83,
+    "ADAP": 2.96
+  },
+  {
+    "soc_code": "33-9021.00",
+    "title": "Private Detectives and Investigators",
+    "COMM": 3.23,
+    "RESP": 4.62,
+    "PROB": 3.35,
+    "GROW": 2.45,
+    "STRE": 4.24,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "33-9031.00",
+    "title": "Gambling Surveillance Officers and Gambling Investigators",
+    "COMM": 3.13,
+    "RESP": 4.19,
+    "PROB": 3.08,
+    "GROW": 2.48,
+    "STRE": 4.18,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "33-9032.00",
+    "title": "Security Guards",
+    "COMM": 3.18,
+    "RESP": 4.52,
+    "PROB": 2.67,
+    "GROW": 2.27,
+    "STRE": 4.63,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "33-9091.00",
+    "title": "Crossing Guards and Flaggers",
+    "COMM": 2.75,
+    "RESP": 4.15,
+    "PROB": 2.36,
+    "GROW": 1.48,
+    "STRE": 4.2,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "33-9092.00",
+    "title": "Lifeguards, Ski Patrol, and Other Recreational Protective Service Workers",
+    "COMM": 2.99,
+    "RESP": 3.84,
+    "PROB": 2.74,
+    "GROW": 2.49,
+    "STRE": 4.15,
+    "ADAP": 2.78
+  },
+  {
+    "soc_code": "33-9099.02",
+    "title": "Retail Loss Prevention Specialists",
+    "COMM": 3.17,
+    "RESP": 4.56,
+    "PROB": 3.01,
+    "GROW": 2.56,
+    "STRE": 4.6,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "35-1012.00",
+    "title": "First-Line Supervisors of Food Preparation and Serving Workers",
+    "COMM": 3.47,
+    "RESP": 3.9,
+    "PROB": 2.81,
+    "GROW": 2.64,
+    "STRE": 4.17,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "35-2011.00",
+    "title": "Cooks, Fast Food",
+    "COMM": 2.57,
+    "RESP": 3.45,
+    "PROB": 2.14,
+    "GROW": 1.79,
+    "STRE": 3.47,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "35-2012.00",
+    "title": "Cooks, Institution and Cafeteria",
+    "COMM": 2.91,
+    "RESP": 4.34,
+    "PROB": 2.59,
+    "GROW": 2.41,
+    "STRE": 4.42,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "35-2014.00",
+    "title": "Cooks, Restaurant",
+    "COMM": 2.79,
+    "RESP": 4.02,
+    "PROB": 2.33,
+    "GROW": 2.06,
+    "STRE": 4.09,
+    "ADAP": 2.22
+  },
+  {
+    "soc_code": "35-2015.00",
+    "title": "Cooks, Short Order",
+    "COMM": 2.72,
+    "RESP": 4.04,
+    "PROB": 2.27,
+    "GROW": 1.88,
+    "STRE": 3.62,
+    "ADAP": 2.42
+  },
+  {
+    "soc_code": "35-2021.00",
+    "title": "Food Preparation Workers",
+    "COMM": 2.5,
+    "RESP": 3.79,
+    "PROB": 1.98,
+    "GROW": 1.69,
+    "STRE": 3.62,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "35-3011.00",
+    "title": "Bartenders",
+    "COMM": 3.09,
+    "RESP": 4.21,
+    "PROB": 2.57,
+    "GROW": 2.52,
+    "STRE": 4.3,
+    "ADAP": 2.9
+  },
+  {
+    "soc_code": "35-3023.00",
+    "title": "Fast Food and Counter Workers",
+    "COMM": 2.49,
+    "RESP": 3.71,
+    "PROB": 1.89,
+    "GROW": 1.62,
+    "STRE": 3.58,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "35-3023.01",
+    "title": "Baristas",
+    "COMM": 2.94,
+    "RESP": 3.5,
+    "PROB": 2.31,
+    "GROW": 2.08,
+    "STRE": 4.03,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "35-3031.00",
+    "title": "Waiters and Waitresses",
+    "COMM": 2.98,
+    "RESP": 3.9,
+    "PROB": 2.32,
+    "GROW": 1.88,
+    "STRE": 4.42,
+    "ADAP": 2.81
+  },
+  {
+    "soc_code": "35-3041.00",
+    "title": "Food Servers, Nonrestaurant",
+    "COMM": 2.84,
+    "RESP": 4.22,
+    "PROB": 2.18,
+    "GROW": 1.76,
+    "STRE": 4.48,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "35-9011.00",
+    "title": "Dining Room and Cafeteria Attendants and Bartender Helpers",
+    "COMM": 2.83,
+    "RESP": 4.05,
+    "PROB": 1.99,
+    "GROW": 1.77,
+    "STRE": 4.37,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "35-9021.00",
+    "title": "Dishwashers",
+    "COMM": 2.4,
+    "RESP": 3.71,
+    "PROB": 1.81,
+    "GROW": 1.51,
+    "STRE": 3.33,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "35-9031.00",
+    "title": "Hosts and Hostesses, Restaurant, Lounge, and Coffee Shop",
+    "COMM": 2.97,
+    "RESP": 3.84,
+    "PROB": 2.26,
+    "GROW": 1.87,
+    "STRE": 4.21,
+    "ADAP": 2.68
+  },
+  {
+    "soc_code": "37-1011.00",
+    "title": "First-Line Supervisors of Housekeeping and Janitorial Workers",
+    "COMM": 3.18,
+    "RESP": 4.35,
+    "PROB": 2.64,
+    "GROW": 2.55,
+    "STRE": 4.36,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "37-1012.00",
+    "title": "First-Line Supervisors of Landscaping, Lawn Service, and Groundskeeping Workers",
+    "COMM": 3.4,
+    "RESP": 4.09,
+    "PROB": 2.84,
+    "GROW": 2.63,
+    "STRE": 4.08,
+    "ADAP": 2.95
+  },
+  {
+    "soc_code": "37-2011.00",
+    "title": "Janitors and Cleaners, Except Maids and Housekeeping Cleaners",
+    "COMM": 2.5,
+    "RESP": 4.01,
+    "PROB": 2.19,
+    "GROW": 1.83,
+    "STRE": 3.58,
+    "ADAP": 2.22
+  },
+  {
+    "soc_code": "37-2012.00",
+    "title": "Maids and Housekeeping Cleaners",
+    "COMM": 2.63,
+    "RESP": 4.09,
+    "PROB": 2.06,
+    "GROW": 1.62,
+    "STRE": 4.19,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "37-2021.00",
+    "title": "Pest Control Workers",
+    "COMM": 2.99,
+    "RESP": 4.07,
+    "PROB": 2.87,
+    "GROW": 2.47,
+    "STRE": 3.83,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "37-3011.00",
+    "title": "Landscaping and Groundskeeping Workers",
+    "COMM": 2.55,
+    "RESP": 3.92,
+    "PROB": 2.2,
+    "GROW": 1.79,
+    "STRE": 3.8,
+    "ADAP": 2.13
+  },
+  {
+    "soc_code": "37-3012.00",
+    "title": "Pesticide Handlers, Sprayers, and Applicators, Vegetation",
+    "COMM": 2.83,
+    "RESP": 3.87,
+    "PROB": 2.6,
+    "GROW": 2.06,
+    "STRE": 3.63,
+    "ADAP": 2.37
+  },
+  {
+    "soc_code": "37-3013.00",
+    "title": "Tree Trimmers and Pruners",
+    "COMM": 2.83,
+    "RESP": 3.96,
+    "PROB": 2.73,
+    "GROW": 1.95,
+    "STRE": 3.96,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "39-1013.00",
+    "title": "First-Line Supervisors of Gambling Services Workers",
+    "COMM": 3.31,
+    "RESP": 4.33,
+    "PROB": 3.0,
+    "GROW": 2.46,
+    "STRE": 4.6,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "39-1022.00",
+    "title": "First-Line Supervisors of Personal Service Workers",
+    "COMM": 3.59,
+    "RESP": 4.74,
+    "PROB": 2.98,
+    "GROW": 2.65,
+    "STRE": 4.85,
+    "ADAP": 3.22
+  },
+  {
+    "soc_code": "39-2011.00",
+    "title": "Animal Trainers",
+    "COMM": 2.99,
+    "RESP": 4.25,
+    "PROB": 2.83,
+    "GROW": 2.94,
+    "STRE": 4.09,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "39-2021.00",
+    "title": "Animal Caretakers",
+    "COMM": 2.8,
+    "RESP": 4.35,
+    "PROB": 2.47,
+    "GROW": 1.83,
+    "STRE": 4.42,
+    "ADAP": 2.4
+  },
+  {
+    "soc_code": "39-3011.00",
+    "title": "Gambling Dealers",
+    "COMM": 3.04,
+    "RESP": 4.17,
+    "PROB": 2.42,
+    "GROW": 1.84,
+    "STRE": 4.38,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "39-3012.00",
+    "title": "Gambling and Sports Book Writers and Runners",
+    "COMM": 2.97,
+    "RESP": 3.91,
+    "PROB": 2.48,
+    "GROW": 2.04,
+    "STRE": 4.17,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "39-3021.00",
+    "title": "Motion Picture Projectionists",
+    "COMM": 2.66,
+    "RESP": 4.02,
+    "PROB": 2.4,
+    "GROW": 1.77,
+    "STRE": 3.71,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "39-3031.00",
+    "title": "Ushers, Lobby Attendants, and Ticket Takers",
+    "COMM": 2.91,
+    "RESP": 3.69,
+    "PROB": 2.26,
+    "GROW": 1.66,
+    "STRE": 3.97,
+    "ADAP": 2.78
+  },
+  {
+    "soc_code": "39-3091.00",
+    "title": "Amusement and Recreation Attendants",
+    "COMM": 2.82,
+    "RESP": 3.45,
+    "PROB": 2.28,
+    "GROW": 1.84,
+    "STRE": 3.68,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "39-3092.00",
+    "title": "Costume Attendants",
+    "COMM": 2.96,
+    "RESP": 3.9,
+    "PROB": 2.44,
+    "GROW": 1.79,
+    "STRE": 3.97,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "39-3093.00",
+    "title": "Locker Room, Coatroom, and Dressing Room Attendants",
+    "COMM": 2.97,
+    "RESP": 3.95,
+    "PROB": 2.18,
+    "GROW": 1.3,
+    "STRE": 4.12,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "39-4011.00",
+    "title": "Embalmers",
+    "COMM": 3.32,
+    "RESP": 4.55,
+    "PROB": 2.71,
+    "GROW": 2.31,
+    "STRE": 4.52,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "39-4021.00",
+    "title": "Funeral Attendants",
+    "COMM": 2.97,
+    "RESP": 4.24,
+    "PROB": 2.25,
+    "GROW": 1.6,
+    "STRE": 4.08,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "39-4031.00",
+    "title": "Morticians, Undertakers, and Funeral Arrangers",
+    "COMM": 3.5,
+    "RESP": 4.33,
+    "PROB": 2.78,
+    "GROW": 2.49,
+    "STRE": 4.12,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "39-5011.00",
+    "title": "Barbers",
+    "COMM": 2.91,
+    "RESP": 4.07,
+    "PROB": 2.34,
+    "GROW": 1.83,
+    "STRE": 4.11,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "39-5012.00",
+    "title": "Hairdressers, Hairstylists, and Cosmetologists",
+    "COMM": 3.11,
+    "RESP": 4.17,
+    "PROB": 2.67,
+    "GROW": 2.6,
+    "STRE": 4.12,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "39-5092.00",
+    "title": "Manicurists and Pedicurists",
+    "COMM": 2.57,
+    "RESP": 3.39,
+    "PROB": 2.09,
+    "GROW": 1.96,
+    "STRE": 3.67,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "39-5093.00",
+    "title": "Shampooers",
+    "COMM": 2.81,
+    "RESP": 3.98,
+    "PROB": 2.06,
+    "GROW": 1.73,
+    "STRE": 4.12,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "39-5094.00",
+    "title": "Skincare Specialists",
+    "COMM": 3.14,
+    "RESP": 4.24,
+    "PROB": 2.63,
+    "GROW": 2.51,
+    "STRE": 4.37,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "39-6011.00",
+    "title": "Baggage Porters and Bellhops",
+    "COMM": 2.93,
+    "RESP": 4.05,
+    "PROB": 2.32,
+    "GROW": 1.86,
+    "STRE": 3.86,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "39-7011.00",
+    "title": "Tour Guides and Escorts",
+    "COMM": 3.14,
+    "RESP": 4.05,
+    "PROB": 2.38,
+    "GROW": 2.02,
+    "STRE": 4.06,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "39-7012.00",
+    "title": "Travel Guides",
+    "COMM": 3.5,
+    "RESP": 4.07,
+    "PROB": 2.78,
+    "GROW": 2.54,
+    "STRE": 4.27,
+    "ADAP": 3.35
+  },
+  {
+    "soc_code": "39-9011.00",
+    "title": "Childcare Workers",
+    "COMM": 3.05,
+    "RESP": 4.18,
+    "PROB": 2.68,
+    "GROW": 2.59,
+    "STRE": 4.54,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "39-9032.00",
+    "title": "Recreation Workers",
+    "COMM": 3.68,
+    "RESP": 4.46,
+    "PROB": 2.77,
+    "GROW": 2.67,
+    "STRE": 4.55,
+    "ADAP": 3.32
+  },
+  {
+    "soc_code": "39-9041.00",
+    "title": "Residential Advisors",
+    "COMM": 3.51,
+    "RESP": 4.31,
+    "PROB": 2.93,
+    "GROW": 2.49,
+    "STRE": 4.47,
+    "ADAP": 3.21
+  },
+  {
+    "soc_code": "41-1011.00",
+    "title": "First-Line Supervisors of Retail Sales Workers",
+    "COMM": 3.51,
+    "RESP": 4.52,
+    "PROB": 2.85,
+    "GROW": 2.73,
+    "STRE": 4.76,
+    "ADAP": 3.3
+  },
+  {
+    "soc_code": "41-1012.00",
+    "title": "First-Line Supervisors of Non-Retail Sales Workers",
+    "COMM": 3.46,
+    "RESP": 4.3,
+    "PROB": 3.14,
+    "GROW": 2.98,
+    "STRE": 3.92,
+    "ADAP": 3.17
+  },
+  {
+    "soc_code": "41-2011.00",
+    "title": "Cashiers",
+    "COMM": 2.81,
+    "RESP": 3.84,
+    "PROB": 2.21,
+    "GROW": 1.69,
+    "STRE": 3.94,
+    "ADAP": 2.49
+  },
+  {
+    "soc_code": "41-2012.00",
+    "title": "Gambling Change Persons and Booth Cashiers",
+    "COMM": 2.9,
+    "RESP": 4.45,
+    "PROB": 2.47,
+    "GROW": 1.76,
+    "STRE": 4.53,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "41-2021.00",
+    "title": "Counter and Rental Clerks",
+    "COMM": 3.04,
+    "RESP": 4.2,
+    "PROB": 2.45,
+    "GROW": 1.98,
+    "STRE": 4.33,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "41-2022.00",
+    "title": "Parts Salespersons",
+    "COMM": 3.27,
+    "RESP": 4.31,
+    "PROB": 2.64,
+    "GROW": 2.25,
+    "STRE": 4.1,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "41-2031.00",
+    "title": "Retail Salespersons",
+    "COMM": 3.2,
+    "RESP": 4.04,
+    "PROB": 2.53,
+    "GROW": 2.32,
+    "STRE": 3.94,
+    "ADAP": 3.28
+  },
+  {
+    "soc_code": "41-3011.00",
+    "title": "Advertising Sales Agents",
+    "COMM": 3.35,
+    "RESP": 4.45,
+    "PROB": 2.77,
+    "GROW": 2.49,
+    "STRE": 4.08,
+    "ADAP": 3.42
+  },
+  {
+    "soc_code": "41-3021.00",
+    "title": "Insurance Sales Agents",
+    "COMM": 3.27,
+    "RESP": 4.45,
+    "PROB": 2.87,
+    "GROW": 2.53,
+    "STRE": 4.21,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "41-3031.00",
+    "title": "Securities, Commodities, and Financial Services Sales Agents",
+    "COMM": 3.1,
+    "RESP": 4.41,
+    "PROB": 3.12,
+    "GROW": 2.71,
+    "STRE": 4.19,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "41-3041.00",
+    "title": "Travel Agents",
+    "COMM": 3.05,
+    "RESP": 3.92,
+    "PROB": 2.74,
+    "GROW": 2.36,
+    "STRE": 3.44,
+    "ADAP": 3.19
+  },
+  {
+    "soc_code": "41-4011.00",
+    "title": "Sales Representatives, Wholesale and Manufacturing, Technical and Scientific Products",
+    "COMM": 3.46,
+    "RESP": 4.28,
+    "PROB": 2.9,
+    "GROW": 2.77,
+    "STRE": 4.16,
+    "ADAP": 3.4
+  },
+  {
+    "soc_code": "41-4011.07",
+    "title": "Solar Sales Representatives and Assessors",
+    "COMM": 3.18,
+    "RESP": 4.33,
+    "PROB": 2.84,
+    "GROW": 2.49,
+    "STRE": 3.46,
+    "ADAP": 3.19
+  },
+  {
+    "soc_code": "41-4012.00",
+    "title": "Sales Representatives, Wholesale and Manufacturing, Except Technical and Scientific Products",
+    "COMM": 3.38,
+    "RESP": 4.19,
+    "PROB": 2.76,
+    "GROW": 2.3,
+    "STRE": 4.21,
+    "ADAP": 3.21
+  },
+  {
+    "soc_code": "41-9011.00",
+    "title": "Demonstrators and Product Promoters",
+    "COMM": 3.39,
+    "RESP": 4.2,
+    "PROB": 2.54,
+    "GROW": 2.43,
+    "STRE": 3.76,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "41-9012.00",
+    "title": "Models",
+    "COMM": 2.55,
+    "RESP": 3.73,
+    "PROB": 1.79,
+    "GROW": 1.06,
+    "STRE": 3.49,
+    "ADAP": 2.12
+  },
+  {
+    "soc_code": "41-9021.00",
+    "title": "Real Estate Brokers",
+    "COMM": 3.34,
+    "RESP": 4.53,
+    "PROB": 2.95,
+    "GROW": 2.56,
+    "STRE": 4.49,
+    "ADAP": 3.07
+  },
+  {
+    "soc_code": "41-9031.00",
+    "title": "Sales Engineers",
+    "COMM": 3.58,
+    "RESP": 4.71,
+    "PROB": 3.39,
+    "GROW": 3.03,
+    "STRE": 4.27,
+    "ADAP": 3.52
+  },
+  {
+    "soc_code": "41-9041.00",
+    "title": "Telemarketers",
+    "COMM": 3.12,
+    "RESP": 4.0,
+    "PROB": 2.29,
+    "GROW": 1.3,
+    "STRE": 3.96,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "43-1011.00",
+    "title": "First-Line Supervisors of Office and Administrative Support Workers",
+    "COMM": 3.57,
+    "RESP": 4.29,
+    "PROB": 3.07,
+    "GROW": 3.18,
+    "STRE": 4.35,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "43-2011.00",
+    "title": "Switchboard Operators, Including Answering Service",
+    "COMM": 3.13,
+    "RESP": 4.19,
+    "PROB": 2.32,
+    "GROW": 1.86,
+    "STRE": 4.37,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "43-2021.00",
+    "title": "Telephone Operators",
+    "COMM": 3.2,
+    "RESP": 4.41,
+    "PROB": 2.41,
+    "GROW": 1.78,
+    "STRE": 4.47,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "43-3011.00",
+    "title": "Bill and Account Collectors",
+    "COMM": 3.08,
+    "RESP": 4.31,
+    "PROB": 2.57,
+    "GROW": 2.12,
+    "STRE": 4.12,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "43-3021.00",
+    "title": "Billing and Posting Clerks",
+    "COMM": 2.93,
+    "RESP": 4.55,
+    "PROB": 2.64,
+    "GROW": 2.22,
+    "STRE": 4.15,
+    "ADAP": 2.4
+  },
+  {
+    "soc_code": "43-3031.00",
+    "title": "Bookkeeping, Accounting, and Auditing Clerks",
+    "COMM": 2.99,
+    "RESP": 4.33,
+    "PROB": 2.68,
+    "GROW": 2.08,
+    "STRE": 3.84,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "43-3041.00",
+    "title": "Gambling Cage Workers",
+    "COMM": 3.03,
+    "RESP": 4.39,
+    "PROB": 2.56,
+    "GROW": 1.97,
+    "STRE": 4.66,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "43-3051.00",
+    "title": "Payroll and Timekeeping Clerks",
+    "COMM": 2.99,
+    "RESP": 4.61,
+    "PROB": 2.66,
+    "GROW": 2.23,
+    "STRE": 4.39,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "43-3061.00",
+    "title": "Procurement Clerks",
+    "COMM": 3.35,
+    "RESP": 4.45,
+    "PROB": 2.93,
+    "GROW": 2.48,
+    "STRE": 4.14,
+    "ADAP": 2.85
+  },
+  {
+    "soc_code": "43-3071.00",
+    "title": "Tellers",
+    "COMM": 3.05,
+    "RESP": 4.41,
+    "PROB": 2.7,
+    "GROW": 2.26,
+    "STRE": 4.39,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "43-4011.00",
+    "title": "Brokerage Clerks",
+    "COMM": 3.05,
+    "RESP": 4.53,
+    "PROB": 2.78,
+    "GROW": 2.43,
+    "STRE": 4.28,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "43-4021.00",
+    "title": "Correspondence Clerks",
+    "COMM": 3.04,
+    "RESP": 4.43,
+    "PROB": 2.71,
+    "GROW": 2.26,
+    "STRE": 3.71,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "43-4031.00",
+    "title": "Court, Municipal, and License Clerks",
+    "COMM": 3.3,
+    "RESP": 4.55,
+    "PROB": 2.69,
+    "GROW": 2.22,
+    "STRE": 4.5,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "43-4051.00",
+    "title": "Customer Service Representatives",
+    "COMM": 3.36,
+    "RESP": 4.55,
+    "PROB": 2.8,
+    "GROW": 2.4,
+    "STRE": 4.62,
+    "ADAP": 3.04
+  },
+  {
+    "soc_code": "43-4061.00",
+    "title": "Eligibility Interviewers, Government Programs",
+    "COMM": 3.44,
+    "RESP": 4.37,
+    "PROB": 2.96,
+    "GROW": 2.39,
+    "STRE": 4.39,
+    "ADAP": 3.14
+  },
+  {
+    "soc_code": "43-4071.00",
+    "title": "File Clerks",
+    "COMM": 2.95,
+    "RESP": 4.2,
+    "PROB": 2.52,
+    "GROW": 2.13,
+    "STRE": 4.09,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "43-4081.00",
+    "title": "Hotel, Motel, and Resort Desk Clerks",
+    "COMM": 3.15,
+    "RESP": 4.43,
+    "PROB": 2.59,
+    "GROW": 2.21,
+    "STRE": 4.5,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "43-4111.00",
+    "title": "Interviewers, Except Eligibility and Loan",
+    "COMM": 3.46,
+    "RESP": 4.49,
+    "PROB": 2.74,
+    "GROW": 2.49,
+    "STRE": 4.62,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "43-4121.00",
+    "title": "Library Assistants, Clerical",
+    "COMM": 2.94,
+    "RESP": 3.94,
+    "PROB": 2.42,
+    "GROW": 1.94,
+    "STRE": 3.83,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "43-4131.00",
+    "title": "Loan Interviewers and Clerks",
+    "COMM": 3.28,
+    "RESP": 4.41,
+    "PROB": 3.08,
+    "GROW": 2.62,
+    "STRE": 4.08,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "43-4141.00",
+    "title": "New Accounts Clerks",
+    "COMM": 3.37,
+    "RESP": 4.36,
+    "PROB": 2.62,
+    "GROW": 2.16,
+    "STRE": 4.21,
+    "ADAP": 2.93
+  },
+  {
+    "soc_code": "43-4151.00",
+    "title": "Order Clerks",
+    "COMM": 3.44,
+    "RESP": 4.47,
+    "PROB": 2.66,
+    "GROW": 2.26,
+    "STRE": 4.72,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "43-4161.00",
+    "title": "Human Resources Assistants, Except Payroll and Timekeeping",
+    "COMM": 3.29,
+    "RESP": 4.09,
+    "PROB": 2.73,
+    "GROW": 2.45,
+    "STRE": 3.75,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "43-4171.00",
+    "title": "Receptionists and Information Clerks",
+    "COMM": 3.16,
+    "RESP": 4.23,
+    "PROB": 2.41,
+    "GROW": 1.93,
+    "STRE": 4.36,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "43-4181.00",
+    "title": "Reservation and Transportation Ticket Agents and Travel Clerks",
+    "COMM": 3.45,
+    "RESP": 4.42,
+    "PROB": 2.69,
+    "GROW": 2.41,
+    "STRE": 4.7,
+    "ADAP": 3.17
+  },
+  {
+    "soc_code": "43-5011.00",
+    "title": "Cargo and Freight Agents",
+    "COMM": 2.84,
+    "RESP": 4.25,
+    "PROB": 2.64,
+    "GROW": 2.01,
+    "STRE": 3.99,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "43-5011.01",
+    "title": "Freight Forwarders",
+    "COMM": 3.21,
+    "RESP": 4.54,
+    "PROB": 2.83,
+    "GROW": 2.54,
+    "STRE": 4.57,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "43-5021.00",
+    "title": "Couriers and Messengers",
+    "COMM": 2.58,
+    "RESP": 4.19,
+    "PROB": 2.38,
+    "GROW": 1.92,
+    "STRE": 3.12,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "43-5031.00",
+    "title": "Public Safety Telecommunicators",
+    "COMM": 3.6,
+    "RESP": 4.45,
+    "PROB": 3.1,
+    "GROW": 2.52,
+    "STRE": 4.86,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "43-5032.00",
+    "title": "Dispatchers, Except Police, Fire, and Ambulance",
+    "COMM": 3.51,
+    "RESP": 4.35,
+    "PROB": 2.86,
+    "GROW": 2.44,
+    "STRE": 4.4,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "43-5041.00",
+    "title": "Meter Readers, Utilities",
+    "COMM": 2.71,
+    "RESP": 4.08,
+    "PROB": 2.43,
+    "GROW": 2.11,
+    "STRE": 3.97,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "43-5051.00",
+    "title": "Postal Service Clerks",
+    "COMM": 2.88,
+    "RESP": 4.42,
+    "PROB": 2.53,
+    "GROW": 1.9,
+    "STRE": 4.14,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "43-5052.00",
+    "title": "Postal Service Mail Carriers",
+    "COMM": 2.67,
+    "RESP": 4.27,
+    "PROB": 2.31,
+    "GROW": 1.49,
+    "STRE": 4.01,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "43-5053.00",
+    "title": "Postal Service Mail Sorters, Processors, and Processing Machine Operators",
+    "COMM": 2.74,
+    "RESP": 3.83,
+    "PROB": 2.31,
+    "GROW": 1.8,
+    "STRE": 3.8,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "43-5061.00",
+    "title": "Production, Planning, and Expediting Clerks",
+    "COMM": 3.15,
+    "RESP": 4.52,
+    "PROB": 2.88,
+    "GROW": 2.15,
+    "STRE": 4.4,
+    "ADAP": 2.61
+  },
+  {
+    "soc_code": "43-5071.00",
+    "title": "Shipping, Receiving, and Inventory Clerks",
+    "COMM": 2.86,
+    "RESP": 3.96,
+    "PROB": 2.51,
+    "GROW": 1.91,
+    "STRE": 3.56,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "43-5111.00",
+    "title": "Weighers, Measurers, Checkers, and Samplers, Recordkeeping",
+    "COMM": 2.88,
+    "RESP": 4.24,
+    "PROB": 2.63,
+    "GROW": 2.31,
+    "STRE": 3.7,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "43-6011.00",
+    "title": "Executive Secretaries and Executive Administrative Assistants",
+    "COMM": 3.42,
+    "RESP": 4.39,
+    "PROB": 2.69,
+    "GROW": 2.59,
+    "STRE": 3.97,
+    "ADAP": 3.0
+  },
+  {
+    "soc_code": "43-6012.00",
+    "title": "Legal Secretaries and Administrative Assistants",
+    "COMM": 3.27,
+    "RESP": 4.37,
+    "PROB": 2.53,
+    "GROW": 2.14,
+    "STRE": 4.27,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "43-6013.00",
+    "title": "Medical Secretaries and Administrative Assistants",
+    "COMM": 3.27,
+    "RESP": 4.41,
+    "PROB": 2.59,
+    "GROW": 1.87,
+    "STRE": 4.3,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "43-6014.00",
+    "title": "Secretaries and Administrative Assistants, Except Legal, Medical, and Executive",
+    "COMM": 3.33,
+    "RESP": 4.29,
+    "PROB": 2.57,
+    "GROW": 2.12,
+    "STRE": 4.05,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "43-9021.00",
+    "title": "Data Entry Keyers",
+    "COMM": 2.99,
+    "RESP": 4.78,
+    "PROB": 2.44,
+    "GROW": 1.97,
+    "STRE": 4.6,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "43-9022.00",
+    "title": "Word Processors and Typists",
+    "COMM": 2.81,
+    "RESP": 4.3,
+    "PROB": 2.24,
+    "GROW": 1.66,
+    "STRE": 3.99,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "43-9031.00",
+    "title": "Desktop Publishers",
+    "COMM": 3.16,
+    "RESP": 4.56,
+    "PROB": 2.94,
+    "GROW": 2.54,
+    "STRE": 4.12,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "43-9041.00",
+    "title": "Insurance Claims and Policy Processing Clerks",
+    "COMM": 3.02,
+    "RESP": 4.37,
+    "PROB": 2.61,
+    "GROW": 2.23,
+    "STRE": 4.03,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "43-9051.00",
+    "title": "Mail Clerks and Mail Machine Operators, Except Postal Service",
+    "COMM": 2.78,
+    "RESP": 4.23,
+    "PROB": 2.36,
+    "GROW": 1.83,
+    "STRE": 4.28,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "43-9061.00",
+    "title": "Office Clerks, General",
+    "COMM": 3.11,
+    "RESP": 4.28,
+    "PROB": 2.46,
+    "GROW": 2.11,
+    "STRE": 4.15,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "43-9071.00",
+    "title": "Office Machine Operators, Except Computer",
+    "COMM": 2.7,
+    "RESP": 3.81,
+    "PROB": 2.37,
+    "GROW": 2.01,
+    "STRE": 3.46,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "43-9081.00",
+    "title": "Proofreaders and Copy Markers",
+    "COMM": 2.65,
+    "RESP": 4.45,
+    "PROB": 2.45,
+    "GROW": 1.8,
+    "STRE": 3.4,
+    "ADAP": 1.78
+  },
+  {
+    "soc_code": "43-9111.00",
+    "title": "Statistical Assistants",
+    "COMM": 3.02,
+    "RESP": 4.31,
+    "PROB": 3.06,
+    "GROW": 2.83,
+    "STRE": 3.66,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "45-1011.00",
+    "title": "First-Line Supervisors of Farming, Fishing, and Forestry Workers",
+    "COMM": 3.23,
+    "RESP": 4.17,
+    "PROB": 3.0,
+    "GROW": 2.77,
+    "STRE": 3.94,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "45-2011.00",
+    "title": "Agricultural Inspectors",
+    "COMM": 3.15,
+    "RESP": 4.26,
+    "PROB": 3.21,
+    "GROW": 2.67,
+    "STRE": 4.04,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "45-2021.00",
+    "title": "Animal Breeders",
+    "COMM": 2.63,
+    "RESP": 3.98,
+    "PROB": 2.64,
+    "GROW": 2.13,
+    "STRE": 3.51,
+    "ADAP": 2.24
+  },
+  {
+    "soc_code": "45-2041.00",
+    "title": "Graders and Sorters, Agricultural Products",
+    "COMM": 2.42,
+    "RESP": 3.4,
+    "PROB": 1.93,
+    "GROW": 1.36,
+    "STRE": 3.08,
+    "ADAP": 1.68
+  },
+  {
+    "soc_code": "45-2091.00",
+    "title": "Agricultural Equipment Operators",
+    "COMM": 2.64,
+    "RESP": 3.73,
+    "PROB": 2.45,
+    "GROW": 1.51,
+    "STRE": 3.36,
+    "ADAP": 2.05
+  },
+  {
+    "soc_code": "45-2092.00",
+    "title": "Farmworkers and Laborers, Crop, Nursery, and Greenhouse",
+    "COMM": 2.6,
+    "RESP": 3.85,
+    "PROB": 2.42,
+    "GROW": 2.1,
+    "STRE": 3.28,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "45-2093.00",
+    "title": "Farmworkers, Farm, Ranch, and Aquacultural Animals",
+    "COMM": 2.65,
+    "RESP": 3.89,
+    "PROB": 2.7,
+    "GROW": 2.05,
+    "STRE": 3.26,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "45-4011.00",
+    "title": "Forest and Conservation Workers",
+    "COMM": 2.95,
+    "RESP": 4.12,
+    "PROB": 2.62,
+    "GROW": 2.34,
+    "STRE": 4.05,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "45-4021.00",
+    "title": "Fallers",
+    "COMM": 2.5,
+    "RESP": 3.82,
+    "PROB": 2.49,
+    "GROW": 1.43,
+    "STRE": 3.65,
+    "ADAP": 2.04
+  },
+  {
+    "soc_code": "45-4022.00",
+    "title": "Logging Equipment Operators",
+    "COMM": 2.55,
+    "RESP": 3.86,
+    "PROB": 2.42,
+    "GROW": 1.86,
+    "STRE": 3.88,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "45-4023.00",
+    "title": "Log Graders and Scalers",
+    "COMM": 2.84,
+    "RESP": 4.24,
+    "PROB": 2.68,
+    "GROW": 2.21,
+    "STRE": 3.79,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "47-1011.00",
+    "title": "First-Line Supervisors of Construction Trades and Extraction Workers",
+    "COMM": 3.44,
+    "RESP": 4.58,
+    "PROB": 2.91,
+    "GROW": 2.62,
+    "STRE": 4.44,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "47-1011.03",
+    "title": "Solar Energy Installation Managers",
+    "COMM": 3.35,
+    "RESP": 4.2,
+    "PROB": 2.99,
+    "GROW": 2.62,
+    "STRE": 3.99,
+    "ADAP": 3.0
+  },
+  {
+    "soc_code": "47-2011.00",
+    "title": "Boilermakers",
+    "COMM": 2.82,
+    "RESP": 4.41,
+    "PROB": 2.88,
+    "GROW": 2.46,
+    "STRE": 4.18,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "47-2021.00",
+    "title": "Brickmasons and Blockmasons",
+    "COMM": 2.76,
+    "RESP": 4.28,
+    "PROB": 2.49,
+    "GROW": 2.01,
+    "STRE": 3.57,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "47-2022.00",
+    "title": "Stonemasons",
+    "COMM": 2.83,
+    "RESP": 3.85,
+    "PROB": 2.71,
+    "GROW": 2.3,
+    "STRE": 3.1,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "47-2031.00",
+    "title": "Carpenters",
+    "COMM": 3.08,
+    "RESP": 4.29,
+    "PROB": 2.91,
+    "GROW": 2.38,
+    "STRE": 4.01,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "47-2041.00",
+    "title": "Carpet Installers",
+    "COMM": 2.75,
+    "RESP": 4.25,
+    "PROB": 2.53,
+    "GROW": 2.1,
+    "STRE": 3.82,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "47-2042.00",
+    "title": "Floor Layers, Except Carpet, Wood, and Hard Tiles",
+    "COMM": 2.69,
+    "RESP": 4.0,
+    "PROB": 2.46,
+    "GROW": 2.0,
+    "STRE": 3.33,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "47-2043.00",
+    "title": "Floor Sanders and Finishers",
+    "COMM": 2.58,
+    "RESP": 4.19,
+    "PROB": 2.24,
+    "GROW": 1.92,
+    "STRE": 3.72,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "47-2044.00",
+    "title": "Tile and Stone Setters",
+    "COMM": 2.74,
+    "RESP": 4.11,
+    "PROB": 2.59,
+    "GROW": 1.93,
+    "STRE": 3.91,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "47-2051.00",
+    "title": "Cement Masons and Concrete Finishers",
+    "COMM": 2.69,
+    "RESP": 3.97,
+    "PROB": 2.46,
+    "GROW": 1.79,
+    "STRE": 3.8,
+    "ADAP": 2.0
+  },
+  {
+    "soc_code": "47-2053.00",
+    "title": "Terrazzo Workers and Finishers",
+    "COMM": 2.59,
+    "RESP": 3.94,
+    "PROB": 2.24,
+    "GROW": 1.88,
+    "STRE": 3.75,
+    "ADAP": 2.08
+  },
+  {
+    "soc_code": "47-2061.00",
+    "title": "Construction Laborers",
+    "COMM": 2.91,
+    "RESP": 3.77,
+    "PROB": 2.43,
+    "GROW": 1.8,
+    "STRE": 3.29,
+    "ADAP": 2.06
+  },
+  {
+    "soc_code": "47-2071.00",
+    "title": "Paving, Surfacing, and Tamping Equipment Operators",
+    "COMM": 2.69,
+    "RESP": 3.83,
+    "PROB": 2.46,
+    "GROW": 1.97,
+    "STRE": 3.71,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "47-2072.00",
+    "title": "Pile Driver Operators",
+    "COMM": 2.72,
+    "RESP": 3.96,
+    "PROB": 2.52,
+    "GROW": 1.62,
+    "STRE": 3.94,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "47-2073.00",
+    "title": "Operating Engineers and Other Construction Equipment Operators",
+    "COMM": 2.79,
+    "RESP": 4.37,
+    "PROB": 2.55,
+    "GROW": 2.1,
+    "STRE": 4.06,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "47-2081.00",
+    "title": "Drywall and Ceiling Tile Installers",
+    "COMM": 2.65,
+    "RESP": 3.86,
+    "PROB": 2.42,
+    "GROW": 1.72,
+    "STRE": 3.67,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "47-2082.00",
+    "title": "Tapers",
+    "COMM": 2.46,
+    "RESP": 3.52,
+    "PROB": 2.18,
+    "GROW": 1.81,
+    "STRE": 2.97,
+    "ADAP": 2.01
+  },
+  {
+    "soc_code": "47-2111.00",
+    "title": "Electricians",
+    "COMM": 2.98,
+    "RESP": 4.14,
+    "PROB": 3.15,
+    "GROW": 2.72,
+    "STRE": 3.9,
+    "ADAP": 2.81
+  },
+  {
+    "soc_code": "47-2121.00",
+    "title": "Glaziers",
+    "COMM": 2.68,
+    "RESP": 3.96,
+    "PROB": 2.54,
+    "GROW": 1.85,
+    "STRE": 3.68,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "47-2131.00",
+    "title": "Insulation Workers, Floor, Ceiling, and Wall",
+    "COMM": 2.66,
+    "RESP": 3.87,
+    "PROB": 2.26,
+    "GROW": 1.92,
+    "STRE": 3.56,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "47-2132.00",
+    "title": "Insulation Workers, Mechanical",
+    "COMM": 2.84,
+    "RESP": 4.24,
+    "PROB": 2.46,
+    "GROW": 2.06,
+    "STRE": 4.17,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "47-2141.00",
+    "title": "Painters, Construction and Maintenance",
+    "COMM": 2.7,
+    "RESP": 4.31,
+    "PROB": 2.26,
+    "GROW": 1.6,
+    "STRE": 4.08,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "47-2142.00",
+    "title": "Paperhangers",
+    "COMM": 2.71,
+    "RESP": 4.39,
+    "PROB": 2.33,
+    "GROW": 1.62,
+    "STRE": 4.15,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "47-2151.00",
+    "title": "Pipelayers",
+    "COMM": 2.8,
+    "RESP": 4.08,
+    "PROB": 2.36,
+    "GROW": 1.77,
+    "STRE": 3.75,
+    "ADAP": 2.1
+  },
+  {
+    "soc_code": "47-2152.00",
+    "title": "Plumbers, Pipefitters, and Steamfitters",
+    "COMM": 2.77,
+    "RESP": 4.21,
+    "PROB": 2.9,
+    "GROW": 2.14,
+    "STRE": 3.93,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "47-2152.04",
+    "title": "Solar Thermal Installers and Technicians",
+    "COMM": 3.08,
+    "RESP": 4.54,
+    "PROB": 2.71,
+    "GROW": 2.45,
+    "STRE": 4.19,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "47-2161.00",
+    "title": "Plasterers and Stucco Masons",
+    "COMM": 2.6,
+    "RESP": 3.8,
+    "PROB": 2.36,
+    "GROW": 2.08,
+    "STRE": 3.58,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "47-2171.00",
+    "title": "Reinforcing Iron and Rebar Workers",
+    "COMM": 2.64,
+    "RESP": 4.3,
+    "PROB": 2.41,
+    "GROW": 1.85,
+    "STRE": 4.0,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "47-2181.00",
+    "title": "Roofers",
+    "COMM": 2.93,
+    "RESP": 4.31,
+    "PROB": 2.61,
+    "GROW": 1.97,
+    "STRE": 3.85,
+    "ADAP": 2.28
+  },
+  {
+    "soc_code": "47-2211.00",
+    "title": "Sheet Metal Workers",
+    "COMM": 2.85,
+    "RESP": 4.16,
+    "PROB": 2.57,
+    "GROW": 2.19,
+    "STRE": 3.55,
+    "ADAP": 2.11
+  },
+  {
+    "soc_code": "47-2221.00",
+    "title": "Structural Iron and Steel Workers",
+    "COMM": 2.98,
+    "RESP": 4.05,
+    "PROB": 2.66,
+    "GROW": 2.54,
+    "STRE": 3.94,
+    "ADAP": 2.42
+  },
+  {
+    "soc_code": "47-2231.00",
+    "title": "Solar Photovoltaic Installers",
+    "COMM": 2.96,
+    "RESP": 4.35,
+    "PROB": 2.75,
+    "GROW": 2.3,
+    "STRE": 4.28,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "47-3011.00",
+    "title": "Helpers--Brickmasons, Blockmasons, Stonemasons, and Tile and Marble Setters",
+    "COMM": 2.64,
+    "RESP": 3.78,
+    "PROB": 2.23,
+    "GROW": 1.91,
+    "STRE": 3.55,
+    "ADAP": 2.01
+  },
+  {
+    "soc_code": "47-3012.00",
+    "title": "Helpers--Carpenters",
+    "COMM": 2.79,
+    "RESP": 3.99,
+    "PROB": 2.44,
+    "GROW": 1.99,
+    "STRE": 3.67,
+    "ADAP": 2.24
+  },
+  {
+    "soc_code": "47-3013.00",
+    "title": "Helpers--Electricians",
+    "COMM": 2.78,
+    "RESP": 4.13,
+    "PROB": 2.53,
+    "GROW": 2.06,
+    "STRE": 3.8,
+    "ADAP": 2.11
+  },
+  {
+    "soc_code": "47-3014.00",
+    "title": "Helpers--Painters, Paperhangers, Plasterers, and Stucco Masons",
+    "COMM": 2.61,
+    "RESP": 3.71,
+    "PROB": 2.13,
+    "GROW": 1.89,
+    "STRE": 3.56,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "47-3015.00",
+    "title": "Helpers--Pipelayers, Plumbers, Pipefitters, and Steamfitters",
+    "COMM": 2.51,
+    "RESP": 3.84,
+    "PROB": 2.31,
+    "GROW": 1.83,
+    "STRE": 3.8,
+    "ADAP": 2.09
+  },
+  {
+    "soc_code": "47-3016.00",
+    "title": "Helpers--Roofers",
+    "COMM": 2.78,
+    "RESP": 4.12,
+    "PROB": 2.34,
+    "GROW": 2.0,
+    "STRE": 3.87,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "47-4021.00",
+    "title": "Elevator and Escalator Installers and Repairers",
+    "COMM": 2.8,
+    "RESP": 4.31,
+    "PROB": 2.94,
+    "GROW": 2.31,
+    "STRE": 4.01,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "47-4031.00",
+    "title": "Fence Erectors",
+    "COMM": 2.68,
+    "RESP": 3.97,
+    "PROB": 2.41,
+    "GROW": 1.82,
+    "STRE": 3.86,
+    "ADAP": 2.15
+  },
+  {
+    "soc_code": "47-4041.00",
+    "title": "Hazardous Materials Removal Workers",
+    "COMM": 3.0,
+    "RESP": 4.2,
+    "PROB": 2.99,
+    "GROW": 2.31,
+    "STRE": 4.22,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "47-4051.00",
+    "title": "Highway Maintenance Workers",
+    "COMM": 2.81,
+    "RESP": 3.67,
+    "PROB": 2.54,
+    "GROW": 1.79,
+    "STRE": 3.39,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "47-4061.00",
+    "title": "Rail-Track Laying and Maintenance Equipment Operators",
+    "COMM": 2.73,
+    "RESP": 3.8,
+    "PROB": 2.59,
+    "GROW": 2.11,
+    "STRE": 3.5,
+    "ADAP": 2.12
+  },
+  {
+    "soc_code": "47-4071.00",
+    "title": "Septic Tank Servicers and Sewer Pipe Cleaners",
+    "COMM": 2.66,
+    "RESP": 3.75,
+    "PROB": 2.63,
+    "GROW": 2.24,
+    "STRE": 3.54,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "47-4091.00",
+    "title": "Segmental Pavers",
+    "COMM": 3.01,
+    "RESP": 4.0,
+    "PROB": 2.61,
+    "GROW": 2.12,
+    "STRE": 3.93,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "47-5011.00",
+    "title": "Derrick Operators, Oil and Gas",
+    "COMM": 2.99,
+    "RESP": 3.88,
+    "PROB": 2.78,
+    "GROW": 2.36,
+    "STRE": 3.88,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "47-5012.00",
+    "title": "Rotary Drill Operators, Oil and Gas",
+    "COMM": 2.97,
+    "RESP": 4.18,
+    "PROB": 2.93,
+    "GROW": 2.56,
+    "STRE": 4.03,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "47-5013.00",
+    "title": "Service Unit Operators, Oil and Gas",
+    "COMM": 2.89,
+    "RESP": 3.96,
+    "PROB": 2.88,
+    "GROW": 2.43,
+    "STRE": 3.96,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "47-5022.00",
+    "title": "Excavating and Loading Machine and Dragline Operators, Surface Mining",
+    "COMM": 2.76,
+    "RESP": 3.82,
+    "PROB": 2.57,
+    "GROW": 2.26,
+    "STRE": 3.58,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "47-5023.00",
+    "title": "Earth Drillers, Except Oil and Gas",
+    "COMM": 2.74,
+    "RESP": 3.98,
+    "PROB": 2.7,
+    "GROW": 2.01,
+    "STRE": 3.8,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "47-5041.00",
+    "title": "Continuous Mining Machine Operators",
+    "COMM": 2.7,
+    "RESP": 3.92,
+    "PROB": 2.76,
+    "GROW": 2.18,
+    "STRE": 3.83,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "47-5043.00",
+    "title": "Roof Bolters, Mining",
+    "COMM": 2.81,
+    "RESP": 3.97,
+    "PROB": 2.65,
+    "GROW": 2.24,
+    "STRE": 3.7,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "47-5044.00",
+    "title": "Loading and Moving Machine Operators, Underground Mining",
+    "COMM": 2.72,
+    "RESP": 3.71,
+    "PROB": 2.45,
+    "GROW": 1.69,
+    "STRE": 3.65,
+    "ADAP": 2.24
+  },
+  {
+    "soc_code": "47-5051.00",
+    "title": "Rock Splitters, Quarry",
+    "COMM": 2.65,
+    "RESP": 3.69,
+    "PROB": 2.37,
+    "GROW": 1.77,
+    "STRE": 3.25,
+    "ADAP": 2.04
+  },
+  {
+    "soc_code": "47-5071.00",
+    "title": "Roustabouts, Oil and Gas",
+    "COMM": 2.51,
+    "RESP": 3.53,
+    "PROB": 2.38,
+    "GROW": 1.92,
+    "STRE": 3.46,
+    "ADAP": 1.97
+  },
+  {
+    "soc_code": "47-5081.00",
+    "title": "Helpers--Extraction Workers",
+    "COMM": 2.71,
+    "RESP": 3.77,
+    "PROB": 2.59,
+    "GROW": 2.24,
+    "STRE": 3.43,
+    "ADAP": 2.21
+  },
+  {
+    "soc_code": "49-1011.00",
+    "title": "First-Line Supervisors of Mechanics, Installers, and Repairers",
+    "COMM": 3.34,
+    "RESP": 4.11,
+    "PROB": 3.2,
+    "GROW": 2.93,
+    "STRE": 4.14,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "49-2011.00",
+    "title": "Computer, Automated Teller, and Office Machine Repairers",
+    "COMM": 2.68,
+    "RESP": 4.1,
+    "PROB": 2.78,
+    "GROW": 2.41,
+    "STRE": 3.64,
+    "ADAP": 2.61
+  },
+  {
+    "soc_code": "49-2021.00",
+    "title": "Radio, Cellular, and Tower Equipment Installers and Repairers",
+    "COMM": 2.94,
+    "RESP": 4.31,
+    "PROB": 2.8,
+    "GROW": 2.37,
+    "STRE": 4.02,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "49-2022.00",
+    "title": "Telecommunications Equipment Installers and Repairers, Except Line Installers",
+    "COMM": 3.03,
+    "RESP": 4.18,
+    "PROB": 2.98,
+    "GROW": 2.55,
+    "STRE": 3.94,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "49-2091.00",
+    "title": "Avionics Technicians",
+    "COMM": 2.96,
+    "RESP": 4.39,
+    "PROB": 3.16,
+    "GROW": 2.43,
+    "STRE": 3.96,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "49-2092.00",
+    "title": "Electric Motor, Power Tool, and Related Repairers",
+    "COMM": 2.83,
+    "RESP": 4.28,
+    "PROB": 2.92,
+    "GROW": 2.46,
+    "STRE": 4.04,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "49-2093.00",
+    "title": "Electrical and Electronics Installers and Repairers, Transportation Equipment",
+    "COMM": 3.01,
+    "RESP": 4.5,
+    "PROB": 2.76,
+    "GROW": 1.92,
+    "STRE": 4.22,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "49-2094.00",
+    "title": "Electrical and Electronics Repairers, Commercial and Industrial Equipment",
+    "COMM": 2.89,
+    "RESP": 4.16,
+    "PROB": 3.14,
+    "GROW": 2.54,
+    "STRE": 3.81,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "49-2095.00",
+    "title": "Electrical and Electronics Repairers, Powerhouse, Substation, and Relay",
+    "COMM": 2.96,
+    "RESP": 4.42,
+    "PROB": 2.8,
+    "GROW": 2.22,
+    "STRE": 4.14,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "49-2096.00",
+    "title": "Electronic Equipment Installers and Repairers, Motor Vehicles",
+    "COMM": 2.83,
+    "RESP": 4.35,
+    "PROB": 2.84,
+    "GROW": 2.14,
+    "STRE": 3.84,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "49-2097.00",
+    "title": "Audiovisual Equipment Installers and Repairers",
+    "COMM": 2.81,
+    "RESP": 4.11,
+    "PROB": 2.75,
+    "GROW": 2.4,
+    "STRE": 3.44,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "49-2098.00",
+    "title": "Security and Fire Alarm Systems Installers",
+    "COMM": 2.98,
+    "RESP": 4.51,
+    "PROB": 2.83,
+    "GROW": 2.28,
+    "STRE": 4.23,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "49-3011.00",
+    "title": "Aircraft Mechanics and Service Technicians",
+    "COMM": 2.94,
+    "RESP": 4.47,
+    "PROB": 3.45,
+    "GROW": 2.54,
+    "STRE": 4.1,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "49-3021.00",
+    "title": "Automotive Body and Related Repairers",
+    "COMM": 2.74,
+    "RESP": 4.39,
+    "PROB": 2.57,
+    "GROW": 2.06,
+    "STRE": 3.63,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "49-3022.00",
+    "title": "Automotive Glass Installers and Repairers",
+    "COMM": 2.68,
+    "RESP": 4.14,
+    "PROB": 2.42,
+    "GROW": 2.05,
+    "STRE": 3.87,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "49-3023.00",
+    "title": "Automotive Service Technicians and Mechanics",
+    "COMM": 2.65,
+    "RESP": 4.0,
+    "PROB": 3.04,
+    "GROW": 2.28,
+    "STRE": 3.55,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "49-3031.00",
+    "title": "Bus and Truck Mechanics and Diesel Engine Specialists",
+    "COMM": 2.78,
+    "RESP": 4.05,
+    "PROB": 2.83,
+    "GROW": 2.36,
+    "STRE": 3.77,
+    "ADAP": 2.24
+  },
+  {
+    "soc_code": "49-3041.00",
+    "title": "Farm Equipment Mechanics and Service Technicians",
+    "COMM": 2.73,
+    "RESP": 4.45,
+    "PROB": 3.0,
+    "GROW": 2.49,
+    "STRE": 4.27,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "49-3042.00",
+    "title": "Mobile Heavy Equipment Mechanics, Except Engines",
+    "COMM": 2.74,
+    "RESP": 4.18,
+    "PROB": 2.92,
+    "GROW": 2.43,
+    "STRE": 3.7,
+    "ADAP": 2.47
+  },
+  {
+    "soc_code": "49-3043.00",
+    "title": "Rail Car Repairers",
+    "COMM": 2.61,
+    "RESP": 3.61,
+    "PROB": 2.65,
+    "GROW": 2.24,
+    "STRE": 3.42,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "49-3051.00",
+    "title": "Motorboat Mechanics and Service Technicians",
+    "COMM": 2.63,
+    "RESP": 4.27,
+    "PROB": 2.94,
+    "GROW": 1.85,
+    "STRE": 3.55,
+    "ADAP": 2.22
+  },
+  {
+    "soc_code": "49-3052.00",
+    "title": "Motorcycle Mechanics",
+    "COMM": 2.84,
+    "RESP": 4.67,
+    "PROB": 2.87,
+    "GROW": 2.39,
+    "STRE": 4.13,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "49-3053.00",
+    "title": "Outdoor Power Equipment and Other Small Engine Mechanics",
+    "COMM": 2.63,
+    "RESP": 3.96,
+    "PROB": 2.65,
+    "GROW": 2.18,
+    "STRE": 3.55,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "49-3091.00",
+    "title": "Bicycle Repairers",
+    "COMM": 3.08,
+    "RESP": 4.24,
+    "PROB": 2.69,
+    "GROW": 2.28,
+    "STRE": 4.36,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "49-3092.00",
+    "title": "Recreational Vehicle Service Technicians",
+    "COMM": 2.74,
+    "RESP": 4.32,
+    "PROB": 2.75,
+    "GROW": 2.14,
+    "STRE": 3.65,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "49-3093.00",
+    "title": "Tire Repairers and Changers",
+    "COMM": 2.53,
+    "RESP": 4.15,
+    "PROB": 2.38,
+    "GROW": 1.85,
+    "STRE": 3.97,
+    "ADAP": 2.4
+  },
+  {
+    "soc_code": "49-9011.00",
+    "title": "Mechanical Door Repairers",
+    "COMM": 2.88,
+    "RESP": 4.03,
+    "PROB": 2.67,
+    "GROW": 2.19,
+    "STRE": 3.56,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "49-9012.00",
+    "title": "Control and Valve Installers and Repairers, Except Mechanical Door",
+    "COMM": 2.81,
+    "RESP": 3.91,
+    "PROB": 2.76,
+    "GROW": 2.31,
+    "STRE": 3.48,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "49-9021.00",
+    "title": "Heating, Air Conditioning, and Refrigeration Mechanics and Installers",
+    "COMM": 2.89,
+    "RESP": 4.46,
+    "PROB": 3.08,
+    "GROW": 2.52,
+    "STRE": 4.0,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "49-9031.00",
+    "title": "Home Appliance Repairers",
+    "COMM": 2.85,
+    "RESP": 4.34,
+    "PROB": 2.77,
+    "GROW": 2.03,
+    "STRE": 3.9,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "49-9041.00",
+    "title": "Industrial Machinery Mechanics",
+    "COMM": 2.82,
+    "RESP": 4.22,
+    "PROB": 2.81,
+    "GROW": 2.51,
+    "STRE": 3.72,
+    "ADAP": 2.23
+  },
+  {
+    "soc_code": "49-9043.00",
+    "title": "Maintenance Workers, Machinery",
+    "COMM": 2.77,
+    "RESP": 4.22,
+    "PROB": 2.61,
+    "GROW": 1.93,
+    "STRE": 3.91,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "49-9045.00",
+    "title": "Refractory Materials Repairers, Except Brickmasons",
+    "COMM": 2.64,
+    "RESP": 3.91,
+    "PROB": 2.45,
+    "GROW": 1.91,
+    "STRE": 3.76,
+    "ADAP": 2.11
+  },
+  {
+    "soc_code": "49-9051.00",
+    "title": "Electrical Power-Line Installers and Repairers",
+    "COMM": 2.96,
+    "RESP": 4.28,
+    "PROB": 2.9,
+    "GROW": 2.46,
+    "STRE": 4.16,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "49-9052.00",
+    "title": "Telecommunications Line Installers and Repairers",
+    "COMM": 2.9,
+    "RESP": 4.32,
+    "PROB": 2.65,
+    "GROW": 2.08,
+    "STRE": 4.31,
+    "ADAP": 2.51
+  },
+  {
+    "soc_code": "49-9061.00",
+    "title": "Camera and Photographic Equipment Repairers",
+    "COMM": 2.52,
+    "RESP": 3.98,
+    "PROB": 2.79,
+    "GROW": 2.36,
+    "STRE": 3.7,
+    "ADAP": 2.21
+  },
+  {
+    "soc_code": "49-9062.00",
+    "title": "Medical Equipment Repairers",
+    "COMM": 2.69,
+    "RESP": 4.35,
+    "PROB": 2.85,
+    "GROW": 2.43,
+    "STRE": 3.84,
+    "ADAP": 2.61
+  },
+  {
+    "soc_code": "49-9064.00",
+    "title": "Watch and Clock Repairers",
+    "COMM": 2.56,
+    "RESP": 4.25,
+    "PROB": 2.57,
+    "GROW": 1.75,
+    "STRE": 3.8,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "49-9071.00",
+    "title": "Maintenance and Repair Workers, General",
+    "COMM": 2.82,
+    "RESP": 4.01,
+    "PROB": 2.78,
+    "GROW": 2.32,
+    "STRE": 3.91,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "49-9081.00",
+    "title": "Wind Turbine Service Technicians",
+    "COMM": 2.93,
+    "RESP": 4.07,
+    "PROB": 2.96,
+    "GROW": 2.62,
+    "STRE": 4.01,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "49-9091.00",
+    "title": "Coin, Vending, and Amusement Machine Servicers and Repairers",
+    "COMM": 2.63,
+    "RESP": 3.98,
+    "PROB": 2.55,
+    "GROW": 1.82,
+    "STRE": 4.38,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "49-9092.00",
+    "title": "Commercial Divers",
+    "COMM": 3.2,
+    "RESP": 4.48,
+    "PROB": 3.08,
+    "GROW": 2.56,
+    "STRE": 4.35,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "49-9095.00",
+    "title": "Manufactured Building and Mobile Home Installers",
+    "COMM": 3.09,
+    "RESP": 4.19,
+    "PROB": 2.94,
+    "GROW": 2.78,
+    "STRE": 4.1,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "49-9096.00",
+    "title": "Riggers",
+    "COMM": 2.89,
+    "RESP": 4.23,
+    "PROB": 2.68,
+    "GROW": 1.66,
+    "STRE": 3.84,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "49-9097.00",
+    "title": "Signal and Track Switch Repairers",
+    "COMM": 2.6,
+    "RESP": 3.82,
+    "PROB": 2.94,
+    "GROW": 2.4,
+    "STRE": 3.88,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "49-9098.00",
+    "title": "Helpers--Installation, Maintenance, and Repair Workers",
+    "COMM": 2.75,
+    "RESP": 3.94,
+    "PROB": 2.37,
+    "GROW": 2.1,
+    "STRE": 3.58,
+    "ADAP": 2.13
+  },
+  {
+    "soc_code": "49-9099.01",
+    "title": "Geothermal Technicians",
+    "COMM": 2.85,
+    "RESP": 4.37,
+    "PROB": 2.86,
+    "GROW": 2.25,
+    "STRE": 3.92,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "51-1011.00",
+    "title": "First-Line Supervisors of Production and Operating Workers",
+    "COMM": 3.48,
+    "RESP": 4.32,
+    "PROB": 3.15,
+    "GROW": 2.67,
+    "STRE": 4.24,
+    "ADAP": 3.0
+  },
+  {
+    "soc_code": "51-2011.00",
+    "title": "Aircraft Structure, Surfaces, Rigging, and Systems Assemblers",
+    "COMM": 2.89,
+    "RESP": 4.51,
+    "PROB": 2.72,
+    "GROW": 2.42,
+    "STRE": 3.77,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "51-2021.00",
+    "title": "Coil Winders, Tapers, and Finishers",
+    "COMM": 2.78,
+    "RESP": 4.14,
+    "PROB": 2.35,
+    "GROW": 1.73,
+    "STRE": 3.93,
+    "ADAP": 1.97
+  },
+  {
+    "soc_code": "51-2022.00",
+    "title": "Electrical and Electronic Equipment Assemblers",
+    "COMM": 2.72,
+    "RESP": 3.82,
+    "PROB": 2.52,
+    "GROW": 2.03,
+    "STRE": 3.25,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "51-2023.00",
+    "title": "Electromechanical Equipment Assemblers",
+    "COMM": 2.54,
+    "RESP": 4.03,
+    "PROB": 2.5,
+    "GROW": 1.73,
+    "STRE": 3.27,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "51-2031.00",
+    "title": "Engine and Other Machine Assemblers",
+    "COMM": 2.78,
+    "RESP": 4.12,
+    "PROB": 2.52,
+    "GROW": 1.85,
+    "STRE": 3.66,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "51-2041.00",
+    "title": "Structural Metal Fabricators and Fitters",
+    "COMM": 2.69,
+    "RESP": 3.94,
+    "PROB": 2.36,
+    "GROW": 1.47,
+    "STRE": 3.72,
+    "ADAP": 2.13
+  },
+  {
+    "soc_code": "51-2051.00",
+    "title": "Fiberglass Laminators and Fabricators",
+    "COMM": 2.73,
+    "RESP": 4.15,
+    "PROB": 2.58,
+    "GROW": 2.36,
+    "STRE": 3.95,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "51-2061.00",
+    "title": "Timing Device Assemblers and Adjusters",
+    "COMM": 2.42,
+    "RESP": 4.12,
+    "PROB": 2.52,
+    "GROW": 1.82,
+    "STRE": 3.28,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "51-2092.00",
+    "title": "Team Assemblers",
+    "COMM": 2.9,
+    "RESP": 3.98,
+    "PROB": 2.52,
+    "GROW": 1.91,
+    "STRE": 4.03,
+    "ADAP": 2.41
+  },
+  {
+    "soc_code": "51-3011.00",
+    "title": "Bakers",
+    "COMM": 2.83,
+    "RESP": 4.08,
+    "PROB": 2.38,
+    "GROW": 2.21,
+    "STRE": 3.81,
+    "ADAP": 2.22
+  },
+  {
+    "soc_code": "51-3021.00",
+    "title": "Butchers and Meat Cutters",
+    "COMM": 2.89,
+    "RESP": 4.06,
+    "PROB": 2.46,
+    "GROW": 1.92,
+    "STRE": 3.91,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "51-3022.00",
+    "title": "Meat, Poultry, and Fish Cutters and Trimmers",
+    "COMM": 2.67,
+    "RESP": 4.12,
+    "PROB": 2.3,
+    "GROW": 1.96,
+    "STRE": 3.62,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "51-3023.00",
+    "title": "Slaughterers and Meat Packers",
+    "COMM": 2.31,
+    "RESP": 4.21,
+    "PROB": 1.95,
+    "GROW": 1.49,
+    "STRE": 4.04,
+    "ADAP": 1.93
+  },
+  {
+    "soc_code": "51-3091.00",
+    "title": "Food and Tobacco Roasting, Baking, and Drying Machine Operators and Tenders",
+    "COMM": 2.79,
+    "RESP": 3.8,
+    "PROB": 2.54,
+    "GROW": 2.16,
+    "STRE": 3.67,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "51-3092.00",
+    "title": "Food Batchmakers",
+    "COMM": 2.86,
+    "RESP": 4.11,
+    "PROB": 2.51,
+    "GROW": 1.95,
+    "STRE": 4.08,
+    "ADAP": 2.24
+  },
+  {
+    "soc_code": "51-3093.00",
+    "title": "Food Cooking Machine Operators and Tenders",
+    "COMM": 2.62,
+    "RESP": 3.91,
+    "PROB": 2.48,
+    "GROW": 1.97,
+    "STRE": 3.86,
+    "ADAP": 2.08
+  },
+  {
+    "soc_code": "51-4021.00",
+    "title": "Extruding and Drawing Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.71,
+    "RESP": 3.91,
+    "PROB": 2.53,
+    "GROW": 2.0,
+    "STRE": 3.79,
+    "ADAP": 2.21
+  },
+  {
+    "soc_code": "51-4022.00",
+    "title": "Forging Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.76,
+    "RESP": 4.04,
+    "PROB": 2.52,
+    "GROW": 1.97,
+    "STRE": 3.83,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "51-4023.00",
+    "title": "Rolling Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.81,
+    "RESP": 4.18,
+    "PROB": 2.7,
+    "GROW": 2.5,
+    "STRE": 3.91,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "51-4031.00",
+    "title": "Cutting, Punching, and Press Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.51,
+    "RESP": 3.75,
+    "PROB": 2.51,
+    "GROW": 1.92,
+    "STRE": 3.34,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "51-4032.00",
+    "title": "Drilling and Boring Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.63,
+    "RESP": 4.46,
+    "PROB": 2.58,
+    "GROW": 1.97,
+    "STRE": 3.96,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "51-4033.00",
+    "title": "Grinding, Lapping, Polishing, and Buffing Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.58,
+    "RESP": 3.77,
+    "PROB": 2.6,
+    "GROW": 1.98,
+    "STRE": 3.45,
+    "ADAP": 2.04
+  },
+  {
+    "soc_code": "51-4034.00",
+    "title": "Lathe and Turning Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.63,
+    "RESP": 3.91,
+    "PROB": 2.45,
+    "GROW": 1.69,
+    "STRE": 3.78,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "51-4035.00",
+    "title": "Milling and Planing Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.63,
+    "RESP": 4.13,
+    "PROB": 2.55,
+    "GROW": 1.99,
+    "STRE": 3.96,
+    "ADAP": 2.01
+  },
+  {
+    "soc_code": "51-4041.00",
+    "title": "Machinists",
+    "COMM": 2.75,
+    "RESP": 4.07,
+    "PROB": 2.67,
+    "GROW": 2.16,
+    "STRE": 3.69,
+    "ADAP": 2.29
+  },
+  {
+    "soc_code": "51-4051.00",
+    "title": "Metal-Refining Furnace Operators and Tenders",
+    "COMM": 2.69,
+    "RESP": 3.88,
+    "PROB": 2.63,
+    "GROW": 2.02,
+    "STRE": 3.71,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "51-4052.00",
+    "title": "Pourers and Casters, Metal",
+    "COMM": 2.66,
+    "RESP": 3.91,
+    "PROB": 2.4,
+    "GROW": 1.84,
+    "STRE": 3.66,
+    "ADAP": 2.04
+  },
+  {
+    "soc_code": "51-4061.00",
+    "title": "Model Makers, Metal and Plastic",
+    "COMM": 2.39,
+    "RESP": 4.02,
+    "PROB": 2.64,
+    "GROW": 1.95,
+    "STRE": 3.21,
+    "ADAP": 1.75
+  },
+  {
+    "soc_code": "51-4062.00",
+    "title": "Patternmakers, Metal and Plastic",
+    "COMM": 2.68,
+    "RESP": 4.08,
+    "PROB": 2.59,
+    "GROW": 1.94,
+    "STRE": 3.88,
+    "ADAP": 2.06
+  },
+  {
+    "soc_code": "51-4071.00",
+    "title": "Foundry Mold and Coremakers",
+    "COMM": 2.45,
+    "RESP": 4.12,
+    "PROB": 2.24,
+    "GROW": 1.74,
+    "STRE": 4.0,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "51-4072.00",
+    "title": "Molding, Coremaking, and Casting Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.58,
+    "RESP": 3.96,
+    "PROB": 2.47,
+    "GROW": 2.09,
+    "STRE": 3.66,
+    "ADAP": 2.09
+  },
+  {
+    "soc_code": "51-4081.00",
+    "title": "Multiple Machine Tool Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.8,
+    "RESP": 4.42,
+    "PROB": 2.65,
+    "GROW": 2.32,
+    "STRE": 4.15,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "51-4111.00",
+    "title": "Tool and Die Makers",
+    "COMM": 2.76,
+    "RESP": 4.29,
+    "PROB": 2.67,
+    "GROW": 2.22,
+    "STRE": 4.05,
+    "ADAP": 1.91
+  },
+  {
+    "soc_code": "51-4121.00",
+    "title": "Welders, Cutters, Solderers, and Brazers",
+    "COMM": 2.4,
+    "RESP": 3.93,
+    "PROB": 2.44,
+    "GROW": 1.73,
+    "STRE": 3.58,
+    "ADAP": 1.92
+  },
+  {
+    "soc_code": "51-4122.00",
+    "title": "Welding, Soldering, and Brazing Machine Setters, Operators, and Tenders",
+    "COMM": 2.61,
+    "RESP": 3.87,
+    "PROB": 2.57,
+    "GROW": 1.85,
+    "STRE": 3.6,
+    "ADAP": 2.01
+  },
+  {
+    "soc_code": "51-4191.00",
+    "title": "Heat Treating Equipment Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.74,
+    "RESP": 3.94,
+    "PROB": 2.57,
+    "GROW": 2.3,
+    "STRE": 3.63,
+    "ADAP": 2.11
+  },
+  {
+    "soc_code": "51-4192.00",
+    "title": "Layout Workers, Metal and Plastic",
+    "COMM": 2.68,
+    "RESP": 4.2,
+    "PROB": 2.67,
+    "GROW": 2.04,
+    "STRE": 3.6,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "51-4193.00",
+    "title": "Plating Machine Setters, Operators, and Tenders, Metal and Plastic",
+    "COMM": 2.85,
+    "RESP": 4.09,
+    "PROB": 2.49,
+    "GROW": 1.85,
+    "STRE": 3.8,
+    "ADAP": 2.23
+  },
+  {
+    "soc_code": "51-4194.00",
+    "title": "Tool Grinders, Filers, and Sharpeners",
+    "COMM": 2.42,
+    "RESP": 4.09,
+    "PROB": 2.56,
+    "GROW": 2.21,
+    "STRE": 3.46,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "51-5111.00",
+    "title": "Prepress Technicians and Workers",
+    "COMM": 2.82,
+    "RESP": 4.14,
+    "PROB": 2.63,
+    "GROW": 2.25,
+    "STRE": 3.95,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "51-5112.00",
+    "title": "Printing Press Operators",
+    "COMM": 2.74,
+    "RESP": 4.02,
+    "PROB": 2.65,
+    "GROW": 2.14,
+    "STRE": 3.51,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "51-5113.00",
+    "title": "Print Binding and Finishing Workers",
+    "COMM": 2.69,
+    "RESP": 4.12,
+    "PROB": 2.66,
+    "GROW": 2.19,
+    "STRE": 3.87,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "51-6011.00",
+    "title": "Laundry and Dry-Cleaning Workers",
+    "COMM": 2.58,
+    "RESP": 3.7,
+    "PROB": 2.25,
+    "GROW": 1.97,
+    "STRE": 3.59,
+    "ADAP": 2.28
+  },
+  {
+    "soc_code": "51-6021.00",
+    "title": "Pressers, Textile, Garment, and Related Materials",
+    "COMM": 2.27,
+    "RESP": 4.37,
+    "PROB": 1.97,
+    "GROW": 1.41,
+    "STRE": 4.02,
+    "ADAP": 1.81
+  },
+  {
+    "soc_code": "51-6031.00",
+    "title": "Sewing Machine Operators",
+    "COMM": 2.27,
+    "RESP": 3.91,
+    "PROB": 2.29,
+    "GROW": 1.75,
+    "STRE": 3.67,
+    "ADAP": 1.83
+  },
+  {
+    "soc_code": "51-6041.00",
+    "title": "Shoe and Leather Workers and Repairers",
+    "COMM": 2.57,
+    "RESP": 3.44,
+    "PROB": 2.38,
+    "GROW": 1.56,
+    "STRE": 3.2,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "51-6042.00",
+    "title": "Shoe Machine Operators and Tenders",
+    "COMM": 2.65,
+    "RESP": 4.36,
+    "PROB": 2.37,
+    "GROW": 1.64,
+    "STRE": 4.39,
+    "ADAP": 2.09
+  },
+  {
+    "soc_code": "51-6051.00",
+    "title": "Sewers, Hand",
+    "COMM": 2.2,
+    "RESP": 3.94,
+    "PROB": 2.12,
+    "GROW": 1.81,
+    "STRE": 3.17,
+    "ADAP": 1.84
+  },
+  {
+    "soc_code": "51-6052.00",
+    "title": "Tailors, Dressmakers, and Custom Sewers",
+    "COMM": 2.8,
+    "RESP": 3.83,
+    "PROB": 2.38,
+    "GROW": 1.94,
+    "STRE": 3.87,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "51-6061.00",
+    "title": "Textile Bleaching and Dyeing Machine Operators and Tenders",
+    "COMM": 2.47,
+    "RESP": 3.77,
+    "PROB": 2.42,
+    "GROW": 1.77,
+    "STRE": 3.14,
+    "ADAP": 1.97
+  },
+  {
+    "soc_code": "51-6062.00",
+    "title": "Textile Cutting Machine Setters, Operators, and Tenders",
+    "COMM": 2.68,
+    "RESP": 4.05,
+    "PROB": 2.46,
+    "GROW": 1.84,
+    "STRE": 3.76,
+    "ADAP": 1.95
+  },
+  {
+    "soc_code": "51-6063.00",
+    "title": "Textile Knitting and Weaving Machine Setters, Operators, and Tenders",
+    "COMM": 2.5,
+    "RESP": 4.25,
+    "PROB": 2.3,
+    "GROW": 1.61,
+    "STRE": 4.09,
+    "ADAP": 1.93
+  },
+  {
+    "soc_code": "51-6064.00",
+    "title": "Textile Winding, Twisting, and Drawing Out Machine Setters, Operators, and Tenders",
+    "COMM": 2.56,
+    "RESP": 3.79,
+    "PROB": 2.35,
+    "GROW": 1.93,
+    "STRE": 3.91,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "51-6091.00",
+    "title": "Extruding and Forming Machine Setters, Operators, and Tenders, Synthetic and Glass Fibers",
+    "COMM": 2.78,
+    "RESP": 3.92,
+    "PROB": 2.66,
+    "GROW": 2.1,
+    "STRE": 3.88,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "51-6092.00",
+    "title": "Fabric and Apparel Patternmakers",
+    "COMM": 2.89,
+    "RESP": 4.54,
+    "PROB": 2.87,
+    "GROW": 2.6,
+    "STRE": 4.14,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "51-6093.00",
+    "title": "Upholsterers",
+    "COMM": 2.78,
+    "RESP": 3.87,
+    "PROB": 2.63,
+    "GROW": 2.44,
+    "STRE": 3.35,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "51-7011.00",
+    "title": "Cabinetmakers and Bench Carpenters",
+    "COMM": 2.56,
+    "RESP": 4.1,
+    "PROB": 2.55,
+    "GROW": 2.14,
+    "STRE": 3.79,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "51-7021.00",
+    "title": "Furniture Finishers",
+    "COMM": 2.77,
+    "RESP": 4.06,
+    "PROB": 2.58,
+    "GROW": 2.21,
+    "STRE": 3.29,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "51-7031.00",
+    "title": "Model Makers, Wood",
+    "COMM": 2.66,
+    "RESP": 4.47,
+    "PROB": 2.58,
+    "GROW": 2.05,
+    "STRE": 3.75,
+    "ADAP": 2.28
+  },
+  {
+    "soc_code": "51-7032.00",
+    "title": "Patternmakers, Wood",
+    "COMM": 2.63,
+    "RESP": 4.18,
+    "PROB": 2.6,
+    "GROW": 2.02,
+    "STRE": 3.7,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "51-7041.00",
+    "title": "Sawing Machine Setters, Operators, and Tenders, Wood",
+    "COMM": 2.52,
+    "RESP": 4.17,
+    "PROB": 2.45,
+    "GROW": 1.72,
+    "STRE": 4.17,
+    "ADAP": 1.97
+  },
+  {
+    "soc_code": "51-7042.00",
+    "title": "Woodworking Machine Setters, Operators, and Tenders, Except Sawing",
+    "COMM": 2.4,
+    "RESP": 3.94,
+    "PROB": 2.48,
+    "GROW": 1.94,
+    "STRE": 3.42,
+    "ADAP": 1.91
+  },
+  {
+    "soc_code": "51-8011.00",
+    "title": "Nuclear Power Reactor Operators",
+    "COMM": 3.1,
+    "RESP": 4.5,
+    "PROB": 3.32,
+    "GROW": 2.62,
+    "STRE": 4.19,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "51-8012.00",
+    "title": "Power Distributors and Dispatchers",
+    "COMM": 3.13,
+    "RESP": 4.46,
+    "PROB": 3.19,
+    "GROW": 2.46,
+    "STRE": 4.67,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "51-8013.00",
+    "title": "Power Plant Operators",
+    "COMM": 2.97,
+    "RESP": 4.34,
+    "PROB": 3.06,
+    "GROW": 2.21,
+    "STRE": 4.06,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "51-8013.03",
+    "title": "Biomass Plant Technicians",
+    "COMM": 2.78,
+    "RESP": 3.79,
+    "PROB": 2.74,
+    "GROW": 2.57,
+    "STRE": 3.73,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "51-8013.04",
+    "title": "Hydroelectric Plant Technicians",
+    "COMM": 2.89,
+    "RESP": 4.36,
+    "PROB": 3.03,
+    "GROW": 2.39,
+    "STRE": 3.99,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "51-8021.00",
+    "title": "Stationary Engineers and Boiler Operators",
+    "COMM": 2.89,
+    "RESP": 4.06,
+    "PROB": 2.79,
+    "GROW": 2.25,
+    "STRE": 3.8,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "51-8091.00",
+    "title": "Chemical Plant and System Operators",
+    "COMM": 2.9,
+    "RESP": 4.16,
+    "PROB": 3.01,
+    "GROW": 2.58,
+    "STRE": 3.82,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "51-8092.00",
+    "title": "Gas Plant Operators",
+    "COMM": 2.88,
+    "RESP": 4.21,
+    "PROB": 2.83,
+    "GROW": 2.41,
+    "STRE": 3.87,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "51-8093.00",
+    "title": "Petroleum Pump System Operators, Refinery Operators, and Gaugers",
+    "COMM": 2.84,
+    "RESP": 4.06,
+    "PROB": 2.85,
+    "GROW": 2.52,
+    "STRE": 3.88,
+    "ADAP": 2.35
+  },
+  {
+    "soc_code": "51-8099.01",
+    "title": "Biofuels Processing Technicians",
+    "COMM": 2.93,
+    "RESP": 4.01,
+    "PROB": 2.74,
+    "GROW": 2.33,
+    "STRE": 3.49,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "51-9011.00",
+    "title": "Chemical Equipment Operators and Tenders",
+    "COMM": 2.98,
+    "RESP": 4.21,
+    "PROB": 2.81,
+    "GROW": 2.4,
+    "STRE": 3.83,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "51-9012.00",
+    "title": "Separating, Filtering, Clarifying, Precipitating, and Still Machine Setters, Operators, and Tenders",
+    "COMM": 2.74,
+    "RESP": 3.63,
+    "PROB": 2.63,
+    "GROW": 2.44,
+    "STRE": 3.75,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "51-9021.00",
+    "title": "Crushing, Grinding, and Polishing Machine Setters, Operators, and Tenders",
+    "COMM": 2.72,
+    "RESP": 3.39,
+    "PROB": 2.55,
+    "GROW": 2.23,
+    "STRE": 3.48,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "51-9022.00",
+    "title": "Grinding and Polishing Workers, Hand",
+    "COMM": 2.48,
+    "RESP": 4.09,
+    "PROB": 2.37,
+    "GROW": 1.88,
+    "STRE": 3.7,
+    "ADAP": 2.23
+  },
+  {
+    "soc_code": "51-9023.00",
+    "title": "Mixing and Blending Machine Setters, Operators, and Tenders",
+    "COMM": 2.63,
+    "RESP": 3.86,
+    "PROB": 2.53,
+    "GROW": 2.21,
+    "STRE": 3.23,
+    "ADAP": 2.08
+  },
+  {
+    "soc_code": "51-9031.00",
+    "title": "Cutters and Trimmers, Hand",
+    "COMM": 2.43,
+    "RESP": 3.82,
+    "PROB": 2.19,
+    "GROW": 1.68,
+    "STRE": 2.92,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "51-9032.00",
+    "title": "Cutting and Slicing Machine Setters, Operators, and Tenders",
+    "COMM": 2.61,
+    "RESP": 3.79,
+    "PROB": 2.59,
+    "GROW": 1.88,
+    "STRE": 3.48,
+    "ADAP": 2.09
+  },
+  {
+    "soc_code": "51-9041.00",
+    "title": "Extruding, Forming, Pressing, and Compacting Machine Setters, Operators, and Tenders",
+    "COMM": 2.74,
+    "RESP": 4.06,
+    "PROB": 2.55,
+    "GROW": 1.92,
+    "STRE": 3.87,
+    "ADAP": 2.11
+  },
+  {
+    "soc_code": "51-9051.00",
+    "title": "Furnace, Kiln, Oven, Drier, and Kettle Operators and Tenders",
+    "COMM": 2.68,
+    "RESP": 3.66,
+    "PROB": 2.55,
+    "GROW": 1.82,
+    "STRE": 3.75,
+    "ADAP": 1.97
+  },
+  {
+    "soc_code": "51-9061.00",
+    "title": "Inspectors, Testers, Sorters, Samplers, and Weighers",
+    "COMM": 2.92,
+    "RESP": 4.56,
+    "PROB": 2.61,
+    "GROW": 1.9,
+    "STRE": 4.54,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "51-9071.00",
+    "title": "Jewelers and Precious Stone and Metal Workers",
+    "COMM": 2.78,
+    "RESP": 4.61,
+    "PROB": 2.52,
+    "GROW": 2.1,
+    "STRE": 3.82,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "51-9071.06",
+    "title": "Gem and Diamond Workers",
+    "COMM": 2.73,
+    "RESP": 4.45,
+    "PROB": 2.56,
+    "GROW": 2.03,
+    "STRE": 3.6,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "51-9081.00",
+    "title": "Dental Laboratory Technicians",
+    "COMM": 2.79,
+    "RESP": 4.44,
+    "PROB": 2.67,
+    "GROW": 2.54,
+    "STRE": 4.0,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "51-9082.00",
+    "title": "Medical Appliance Technicians",
+    "COMM": 3.09,
+    "RESP": 3.95,
+    "PROB": 3.03,
+    "GROW": 2.52,
+    "STRE": 3.63,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "51-9083.00",
+    "title": "Ophthalmic Laboratory Technicians",
+    "COMM": 2.71,
+    "RESP": 4.16,
+    "PROB": 2.5,
+    "GROW": 2.18,
+    "STRE": 3.8,
+    "ADAP": 2.35
+  },
+  {
+    "soc_code": "51-9111.00",
+    "title": "Packaging and Filling Machine Operators and Tenders",
+    "COMM": 2.64,
+    "RESP": 3.71,
+    "PROB": 2.37,
+    "GROW": 1.91,
+    "STRE": 3.56,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "51-9123.00",
+    "title": "Painting, Coating, and Decorating Workers",
+    "COMM": 2.54,
+    "RESP": 3.56,
+    "PROB": 2.25,
+    "GROW": 1.74,
+    "STRE": 3.21,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "51-9124.00",
+    "title": "Coating, Painting, and Spraying Machine Setters, Operators, and Tenders",
+    "COMM": 2.54,
+    "RESP": 4.04,
+    "PROB": 2.43,
+    "GROW": 2.11,
+    "STRE": 3.91,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "51-9141.00",
+    "title": "Semiconductor Processing Technicians",
+    "COMM": 2.81,
+    "RESP": 3.78,
+    "PROB": 2.63,
+    "GROW": 1.95,
+    "STRE": 3.77,
+    "ADAP": 2.28
+  },
+  {
+    "soc_code": "51-9151.00",
+    "title": "Photographic Process Workers and Processing Machine Operators",
+    "COMM": 2.94,
+    "RESP": 4.1,
+    "PROB": 2.66,
+    "GROW": 2.37,
+    "STRE": 4.05,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "51-9161.00",
+    "title": "Computer Numerically Controlled Tool Operators",
+    "COMM": 2.79,
+    "RESP": 4.12,
+    "PROB": 2.81,
+    "GROW": 2.38,
+    "STRE": 3.81,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "51-9162.00",
+    "title": "Computer Numerically Controlled Tool Programmers",
+    "COMM": 2.84,
+    "RESP": 4.42,
+    "PROB": 2.76,
+    "GROW": 2.45,
+    "STRE": 4.0,
+    "ADAP": 2.21
+  },
+  {
+    "soc_code": "51-9191.00",
+    "title": "Adhesive Bonding Machine Operators and Tenders",
+    "COMM": 2.81,
+    "RESP": 4.08,
+    "PROB": 2.5,
+    "GROW": 2.02,
+    "STRE": 3.62,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "51-9192.00",
+    "title": "Cleaning, Washing, and Metal Pickling Equipment Operators and Tenders",
+    "COMM": 2.38,
+    "RESP": 3.68,
+    "PROB": 2.2,
+    "GROW": 1.85,
+    "STRE": 3.67,
+    "ADAP": 2.08
+  },
+  {
+    "soc_code": "51-9193.00",
+    "title": "Cooling and Freezing Equipment Operators and Tenders",
+    "COMM": 2.79,
+    "RESP": 3.94,
+    "PROB": 2.82,
+    "GROW": 2.36,
+    "STRE": 3.92,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "51-9194.00",
+    "title": "Etchers and Engravers",
+    "COMM": 2.57,
+    "RESP": 4.2,
+    "PROB": 2.49,
+    "GROW": 1.92,
+    "STRE": 3.71,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "51-9195.03",
+    "title": "Stone Cutters and Carvers, Manufacturing",
+    "COMM": 2.57,
+    "RESP": 3.92,
+    "PROB": 2.48,
+    "GROW": 1.95,
+    "STRE": 3.75,
+    "ADAP": 2.1
+  },
+  {
+    "soc_code": "51-9195.04",
+    "title": "Glass Blowers, Molders, Benders, and Finishers",
+    "COMM": 2.61,
+    "RESP": 3.79,
+    "PROB": 2.49,
+    "GROW": 2.31,
+    "STRE": 3.54,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "51-9195.05",
+    "title": "Potters, Manufacturing",
+    "COMM": 2.58,
+    "RESP": 4.3,
+    "PROB": 2.51,
+    "GROW": 1.56,
+    "STRE": 3.38,
+    "ADAP": 2.27
+  },
+  {
+    "soc_code": "51-9196.00",
+    "title": "Paper Goods Machine Setters, Operators, and Tenders",
+    "COMM": 2.65,
+    "RESP": 3.95,
+    "PROB": 2.47,
+    "GROW": 2.0,
+    "STRE": 3.67,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "51-9197.00",
+    "title": "Tire Builders",
+    "COMM": 2.32,
+    "RESP": 3.8,
+    "PROB": 2.28,
+    "GROW": 1.65,
+    "STRE": 3.4,
+    "ADAP": 1.95
+  },
+  {
+    "soc_code": "51-9198.00",
+    "title": "Helpers--Production Workers",
+    "COMM": 2.46,
+    "RESP": 3.71,
+    "PROB": 2.26,
+    "GROW": 1.67,
+    "STRE": 3.63,
+    "ADAP": 1.96
+  },
+  {
+    "soc_code": "53-1041.00",
+    "title": "Aircraft Cargo Handling Supervisors",
+    "COMM": 3.21,
+    "RESP": 4.29,
+    "PROB": 2.89,
+    "GROW": 2.79,
+    "STRE": 4.37,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "53-1042.00",
+    "title": "First-Line Supervisors of Helpers, Laborers, and Material Movers, Hand",
+    "COMM": 3.39,
+    "RESP": 4.48,
+    "PROB": 2.95,
+    "GROW": 2.55,
+    "STRE": 4.21,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "53-1042.01",
+    "title": "Recycling Coordinators",
+    "COMM": 3.29,
+    "RESP": 4.33,
+    "PROB": 2.82,
+    "GROW": 2.62,
+    "STRE": 4.27,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "53-1043.00",
+    "title": "First-Line Supervisors of Material-Moving Machine and Vehicle Operators",
+    "COMM": 3.64,
+    "RESP": 4.36,
+    "PROB": 3.05,
+    "GROW": 2.67,
+    "STRE": 4.43,
+    "ADAP": 2.92
+  },
+  {
+    "soc_code": "53-2011.00",
+    "title": "Airline Pilots, Copilots, and Flight Engineers",
+    "COMM": 3.54,
+    "RESP": 4.45,
+    "PROB": 3.59,
+    "GROW": 2.98,
+    "STRE": 4.58,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "53-2012.00",
+    "title": "Commercial Pilots",
+    "COMM": 3.28,
+    "RESP": 4.61,
+    "PROB": 3.44,
+    "GROW": 3.02,
+    "STRE": 4.64,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "53-2021.00",
+    "title": "Air Traffic Controllers",
+    "COMM": 3.54,
+    "RESP": 4.38,
+    "PROB": 3.69,
+    "GROW": 2.99,
+    "STRE": 4.46,
+    "ADAP": 2.94
+  },
+  {
+    "soc_code": "53-2022.00",
+    "title": "Airfield Operations Specialists",
+    "COMM": 3.39,
+    "RESP": 4.22,
+    "PROB": 3.26,
+    "GROW": 2.7,
+    "STRE": 3.85,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "53-2031.00",
+    "title": "Flight Attendants",
+    "COMM": 3.53,
+    "RESP": 4.21,
+    "PROB": 2.86,
+    "GROW": 2.41,
+    "STRE": 4.53,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "53-3011.00",
+    "title": "Ambulance Drivers and Attendants, Except Emergency Medical Technicians",
+    "COMM": 2.95,
+    "RESP": 4.13,
+    "PROB": 2.82,
+    "GROW": 2.29,
+    "STRE": 4.2,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "53-3031.00",
+    "title": "Driver/Sales Workers",
+    "COMM": 3.03,
+    "RESP": 4.12,
+    "PROB": 2.61,
+    "GROW": 1.9,
+    "STRE": 4.12,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "53-3032.00",
+    "title": "Heavy and Tractor-Trailer Truck Drivers",
+    "COMM": 2.69,
+    "RESP": 4.02,
+    "PROB": 2.54,
+    "GROW": 1.82,
+    "STRE": 4.24,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "53-3033.00",
+    "title": "Light Truck Drivers",
+    "COMM": 2.65,
+    "RESP": 3.88,
+    "PROB": 2.45,
+    "GROW": 1.68,
+    "STRE": 4.05,
+    "ADAP": 2.22
+  },
+  {
+    "soc_code": "53-3051.00",
+    "title": "Bus Drivers, School",
+    "COMM": 2.95,
+    "RESP": 4.14,
+    "PROB": 2.51,
+    "GROW": 2.0,
+    "STRE": 4.19,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "53-3052.00",
+    "title": "Bus Drivers, Transit and Intercity",
+    "COMM": 2.78,
+    "RESP": 4.08,
+    "PROB": 2.32,
+    "GROW": 1.85,
+    "STRE": 4.29,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "53-3053.00",
+    "title": "Shuttle Drivers and Chauffeurs",
+    "COMM": 2.99,
+    "RESP": 4.46,
+    "PROB": 2.51,
+    "GROW": 2.02,
+    "STRE": 4.34,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "53-4011.00",
+    "title": "Locomotive Engineers",
+    "COMM": 3.03,
+    "RESP": 4.12,
+    "PROB": 2.86,
+    "GROW": 2.57,
+    "STRE": 4.07,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "53-4013.00",
+    "title": "Rail Yard Engineers, Dinkey Operators, and Hostlers",
+    "COMM": 3.12,
+    "RESP": 4.37,
+    "PROB": 2.86,
+    "GROW": 2.38,
+    "STRE": 4.24,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "53-4031.00",
+    "title": "Railroad Conductors and Yardmasters",
+    "COMM": 3.22,
+    "RESP": 4.0,
+    "PROB": 3.01,
+    "GROW": 2.46,
+    "STRE": 3.97,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "53-4041.00",
+    "title": "Subway and Streetcar Operators",
+    "COMM": 2.89,
+    "RESP": 4.23,
+    "PROB": 2.73,
+    "GROW": 2.41,
+    "STRE": 4.56,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "53-5011.00",
+    "title": "Sailors and Marine Oilers",
+    "COMM": 2.95,
+    "RESP": 3.86,
+    "PROB": 2.71,
+    "GROW": 2.33,
+    "STRE": 3.65,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "53-5021.00",
+    "title": "Captains, Mates, and Pilots of Water Vessels",
+    "COMM": 3.12,
+    "RESP": 4.13,
+    "PROB": 2.97,
+    "GROW": 2.64,
+    "STRE": 4.28,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "53-5022.00",
+    "title": "Motorboat Operators",
+    "COMM": 2.99,
+    "RESP": 4.29,
+    "PROB": 2.75,
+    "GROW": 2.22,
+    "STRE": 3.9,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "53-5031.00",
+    "title": "Ship Engineers",
+    "COMM": 3.09,
+    "RESP": 4.42,
+    "PROB": 3.22,
+    "GROW": 2.57,
+    "STRE": 4.15,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "53-6021.00",
+    "title": "Parking Attendants",
+    "COMM": 2.67,
+    "RESP": 3.65,
+    "PROB": 2.37,
+    "GROW": 1.76,
+    "STRE": 3.93,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "53-6031.00",
+    "title": "Automotive and Watercraft Service Attendants",
+    "COMM": 2.81,
+    "RESP": 4.19,
+    "PROB": 2.38,
+    "GROW": 1.9,
+    "STRE": 4.15,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "53-6041.00",
+    "title": "Traffic Technicians",
+    "COMM": 3.07,
+    "RESP": 4.33,
+    "PROB": 3.02,
+    "GROW": 2.48,
+    "STRE": 3.95,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "53-6051.01",
+    "title": "Aviation Inspectors",
+    "COMM": 3.21,
+    "RESP": 4.5,
+    "PROB": 3.39,
+    "GROW": 2.62,
+    "STRE": 4.41,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "53-6051.07",
+    "title": "Transportation Vehicle, Equipment and Systems Inspectors, Except Aviation",
+    "COMM": 2.78,
+    "RESP": 3.68,
+    "PROB": 2.55,
+    "GROW": 1.88,
+    "STRE": 3.62,
+    "ADAP": 2.25
+  },
+  {
+    "soc_code": "53-6061.00",
+    "title": "Passenger Attendants",
+    "COMM": 3.18,
+    "RESP": 4.3,
+    "PROB": 2.58,
+    "GROW": 1.77,
+    "STRE": 4.59,
+    "ADAP": 3.09
+  },
+  {
+    "soc_code": "53-7011.00",
+    "title": "Conveyor Operators and Tenders",
+    "COMM": 2.83,
+    "RESP": 4.03,
+    "PROB": 2.7,
+    "GROW": 2.04,
+    "STRE": 4.2,
+    "ADAP": 2.41
+  },
+  {
+    "soc_code": "53-7021.00",
+    "title": "Crane and Tower Operators",
+    "COMM": 2.77,
+    "RESP": 3.87,
+    "PROB": 2.54,
+    "GROW": 2.11,
+    "STRE": 3.88,
+    "ADAP": 2.12
+  },
+  {
+    "soc_code": "53-7031.00",
+    "title": "Dredge Operators",
+    "COMM": 2.65,
+    "RESP": 3.34,
+    "PROB": 2.37,
+    "GROW": 2.04,
+    "STRE": 3.5,
+    "ADAP": 2.13
+  },
+  {
+    "soc_code": "53-7041.00",
+    "title": "Hoist and Winch Operators",
+    "COMM": 2.77,
+    "RESP": 3.75,
+    "PROB": 2.67,
+    "GROW": 2.17,
+    "STRE": 3.52,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "53-7051.00",
+    "title": "Industrial Truck and Tractor Operators",
+    "COMM": 2.62,
+    "RESP": 4.08,
+    "PROB": 2.3,
+    "GROW": 1.71,
+    "STRE": 4.26,
+    "ADAP": 1.99
+  },
+  {
+    "soc_code": "53-7061.00",
+    "title": "Cleaners of Vehicles and Equipment",
+    "COMM": 2.35,
+    "RESP": 3.85,
+    "PROB": 2.05,
+    "GROW": 1.42,
+    "STRE": 3.56,
+    "ADAP": 1.94
+  },
+  {
+    "soc_code": "53-7062.00",
+    "title": "Laborers and Freight, Stock, and Material Movers, Hand",
+    "COMM": 2.53,
+    "RESP": 3.88,
+    "PROB": 2.22,
+    "GROW": 1.74,
+    "STRE": 3.62,
+    "ADAP": 2.02
+  },
+  {
+    "soc_code": "53-7062.04",
+    "title": "Recycling and Reclamation Workers",
+    "COMM": 2.54,
+    "RESP": 3.8,
+    "PROB": 2.23,
+    "GROW": 1.88,
+    "STRE": 3.68,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "53-7063.00",
+    "title": "Machine Feeders and Offbearers",
+    "COMM": 2.53,
+    "RESP": 3.72,
+    "PROB": 2.2,
+    "GROW": 1.67,
+    "STRE": 3.37,
+    "ADAP": 2.0
+  },
+  {
+    "soc_code": "53-7064.00",
+    "title": "Packers and Packagers, Hand",
+    "COMM": 2.53,
+    "RESP": 4.15,
+    "PROB": 2.04,
+    "GROW": 1.41,
+    "STRE": 3.84,
+    "ADAP": 1.86
+  },
+  {
+    "soc_code": "53-7065.00",
+    "title": "Stockers and Order Fillers",
+    "COMM": 2.79,
+    "RESP": 3.87,
+    "PROB": 2.21,
+    "GROW": 1.91,
+    "STRE": 3.59,
+    "ADAP": 2.36
+  },
+  {
+    "soc_code": "53-7071.00",
+    "title": "Gas Compressor and Gas Pumping Station Operators",
+    "COMM": 2.92,
+    "RESP": 4.5,
+    "PROB": 2.78,
+    "GROW": 2.13,
+    "STRE": 4.37,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "53-7072.00",
+    "title": "Pump Operators, Except Wellhead Pumpers",
+    "COMM": 2.64,
+    "RESP": 3.21,
+    "PROB": 2.68,
+    "GROW": 2.17,
+    "STRE": 2.95,
+    "ADAP": 2.16
+  },
+  {
+    "soc_code": "53-7073.00",
+    "title": "Wellhead Pumpers",
+    "COMM": 2.61,
+    "RESP": 4.27,
+    "PROB": 2.7,
+    "GROW": 1.69,
+    "STRE": 4.05,
+    "ADAP": 1.94
+  },
+  {
+    "soc_code": "53-7081.00",
+    "title": "Refuse and Recyclable Material Collectors",
+    "COMM": 2.45,
+    "RESP": 3.37,
+    "PROB": 2.1,
+    "GROW": 1.26,
+    "STRE": 2.96,
+    "ADAP": 2.04
+  },
+  {
+    "soc_code": "53-7121.00",
+    "title": "Tank Car, Truck, and Ship Loaders",
+    "COMM": 2.83,
+    "RESP": 4.06,
+    "PROB": 2.58,
+    "GROW": 2.23,
+    "STRE": 3.75,
+    "ADAP": 2.19
+  },
+  {
+    "soc_code": "11-1011.03",
+    "title": "Chief Sustainability Officers",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 3.15,
+    "STRE": 0.0,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "11-2022.00",
+    "title": "Sales Managers",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.34,
+    "GROW": 3.06,
+    "STRE": 0.0,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "11-3013.01",
+    "title": "Security Managers",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.58,
+    "GROW": 3.02,
+    "STRE": 0.0,
+    "ADAP": 3.04
+  },
+  {
+    "soc_code": "11-3031.01",
+    "title": "Treasurers and Controllers",
+    "COMM": 3.32,
+    "RESP": 0.0,
+    "PROB": 3.66,
+    "GROW": 3.02,
+    "STRE": 0.0,
+    "ADAP": 2.68
+  },
+  {
+    "soc_code": "11-3061.00",
+    "title": "Purchasing Managers",
+    "COMM": 3.37,
+    "RESP": 0.0,
+    "PROB": 3.19,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 3.26
+  },
+  {
+    "soc_code": "11-3071.00",
+    "title": "Transportation, Storage, and Distribution Managers",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.19,
+    "GROW": 2.98,
+    "STRE": 0.0,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "11-3071.04",
+    "title": "Supply Chain Managers",
+    "COMM": 3.43,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 2.94,
+    "STRE": 0.0,
+    "ADAP": 3.01
+  },
+  {
+    "soc_code": "11-3111.00",
+    "title": "Compensation and Benefits Managers",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.06,
+    "GROW": 2.96,
+    "STRE": 0.0,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "11-3121.00",
+    "title": "Human Resources Managers",
+    "COMM": 3.58,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 3.37,
+    "STRE": 0.0,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "11-3131.00",
+    "title": "Training and Development Managers",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.29,
+    "GROW": 3.7,
+    "STRE": 0.0,
+    "ADAP": 3.19
+  },
+  {
+    "soc_code": "11-9013.00",
+    "title": "Farmers, Ranchers, and Other Agricultural Managers",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.33,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 2.81
+  },
+  {
+    "soc_code": "11-9021.00",
+    "title": "Construction Managers",
+    "COMM": 3.5,
+    "RESP": 0.0,
+    "PROB": 3.52,
+    "GROW": 3.04,
+    "STRE": 0.0,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "11-9111.00",
+    "title": "Medical and Health Services Managers",
+    "COMM": 3.46,
+    "RESP": 0.0,
+    "PROB": 3.41,
+    "GROW": 3.17,
+    "STRE": 0.0,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "11-9121.02",
+    "title": "Water Resource Specialists",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.38,
+    "GROW": 2.84,
+    "STRE": 0.0,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "11-9141.00",
+    "title": "Property, Real Estate, and Community Association Managers",
+    "COMM": 3.29,
+    "RESP": 0.0,
+    "PROB": 3.01,
+    "GROW": 2.55,
+    "STRE": 0.0,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "11-9161.00",
+    "title": "Emergency Management Directors",
+    "COMM": 3.61,
+    "RESP": 0.0,
+    "PROB": 3.67,
+    "GROW": 3.38,
+    "STRE": 0.0,
+    "ADAP": 3.57
+  },
+  {
+    "soc_code": "11-9179.01",
+    "title": "Fitness and Wellness Coordinators",
+    "COMM": 3.23,
+    "RESP": 0.0,
+    "PROB": 3.14,
+    "GROW": 2.98,
+    "STRE": 0.0,
+    "ADAP": 3.03
+  },
+  {
+    "soc_code": "11-9199.01",
+    "title": "Regulatory Affairs Managers",
+    "COMM": 3.3,
+    "RESP": 0.0,
+    "PROB": 3.29,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "11-9199.08",
+    "title": "Loss Prevention Managers",
+    "COMM": 3.32,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 3.0,
+    "STRE": 0.0,
+    "ADAP": 3.19
+  },
+  {
+    "soc_code": "11-9199.11",
+    "title": "Brownfield Redevelopment Specialists and Site Managers",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.59,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "13-1023.00",
+    "title": "Purchasing Agents, Except Wholesale, Retail, and Farm Products",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.33,
+    "GROW": 2.97,
+    "STRE": 0.0,
+    "ADAP": 2.98
+  },
+  {
+    "soc_code": "13-1041.00",
+    "title": "Compliance Officers",
+    "COMM": 3.06,
+    "RESP": 0.0,
+    "PROB": 2.98,
+    "GROW": 2.52,
+    "STRE": 0.0,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "13-1041.01",
+    "title": "Environmental Compliance Inspectors",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.61,
+    "GROW": 3.0,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "13-1041.06",
+    "title": "Coroners",
+    "COMM": 3.33,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 2.88,
+    "STRE": 0.0,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "13-1041.07",
+    "title": "Regulatory Affairs Specialists",
+    "COMM": 3.28,
+    "RESP": 0.0,
+    "PROB": 3.36,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "13-1041.08",
+    "title": "Customs Brokers",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 2.97,
+    "GROW": 2.77,
+    "STRE": 0.0,
+    "ADAP": 2.59
+  },
+  {
+    "soc_code": "13-1051.00",
+    "title": "Cost Estimators",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.19,
+    "GROW": 2.76,
+    "STRE": 0.0,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "13-1075.00",
+    "title": "Labor Relations Specialists",
+    "COMM": 3.53,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 2.88,
+    "STRE": 0.0,
+    "ADAP": 3.26
+  },
+  {
+    "soc_code": "13-1081.00",
+    "title": "Logisticians",
+    "COMM": 3.41,
+    "RESP": 0.0,
+    "PROB": 3.46,
+    "GROW": 2.88,
+    "STRE": 0.0,
+    "ADAP": 2.95
+  },
+  {
+    "soc_code": "13-1081.01",
+    "title": "Logistics Engineers",
+    "COMM": 3.24,
+    "RESP": 0.0,
+    "PROB": 3.56,
+    "GROW": 3.14,
+    "STRE": 0.0,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "13-1081.02",
+    "title": "Logistics Analysts",
+    "COMM": 3.02,
+    "RESP": 0.0,
+    "PROB": 3.33,
+    "GROW": 2.67,
+    "STRE": 0.0,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "13-1111.00",
+    "title": "Management Analysts",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 3.1
+  },
+  {
+    "soc_code": "13-1131.00",
+    "title": "Fundraisers",
+    "COMM": 3.45,
+    "RESP": 0.0,
+    "PROB": 3.13,
+    "GROW": 2.69,
+    "STRE": 0.0,
+    "ADAP": 3.22
+  },
+  {
+    "soc_code": "13-1141.00",
+    "title": "Compensation, Benefits, and Job Analysis Specialists",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.1,
+    "GROW": 2.84,
+    "STRE": 0.0,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "13-1151.00",
+    "title": "Training and Development Specialists",
+    "COMM": 3.47,
+    "RESP": 0.0,
+    "PROB": 3.14,
+    "GROW": 3.59,
+    "STRE": 0.0,
+    "ADAP": 3.11
+  },
+  {
+    "soc_code": "13-1161.00",
+    "title": "Market Research Analysts and Marketing Specialists",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.41,
+    "GROW": 2.88,
+    "STRE": 0.0,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "13-1161.01",
+    "title": "Search Marketing Strategists",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.32,
+    "GROW": 2.89,
+    "STRE": 0.0,
+    "ADAP": 2.72
+  },
+  {
+    "soc_code": "13-1199.04",
+    "title": "Business Continuity Planners",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.76,
+    "GROW": 3.29,
+    "STRE": 0.0,
+    "ADAP": 2.84
+  },
+  {
+    "soc_code": "13-1199.05",
+    "title": "Sustainability Specialists",
+    "COMM": 3.24,
+    "RESP": 0.0,
+    "PROB": 3.25,
+    "GROW": 2.75,
+    "STRE": 0.0,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "13-1199.07",
+    "title": "Security Management Specialists",
+    "COMM": 3.36,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 2.99
+  },
+  {
+    "soc_code": "13-2011.00",
+    "title": "Accountants and Auditors",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.31,
+    "GROW": 2.63,
+    "STRE": 0.0,
+    "ADAP": 2.73
+  },
+  {
+    "soc_code": "13-2022.00",
+    "title": "Appraisers of Personal and Business Property",
+    "COMM": 2.78,
+    "RESP": 0.0,
+    "PROB": 2.97,
+    "GROW": 2.46,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "13-2023.00",
+    "title": "Appraisers and Assessors of Real Estate",
+    "COMM": 2.82,
+    "RESP": 0.0,
+    "PROB": 2.87,
+    "GROW": 2.31,
+    "STRE": 0.0,
+    "ADAP": 2.4
+  },
+  {
+    "soc_code": "13-2041.00",
+    "title": "Credit Analysts",
+    "COMM": 2.87,
+    "RESP": 0.0,
+    "PROB": 3.23,
+    "GROW": 2.59,
+    "STRE": 0.0,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "13-2052.00",
+    "title": "Personal Financial Advisors",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.33,
+    "GROW": 2.68,
+    "STRE": 0.0,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "13-2053.00",
+    "title": "Insurance Underwriters",
+    "COMM": 2.98,
+    "RESP": 0.0,
+    "PROB": 3.06,
+    "GROW": 2.61,
+    "STRE": 0.0,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "13-2061.00",
+    "title": "Financial Examiners",
+    "COMM": 3.35,
+    "RESP": 0.0,
+    "PROB": 3.59,
+    "GROW": 3.18,
+    "STRE": 0.0,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "13-2071.00",
+    "title": "Credit Counselors",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.17,
+    "GROW": 2.87,
+    "STRE": 0.0,
+    "ADAP": 2.95
+  },
+  {
+    "soc_code": "13-2082.00",
+    "title": "Tax Preparers",
+    "COMM": 2.86,
+    "RESP": 0.0,
+    "PROB": 2.82,
+    "GROW": 2.52,
+    "STRE": 0.0,
+    "ADAP": 2.41
+  },
+  {
+    "soc_code": "13-2099.01",
+    "title": "Financial Quantitative Analysts",
+    "COMM": 3.06,
+    "RESP": 0.0,
+    "PROB": 3.52,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "13-2099.04",
+    "title": "Fraud Examiners, Investigators and Analysts",
+    "COMM": 3.37,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 2.86,
+    "STRE": 0.0,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "15-1211.01",
+    "title": "Health Informatics Specialists",
+    "COMM": 3.33,
+    "RESP": 0.0,
+    "PROB": 3.5,
+    "GROW": 3.44,
+    "STRE": 0.0,
+    "ADAP": 2.82
+  },
+  {
+    "soc_code": "15-1241.00",
+    "title": "Computer Network Architects",
+    "COMM": 3.15,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 2.81,
+    "STRE": 0.0,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "15-1241.01",
+    "title": "Telecommunications Engineering Specialists",
+    "COMM": 2.94,
+    "RESP": 0.0,
+    "PROB": 3.0,
+    "GROW": 2.75,
+    "STRE": 0.0,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "15-1243.00",
+    "title": "Database Architects",
+    "COMM": 2.95,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 2.71,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "15-1243.01",
+    "title": "Data Warehousing Specialists",
+    "COMM": 2.93,
+    "RESP": 0.0,
+    "PROB": 3.18,
+    "GROW": 2.48,
+    "STRE": 0.0,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "15-1253.00",
+    "title": "Software Quality Assurance Analysts and Testers",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.29,
+    "GROW": 2.59,
+    "STRE": 0.0,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "15-1254.00",
+    "title": "Web Developers",
+    "COMM": 2.79,
+    "RESP": 0.0,
+    "PROB": 3.17,
+    "GROW": 2.8,
+    "STRE": 0.0,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "15-1255.01",
+    "title": "Video Game Designers",
+    "COMM": 3.03,
+    "RESP": 0.0,
+    "PROB": 3.26,
+    "GROW": 2.78,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "15-1299.01",
+    "title": "Web Administrators",
+    "COMM": 2.93,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 2.74,
+    "STRE": 0.0,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "15-1299.02",
+    "title": "Geographic Information Systems Technologists and Technicians",
+    "COMM": 2.83,
+    "RESP": 0.0,
+    "PROB": 3.06,
+    "GROW": 2.45,
+    "STRE": 0.0,
+    "ADAP": 2.32
+  },
+  {
+    "soc_code": "15-1299.03",
+    "title": "Document Management Specialists",
+    "COMM": 2.85,
+    "RESP": 0.0,
+    "PROB": 3.15,
+    "GROW": 2.68,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "15-1299.05",
+    "title": "Information Security Engineers",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.23,
+    "GROW": 2.74,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "15-1299.08",
+    "title": "Computer Systems Engineers/Architects",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.42,
+    "GROW": 2.95,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "15-1299.09",
+    "title": "Information Technology Project Managers",
+    "COMM": 3.42,
+    "RESP": 0.0,
+    "PROB": 3.36,
+    "GROW": 2.87,
+    "STRE": 0.0,
+    "ADAP": 2.89
+  },
+  {
+    "soc_code": "15-2011.00",
+    "title": "Actuaries",
+    "COMM": 3.15,
+    "RESP": 0.0,
+    "PROB": 3.67,
+    "GROW": 2.85,
+    "STRE": 0.0,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "15-2021.00",
+    "title": "Mathematicians",
+    "COMM": 2.89,
+    "RESP": 0.0,
+    "PROB": 3.66,
+    "GROW": 3.42,
+    "STRE": 0.0,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "15-2031.00",
+    "title": "Operations Research Analysts",
+    "COMM": 3.18,
+    "RESP": 0.0,
+    "PROB": 3.6,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "15-2041.00",
+    "title": "Statisticians",
+    "COMM": 3.11,
+    "RESP": 0.0,
+    "PROB": 3.46,
+    "GROW": 2.95,
+    "STRE": 0.0,
+    "ADAP": 2.17
+  },
+  {
+    "soc_code": "15-2041.01",
+    "title": "Biostatisticians",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.69,
+    "GROW": 3.41,
+    "STRE": 0.0,
+    "ADAP": 2.41
+  },
+  {
+    "soc_code": "15-2051.01",
+    "title": "Business Intelligence Analysts",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.28,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "15-2051.02",
+    "title": "Clinical Data Managers",
+    "COMM": 3.2,
+    "RESP": 0.0,
+    "PROB": 3.36,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "17-1011.00",
+    "title": "Architects, Except Landscape and Naval",
+    "COMM": 3.35,
+    "RESP": 0.0,
+    "PROB": 3.58,
+    "GROW": 3.01,
+    "STRE": 0.0,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "17-1012.00",
+    "title": "Landscape Architects",
+    "COMM": 3.41,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 2.82,
+    "STRE": 0.0,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "17-1022.00",
+    "title": "Surveyors",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.18,
+    "GROW": 2.82,
+    "STRE": 0.0,
+    "ADAP": 2.4
+  },
+  {
+    "soc_code": "17-1022.01",
+    "title": "Geodetic Surveyors",
+    "COMM": 3.01,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 2.91,
+    "STRE": 0.0,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "17-2021.00",
+    "title": "Agricultural Engineers",
+    "COMM": 3.19,
+    "RESP": 0.0,
+    "PROB": 3.48,
+    "GROW": 2.76,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "17-2031.00",
+    "title": "Bioengineers and Biomedical Engineers",
+    "COMM": 3.23,
+    "RESP": 0.0,
+    "PROB": 3.66,
+    "GROW": 3.27,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "17-2041.00",
+    "title": "Chemical Engineers",
+    "COMM": 3.01,
+    "RESP": 0.0,
+    "PROB": 3.72,
+    "GROW": 3.16,
+    "STRE": 0.0,
+    "ADAP": 2.54
+  },
+  {
+    "soc_code": "17-2051.00",
+    "title": "Civil Engineers",
+    "COMM": 3.22,
+    "RESP": 0.0,
+    "PROB": 3.57,
+    "GROW": 3.0,
+    "STRE": 0.0,
+    "ADAP": 2.66
+  },
+  {
+    "soc_code": "17-2051.01",
+    "title": "Transportation Engineers",
+    "COMM": 3.31,
+    "RESP": 0.0,
+    "PROB": 3.57,
+    "GROW": 2.82,
+    "STRE": 0.0,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "17-2051.02",
+    "title": "Water/Wastewater Engineers",
+    "COMM": 3.17,
+    "RESP": 0.0,
+    "PROB": 3.57,
+    "GROW": 2.98,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "17-2061.00",
+    "title": "Computer Hardware Engineers",
+    "COMM": 3.12,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 2.95,
+    "STRE": 0.0,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "17-2081.00",
+    "title": "Environmental Engineers",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 2.96,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "17-2111.00",
+    "title": "Health and Safety Engineers, Except Mining Safety Engineers and Inspectors",
+    "COMM": 3.04,
+    "RESP": 0.0,
+    "PROB": 3.29,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 2.74
+  },
+  {
+    "soc_code": "17-2111.02",
+    "title": "Fire-Prevention and Protection Engineers",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.62,
+    "GROW": 3.09,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "17-2112.01",
+    "title": "Human Factors Engineers and Ergonomists",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.54,
+    "GROW": 3.09,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "17-2112.02",
+    "title": "Validation Engineers",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.47,
+    "GROW": 2.77,
+    "STRE": 0.0,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "17-2112.03",
+    "title": "Manufacturing Engineers",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.54,
+    "GROW": 3.21,
+    "STRE": 0.0,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "17-2121.00",
+    "title": "Marine Engineers and Naval Architects",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.69,
+    "GROW": 2.89,
+    "STRE": 0.0,
+    "ADAP": 2.49
+  },
+  {
+    "soc_code": "17-2131.00",
+    "title": "Materials Engineers",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.51,
+    "GROW": 3.01,
+    "STRE": 0.0,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "17-2141.01",
+    "title": "Fuel Cell Engineers",
+    "COMM": 3.05,
+    "RESP": 0.0,
+    "PROB": 3.4,
+    "GROW": 2.96,
+    "STRE": 0.0,
+    "ADAP": 2.39
+  },
+  {
+    "soc_code": "17-2141.02",
+    "title": "Automotive Engineers",
+    "COMM": 3.22,
+    "RESP": 0.0,
+    "PROB": 3.65,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "17-2161.00",
+    "title": "Nuclear Engineers",
+    "COMM": 3.31,
+    "RESP": 0.0,
+    "PROB": 3.68,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "17-2199.03",
+    "title": "Energy Engineers, Except Wind and Solar",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.46,
+    "GROW": 2.89,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "17-2199.07",
+    "title": "Photonics Engineers",
+    "COMM": 3.07,
+    "RESP": 0.0,
+    "PROB": 3.52,
+    "GROW": 3.13,
+    "STRE": 0.0,
+    "ADAP": 2.28
+  },
+  {
+    "soc_code": "17-2199.08",
+    "title": "Robotics Engineers",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.61,
+    "GROW": 3.26,
+    "STRE": 0.0,
+    "ADAP": 2.48
+  },
+  {
+    "soc_code": "17-2199.09",
+    "title": "Nanosystems Engineers",
+    "COMM": 3.18,
+    "RESP": 0.0,
+    "PROB": 3.62,
+    "GROW": 3.22,
+    "STRE": 0.0,
+    "ADAP": 2.65
+  },
+  {
+    "soc_code": "17-2199.11",
+    "title": "Solar Energy Systems Engineers",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 2.76,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "17-3011.00",
+    "title": "Architectural and Civil Drafters",
+    "COMM": 2.76,
+    "RESP": 0.0,
+    "PROB": 2.95,
+    "GROW": 2.73,
+    "STRE": 0.0,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "17-3023.00",
+    "title": "Electrical and Electronic Engineering Technologists and Technicians",
+    "COMM": 2.82,
+    "RESP": 0.0,
+    "PROB": 3.11,
+    "GROW": 2.48,
+    "STRE": 0.0,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "17-3024.01",
+    "title": "Robotics Technicians",
+    "COMM": 2.86,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 2.73,
+    "STRE": 0.0,
+    "ADAP": 2.37
+  },
+  {
+    "soc_code": "17-3026.01",
+    "title": "Nanotechnology Engineering Technologists and Technicians",
+    "COMM": 2.96,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 2.87,
+    "STRE": 0.0,
+    "ADAP": 2.15
+  },
+  {
+    "soc_code": "17-3027.01",
+    "title": "Automotive Engineering Technicians",
+    "COMM": 2.79,
+    "RESP": 0.0,
+    "PROB": 3.07,
+    "GROW": 2.37,
+    "STRE": 0.0,
+    "ADAP": 2.18
+  },
+  {
+    "soc_code": "17-3029.01",
+    "title": "Non-Destructive Testing Specialists",
+    "COMM": 2.74,
+    "RESP": 0.0,
+    "PROB": 3.21,
+    "GROW": 2.82,
+    "STRE": 0.0,
+    "ADAP": 2.31
+  },
+  {
+    "soc_code": "17-3029.08",
+    "title": "Photonics Technicians",
+    "COMM": 2.73,
+    "RESP": 0.0,
+    "PROB": 2.83,
+    "GROW": 2.62,
+    "STRE": 0.0,
+    "ADAP": 2.07
+  },
+  {
+    "soc_code": "17-3031.00",
+    "title": "Surveying and Mapping Technicians",
+    "COMM": 2.7,
+    "RESP": 0.0,
+    "PROB": 2.77,
+    "GROW": 2.42,
+    "STRE": 0.0,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "19-1011.00",
+    "title": "Animal Scientists",
+    "COMM": 3.15,
+    "RESP": 0.0,
+    "PROB": 3.56,
+    "GROW": 3.08,
+    "STRE": 0.0,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "19-1012.00",
+    "title": "Food Scientists and Technologists",
+    "COMM": 3.15,
+    "RESP": 0.0,
+    "PROB": 3.55,
+    "GROW": 3.09,
+    "STRE": 0.0,
+    "ADAP": 2.69
+  },
+  {
+    "soc_code": "19-1013.00",
+    "title": "Soil and Plant Scientists",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.61,
+    "GROW": 3.31,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "19-1021.00",
+    "title": "Biochemists and Biophysicists",
+    "COMM": 3.32,
+    "RESP": 0.0,
+    "PROB": 3.78,
+    "GROW": 3.75,
+    "STRE": 0.0,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "19-1022.00",
+    "title": "Microbiologists",
+    "COMM": 3.18,
+    "RESP": 0.0,
+    "PROB": 3.67,
+    "GROW": 3.35,
+    "STRE": 0.0,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "19-1029.02",
+    "title": "Molecular and Cellular Biologists",
+    "COMM": 3.4,
+    "RESP": 0.0,
+    "PROB": 3.74,
+    "GROW": 3.57,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "19-1029.03",
+    "title": "Geneticists",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 3.65,
+    "GROW": 3.4,
+    "STRE": 0.0,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "19-1031.00",
+    "title": "Conservation Scientists",
+    "COMM": 3.07,
+    "RESP": 0.0,
+    "PROB": 3.14,
+    "GROW": 2.65,
+    "STRE": 0.0,
+    "ADAP": 2.7
+  },
+  {
+    "soc_code": "19-1041.00",
+    "title": "Epidemiologists",
+    "COMM": 3.62,
+    "RESP": 0.0,
+    "PROB": 3.83,
+    "GROW": 3.42,
+    "STRE": 0.0,
+    "ADAP": 3.06
+  },
+  {
+    "soc_code": "19-2011.00",
+    "title": "Astronomers",
+    "COMM": 3.28,
+    "RESP": 0.0,
+    "PROB": 3.5,
+    "GROW": 3.52,
+    "STRE": 0.0,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "19-2021.00",
+    "title": "Atmospheric and Space Scientists",
+    "COMM": 3.23,
+    "RESP": 0.0,
+    "PROB": 3.46,
+    "GROW": 3.12,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "19-2032.00",
+    "title": "Materials Scientists",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.57,
+    "GROW": 3.01,
+    "STRE": 0.0,
+    "ADAP": 2.53
+  },
+  {
+    "soc_code": "19-2041.01",
+    "title": "Climate Change Policy Analysts",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.39,
+    "GROW": 2.94,
+    "STRE": 0.0,
+    "ADAP": 2.77
+  },
+  {
+    "soc_code": "19-2041.02",
+    "title": "Environmental Restoration Planners",
+    "COMM": 3.28,
+    "RESP": 0.0,
+    "PROB": 3.42,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "19-2041.03",
+    "title": "Industrial Ecologists",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.56,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "19-2042.00",
+    "title": "Geoscientists, Except Hydrologists and Geographers",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.54,
+    "GROW": 2.82,
+    "STRE": 0.0,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "19-2043.00",
+    "title": "Hydrologists",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.51,
+    "GROW": 3.04,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "19-2099.01",
+    "title": "Remote Sensing Scientists and Technologists",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 3.58,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "19-3011.00",
+    "title": "Economists",
+    "COMM": 3.19,
+    "RESP": 0.0,
+    "PROB": 3.51,
+    "GROW": 3.12,
+    "STRE": 0.0,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "19-3011.01",
+    "title": "Environmental Economists",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.37,
+    "GROW": 3.17,
+    "STRE": 0.0,
+    "ADAP": 2.56
+  },
+  {
+    "soc_code": "19-3022.00",
+    "title": "Survey Researchers",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.56,
+    "GROW": 3.17,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "19-3032.00",
+    "title": "Industrial-Organizational Psychologists",
+    "COMM": 3.62,
+    "RESP": 0.0,
+    "PROB": 3.58,
+    "GROW": 3.33,
+    "STRE": 0.0,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "19-3033.00",
+    "title": "Clinical and Counseling Psychologists",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.5,
+    "GROW": 3.19,
+    "STRE": 0.0,
+    "ADAP": 3.44
+  },
+  {
+    "soc_code": "19-3039.02",
+    "title": "Neuropsychologists",
+    "COMM": 3.52,
+    "RESP": 0.0,
+    "PROB": 3.86,
+    "GROW": 3.39,
+    "STRE": 0.0,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "19-3039.03",
+    "title": "Clinical Neuropsychologists",
+    "COMM": 3.47,
+    "RESP": 0.0,
+    "PROB": 3.75,
+    "GROW": 3.29,
+    "STRE": 0.0,
+    "ADAP": 3.39
+  },
+  {
+    "soc_code": "19-3041.00",
+    "title": "Sociologists",
+    "COMM": 3.36,
+    "RESP": 0.0,
+    "PROB": 3.36,
+    "GROW": 3.49,
+    "STRE": 0.0,
+    "ADAP": 2.86
+  },
+  {
+    "soc_code": "19-3051.00",
+    "title": "Urban and Regional Planners",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.42,
+    "GROW": 2.81,
+    "STRE": 0.0,
+    "ADAP": 2.91
+  },
+  {
+    "soc_code": "19-3091.00",
+    "title": "Anthropologists and Archeologists",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.47,
+    "GROW": 3.27,
+    "STRE": 0.0,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "19-3092.00",
+    "title": "Geographers",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.33,
+    "GROW": 3.07,
+    "STRE": 0.0,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "19-3094.00",
+    "title": "Political Scientists",
+    "COMM": 3.35,
+    "RESP": 0.0,
+    "PROB": 3.35,
+    "GROW": 3.31,
+    "STRE": 0.0,
+    "ADAP": 2.75
+  },
+  {
+    "soc_code": "19-3099.01",
+    "title": "Transportation Planners",
+    "COMM": 3.36,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 2.96,
+    "STRE": 0.0,
+    "ADAP": 2.62
+  },
+  {
+    "soc_code": "19-4012.01",
+    "title": "Precision Agriculture Technicians",
+    "COMM": 2.99,
+    "RESP": 0.0,
+    "PROB": 3.19,
+    "GROW": 2.8,
+    "STRE": 0.0,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "19-4042.00",
+    "title": "Environmental Science and Protection Technicians, Including Health",
+    "COMM": 3.1,
+    "RESP": 0.0,
+    "PROB": 3.18,
+    "GROW": 2.64,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "19-4043.00",
+    "title": "Geological Technicians, Except Hydrologic Technicians",
+    "COMM": 2.68,
+    "RESP": 0.0,
+    "PROB": 2.8,
+    "GROW": 2.32,
+    "STRE": 0.0,
+    "ADAP": 2.3
+  },
+  {
+    "soc_code": "19-4051.00",
+    "title": "Nuclear Technicians",
+    "COMM": 2.9,
+    "RESP": 0.0,
+    "PROB": 3.03,
+    "GROW": 2.59,
+    "STRE": 0.0,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "19-5011.00",
+    "title": "Occupational Health and Safety Specialists",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.43,
+    "GROW": 2.93,
+    "STRE": 0.0,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "19-5012.00",
+    "title": "Occupational Health and Safety Technicians",
+    "COMM": 3.09,
+    "RESP": 0.0,
+    "PROB": 3.26,
+    "GROW": 2.62,
+    "STRE": 0.0,
+    "ADAP": 2.64
+  },
+  {
+    "soc_code": "21-1014.00",
+    "title": "Mental Health Counselors",
+    "COMM": 3.56,
+    "RESP": 0.0,
+    "PROB": 3.69,
+    "GROW": 3.12,
+    "STRE": 0.0,
+    "ADAP": 3.71
+  },
+  {
+    "soc_code": "21-1022.00",
+    "title": "Healthcare Social Workers",
+    "COMM": 3.57,
+    "RESP": 0.0,
+    "PROB": 3.43,
+    "GROW": 3.08,
+    "STRE": 0.0,
+    "ADAP": 3.51
+  },
+  {
+    "soc_code": "23-1022.00",
+    "title": "Arbitrators, Mediators, and Conciliators",
+    "COMM": 3.45,
+    "RESP": 0.0,
+    "PROB": 3.41,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 3.06
+  },
+  {
+    "soc_code": "25-1061.00",
+    "title": "Anthropology and Archeology Teachers, Postsecondary",
+    "COMM": 3.62,
+    "RESP": 0.0,
+    "PROB": 3.34,
+    "GROW": 3.9,
+    "STRE": 0.0,
+    "ADAP": 2.76
+  },
+  {
+    "soc_code": "25-2059.01",
+    "title": "Adapted Physical Education Specialists",
+    "COMM": 3.35,
+    "RESP": 0.0,
+    "PROB": 3.14,
+    "GROW": 3.38,
+    "STRE": 0.0,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "25-3041.00",
+    "title": "Tutors",
+    "COMM": 3.13,
+    "RESP": 0.0,
+    "PROB": 2.95,
+    "GROW": 3.22,
+    "STRE": 0.0,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "25-4011.00",
+    "title": "Archivists",
+    "COMM": 2.99,
+    "RESP": 0.0,
+    "PROB": 2.91,
+    "GROW": 2.7,
+    "STRE": 0.0,
+    "ADAP": 2.46
+  },
+  {
+    "soc_code": "25-9021.00",
+    "title": "Farm and Home Management Educators",
+    "COMM": 3.5,
+    "RESP": 0.0,
+    "PROB": 3.4,
+    "GROW": 3.41,
+    "STRE": 0.0,
+    "ADAP": 3.23
+  },
+  {
+    "soc_code": "27-1012.00",
+    "title": "Craft Artists",
+    "COMM": 2.38,
+    "RESP": 0.0,
+    "PROB": 2.53,
+    "GROW": 2.03,
+    "STRE": 0.0,
+    "ADAP": 2.45
+  },
+  {
+    "soc_code": "27-1024.00",
+    "title": "Graphic Designers",
+    "COMM": 2.91,
+    "RESP": 0.0,
+    "PROB": 2.79,
+    "GROW": 2.62,
+    "STRE": 0.0,
+    "ADAP": 2.61
+  },
+  {
+    "soc_code": "27-1025.00",
+    "title": "Interior Designers",
+    "COMM": 3.36,
+    "RESP": 0.0,
+    "PROB": 3.14,
+    "GROW": 2.48,
+    "STRE": 0.0,
+    "ADAP": 3.11
+  },
+  {
+    "soc_code": "27-1027.00",
+    "title": "Set and Exhibit Designers",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.15,
+    "GROW": 2.55,
+    "STRE": 0.0,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "27-2023.00",
+    "title": "Umpires, Referees, and Other Sports Officials",
+    "COMM": 2.73,
+    "RESP": 0.0,
+    "PROB": 2.78,
+    "GROW": 2.55,
+    "STRE": 0.0,
+    "ADAP": 2.38
+  },
+  {
+    "soc_code": "27-2032.00",
+    "title": "Choreographers",
+    "COMM": 3.34,
+    "RESP": 0.0,
+    "PROB": 2.89,
+    "GROW": 2.92,
+    "STRE": 0.0,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "27-3023.00",
+    "title": "News Analysts, Reporters, and Journalists",
+    "COMM": 3.21,
+    "RESP": 0.0,
+    "PROB": 2.9,
+    "GROW": 2.41,
+    "STRE": 0.0,
+    "ADAP": 2.79
+  },
+  {
+    "soc_code": "27-3031.00",
+    "title": "Public Relations Specialists",
+    "COMM": 3.49,
+    "RESP": 0.0,
+    "PROB": 3.26,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 3.16
+  },
+  {
+    "soc_code": "27-3043.05",
+    "title": "Poets, Lyricists and Creative Writers",
+    "COMM": 2.97,
+    "RESP": 0.0,
+    "PROB": 2.88,
+    "GROW": 2.79,
+    "STRE": 0.0,
+    "ADAP": 2.44
+  },
+  {
+    "soc_code": "27-4014.00",
+    "title": "Sound Engineering Technicians",
+    "COMM": 2.91,
+    "RESP": 0.0,
+    "PROB": 2.85,
+    "GROW": 2.41,
+    "STRE": 0.0,
+    "ADAP": 2.59
+  },
+  {
+    "soc_code": "27-4021.00",
+    "title": "Photographers",
+    "COMM": 2.93,
+    "RESP": 0.0,
+    "PROB": 2.75,
+    "GROW": 2.57,
+    "STRE": 0.0,
+    "ADAP": 2.63
+  },
+  {
+    "soc_code": "29-1031.00",
+    "title": "Dietitians and Nutritionists",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 3.31,
+    "STRE": 0.0,
+    "ADAP": 3.35
+  },
+  {
+    "soc_code": "29-1041.00",
+    "title": "Optometrists",
+    "COMM": 3.32,
+    "RESP": 0.0,
+    "PROB": 3.59,
+    "GROW": 2.81,
+    "STRE": 0.0,
+    "ADAP": 3.04
+  },
+  {
+    "soc_code": "29-1071.00",
+    "title": "Physician Assistants",
+    "COMM": 3.32,
+    "RESP": 0.0,
+    "PROB": 3.65,
+    "GROW": 3.09,
+    "STRE": 0.0,
+    "ADAP": 3.27
+  },
+  {
+    "soc_code": "29-1122.00",
+    "title": "Occupational Therapists",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.34,
+    "GROW": 3.33,
+    "STRE": 0.0,
+    "ADAP": 3.18
+  },
+  {
+    "soc_code": "29-1122.01",
+    "title": "Low Vision Therapists, Orientation and Mobility Specialists, and Vision Rehabilitation Therapists",
+    "COMM": 3.16,
+    "RESP": 0.0,
+    "PROB": 3.18,
+    "GROW": 3.32,
+    "STRE": 0.0,
+    "ADAP": 3.08
+  },
+  {
+    "soc_code": "29-1125.00",
+    "title": "Recreational Therapists",
+    "COMM": 3.41,
+    "RESP": 0.0,
+    "PROB": 3.27,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 3.36
+  },
+  {
+    "soc_code": "29-1128.00",
+    "title": "Exercise Physiologists",
+    "COMM": 3.25,
+    "RESP": 0.0,
+    "PROB": 3.41,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "29-1129.01",
+    "title": "Art Therapists",
+    "COMM": 3.23,
+    "RESP": 0.0,
+    "PROB": 3.31,
+    "GROW": 3.1,
+    "STRE": 0.0,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "29-1129.02",
+    "title": "Music Therapists",
+    "COMM": 3.24,
+    "RESP": 0.0,
+    "PROB": 3.3,
+    "GROW": 3.09,
+    "STRE": 0.0,
+    "ADAP": 3.3
+  },
+  {
+    "soc_code": "29-1141.01",
+    "title": "Acute Care Nurses",
+    "COMM": 3.45,
+    "RESP": 0.0,
+    "PROB": 3.54,
+    "GROW": 3.27,
+    "STRE": 0.0,
+    "ADAP": 3.33
+  },
+  {
+    "soc_code": "29-1141.02",
+    "title": "Advanced Practice Psychiatric Nurses",
+    "COMM": 3.47,
+    "RESP": 0.0,
+    "PROB": 3.55,
+    "GROW": 3.29,
+    "STRE": 0.0,
+    "ADAP": 3.43
+  },
+  {
+    "soc_code": "29-1141.03",
+    "title": "Critical Care Nurses",
+    "COMM": 3.41,
+    "RESP": 0.0,
+    "PROB": 3.48,
+    "GROW": 3.08,
+    "STRE": 0.0,
+    "ADAP": 3.25
+  },
+  {
+    "soc_code": "29-1141.04",
+    "title": "Clinical Nurse Specialists",
+    "COMM": 3.44,
+    "RESP": 0.0,
+    "PROB": 3.5,
+    "GROW": 3.38,
+    "STRE": 0.0,
+    "ADAP": 3.38
+  },
+  {
+    "soc_code": "29-1151.00",
+    "title": "Nurse Anesthetists",
+    "COMM": 3.31,
+    "RESP": 0.0,
+    "PROB": 3.63,
+    "GROW": 3.18,
+    "STRE": 0.0,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "29-1161.00",
+    "title": "Nurse Midwives",
+    "COMM": 3.45,
+    "RESP": 0.0,
+    "PROB": 3.59,
+    "GROW": 3.15,
+    "STRE": 0.0,
+    "ADAP": 3.12
+  },
+  {
+    "soc_code": "29-1171.00",
+    "title": "Nurse Practitioners",
+    "COMM": 3.5,
+    "RESP": 0.0,
+    "PROB": 3.7,
+    "GROW": 3.3,
+    "STRE": 0.0,
+    "ADAP": 3.34
+  },
+  {
+    "soc_code": "29-1181.00",
+    "title": "Audiologists",
+    "COMM": 3.39,
+    "RESP": 0.0,
+    "PROB": 3.59,
+    "GROW": 3.32,
+    "STRE": 0.0,
+    "ADAP": 3.13
+  },
+  {
+    "soc_code": "29-1214.00",
+    "title": "Emergency Medicine Physicians",
+    "COMM": 3.65,
+    "RESP": 0.0,
+    "PROB": 3.94,
+    "GROW": 3.4,
+    "STRE": 0.0,
+    "ADAP": 3.55
+  },
+  {
+    "soc_code": "29-1229.02",
+    "title": "Hospitalists",
+    "COMM": 3.57,
+    "RESP": 0.0,
+    "PROB": 3.85,
+    "GROW": 3.43,
+    "STRE": 0.0,
+    "ADAP": 3.4
+  },
+  {
+    "soc_code": "29-1229.05",
+    "title": "Preventive Medicine Physicians",
+    "COMM": 3.74,
+    "RESP": 0.0,
+    "PROB": 4.02,
+    "GROW": 3.66,
+    "STRE": 0.0,
+    "ADAP": 3.5
+  },
+  {
+    "soc_code": "29-1291.00",
+    "title": "Acupuncturists",
+    "COMM": 3.08,
+    "RESP": 0.0,
+    "PROB": 3.17,
+    "GROW": 2.48,
+    "STRE": 0.0,
+    "ADAP": 2.88
+  },
+  {
+    "soc_code": "29-1299.01",
+    "title": "Naturopathic Physicians",
+    "COMM": 3.34,
+    "RESP": 0.0,
+    "PROB": 3.71,
+    "GROW": 3.15,
+    "STRE": 0.0,
+    "ADAP": 3.31
+  },
+  {
+    "soc_code": "29-1299.02",
+    "title": "Orthoptists",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 3.49,
+    "GROW": 3.01,
+    "STRE": 0.0,
+    "ADAP": 2.98
+  },
+  {
+    "soc_code": "29-2011.01",
+    "title": "Cytogenetic Technologists",
+    "COMM": 3.02,
+    "RESP": 0.0,
+    "PROB": 3.28,
+    "GROW": 2.67,
+    "STRE": 0.0,
+    "ADAP": 2.34
+  },
+  {
+    "soc_code": "29-2011.02",
+    "title": "Cytotechnologists",
+    "COMM": 2.85,
+    "RESP": 0.0,
+    "PROB": 3.18,
+    "GROW": 2.6,
+    "STRE": 0.0,
+    "ADAP": 2.23
+  },
+  {
+    "soc_code": "29-2011.04",
+    "title": "Histotechnologists",
+    "COMM": 2.73,
+    "RESP": 0.0,
+    "PROB": 2.83,
+    "GROW": 2.57,
+    "STRE": 0.0,
+    "ADAP": 2.37
+  },
+  {
+    "soc_code": "29-2012.01",
+    "title": "Histology Technicians",
+    "COMM": 2.66,
+    "RESP": 0.0,
+    "PROB": 2.78,
+    "GROW": 2.3,
+    "STRE": 0.0,
+    "ADAP": 1.93
+  },
+  {
+    "soc_code": "29-2035.00",
+    "title": "Magnetic Resonance Imaging Technologists",
+    "COMM": 3.01,
+    "RESP": 0.0,
+    "PROB": 2.86,
+    "GROW": 2.56,
+    "STRE": 0.0,
+    "ADAP": 2.59
+  },
+  {
+    "soc_code": "29-2036.00",
+    "title": "Medical Dosimetrists",
+    "COMM": 3.23,
+    "RESP": 0.0,
+    "PROB": 3.54,
+    "GROW": 3.03,
+    "STRE": 0.0,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "29-2057.00",
+    "title": "Ophthalmic Medical Technicians",
+    "COMM": 2.88,
+    "RESP": 0.0,
+    "PROB": 2.6,
+    "GROW": 2.43,
+    "STRE": 0.0,
+    "ADAP": 2.35
+  },
+  {
+    "soc_code": "29-2081.00",
+    "title": "Opticians, Dispensing",
+    "COMM": 3.18,
+    "RESP": 0.0,
+    "PROB": 2.81,
+    "GROW": 2.48,
+    "STRE": 0.0,
+    "ADAP": 2.8
+  },
+  {
+    "soc_code": "29-2091.00",
+    "title": "Orthotists and Prosthetists",
+    "COMM": 3.24,
+    "RESP": 0.0,
+    "PROB": 3.45,
+    "GROW": 3.06,
+    "STRE": 0.0,
+    "ADAP": 3.07
+  },
+  {
+    "soc_code": "29-2099.01",
+    "title": "Neurodiagnostic Technologists",
+    "COMM": 3.09,
+    "RESP": 0.0,
+    "PROB": 3.22,
+    "GROW": 2.7,
+    "STRE": 0.0,
+    "ADAP": 2.35
+  },
+  {
+    "soc_code": "29-2099.05",
+    "title": "Ophthalmic Medical Technologists",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 2.91,
+    "GROW": 2.57,
+    "STRE": 0.0,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "29-9092.00",
+    "title": "Genetic Counselors",
+    "COMM": 3.11,
+    "RESP": 0.0,
+    "PROB": 3.51,
+    "GROW": 2.99,
+    "STRE": 0.0,
+    "ADAP": 2.87
+  },
+  {
+    "soc_code": "31-9011.00",
+    "title": "Massage Therapists",
+    "COMM": 2.65,
+    "RESP": 0.0,
+    "PROB": 2.66,
+    "GROW": 2.49,
+    "STRE": 0.0,
+    "ADAP": 2.37
+  },
+  {
+    "soc_code": "31-9097.00",
+    "title": "Phlebotomists",
+    "COMM": 2.87,
+    "RESP": 0.0,
+    "PROB": 2.67,
+    "GROW": 2.54,
+    "STRE": 0.0,
+    "ADAP": 2.67
+  },
+  {
+    "soc_code": "31-9099.02",
+    "title": "Endoscopy Technicians",
+    "COMM": 2.77,
+    "RESP": 0.0,
+    "PROB": 2.77,
+    "GROW": 2.49,
+    "STRE": 0.0,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "33-3021.06",
+    "title": "Intelligence Analysts",
+    "COMM": 3.27,
+    "RESP": 0.0,
+    "PROB": 3.53,
+    "GROW": 2.9,
+    "STRE": 0.0,
+    "ADAP": 2.57
+  },
+  {
+    "soc_code": "33-9011.00",
+    "title": "Animal Control Workers",
+    "COMM": 2.84,
+    "RESP": 0.0,
+    "PROB": 2.95,
+    "GROW": 2.41,
+    "STRE": 0.0,
+    "ADAP": 2.55
+  },
+  {
+    "soc_code": "33-9093.00",
+    "title": "Transportation Security Screeners",
+    "COMM": 2.82,
+    "RESP": 0.0,
+    "PROB": 2.93,
+    "GROW": 2.37,
+    "STRE": 0.0,
+    "ADAP": 2.58
+  },
+  {
+    "soc_code": "35-1011.00",
+    "title": "Chefs and Head Cooks",
+    "COMM": 3.31,
+    "RESP": 0.0,
+    "PROB": 3.23,
+    "GROW": 2.91,
+    "STRE": 0.0,
+    "ADAP": 3.05
+  },
+  {
+    "soc_code": "35-2013.00",
+    "title": "Cooks, Private Household",
+    "COMM": 2.52,
+    "RESP": 0.0,
+    "PROB": 2.65,
+    "GROW": 2.37,
+    "STRE": 0.0,
+    "ADAP": 2.6
+  },
+  {
+    "soc_code": "39-5091.00",
+    "title": "Makeup Artists, Theatrical and Performance",
+    "COMM": 2.84,
+    "RESP": 0.0,
+    "PROB": 2.7,
+    "GROW": 2.47,
+    "STRE": 0.0,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "39-6012.00",
+    "title": "Concierges",
+    "COMM": 3.14,
+    "RESP": 0.0,
+    "PROB": 2.69,
+    "GROW": 2.09,
+    "STRE": 0.0,
+    "ADAP": 3.02
+  },
+  {
+    "soc_code": "39-9011.01",
+    "title": "Nannies",
+    "COMM": 2.94,
+    "RESP": 0.0,
+    "PROB": 2.97,
+    "GROW": 2.66,
+    "STRE": 0.0,
+    "ADAP": 3.11
+  },
+  {
+    "soc_code": "39-9031.00",
+    "title": "Exercise Trainers and Group Fitness Instructors",
+    "COMM": 2.72,
+    "RESP": 0.0,
+    "PROB": 2.52,
+    "GROW": 2.71,
+    "STRE": 0.0,
+    "ADAP": 2.71
+  },
+  {
+    "soc_code": "41-9022.00",
+    "title": "Real Estate Sales Agents",
+    "COMM": 3.34,
+    "RESP": 0.0,
+    "PROB": 2.87,
+    "GROW": 2.41,
+    "STRE": 0.0,
+    "ADAP": 3.2
+  },
+  {
+    "soc_code": "41-9091.00",
+    "title": "Door-to-Door Sales Workers, News and Street Vendors, and Related Workers",
+    "COMM": 2.92,
+    "RESP": 0.0,
+    "PROB": 2.4,
+    "GROW": 2.04,
+    "STRE": 0.0,
+    "ADAP": 3.11
+  },
+  {
+    "soc_code": "43-4041.00",
+    "title": "Credit Authorizers, Checkers, and Clerks",
+    "COMM": 2.88,
+    "RESP": 0.0,
+    "PROB": 2.66,
+    "GROW": 2.15,
+    "STRE": 0.0,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "45-3031.00",
+    "title": "Fishing and Hunting Workers",
+    "COMM": 2.39,
+    "RESP": 0.0,
+    "PROB": 2.55,
+    "GROW": 2.23,
+    "STRE": 0.0,
+    "ADAP": 1.94
+  },
+  {
+    "soc_code": "47-4011.00",
+    "title": "Construction and Building Inspectors",
+    "COMM": 3.01,
+    "RESP": 0.0,
+    "PROB": 3.27,
+    "GROW": 2.62,
+    "STRE": 0.0,
+    "ADAP": 2.5
+  },
+  {
+    "soc_code": "47-4011.01",
+    "title": "Energy Auditors",
+    "COMM": 3.02,
+    "RESP": 0.0,
+    "PROB": 3.16,
+    "GROW": 2.65,
+    "STRE": 0.0,
+    "ADAP": 2.52
+  },
+  {
+    "soc_code": "47-4099.03",
+    "title": "Weatherization Installers and Technicians",
+    "COMM": 2.61,
+    "RESP": 0.0,
+    "PROB": 2.66,
+    "GROW": 2.35,
+    "STRE": 0.0,
+    "ADAP": 2.41
+  },
+  {
+    "soc_code": "47-5032.00",
+    "title": "Explosives Workers, Ordnance Handling Experts, and Blasters",
+    "COMM": 2.92,
+    "RESP": 0.0,
+    "PROB": 3.17,
+    "GROW": 2.6,
+    "STRE": 0.0,
+    "ADAP": 2.26
+  },
+  {
+    "soc_code": "49-9044.00",
+    "title": "Millwrights",
+    "COMM": 2.65,
+    "RESP": 0.0,
+    "PROB": 2.78,
+    "GROW": 2.41,
+    "STRE": 0.0,
+    "ADAP": 2.43
+  },
+  {
+    "soc_code": "49-9063.00",
+    "title": "Musical Instrument Repairers and Tuners",
+    "COMM": 2.36,
+    "RESP": 0.0,
+    "PROB": 2.89,
+    "GROW": 2.22,
+    "STRE": 0.0,
+    "ADAP": 2.33
+  },
+  {
+    "soc_code": "49-9094.00",
+    "title": "Locksmiths and Safe Repairers",
+    "COMM": 2.47,
+    "RESP": 0.0,
+    "PROB": 2.67,
+    "GROW": 2.12,
+    "STRE": 0.0,
+    "ADAP": 2.14
+  },
+  {
+    "soc_code": "51-8031.00",
+    "title": "Water and Wastewater Treatment Plant and System Operators",
+    "COMM": 2.61,
+    "RESP": 0.0,
+    "PROB": 2.7,
+    "GROW": 2.38,
+    "STRE": 0.0,
+    "ADAP": 2.03
+  },
+  {
+    "soc_code": "51-9195.00",
+    "title": "Molders, Shapers, and Casters, Except Metal and Plastic",
+    "COMM": 2.25,
+    "RESP": 0.0,
+    "PROB": 2.31,
+    "GROW": 1.83,
+    "STRE": 0.0,
+    "ADAP": 1.9
+  },
+  {
+    "soc_code": "53-4022.00",
+    "title": "Railroad Brake, Signal, and Switch Operators and Locomotive Firers",
+    "COMM": 2.55,
+    "RESP": 0.0,
+    "PROB": 2.67,
+    "GROW": 2.2,
+    "STRE": 0.0,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "53-6011.00",
+    "title": "Bridge and Lock Tenders",
+    "COMM": 2.53,
+    "RESP": 0.0,
+    "PROB": 2.48,
+    "GROW": 1.98,
+    "STRE": 0.0,
+    "ADAP": 2.2
+  },
+  {
+    "soc_code": "53-6051.00",
+    "title": "Transportation Inspectors",
+    "COMM": 2.91,
+    "RESP": 0.0,
+    "PROB": 3.07,
+    "GROW": 2.3,
+    "STRE": 0.0,
+    "ADAP": 2.41
+  }
+]
