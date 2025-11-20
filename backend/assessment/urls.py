@@ -15,10 +15,13 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import AssessmentViewSet
+from .views_recommend import JobRecommendView
 
 router = DefaultRouter()
 router.register(r'', AssessmentViewSet, basename='assessment')
 
 urlpatterns = [
-    path('', include(router.urls)),
+  path('recommend/', JobRecommendView.as_view(), name='job-recommend'),
+  path('', include(router.urls)),  # 기존 assessment API
+    
 ]

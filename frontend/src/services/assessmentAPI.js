@@ -32,6 +32,12 @@ const assessmentAPI = {
   
   // 결과 히스토리 조회 API 함수 작성 (필요시)
   getHistory: () => api.get('/assessment/history/'),
+
+// AI 직업 추천 API
+getRecommendedJob: (comm, resp, prob, grow, stre, adap) =>
+  api.get(`/assessment/recommend/`, {
+    params: { comm, resp, prob, grow, stre, adap }
+  }),
 };
 
 export default assessmentAPI;

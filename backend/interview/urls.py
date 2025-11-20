@@ -19,4 +19,5 @@ urlpatterns = [
     # POST /api/interview/answer/
     # 'views.SubmitAnswerView'를 사용합니다.
     path('answer/', views.SubmitAnswerView.as_view(), name='interview-answer'), 
+    
 ]
