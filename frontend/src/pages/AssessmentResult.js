@@ -155,7 +155,7 @@ const AssessmentResult = () => {
           )}
         </div>
 
-        {/* 3) AI 추천 직업 */}
+        {/* 3) AI 추천 직업
         {recommendedJob.length > 0 && (
           <div className="recommend-box">
             <h3>✨ AI 추천 직업</h3>
@@ -177,7 +177,7 @@ const AssessmentResult = () => {
               {recommendedJob[0].title_ko} 직무 면접 시뮬레이션 시작하기 →
             </button>
           </div>
-        )}
+        )} */}
 
         <button onClick={() => navigate("/")}>메인으로 돌아가기</button>
       </div>

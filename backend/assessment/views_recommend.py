@@ -12,18 +12,18 @@ from tensorflow.keras.models import load_model
 # -----------------------------
 # 경로 설정 (ML 폴더는 backend보다 상위)
 # -----------------------------
-CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # backend/assessment
-APP_DIR = os.path.dirname(CURRENT_DIR)                        # backend
-PROJECT_DIR = os.path.dirname(APP_DIR)                        # interview_simul
-ML_DIR = os.path.join(PROJECT_DIR, "ML")                      # interview_simul/ML
+# CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))      # backend/assessment
+# APP_DIR = os.path.dirname(CURRENT_DIR)                        # backend
+# PROJECT_DIR = os.path.dirname(APP_DIR)                        # interview_simul
+# ML_DIR = os.path.join(PROJECT_DIR, "ML")                      # interview_simul/ML
 
-MODEL_PATH = os.path.join(ML_DIR, "job_recommender_40jobs.h5")
-ENCODER_PATH = os.path.join(ML_DIR, "job_label_encoder.pkl")
-REPRESENTATIVE_JOBS = os.path.join(ML_DIR, "representative_jobs.csv")
+# MODEL_PATH = os.path.join(ML_DIR, "job_recommender_40jobs.h5")
+# ENCODER_PATH = os.path.join(ML_DIR, "job_label_encoder.pkl")
+# REPRESENTATIVE_JOBS = os.path.join(ML_DIR, "representative_jobs.csv")
 
-model = load_model(MODEL_PATH)
-label_encoder = joblib.load(ENCODER_PATH)
-df_jobs = pd.read_csv(REPRESENTATIVE_JOBS)
+# model = load_model(MODEL_PATH)
+# label_encoder = joblib.load(ENCODER_PATH)
+# df_jobs = pd.read_csv(REPRESENTATIVE_JOBS)
 
 
 class JobRecommendView(APIView):
