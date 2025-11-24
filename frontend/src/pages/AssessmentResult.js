@@ -29,7 +29,7 @@ const AssessmentResult = () => {
   const [loading, setLoading] = useState(initialLoading);
   const [error, setError] = useState("");
 
-  // 추천 직업 (배열)
+  // 추천 직업
   const [recommendedJob, setRecommendedJob] = useState([]);
 
   // -------------------------------
@@ -56,7 +56,7 @@ const AssessmentResult = () => {
   }, [result, id]);
 
   // -------------------------------
-  // 2) AI 추천 API 호출
+  // 2) AI 추천 직업 호출
   // -------------------------------
   useEffect(() => {
     if (!result) return;
@@ -71,13 +71,17 @@ const AssessmentResult = () => {
         const adap = parseFloat(result.adaptation);
 
         const res = await assessmentAPI.getRecommendedJob(
-          comm, resp, prob, grow, stre, adap
+          comm,
+          resp,
+          prob,
+          grow,
+          stre,
+          adap
         );
 
         if (res.data?.results && res.data.results.length > 0) {
           setRecommendedJob(res.data.results);
         }
-
       } catch (err) {
         console.error("추천 API 오류:", err);
       }
@@ -94,7 +98,11 @@ const AssessmentResult = () => {
       <div className="assessment">
         <div className="assessment-container assessment-result">
           <h1>인적성 검사 결과</h1>
-          {error ? <p className="error-text">{error}</p> : <p>결과를 불러오는 중입니다...</p>}
+          {error ? (
+            <p className="error-text">{error}</p>
+          ) : (
+            <p>결과를 불러오는 중입니다...</p>
+          )}
         </div>
       </div>
     );
@@ -116,12 +124,24 @@ const AssessmentResult = () => {
           <div className="result-text">
             <h3>역량 설명</h3>
             <ul>
-              <li><strong>의사소통(COMM)</strong> : 의견을 조율하는 능력.</li>
-              <li><strong>책임감(RESP)</strong> : 일의 완수도.</li>
-              <li><strong>문제해결(PROB)</strong> : 문제 분석 및 대응.</li>
-              <li><strong>성장성(GROW)</strong> : 배움과 성장 의지.</li>
-              <li><strong>스트레스(STRE)</strong> : 압박 상황 대응력.</li>
-              <li><strong>적응력(ADAP)</strong> : 새로운 환경 적응력.</li>
+              <li>
+                <strong>의사소통(COMM)</strong> : 의견을 조율하는 능력.
+              </li>
+              <li>
+                <strong>책임감(RESP)</strong> : 일의 완수도.
+              </li>
+              <li>
+                <strong>문제해결(PROB)</strong> : 문제 분석 및 대응.
+              </li>
+              <li>
+                <strong>성장성(GROW)</strong> : 배움과 성장 의지.
+              </li>
+              <li>
+                <strong>스트레스(STRE)</strong> : 압박 상황 대응력.
+              </li>
+              <li>
+                <strong>적응력(ADAP)</strong> : 새로운 환경 적응력.
+              </li>
             </ul>
           </div>
 
@@ -136,46 +156,56 @@ const AssessmentResult = () => {
 
           {analysis ? (
             <>
-              <p><strong>요약:</strong> {analysis.summary}</p>
+              <p>
+                <strong>요약:</strong> {analysis.summary}
+              </p>
 
               <h4>강점</h4>
               <ul>
-                {analysis.strengths?.map((s, i) => <li key={i}>{s}</li>)}
+                {analysis.strengths?.map((s, i) => (
+                  <li key={i}>{s}</li>
+                ))}
               </ul>
 
               <h4>보완점</h4>
               <ul>
-                {analysis.weaknesses?.map((w, i) => <li key={i}>{w}</li>)}
+                {analysis.weaknesses?.map((w, i) => (
+                  <li key={i}>{w}</li>
+                ))}
               </ul>
 
-              <p><strong>작업 스타일:</strong> {analysis.work_style}</p>
+              <p>
+                <strong>작업 스타일:</strong> {analysis.work_style}
+              </p>
             </>
           ) : (
             <p>GPT 분석 데이터가 존재하지 않습니다.</p>
           )}
         </div>
 
-        3) AI 추천 직업
+        {/* 3) AI 추천 직업 */}
         {recommendedJob.length > 0 && (
           <div className="recommend-box">
-            <h3>✨ AI 추천 직업</h3>
+            <h3>AI 추천 직업</h3>
 
             {recommendedJob.slice(0, 3).map((job, i) => (
               <div key={i} className="job-item">
-                <p><strong>{i + 1}위:</strong> {job.title_ko}</p>
+                <p>
+                  <strong>{i + 1}위:</strong> {job.title_ko}
+                </p>
+
+                <button
+                  className="simul-btn"
+                  onClick={() =>
+                    navigate("/interview", {
+                      state: { jobTopic: job.title_ko },
+                    })
+                  }
+                >
+                  {job.title_ko} 직무 면접 시뮬레이션 시작하기 →
+                </button>
               </div>
             ))}
-
-            <button
-              className="simul-btn"
-              onClick={() =>
-                navigate("/interview-simul", {
-                  state: { job: recommendedJob[0].title_ko },
-                })
-              }
-            >
-              {recommendedJob[0].title_ko} 직무 면접 시뮬레이션 시작하기 →
-            </button>
           </div>
         )}
 

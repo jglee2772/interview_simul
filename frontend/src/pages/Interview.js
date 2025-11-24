@@ -1,11 +1,37 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import './Interview.css';
 // 이미지를 import 합니다. (파일 경로와 이름 확인 필수!)
 import interviewersImage from '../assets/interview.gif'; 
 
+import { useLocation } from "react-router-dom";
+
 const API_BASE_URL = 'http://127.0.0.1:8000/api/interview';
 
 function Interview() {
+  // 인적성 결과값 받아오는용도
+
+const useJobTopicFromAssessment = () => {
+  const location = useLocation();
+
+  // 추천 페이지에서 전달받은 값
+  const jobTopic = location.state?.jobTopic || "";
+
+  // 면접 입력창에 표시될 state
+  const [topic, setTopic] = useState("");
+
+  // jobTopic이 전달되면 자동 입력
+  useEffect(() => {
+    if (jobTopic) {
+      setTopic(jobTopic);
+    }
+  }, [jobTopic]);
+
+  return { topic, setTopic };
+};
+  // 인적성 결과값 받아오는용도 (요기까지)
+
+
+  
   // -----------------------------------------------------------
   // 1. 상태(State) 관리
   // -----------------------------------------------------------
@@ -17,7 +43,17 @@ function Interview() {
   
   const [isSessionStarted, setIsSessionStarted] = useState(false); // 시작 여부
   const [isFinished, setIsFinished] = useState(false);             // 종료 여부
-
+  
+  const location = useLocation();
+  const receivedJobTopic = location.state?.jobTopic || "";
+    // 페이지가 열릴 때 자동 입력
+    useEffect(() => {
+      if (receivedJobTopic) {
+        setJobTopic(receivedJobTopic);
+      }
+    }, [receivedJobTopic]);
+ 
+  
   // -----------------------------------------------------------
   // 2. 헬퍼: 가장 최근 AI 메시지 찾기 (말풍선용)
   // -----------------------------------------------------------
@@ -134,7 +170,7 @@ function Interview() {
               value={jobTopic}
               onChange={(e) => setJobTopic(e.target.value)}
               placeholder="예: 백엔드 개발자, 마케터"
-              onKeyPress={(e) => e.key === 'Enter' && handleStartInterview()}
+              // onKeyPress={(e) => e.key === 'Enter' && handleStartInterview()}
             />
             <button onClick={handleStartInterview} disabled={isLoading}>
               {isLoading ? '면접장 입장 중...' : '면접 시작하기'}
