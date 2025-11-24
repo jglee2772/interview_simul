@@ -24,7 +24,7 @@ const Assessment = () => {
   const [progress, setProgress] = useState(0);
   const hasCheckedName = useRef(false);
 
-  const questionsPerPage = 4;
+  const questionsPerPage = 10;
   const totalPages = Math.ceil(questions.length / questionsPerPage);
   const startIndex = currentPage * questionsPerPage;
   const endIndex = startIndex + questionsPerPage;

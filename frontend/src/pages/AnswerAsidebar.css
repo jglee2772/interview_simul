@@ -1,65 +1,112 @@
 /* ---------- 사이드바 ---------- */
 .asidebar {
-  width: 260px;
+  width: 240px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 0;
   margin-top: 20px;
+  margin-left: -50px;
   background: transparent;
-
-  /* ✅ 스크롤 고정 설정 */
   position: sticky;
-  top: 40px; /* 상단 여백 (헤더나 제목 영역 피해서) */
+  top: 40px;
   height: fit-content;
   align-self: flex-start;
   z-index: 20;
 }
+
 /* 내부 박스 */
 .aside-inner-box {
   width: 100%;
-  max-width: 230px;
-
   background: #ffffff;
-  border-left: 4px solid #f6c90e;
-  border-radius: 12px;
+  border-left: 4px solid #a88cff;
+  border-radius: 20px;
   padding: 20px 16px 24px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+  box-shadow: 0 6px 18px rgba(168, 140, 255, 0.25);
   text-align: center;
+  transition: all 0.3s ease;
 }
 
 .aside-inner-box h3 {
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   font-weight: 700;
-  color: #0e1a3a;
-  margin-bottom: 16px;
-  border-bottom: 1.5px solid rgba(0,0,0,0.05);
-  padding-bottom: 8px;
+  color: #3c2e80;
+  margin-bottom: 14px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding-bottom: 6px;
 }
 
 /* 번호 리스트 */
 .aside-question-list {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
   justify-items: center;
 }
 
+/* 버튼 */
 .aside-question-list li {
-  width: 55px;
-  height: 34px;
-  font-size: 0.85rem;
+  width: 28px;
+  height: 28px;
+  font-size: 0.72rem;
   font-weight: 600;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-  border-radius: 8px;
-  border: 1.5px solid transparent;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 140, 255, 0.4);
+  color: #4a3ca7;
+  background: rgba(168, 140, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+  transition: all 0.25s ease;
+}
 
-  transition: all 0.2s ease;
+/* Hover 시 wave + 살짝 확대 */
+.aside-question-list li:hover {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #b8a4ff, #d9caff);
+  color: #ffffff;
+  box-shadow: 0 0 10px rgba(168, 140, 255, 0.5);
+  border-color: #a88cff;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+
+/* ✨ Wave 효과 */
+.aside-question-list li::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid rgba(168, 140, 255, 0.6);
+  transform: scale(1);
+  opacity: 0;
+}
+.aside-question-list li:hover::after {
+  animation: waveEffect 0.9s ease-out forwards;
+}
+@keyframes waveEffect {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0.4;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+/* 클릭 시 (active 상태) */
+.aside-question-list li.active {
+  background: linear-gradient(135deg, #a88cff, #cbb8ff);
+  color: #fff;
+  border-color: #a88cff;
+  box-shadow: 0 0 12px rgba(168, 140, 255, 0.6);
+  transform: scale(1.15);
 }
 
 /* 미답변 */
@@ -71,30 +118,31 @@
 
 /* 답변완료 */
 .aside-question-list li.answered {
-  background: rgba(46, 204, 113, 0.1);
-  color: #27ae60;
-  border-color: rgba(46, 204, 113, 0.3);
-}
-
-/* Hover */
-.aside-question-list li:hover {
-  background: rgba(246, 201, 14, 0.12);
-  transform: scale(1.05);
+  background: rgba(168, 140, 255, 0.12);
+  color: #6a5acd;
+  border-color: rgba(168, 140, 255, 0.4);
 }
 
 /* 반응형 */
 @media (max-width: 992px) {
   .asidebar {
     width: 100%;
+    margin-left: 0;
     margin-top: 30px;
   }
 
   .aside-inner-box {
-    max-width: none;
     width: 100%;
   }
 
   .aside-question-list {
     grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+  }
+
+  .aside-question-list li {
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
   }
 }

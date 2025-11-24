@@ -184,30 +184,29 @@ const AssessmentResult = () => {
         </div>
 
         {/* 3) AI 추천 직업 */}
-        {recommendedJob.length > 0 && (
-          <div className="recommend-box">
-            <h3>AI 추천 직업</h3>
+        {/* 3) AI 추천 직업 */}
+{recommendedJob.length > 0 && (
+  <div className="recommend-box">
+    <h3>AI 추천 직업</h3>
 
-            {recommendedJob.slice(0, 3).map((job, i) => (
-              <div key={i} className="job-item">
-                <p>
-                  <strong>{i + 1}위:</strong> {job.title_ko}
-                </p>
+    <div className="recommend-row">
+      {recommendedJob.slice(0, 3).map((job, i) => (
+        <div key={i} className="job-item">
+          <p><strong>{i + 1}위:</strong> {job.title_ko}</p>
+          <button
+            className="simul-btn"
+            onClick={() =>
+              navigate("/interview", { state: { jobTopic: job.title_ko } })
+            }
+          >
+            면접 시뮬레이션 <br/> <br/>시작하기 ☞
+          </button>
+        </div>
+      ))}
+    </div>
+  </div>
+)}
 
-                <button
-                  className="simul-btn"
-                  onClick={() =>
-                    navigate("/interview", {
-                      state: { jobTopic: job.title_ko },
-                    })
-                  }
-                >
-                  {job.title_ko} 직무 면접 시뮬레이션 시작하기 →
-                </button>
-              </div>
-            ))}
-          </div>
-        )}
 
         <button onClick={() => navigate("/")}>메인으로 돌아가기</button>
       </div>
