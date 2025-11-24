@@ -1,37 +1,19 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from "react-router-dom";
+import ReactMarkdown from 'react-markdown';
 import './Interview.css';
 // 이미지를 import 합니다. (파일 경로와 이름 확인 필수!)
 import interviewersImage from '../assets/interview.gif'; 
 
-import { useLocation } from "react-router-dom";
-
 const API_BASE_URL = 'http://127.0.0.1:8000/api/interview';
 
 function Interview() {
-  // 인적성 결과값 받아오는용도
-
-const useJobTopicFromAssessment = () => {
+  // -----------------------------------------------------------
+  // 0. 인적성 결과값 받아오기 (페이지 진입 시 자동 설정)
+  // -----------------------------------------------------------
   const location = useLocation();
+  const receivedJobTopic = location.state?.jobTopic || "";
 
-  // 추천 페이지에서 전달받은 값
-  const jobTopic = location.state?.jobTopic || "";
-
-  // 면접 입력창에 표시될 state
-  const [topic, setTopic] = useState("");
-
-  // jobTopic이 전달되면 자동 입력
-  useEffect(() => {
-    if (jobTopic) {
-      setTopic(jobTopic);
-    }
-  }, [jobTopic]);
-
-  return { topic, setTopic };
-};
-  // 인적성 결과값 받아오는용도 (요기까지)
-
-
-  
   // -----------------------------------------------------------
   // 1. 상태(State) 관리
   // -----------------------------------------------------------
@@ -44,21 +26,47 @@ const useJobTopicFromAssessment = () => {
   const [isSessionStarted, setIsSessionStarted] = useState(false); // 시작 여부
   const [isFinished, setIsFinished] = useState(false);             // 종료 여부
   
-  const location = useLocation();
-  const receivedJobTopic = location.state?.jobTopic || "";
-    // 페이지가 열릴 때 자동 입력
-    useEffect(() => {
-      if (receivedJobTopic) {
-        setJobTopic(receivedJobTopic);
-      }
-    }, [receivedJobTopic]);
- 
+  // 🔥 피드백 데이터 저장용 상태
+  const [feedback, setFeedback] = useState(''); 
+
+  // 페이지가 열릴 때 인적성 검사에서 넘어온 주제가 있다면 자동 입력
+  useEffect(() => {
+    if (receivedJobTopic) {
+      setJobTopic(receivedJobTopic);
+    }
+  }, [receivedJobTopic]);
+
+  // -----------------------------------------------------------
+  // 2. 헬퍼: 말풍선 위치 계산 & AI 메시지 찾기
+  // -----------------------------------------------------------
   
-  // -----------------------------------------------------------
-  // 2. 헬퍼: 가장 최근 AI 메시지 찾기 (말풍선용)
-  // -----------------------------------------------------------
-  // 대화 기록 중 'ai'가 보낸 마지막 메시지를 찾아 화면에 보여줍니다.
+  // (1) 대화 기록 중 'ai'가 보낸 마지막 메시지 찾기
   const lastAiMessage = conversation.filter(msg => msg.sender === 'ai').slice(-1)[0];
+
+  // (2) 🔥 말풍선 위치 계산 로직 (핵심 추가)
+  // 현재까지 AI가 몇 번 말했는지 셉니다.
+  const aiMsgCount = conversation.filter(msg => msg.sender === 'ai').length;
+  
+  // 현재 말하는 면접관의 순번 (0, 1, 2, 3) 계산
+  // (aiMsgCount가 0일 때는 아직 시작 안 함, 1개일 때 0번 면접관...)
+  const currentSpeakerIndex = aiMsgCount > 0 ? (aiMsgCount - 1) % 4 : 0;
+
+  // 각 자리에 앉은 면접관의 말풍선 위치 (왼쪽 기준 %)
+  // [왼쪽 끝, 중간 왼쪽, 중간 오른쪽, 오른쪽 끝]
+  // 이미지 속 캐릭터 위치에 맞춰 숫자를 미세 조정하세요.
+  const bubblePositions = [
+    '15%', // 1번 면접관
+    '38%', // 2번 면접관
+    '62%', // 3번 면접관
+    '85%'  // 4번 면접관
+  ];
+
+  // 말풍선에 적용할 동적 스타일
+  const bubbleStyle = {
+    left: bubblePositions[currentSpeakerIndex],
+    transition: 'left 0.4s ease-in-out', // 부드럽게 이동하는 애니메이션
+    transform: 'translateX(-50%)' // CSS에도 있지만 JS 스타일 덮어쓰기 방지용
+  };
 
   // -----------------------------------------------------------
   // 3. API 통신 함수 (면접 시작 & 답변 제출)
@@ -71,6 +79,7 @@ const useJobTopicFromAssessment = () => {
     setIsLoading(true);
     setConversation([]);
     setIsFinished(false);
+    setFeedback(''); 
 
     try {
       const response = await fetch(`${API_BASE_URL}/start/`, {
@@ -83,11 +92,11 @@ const useJobTopicFromAssessment = () => {
       const data = await response.json();
 
       setIsSessionStarted(true);
-      // 첫 질문 저장 (interviewer 정보가 있다면 같이 저장됨)
+      // 첫 질문 저장
       setConversation([{ 
         sender: 'ai', 
         text: data.question_text,
-        interviewer: data.interviewer // 백엔드에서 면접관 정보도 보내준다면 활용
+        interviewer: data.interviewer 
       }]);
       setCurrentExchangeId(data.id);
 
@@ -107,7 +116,7 @@ const useJobTopicFromAssessment = () => {
     setCurrentInput('');
     setIsLoading(true);
 
-    // 내 답변도 기록에 남김 (로그용)
+    // 내 답변도 기록에 남김
     setConversation(prev => [...prev, { sender: 'user', text: userAnswer }]);
 
     try {
@@ -123,7 +132,7 @@ const useJobTopicFromAssessment = () => {
       if (!response.ok) throw new Error(response.statusText);
       const data = await response.json();
 
-      // AI 답변 저장
+      // AI 답변(또는 종료 메시지) 저장
       setConversation(prev => [...prev, { 
         sender: 'ai', 
         text: data.question_text,
@@ -133,6 +142,11 @@ const useJobTopicFromAssessment = () => {
       if (data.is_finished) {
         setIsFinished(true);
         setCurrentExchangeId(null);
+        
+        // 백엔드에서 보낸 피드백이 있으면 저장
+        if (data.feedback) {
+          setFeedback(data.feedback);
+        }
       } else {
         setCurrentExchangeId(data.id);
       }
@@ -150,6 +164,7 @@ const useJobTopicFromAssessment = () => {
     setJobTopic('');
     setConversation([]);
     setCurrentExchangeId(null);
+    setFeedback(''); 
   };
 
   // -----------------------------------------------------------
@@ -170,7 +185,7 @@ const useJobTopicFromAssessment = () => {
               value={jobTopic}
               onChange={(e) => setJobTopic(e.target.value)}
               placeholder="예: 백엔드 개발자, 마케터"
-              // onKeyPress={(e) => e.key === 'Enter' && handleStartInterview()}
+              onKeyPress={(e) => e.key === 'Enter' && handleStartInterview()}
             />
             <button onClick={handleStartInterview} disabled={isLoading}>
               {isLoading ? '면접장 입장 중...' : '면접 시작하기'}
@@ -187,19 +202,19 @@ const useJobTopicFromAssessment = () => {
             
             {/* 말풍선: 로딩 중이거나, AI 메시지가 있을 때 표시 */}
             {(isLoading || (lastAiMessage && !isFinished)) && (
-              <div className="speech-bubble">
-                {/* 말풍선 꼬리 */}
+              <div 
+                className="speech-bubble" 
+                style={bubbleStyle} /* 🔥 동적 스타일(위치 이동) 적용 */
+              >
                 <div className="bubble-tail"></div>
-                
                 <div className="bubble-content">
-                  {/* 면접관 이름 (데이터가 있으면 표시) */}
+                  {/* 면접관 이름 */}
                   {lastAiMessage?.interviewer && (
                     <span className="interviewer-badge">
                       {lastAiMessage.interviewer.role || '면접관'}
                     </span>
                   )}
-                  
-                  {/* 텍스트: 로딩 중이면 ... 표시 */}
+                  {/* 텍스트 */}
                   <p>
                     {isLoading ? "답변을 분석하고 있습니다..." : lastAiMessage?.text}
                   </p>
@@ -207,7 +222,7 @@ const useJobTopicFromAssessment = () => {
               </div>
             )}
 
-            {/* 종료 메시지 */}
+            {/* 종료 시 상단 메시지 (가운데 고정) */}
             {isFinished && (
               <div className="speech-bubble finished">
                 <div className="bubble-content">
@@ -218,9 +233,10 @@ const useJobTopicFromAssessment = () => {
             )}
           </div>
 
-          {/* 2. 하단 인터랙션 영역 (답변 입력) */}
+          {/* 2. 하단 인터랙션 영역 */}
           <div className="interaction-area">
             {!isFinished ? (
+              /* (1) 면접 중: 답변 입력 폼 */
               <form className="answer-box" onSubmit={handleSubmitAnswer}>
                 <textarea
                   value={currentInput}
@@ -233,9 +249,19 @@ const useJobTopicFromAssessment = () => {
                 </button>
               </form>
             ) : (
-              <button className="restart-btn" onClick={handleRestart}>
-                처음으로 돌아가기
-              </button>
+              /* (2) 면접 종료: 피드백 리포트 표시 */
+              <div className="feedback-container">
+                <h2>📊 면접 분석 리포트</h2>
+                
+                <div className="feedback-content">
+                  {feedback ? (
+                        <ReactMarkdown>{feedback}</ReactMarkdown>) : ("상세 피드백을 생성하고 있습니다...")}
+                </div>
+                
+                <button className="restart-btn" onClick={handleRestart}>
+                  처음으로 돌아가기
+                </button>
+              </div>
             )}
           </div>
         </div>

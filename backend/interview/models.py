@@ -54,6 +54,7 @@ class InterviewSession(models.Model):
     job_topic = models.CharField(max_length=100, help_text="면접 주제 (예: React, Django)")
     created_at = models.DateTimeField(auto_now_add=True)
     status = models.CharField(max_length=20, choices=[('started', '시작됨'), ('completed', '완료됨')], default='started')
+    total_questions = models.IntegerField(default=10, help_text="이 세션에서 진행할 총 질문 횟수")
 
     # 핵심: 이 세션에 참여하는 면접관들 (4명이 할당될 필드)
     interviewers = models.ManyToManyField(

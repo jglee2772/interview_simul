@@ -1,4 +1,4 @@
-/* 전체 페이지 배경 (몰입감 있는 어두운 톤) */
+/* 전체 페이지 배경 */
 .interview-page {
   min-height: 100vh;
   background-color: #282c34;
@@ -75,7 +75,7 @@
 
 /* 1. 스테이지 영역 (이미지 + 말풍선) */
 .stage-area {
-  position: relative; /* 말풍선 위치 기준점 */
+  position: relative;
   width: 100%;
 }
 
@@ -89,75 +89,89 @@
 /* 말풍선 (Speech Bubble) */
 .speech-bubble {
   position: absolute;
-  bottom: -40px; /* 이미지 하단에 걸쳐있게 */
+  bottom: 20px; 
   left: 50%;
-  transform: translateX(-50%); /* 가로 중앙 정렬 */
-  
-  width: 90%;
-  background-color: rgba(255, 255, 255, 0.95);
+  transform: translateX(-50%);
+  width: 350px;
+  max-width: 85%;
+  background-color: rgba(255, 255, 255, 0.98);
   border: 3px solid #333;
   border-radius: 20px;
-  padding: 1.5rem;
-  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-  
-  /* 등장 애니메이션 */
+  padding: 1.2rem 1.5rem;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  z-index: 10;
   animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
 @keyframes popUp {
-  from { opacity: 0; transform: translate(-50%, 20px) scale(0.9); }
-  to { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.8); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-/* 말풍선 꼬리 (삼각형) */
 .bubble-tail {
   position: absolute;
-  top: -15px; /* 말풍선 위쪽 */
+  bottom: -15px;
   left: 50%;
   transform: translateX(-50%);
   width: 0; 
   height: 0; 
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-bottom: 15px solid #333; /* 말풍선 테두리 색 */
+  border-top: 15px solid #333;
 }
 
-/* 꼬리 내부 흰색 (테두리 효과를 위해 겹침) */
 .bubble-tail::after {
   content: '';
   position: absolute;
-  top: 4px; 
+  bottom: 4px; 
   left: -12px;
-  width: 0; 
-  height: 0; 
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-bottom: 12px solid white;
+  border-top: 12px solid #fff;
+}
+
+.bubble-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .bubble-content p {
   font-size: 1.1rem;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #333;
   margin: 0;
-  white-space: pre-wrap; /* 줄바꿈 인식 */
+  font-weight: 500;
+  white-space: pre-wrap;
 }
 
 .interviewer-badge {
-  display: inline-block;
-  background-color: #ffc107; /* 노란색 강조 */
-  color: #333;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 4px;
+  background-color: #ffc107;
+  color: #000;
   font-size: 0.9rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 12px;
   margin-bottom: 8px;
+  display: inline-block;
+  border: 2px solid #333;
+  box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
 }
 
 /* 종료 상태 말풍선 */
 .speech-bubble.finished {
   border-color: #28a745;
-  background-color: #e8f5e9;
+  background-color: #f0fff4;
+  bottom: 40px;
+}
+.speech-bubble.finished .bubble-tail {
+  display: none;
+}
+.speech-bubble.finished h3 {
+  margin: 0 0 10px 0;
+  color: #28a745;
+  font-size: 1.5rem;
 }
 
 /* =========================================
@@ -165,7 +179,7 @@
    ========================================= */
 .interaction-area {
   width: 100%;
-  padding-bottom: 2rem; /* 바닥 여백 */
+  padding-bottom: 2rem;
 }
 
 .answer-box {
@@ -187,7 +201,7 @@
 
 .answer-box button {
   height: 50px;
-  background-color: #ff5722; /* 포인트 컬러 */
+  background-color: #ff5722;
   color: white;
   font-size: 1.2rem;
   font-weight: bold;
@@ -199,7 +213,7 @@
 }
 
 .answer-box button:active {
-  transform: scale(0.98); /* 클릭 효과 */
+  transform: scale(0.98);
 }
 
 .answer-box button:disabled {
@@ -207,7 +221,83 @@
   cursor: wait;
 }
 
-.restart-btn {
+/* =========================================
+   D. 피드백 리포트 스타일 (최종 수정)
+   ========================================= */
+
+/* 1. 전체 컨테이너 */
+.feedback-container {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  
+  /* 컨테이너 높이 제한 */
+  max-height: 70vh; 
+  display: flex;
+  flex-direction: column; /* 세로 배치 */
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 2. 제목 */
+.feedback-container h2 {
+  text-align: center;
+  color: #2c3e50;
+  font-size: 1.8rem;
+  margin-top: 0;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #f1f3f5;
+  padding-bottom: 15px;
+  flex-shrink: 0; /* 제목은 스크롤 시 줄어들지 않음 */
+}
+
+/* 3. 내용 박스 (스크롤 영역) */
+.feedback-content {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
+  white-space: pre-wrap;
+  
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 1.5rem;
+
+  /* 🔥 [핵심 수정] 높이를 강제로 고정합니다 */
+  height: 350px;          /* max-height 대신 height 사용 (무조건 이 크기) */
+  overflow-y: scroll;     /* auto 대신 scroll 사용 (스크롤바 트랙 강제 표시) */
+  
+  /* 텍스트가 박스 밖으로 나가는 것 방지 */
+  word-wrap: break-word;
+}
+
+/* 스크롤바 디자인 */
+.feedback-content::-webkit-scrollbar {
+  width: 12px;
+}
+.feedback-content::-webkit-scrollbar-track {
+  background: #e9ecef;
+  border-radius: 5px;
+}
+.feedback-content::-webkit-scrollbar-thumb {
+  background-color: #adb5bd;
+  border-radius: 5px;
+  border: 2px solid #e9ecef;
+}
+.feedback-content::-webkit-scrollbar-thumb:hover {
+  background-color: #868e96;
+}
+
+/* 4. 버튼 */
+.feedback-container .restart-btn {
   width: 100%;
   padding: 1rem;
   font-size: 1.2rem;
@@ -216,4 +306,13 @@
   border: none;
   border-radius: 10px;
   cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
+  flex-shrink: 0; /* 버튼도 줄어들지 않음 */
+}
+
+.feedback-container .restart-btn:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
 }
