@@ -10,6 +10,7 @@
   - /api/interview/ - 면접 시뮬레이션 API
   - /api/assessment/ - 인적성검사 API
   - /api/resume/ - 이력서 API
+  - /api/homepage/ - 홈페이지 관련 API (후원)
 """
 
 from django.contrib import admin
@@ -23,6 +24,7 @@ urlpatterns = [
     path('api/interview/', include('interview.urls')),
     path('api/assessment/', include('assessment.urls')),
     path('api/resume/', include('resume.urls')),
+    path('api/homepage/', include('homepage.urls')),
 ]
 
 if settings.DEBUG:

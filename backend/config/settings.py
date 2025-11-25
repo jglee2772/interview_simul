@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'assessment',
     'resume',
     'accounts',
+    'homepage',
 ]
 
 MIDDLEWARE = [

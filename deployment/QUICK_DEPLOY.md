@@ -42,6 +42,7 @@ DB_PASSWORD=your_mysql_password
 DB_HOST=localhost
 DB_PORT=3306
 OPENAI_API_KEY=your-openai-api-key
+TOSS_SECRET_KEY=test_sk_xxx:xxx
 ```
 
 ## 4단계: 데이터베이스 및 마이그레이션

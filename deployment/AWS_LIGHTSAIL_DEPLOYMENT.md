@@ -136,6 +136,11 @@ DB_PORT=3306
 
 # OpenAI API
 OPENAI_API_KEY=your-openai-api-key-here
+
+# 토스페이먼츠 API 개별 연동 시크릿 키 (후원 기능용)
+# 테스트: test_sk_xxx:xxx 형태
+# 실서비스: live_sk_xxx:xxx 형태 (사업자 등록 필요)
+TOSS_SECRET_KEY=test_sk_xxx:xxx
 ```
 
 **SECRET_KEY 생성 방법**:
@@ -171,9 +176,15 @@ nano .env
 
 `.env` 파일 내용 (프론트엔드):
 ```env
+# API 기본 URL (선택사항, 없으면 자동으로 현재 호스트 사용)
 REACT_APP_API_URL=http://your-lightsail-ip/api
 # 또는 도메인 사용 시
 # REACT_APP_API_URL=https://your-domain.com/api
+
+# 토스페이먼츠 API 개별 연동 클라이언트 키 (후원 기능용)
+# 테스트: test_ck_xxx
+# 실서비스: live_ck_xxx (사업자 등록 필요)
+REACT_APP_TOSS_CLIENT_KEY=test_ck_26DIbXAaV0webj9q6nxd3qY50Q9R
 ```
 
 #### 4.2.2 React 앱 빌드

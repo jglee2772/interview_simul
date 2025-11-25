@@ -10,6 +10,7 @@
 import React, { useState, useEffect } from 'react';
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import homepageAPI from '../services/homepageAPI';
 
 const STORAGE_KEY = 'resumeData';
 const DATE_FORMAT_ERROR = '올바른 날짜 형식을 입력해주세요.';
@@ -78,6 +79,8 @@ const Home = () => {
   });
   const [emailError, setEmailError] = useState('');
   const [birthDateError, setBirthDateError] = useState('');
+  const [donationAmount, setDonationAmount] = useState(0);
+  const [isDonating, setIsDonating] = useState(false);
   const tips = [
   "회사와 직무에 대해 최소한의 정보는 알고 가야 해요!",
   "단정한 복장, 자신감 있는 인사, 밝은 표정이 중요해요!",
@@ -260,6 +263,126 @@ const Home = () => {
     }
   };
 
+  // 토스페이먼츠 결제 위젯 초기화
+  useEffect(() => {
+    // 토스페이먼츠 위젯이 로드되었는지 확인
+    if (typeof window !== 'undefined' && window.TossPayments) {
+      // 위젯 사용 가능
+    }
+  }, []);
+
+  // 후원하기 핸들러 (토스페이먼츠 결제)
+  const handleDonate = async () => {
+    if (donationAmount === 0) {
+      alert('후원 금액을 선택해주세요.');
+      return;
+    }
+
+    if (!window.confirm(`${donationAmount.toLocaleString()}원을 후원하시겠습니까?`)) {
+      return;
+    }
+
+    setIsDonating(true);
+    try {
+      // 1. 주문 정보 생성
+      const requestResponse = await homepageAPI.requestPayment({
+        amount: donationAmount,
+        donor_name: basicInfo.name || '',
+        message: '개발 응원 후원'
+      });
+
+      const { orderId, amount: paymentAmount, orderName, customerName } = requestResponse.data;
+
+      // 2. 토스페이먼츠 결제창 호출
+      // API 개별 연동 키 사용 (ck) - 사업자 등록 없이 사용 가능
+      const TOSS_CLIENT_KEY = process.env.REACT_APP_TOSS_CLIENT_KEY || 'test_ck_26DIbXAaV0webj9q6nxd3qY50Q9R';
+      
+      const { successUrl, failUrl } = requestResponse.data;
+      
+      // 토스페이먼츠 결제창 SDK 사용
+      if (window.TossPayments) {
+        try {
+          const widget = window.TossPayments(TOSS_CLIENT_KEY);
+          
+          // 결제창 띄우기
+          await widget.requestPayment('카드', {
+            amount: paymentAmount,
+            orderId: orderId,
+            orderName: orderName,
+            customerName: customerName,
+            successUrl: successUrl,
+            failUrl: failUrl,
+          });
+        } catch (error) {
+          console.error('결제창 호출 오류:', error);
+          
+          // 사용자가 결제를 취소한 경우
+          if (error.code === 'USER_CANCEL') {
+            // 이미 catch 블록에서 처리됨
+            throw error;
+          } else {
+            alert('결제창을 불러올 수 없습니다. 다시 시도해주세요.');
+            throw error;
+          }
+        }
+      } else {
+        alert('토스페이먼츠 결제창을 불러올 수 없습니다. 페이지를 새로고침해주세요.');
+      }
+    } catch (error) {
+      console.error('후원 오류:', error);
+      
+      // 사용자가 결제를 취소한 경우
+      if (error.code === 'USER_CANCEL') {
+        alert('결제가 취소되었습니다.');
+      } else {
+        alert('후원 처리 중 오류가 발생했습니다.');
+      }
+    } finally {
+      setIsDonating(false);
+    }
+  };
+
+  // 결제 성공/실패 처리 (URL 파라미터로 리다이렉트된 경우)
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const paymentStatus = urlParams.get('payment');
+    const orderId = urlParams.get('orderId');
+    const paymentKey = urlParams.get('paymentKey');
+    const amount = urlParams.get('amount');
+
+    if (paymentStatus === 'success' && orderId && paymentKey && amount) {
+      // 결제 성공 후 승인 처리
+      const handlePaymentSuccess = async () => {
+        try {
+          setIsDonating(true);
+          const confirmResponse = await homepageAPI.confirmPayment({
+            paymentKey: paymentKey,
+            orderId: orderId,
+            amount: parseInt(amount)
+          });
+
+          if (confirmResponse.data) {
+            alert('후원해주셔서 감사합니다! 🎉');
+            setDonationAmount(0);
+          }
+          
+          // URL 파라미터 제거
+          window.history.replaceState({}, document.title, window.location.pathname);
+        } catch (error) {
+          console.error('결제 승인 오류:', error);
+          alert('결제 승인 처리 중 오류가 발생했습니다.');
+        } finally {
+          setIsDonating(false);
+        }
+      };
+      
+      handlePaymentSuccess();
+    } else if (paymentStatus === 'fail') {
+      alert('결제에 실패했습니다. 다시 시도해주세요.');
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+  }, []);
+
   return (
     <div className="home">
       <div className="home-container">
@@ -377,7 +500,33 @@ const Home = () => {
                 <span>잡코리아 바로가기</span>
               </a>
             </div>
-          </div>  
+          </div>
+          <div className='sponsor'>
+            <h3>사이트 후원</h3>
+            <p>개발하면서 힘내라고 응원을 해주세요!</p>
+            
+            <div className="donation-amount-selector">
+              {[1000, 2000, 3000, 4000, 5000].map((amount) => (
+                <button
+                  key={amount}
+                  type="button"
+                  className={`amount-btn ${donationAmount === amount ? 'selected' : ''}`}
+                  onClick={() => setDonationAmount(amount)}
+                >
+                  {amount.toLocaleString()}원
+                </button>
+              ))}
+            </div>
+            
+            <button 
+              type='button' 
+              className='sp-btn' 
+              onClick={handleDonate}
+              disabled={isDonating || donationAmount === 0}
+            >
+              {isDonating ? '처리 중...' : '후원하기'}
+            </button>
+          </div>
 
         </div>
       </div>
