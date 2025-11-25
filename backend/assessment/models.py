@@ -186,19 +186,4 @@ class AssessmentResult(models.Model):
         return f"Result for Assessment {self.assessment_id}"
 
 
-# ======================================================
-#  JobProfile (ML 기준 직무 테이블)
-# ======================================================
-class JobProfile(models.Model):
-    code = models.CharField(max_length=20)
-    title_ko = models.CharField(max_length=255)
 
-    COMM = models.IntegerField()
-    RESP = models.IntegerField()
-    PROB = models.IntegerField()
-    GROW = models.IntegerField()
-    STRE = models.IntegerField()
-    ADAP = models.IntegerField()
-
-    def __str__(self):
-        return f"{self.title_ko} ({self.code})"

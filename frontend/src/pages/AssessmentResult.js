@@ -202,9 +202,11 @@ const AssessmentResult = () => {
             면접 시뮬레이션 <br/> <br/>시작하기 ☞
           </button>
         </div>
+        
       ))}
     </div>
   </div>
+  
 )}
 
 
