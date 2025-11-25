@@ -3,9 +3,8 @@ import { useLocation } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import './Interview.css';
 // 이미지를 import 합니다. (파일 경로와 이름 확인 필수!)
-import interviewersImage from '../assets/interview.gif'; 
-
-const API_BASE_URL = 'http://127.0.0.1:8000/api/interview';
+import interviewersImage from '../assets/interview.gif';
+import { API_BASE_URL } from '../services/apiConfig';
 
 function Interview() {
   // -----------------------------------------------------------
@@ -82,7 +81,7 @@ function Interview() {
     setFeedback(''); 
 
     try {
-      const response = await fetch(`${API_BASE_URL}/start/`, {
+      const response = await fetch(`${API_BASE_URL}/interview/start/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ job_topic: jobTopic }),
@@ -120,7 +119,7 @@ function Interview() {
     setConversation(prev => [...prev, { sender: 'user', text: userAnswer }]);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/answer/`, {
+      const response = await fetch(`${API_BASE_URL}/interview/answer/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

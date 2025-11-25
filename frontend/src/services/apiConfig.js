@@ -11,7 +11,23 @@
 import axios from 'axios';
 
 // API 기본 URL 설정
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000/api';
+// 환경 변수가 있으면 사용하고, 없으면 현재 호스트 기반으로 자동 결정
+const getApiBaseUrl = () => {
+  // 환경 변수가 설정되어 있으면 사용
+  if (process.env.REACT_APP_API_URL) {
+    return process.env.REACT_APP_API_URL;
+  }
+  
+  // 브라우저 환경에서 실행 중이면 현재 호스트 사용
+  if (typeof window !== 'undefined') {
+    return `${window.location.origin}/api`;
+  }
+  
+  // 기본값 (서버 사이드 렌더링 등)
+  return 'http://localhost:8000/api';
+};
+
+export const API_BASE_URL = getApiBaseUrl();
 
 // Axios 인스턴스 생성
 const api = axios.create({
