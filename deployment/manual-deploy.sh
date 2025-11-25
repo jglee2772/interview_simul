@@ -16,7 +16,7 @@ echo "🚀 배포를 시작합니다..."
 echo "📦 백엔드 배포 중..."
 cd $BACKEND_DIR
 source venv/bin/activate
-git pull origin main
+git pull --no-rebase --no-edit origin main
 pip install -r requirements.txt
 python manage.py migrate
 python manage.py collectstatic --noinput
@@ -26,7 +26,7 @@ echo "✅ 백엔드 배포 완료"
 # 프론트엔드 빌드 및 배포
 echo "📦 프론트엔드 배포 중..."
 cd $FRONTEND_DIR
-git pull origin main
+git pull --no-rebase --no-edit origin main
 npm install
 npm run build
 sudo systemctl reload nginx
