@@ -9,6 +9,7 @@
  */
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
+import ReactMarkdown from 'react-markdown';
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
@@ -1470,7 +1471,9 @@ const Resume = () => {
               {isAnalyzing ? (
                 <p className="feedback-placeholder">분석 중...</p>
               ) : feedbackText ? (
-                <p className="feedback-text">{feedbackText}</p>
+                <div className="feedback-text">
+                  <ReactMarkdown>{feedbackText}</ReactMarkdown>
+                </div>
               ) : (
                 <p className="feedback-placeholder">
                   분석 버튼을 클릭하면 피드백이 표시됩니다.
