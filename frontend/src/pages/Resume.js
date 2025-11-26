@@ -313,7 +313,7 @@ const Resume = () => {
   const [experienceErrors, setExperienceErrors] = useState({});
   const [trainingErrors, setTrainingErrors] = useState({});
   const [certificateErrors, setCertificateErrors] = useState({});
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const [isPanelOpen, setIsPanelOpen] = useState(false);
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [currentSection, setCurrentSection] = useState('');
   const [feedbackText, setFeedbackText] = useState('');
@@ -614,6 +614,8 @@ const Resume = () => {
       return;
     }
     
+    setIsPanelOpen(true); // AI 패널 자동으로 열기
+    
     await performAnalysis(
       () => resumeAPI.analyzeSection(section, content),
       section
@@ -625,6 +627,8 @@ const Resume = () => {
       showToast(errorMessage, 'error');
       return;
     }
+    
+    setIsPanelOpen(true); // AI 패널 자동으로 열기
     
     await performAnalysis(
       () => {
