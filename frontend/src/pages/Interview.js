@@ -42,17 +42,14 @@ function Interview() {
   // (1) 대화 기록 중 'ai'가 보낸 마지막 메시지 찾기
   const lastAiMessage = conversation.filter(msg => msg.sender === 'ai').slice(-1)[0];
 
-  // (2) 🔥 말풍선 위치 계산 로직 (핵심 추가)
+  // (2) 🔥 말풍선 위치 계산 로직
   // 현재까지 AI가 몇 번 말했는지 셉니다.
   const aiMsgCount = conversation.filter(msg => msg.sender === 'ai').length;
   
   // 현재 말하는 면접관의 순번 (0, 1, 2, 3) 계산
-  // (aiMsgCount가 0일 때는 아직 시작 안 함, 1개일 때 0번 면접관...)
   const currentSpeakerIndex = aiMsgCount > 0 ? (aiMsgCount - 1) % 4 : 0;
 
   // 각 자리에 앉은 면접관의 말풍선 위치 (왼쪽 기준 %)
-  // [왼쪽 끝, 중간 왼쪽, 중간 오른쪽, 오른쪽 끝]
-  // 이미지 속 캐릭터 위치에 맞춰 숫자를 미세 조정하세요.
   const bubblePositions = [
     '15%', // 1번 면접관
     '38%', // 2번 면접관
@@ -63,8 +60,8 @@ function Interview() {
   // 말풍선에 적용할 동적 스타일
   const bubbleStyle = {
     left: bubblePositions[currentSpeakerIndex],
-    transition: 'left 0.4s ease-in-out', // 부드럽게 이동하는 애니메이션
-    transform: 'translateX(-50%)' // CSS에도 있지만 JS 스타일 덮어쓰기 방지용
+    transition: 'left 0.4s ease-in-out', 
+    transform: 'translateX(-50%)'
   };
 
   // -----------------------------------------------------------
@@ -166,6 +163,30 @@ function Interview() {
     setFeedback(''); 
   };
 
+  // 🔥 [추가] 리포트 다운로드 함수
+  const handleDownload = () => {
+    if (!feedback) {
+      alert("다운로드할 피드백 내용이 없습니다.");
+      return;
+    }
+
+    // 1. 파일 내용 생성 (피드백 텍스트)
+    const element = document.createElement("a");
+    const file = new Blob([feedback], { type: 'text/plain;charset=utf-8' });
+    
+    // 2. 다운로드 링크 생성
+    element.href = URL.createObjectURL(file);
+    
+    // 3. 파일명 설정 (예: 면접리포트_20231126.txt)
+    const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    element.download = `면접분석리포트_${date}.txt`;
+    
+    // 4. 클릭 트리거 및 뒷정리
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
   // -----------------------------------------------------------
   // 4. 화면 렌더링
   // -----------------------------------------------------------
@@ -197,7 +218,11 @@ function Interview() {
           
           {/* 1. 상단 스테이지 (이미지 + 말풍선) */}
           <div className="stage-area">
-            <img src={interviewersImage} alt="Interviewers" className="stage-img" />
+            
+            {/* 🔥 [수정] isFinished가 false일 때만 이미지를 보여줍니다. */}
+            {!isFinished && (
+              <img src={interviewersImage} alt="Interviewers" className="stage-img" />
+            )}          
             
             {/* 말풍선: 로딩 중이거나, AI 메시지가 있을 때 표시 */}
             {(isLoading || (lastAiMessage && !isFinished)) && (
@@ -221,15 +246,7 @@ function Interview() {
               </div>
             )}
 
-            {/* 종료 시 상단 메시지 (가운데 고정) */}
-            {isFinished && (
-              <div className="speech-bubble finished">
-                <div className="bubble-content">
-                  <h3>🎉 면접 종료</h3>
-                  <p>{lastAiMessage?.text || "수고하셨습니다."}</p>
-                </div>
-              </div>
-            )}
+            {/* (기존 종료 메시지는 삭제됨) */}
           </div>
 
           {/* 2. 하단 인터랙션 영역 */}
@@ -253,13 +270,25 @@ function Interview() {
                 <h2>📊 면접 분석 리포트</h2>
                 
                 <div className="feedback-content">
+                  {/* 피드백 텍스트 표시 (줄바꿈 유지됨) */}
                   {feedback ? (
-                        <ReactMarkdown>{feedback}</ReactMarkdown>) : ("상세 피드백을 생성하고 있습니다...")}
+                        <ReactMarkdown>{feedback}</ReactMarkdown>
+                  ) : (
+                        "상세 피드백을 생성하고 있습니다..."
+                  )}
                 </div>
                 
-                <button className="restart-btn" onClick={handleRestart}>
-                  처음으로 돌아가기
-                </button>
+                {/* 🔥 [수정] 버튼 영역 (저장 + 돌아가기) */}
+                <div className="button-group">
+                  <button className="download-btn" onClick={handleDownload}>
+                    💾 리포트 저장
+                  </button>
+                  
+                  <button className="restart-btn" onClick={handleRestart}>
+                    처음으로 돌아가기
+                  </button>
+                </div>
+
               </div>
             )}
           </div>

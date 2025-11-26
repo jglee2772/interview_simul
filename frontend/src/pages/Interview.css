@@ -108,26 +108,37 @@
   to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
+/* 2. 말풍선 꼬리 (위쪽 방향 ▲) */
 .bubble-tail {
   position: absolute;
-  bottom: -15px;
+  /* 바닥(bottom)이 아니라 천장(top)으로 이동 */
+  top: -15px; 
+  bottom: auto; 
+  
   left: 50%;
   transform: translateX(-50%);
   width: 0; 
   height: 0; 
+  
+  /* 위쪽 방향 삼각형 만들기 (border-bottom에 색을 줌) */
   border-left: 15px solid transparent;
   border-right: 15px solid transparent;
-  border-top: 15px solid #333;
+  border-bottom: 15px solid #333; /* ▲ 검은색 테두리 */
+  border-top: 0;
 }
 
+/* 꼬리 내부 (흰색) */
 .bubble-tail::after {
   content: '';
   position: absolute;
-  bottom: 4px; 
+  /* 검은색 삼각형보다 약간 아래로 배치하여 테두리 효과 */
+  top: 3px; 
   left: -12px;
+  
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-top: 12px solid #fff;
+  border-bottom: 12px solid #fff; /* ▲ 흰색 채우기 */
+  border-top: 0;
 }
 
 .bubble-content {
@@ -228,17 +239,20 @@
 /* 1. 전체 컨테이너 */
 .feedback-container {
   width: 100%;
+  max-width: 800px; /* 너무 넓어지지 않게 제한 */
   background-color: #ffffff;
   border-radius: 15px;
   padding: 2rem;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   text-align: left;
-  animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
   
-  /* 컨테이너 높이 제한 */
-  max-height: 70vh; 
+  /* 화면 중앙에 오도록 설정 */
+  margin: 0 auto; 
   display: flex;
-  flex-direction: column; /* 세로 배치 */
+  flex-direction: column;
+  
+  /* 애니메이션 */
+  animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
 @keyframes slideUp {
@@ -246,24 +260,24 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. 제목 */
+/* 2. 제목 헤더 */
 .feedback-container h2 {
   text-align: center;
   color: #2c3e50;
   font-size: 1.8rem;
   margin-top: 0;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   border-bottom: 3px solid #f1f3f5;
   padding-bottom: 15px;
-  flex-shrink: 0; /* 제목은 스크롤 시 줄어들지 않음 */
+  flex-shrink: 0;
 }
 
-/* 3. 내용 박스 (스크롤 영역) */
+/* 3. 내용 박스 (스크롤 핵심 영역) */
 .feedback-content {
   font-size: 1.1rem;
   line-height: 1.7;
   color: #333;
-  white-space: pre-wrap;
+  white-space: pre-wrap; /* 줄바꿈 유지 */
   
   background-color: #f8f9fa;
   padding: 1.5rem;
@@ -271,29 +285,33 @@
   border: 1px solid #e9ecef;
   margin-bottom: 1.5rem;
 
-  /* 🔥 [핵심 수정] 높이를 강제로 고정합니다 */
-  height: 350px;          /* max-height 대신 height 사용 (무조건 이 크기) */
-  overflow-y: scroll;     /* auto 대신 scroll 사용 (스크롤바 트랙 강제 표시) */
+  /* 🔥 [핵심] 높이를 화면 높이의 50%로 강제 설정 */
+  height: 50vh; 
   
-  /* 텍스트가 박스 밖으로 나가는 것 방지 */
-  word-wrap: break-word;
+  /* 🔥 [핵심] 내용이 넘치면 스크롤바 생성 (auto) */
+  overflow-y: auto; 
 }
 
-/* 스크롤바 디자인 */
+/* 👇 스크롤바 디자인 (진한 회색으로 눈에 띄게 설정) */
 .feedback-content::-webkit-scrollbar {
-  width: 12px;
+  width: 14px; /* 너비를 넓게 */
 }
+
 .feedback-content::-webkit-scrollbar-track {
-  background: #e9ecef;
-  border-radius: 5px;
+  background-color: #f1f1f1;
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
+
 .feedback-content::-webkit-scrollbar-thumb {
-  background-color: #adb5bd;
-  border-radius: 5px;
-  border: 2px solid #e9ecef;
+  background-color: #a0a0a0; /* 진한 회색 막대 */
+  border-radius: 8px;
+  border: 3px solid #f1f1f1; /* 여백 효과 */
 }
+
 .feedback-content::-webkit-scrollbar-thumb:hover {
-  background-color: #868e96;
+  background-color: #707070; /* 마우스 올리면 더 진하게 */
 }
 
 /* 4. 버튼 */
@@ -308,11 +326,52 @@
   cursor: pointer;
   font-weight: bold;
   transition: all 0.2s;
-  box-shadow: 0 4px 6px rgba(40, 167, 69, 0.2);
-  flex-shrink: 0; /* 버튼도 줄어들지 않음 */
+  flex-shrink: 0;
 }
 
 .feedback-container .restart-btn:hover {
   background-color: #218838;
   transform: translateY(-2px);
+}
+
+/* 버튼 그룹 (가로 배치) */
+.button-group {
+  display: flex;
+  gap: 10px; /* 버튼 사이 간격 */
+  margin-top: 10px;
+}
+
+/* 공통 버튼 스타일 */
+.button-group button {
+  flex: 1; /* 공간을 반반씩 차지 */
+  padding: 1rem;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.1s, background-color 0.2s;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 재시작 버튼 (기존 restart-btn 스타일을 여기로 통합) */
+.restart-btn {
+  background-color: #28a745; /* 초록색 */
+}
+.restart-btn:hover {
+  background-color: #218838;
+}
+
+/* 🔥 [추가] 다운로드 버튼 스타일 */
+.download-btn {
+  background-color: #007bff; /* 파란색 */
+}
+.download-btn:hover {
+  background-color: #0069d9;
+}
+
+/* 클릭 효과 */
+.button-group button:active {
+  transform: scale(0.98);
 }

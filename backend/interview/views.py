@@ -16,7 +16,7 @@ from typing import List, Dict
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+from rest_framework.permissions import AllowAny
 from .models import Interviewer, InterviewSession, InterviewExchange
 from .serializers import InterviewExchangeSerializer, InterviewSessionDetailSerializer
 
@@ -71,6 +71,9 @@ class StartInterviewView(APIView):
     POST /api/interview/start/
     - 면접 시작: 랜덤 면접관 배정, 랜덤 질문 횟수 설정, 첫 질문 생성
     """
+    permission_classes = [AllowAny] # 누구나 접근 가능하게 허용
+    authentication_classes = []     # 로그인 검사 안 함   
+    
     def post(self, request, *args, **kwargs):
         job_topic = request.data.get('job_topic')
 
@@ -128,6 +131,8 @@ class SubmitAnswerView(APIView):
     - 종료 조건: DB에 저장된 total_questions 횟수에 도달하면 종료
     - ★종료 시: 전체 면접 내용을 분석하여 피드백 제공
     """
+    permission_classes = [AllowAny] # 누구나 접근 가능하게 허용
+    authentication_classes = []     # 로그인 검사 안 함
     
     def post(self, request, *args, **kwargs):
         exchange_id = request.data.get('exchange_id')
