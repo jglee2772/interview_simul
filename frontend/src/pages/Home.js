@@ -297,7 +297,9 @@ const Home = () => {
       // API 개별 연동 키 사용 (ck) - 사업자 등록 없이 사용 가능
       const TOSS_CLIENT_KEY = process.env.REACT_APP_TOSS_CLIENT_KEY || 'test_ck_26DIbXAaV0webj9q6nxd3qY50Q9R';
       
-      const { successUrl, failUrl } = requestResponse.data;
+      // 프론트엔드 URL로 직접 설정 (토스페이먼츠가 자동으로 paymentKey, orderId, amount를 추가함)
+      const frontendSuccessUrl = `${window.location.origin}?payment=success`;
+      const frontendFailUrl = `${window.location.origin}?payment=fail`;
       
       // 토스페이먼츠 결제창 SDK 사용
       if (window.TossPayments) {
@@ -310,8 +312,8 @@ const Home = () => {
             orderId: orderId,
             orderName: orderName,
             customerName: customerName,
-            successUrl: successUrl,
-            failUrl: failUrl,
+            successUrl: frontendSuccessUrl,
+            failUrl: frontendFailUrl,
           });
         } catch (error) {
           console.error('결제창 호출 오류:', error);
@@ -350,18 +352,32 @@ const Home = () => {
     const paymentKey = urlParams.get('paymentKey');
     const amount = urlParams.get('amount');
 
+    // 이미 처리된 결제인지 확인 (중복 실행 방지)
+    const processedKey = sessionStorage.getItem(`payment_processed_${orderId}`);
+    if (processedKey) {
+      // 이미 처리된 결제는 URL 파라미터만 제거
+      window.history.replaceState({}, document.title, window.location.pathname);
+      return;
+    }
+
     if (paymentStatus === 'success' && orderId && paymentKey && amount) {
+      // 처리 중 표시 (중복 실행 방지)
+      sessionStorage.setItem(`payment_processed_${orderId}`, 'true');
+      
       // 결제 성공 후 승인 처리
       const handlePaymentSuccess = async () => {
         try {
           setIsDonating(true);
+          
+          // 토스페이먼츠 결제 승인 API 호출
           const confirmResponse = await homepageAPI.confirmPayment({
             paymentKey: paymentKey,
             orderId: orderId,
             amount: parseInt(amount)
           });
 
-          if (confirmResponse.data) {
+          // 성공 응답 확인
+          if (confirmResponse && confirmResponse.data) {
             alert('후원해주셔서 감사합니다! 🎉');
             setDonationAmount(0);
           }
@@ -370,9 +386,12 @@ const Home = () => {
           window.history.replaceState({}, document.title, window.location.pathname);
         } catch (error) {
           console.error('결제 승인 오류:', error);
-          alert('결제 승인 처리 중 오류가 발생했습니다.');
+          const errorMessage = error.response?.data?.error || error.message || '알 수 없는 오류';
+          alert(`결제 승인 처리 중 오류가 발생했습니다: ${errorMessage}`);
         } finally {
           setIsDonating(false);
+          // URL 파라미터 제거
+          window.history.replaceState({}, document.title, window.location.pathname);
         }
       };
       

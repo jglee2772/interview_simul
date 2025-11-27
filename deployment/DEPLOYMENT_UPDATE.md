@@ -38,30 +38,52 @@ cd /var/www/interview-simulation
 ### 방법 2: 수동 배포
 
 ```bash
-# 1. 백엔드 업데이트
-cd /var/www/interview-simulation/backend
-source venv/bin/activate
+# 프로젝트 루트로 이동
+cd /var/www/interview-simulation/interview_simul
+
+# Git 업데이트
 git pull origin main
+# 또는
+git pull --no-rebase --no-edit origin main
+
+# ===== 백엔드 배포 =====
+cd backend
+source venv/bin/activate
+
+# 새로운 Python 패키지가 생겼다면
 pip install -r requirements.txt
 
-# 2. 마이그레이션 실행 (중요!)
-python manage.py makemigrations homepage
+# <cryptography 보안관련 혹시 백엔드 안될때>
+# pip install cryptography --upgrade
+
+# 모델 변경이 있다면
 python manage.py migrate
 
-# 3. 정적 파일 수집
+# 정적 파일이 바뀌었으면
 python manage.py collectstatic --noinput
 
-# 4. Gunicorn 재시작
-sudo systemctl restart gunicorn
+# ===== 프론트엔드 빌드 =====
+cd ../frontend
 
-# 5. 프론트엔드 업데이트
-cd /var/www/interview-simulation/frontend
-git pull origin main
+# Node.js 버전 설정
+source ~/.nvm/nvm.sh && nvm use 18
+
+# 패키지 설치
 npm install
-npm run build
 
-# 6. Nginx 재시작
-sudo systemctl reload nginx
+# 빌드 (메모리 옵션 포함 - 메모리 부족 방지)
+NODE_OPTIONS="--max-old-space-size=2048" npm run build
+
+# ===== 서비스 재시작 =====
+sudo systemctl restart gunicorn
+sudo systemctl restart nginx
+
+# ===== 문제가 있으면 =====
+# Gunicorn 로그 확인
+sudo journalctl -u gunicorn -f
+
+# Nginx 에러 로그 확인
+sudo tail -f /var/log/nginx/error.log
 ```
 
 ## ⚠️ 중요 사항
@@ -102,4 +124,65 @@ python manage.py migrate homepage
 - 프론트엔드: `.env` 파일 위치 확인 (`frontend/.env`)
 - 백엔드: `.env` 파일 위치 확인 (`backend/.env`)
 - 빌드 후 환경 변수 반영 확인
+
+### React 빌드가 멈추는 경우 (메모리 부족)
+
+**증상**: `npm run build` 실행 시 "Creating an optimized production build..."에서 멈춤
+
+**원인**: 서버 메모리 부족 (Lightsail 작은 인스턴스에서 흔함)
+
+**해결 방법 1: 스왑 메모리 추가 (권장) - 한 번만 실행하면 영구 적용**
+
+스왑 메모리는 한 번 설정하면 재부팅 후에도 자동으로 활성화됩니다.
+
+```bash
+# 스왑 파일 생성 (2GB) - 이미 생성했다면 건너뛰기
+sudo fallocate -l 2G /swapfile
+sudo chmod 600 /swapfile
+sudo mkswap /swapfile
+sudo swapon /swapfile
+
+# 영구적으로 활성화 (한 번만 실행)
+echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+# 메모리 확인
+free -h
+```
+
+**✅ 배포 스크립트 업데이트**: `manual-deploy.sh`가 자동으로 스왑 메모리를 확인하고 빌드 시 메모리 옵션을 적용합니다.
+
+**해결 방법 2: 메모리 제한 옵션 사용 (수동 빌드 시 필수)**
+
+수동으로 빌드할 때는 항상 메모리 옵션을 포함하세요:
+
+```bash
+cd /var/www/interview-simulation/interview_simul/frontend
+source ~/.nvm/nvm.sh && nvm use 18
+
+# 메모리 옵션과 함께 빌드
+NODE_OPTIONS="--max-old-space-size=2048" npm run build
+```
+
+**✅ 권장**: 수동 배포 시 항상 이 옵션을 사용하세요.
+
+**해결 방법 3: 로컬에서 빌드 후 업로드**
+```bash
+# 로컬 개발 환경에서
+cd frontend
+npm run build
+
+# 빌드된 파일을 서버로 업로드
+scp -r build/* ubuntu@your-server-ip:/var/www/interview-simulation/frontend/build/
+```
+
+**해결 방법 4: 빌드 중단 후 재시도**
+```bash
+# Ctrl+C로 중단
+# 메모리 정리
+sudo sync
+sudo sysctl vm.drop_caches=3
+
+# 다시 빌드
+npm run build
+```
 

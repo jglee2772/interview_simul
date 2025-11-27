@@ -6,7 +6,7 @@
 
 set -e
 
-PROJECT_DIR="/var/www/interview-simulation"
+PROJECT_DIR="/var/www/interview-simulation/interview_simul"
 BACKEND_DIR="$PROJECT_DIR/backend"
 FRONTEND_DIR="$PROJECT_DIR/frontend"
 
@@ -27,8 +27,28 @@ echo "✅ 백엔드 배포 완료"
 echo "📦 프론트엔드 배포 중..."
 cd $FRONTEND_DIR
 git pull --no-rebase --no-edit origin main
+
+# Node.js 버전 설정 (nvm 사용)
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+    source "$HOME/.nvm/nvm.sh"
+    nvm use 18
+fi
+
 npm install
-npm run build
+
+# 스왑 메모리 확인 및 추가 (없는 경우)
+if [ ! -f /swapfile ]; then
+    echo "💾 스왑 메모리 추가 중..."
+    sudo fallocate -l 2G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
+    echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+fi
+
+# 메모리 옵션과 함께 빌드 (메모리 부족 방지)
+echo "🔨 React 앱 빌드 중..."
+NODE_OPTIONS="--max-old-space-size=2048" npm run build
 sudo systemctl reload nginx
 echo "✅ 프론트엔드 배포 완료"
 
