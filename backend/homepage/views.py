@@ -196,6 +196,11 @@ class PaymentConfirmView(APIView):
                 # 멱등키 생성 (UUID 사용)
                 idempotency_key = str(uuid.uuid4())
                 
+                # 디버깅: 요청 정보 로깅 (민감 정보 제외)
+                print(f"[TOSS API 요청] URL: {TOSS_API_URL}/payments/confirm")
+                print(f"[TOSS API 요청] orderId: {order_id}, amount: {amount}")
+                print(f"[TOSS API 요청] Authorization 헤더 존재: {bool(auth_header)}")
+                
                 # 토스페이먼츠 API 호출
                 response = requests.post(
                     f'{TOSS_API_URL}/payments/confirm',
@@ -211,6 +216,9 @@ class PaymentConfirmView(APIView):
                     },
                     timeout=30
                 )
+                
+                # 디버깅: 응답 상태 로깅
+                print(f"[TOSS API 응답] HTTP {response.status_code}")
                 
                 # 응답 상태 확인
                 if response.status_code == 200:
@@ -244,13 +252,22 @@ class PaymentConfirmView(APIView):
                     try:
                         error_data = response.json()
                         error_message = error_data.get('message', f'결제 승인 API 오류 (HTTP {response.status_code})')
-                    except:
+                        error_code = error_data.get('code', '')
+                        # 디버깅을 위해 상세 오류 정보 포함
+                        full_error = f"{error_message}"
+                        if error_code:
+                            full_error += f" (코드: {error_code})"
+                        # 응답 본문 전체를 로깅 (디버깅용)
+                        print(f"[TOSS API 오류] HTTP {response.status_code}: {error_data}")
+                    except Exception as e:
                         error_message = f'결제 승인 API 오류 (HTTP {response.status_code})'
+                        full_error = f"{error_message} - 응답 파싱 실패: {str(e)}"
+                        print(f"[TOSS API 오류] HTTP {response.status_code}: {response.text}")
                     
                     donation.payment_status = 'FAILED'
                     donation.save()
                     return Response(
-                        {"error": error_message},
+                        {"error": full_error if 'full_error' in locals() else error_message},
                         status=status.HTTP_400_BAD_REQUEST
                     )
             except requests.exceptions.RequestException as e:
