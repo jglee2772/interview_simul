@@ -430,7 +430,68 @@ sudo systemctl status mysql
 mysql -u interview_user -p interview_simulation
 ```
 
-### 9.4 CORS 오류
+### 9.4 토스페이먼츠 결제 오류: "인증되지 않은 시크리 키 혹은 클라이언트 키 입니다"
+
+**원인**: 환경 변수가 Gunicorn 서비스에 제대로 로드되지 않음
+
+**해결**:
+
+1. **.env 파일 확인**:
+```bash
+# .env 파일 위치 확인 (실제 경로에 따라 다를 수 있음)
+cat /var/www/interview-simulation/interview_simul/backend/.env | grep TOSS_SECRET_KEY
+# 또는
+cat /var/www/interview-simulation/backend/.env | grep TOSS_SECRET_KEY
+
+# TOSS_SECRET_KEY가 설정되어 있는지 확인
+# 형식: TOSS_SECRET_KEY=test_sk_xxx:xxx (콜론 포함)
+```
+
+2. **Gunicorn 서비스 파일 수정**:
+```bash
+# 자동 수정 스크립트 실행
+cd /var/www/interview-simulation/interview_simul
+chmod +x deployment/fix-gunicorn-env.sh
+./deployment/fix-gunicorn-env.sh
+```
+
+3. **수동 수정** (스크립트가 작동하지 않는 경우):
+```bash
+# Gunicorn 서비스 파일 편집
+sudo nano /etc/systemd/system/gunicorn.service
+
+# EnvironmentFile 경로가 올바른지 확인:
+# EnvironmentFile=/var/www/interview-simulation/interview_simul/backend/.env
+# 또는
+# EnvironmentFile=/var/www/interview-simulation/backend/.env
+
+# 수정 후:
+sudo systemctl daemon-reload
+sudo systemctl restart gunicorn
+```
+
+4. **환경 변수 로드 확인**:
+```bash
+# Gunicorn 로그 확인
+sudo journalctl -u gunicorn -n 100 | grep -i toss
+
+# Django 셸에서 환경 변수 확인
+cd /var/www/interview-simulation/interview_simul/backend
+source venv/bin/activate
+python manage.py shell
+>>> import os
+>>> os.getenv('TOSS_SECRET_KEY')
+```
+
+5. **.env 파일 형식 확인**:
+```bash
+# .env 파일에서 따옴표나 공백이 없는지 확인
+# 올바른 형식: TOSS_SECRET_KEY=test_sk_xxx:xxx
+# 잘못된 형식: TOSS_SECRET_KEY="test_sk_xxx:xxx" (따옴표 제거)
+# 잘못된 형식: TOSS_SECRET_KEY = test_sk_xxx:xxx (공백 제거)
+```
+
+### 9.5 CORS 오류
 
 **원인**: Django CORS 설정 문제
 

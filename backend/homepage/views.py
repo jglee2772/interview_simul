@@ -164,6 +164,15 @@ class PaymentConfirmView(APIView):
         
         # 토스페이먼츠 결제 승인
         # TOSS_SECRET_KEY가 없으면 테스트 모드로 처리
+        # 디버깅: 환경 변수 확인 (프로덕션에서는 제거)
+        if not TOSS_SECRET_KEY or not TOSS_SECRET_KEY.strip():
+            donation.payment_status = 'FAILED'
+            donation.save()
+            return Response(
+                {"error": "토스페이먼츠 시크릿 키가 설정되지 않았습니다. 서버 환경 변수를 확인해주세요."},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )
+        
         if TOSS_SECRET_KEY and TOSS_SECRET_KEY.strip():
             try:
                 auth_header = get_toss_auth_header()
