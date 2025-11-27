@@ -12,10 +12,17 @@ import AnswerAsidebar from "./AnswerAsidebar";
 // ----------------------------------------------
 // 테스트용: 난수 자동 생성 (1~5)
 // ----------------------------------------------
-const generateRandomAnswers = (questions) => {
-  return questions.map(() => Math.floor(Math.random() * 5) + 1);
-  };
+const generateRandomAnswers = (questions) =>
+  questions.map(() => Math.floor(Math.random() * 5) + 1);
 
+// ----------------------------------------------
+// ✅ 진행률 색상 계산
+// ----------------------------------------------
+const getProgressColor = (v) => {
+  if (v < 30) return "linear-gradient(90deg, #f28b82, #ea766c)";   // 레드
+  if (v < 70) return "linear-gradient(90deg, #fdd663, #f3c94f)";   // 옐로우
+  return "linear-gradient(90deg, #7ddfab, #5ecb9b)";              // 민트
+};
 
 const Assessment = () => {
   const navigate = useNavigate();
@@ -34,7 +41,6 @@ const Assessment = () => {
 
   const questionsPerPage = 10;
   const totalPages = Math.ceil(questions.length / questionsPerPage);
-
   const startIndex = currentPage * questionsPerPage;
   const pagedQuestions = questions.slice(startIndex, startIndex + questionsPerPage);
 
@@ -62,12 +68,6 @@ const Assessment = () => {
     setProgress(Math.round((count / questions.length) * 100));
   }, [answers, questions]);
 
-  const getProgressColor = (v) => {
-    if (v < 50) return "#e74c3c";
-    if (v < 80) return "#f1c40f";
-    return "#2ecc71";
-  };
-
   // -------------------- 검사 시작 --------------------
   const startAssessment = async () => {
     if (!name) {
@@ -86,7 +86,6 @@ const Assessment = () => {
       setAnswers(new Array(questions.length).fill(null));
       setCurrentPage(0);
       setError("");
-
     } catch {
       setError("검사 시작 오류!");
     } finally {
@@ -112,9 +111,7 @@ const Assessment = () => {
 
     try {
       setLoading(true);
-
       const res = await assessmentAPI.submitAnswer(assessmentId, answers);
-
       navigate(`/assessment-result/${assessmentId}`, {
         state: {
           name,
@@ -122,7 +119,6 @@ const Assessment = () => {
           analysis: res.data.analysis ?? null,
         },
       });
-
     } catch {
       setError("제출 실패!");
     } finally {
@@ -134,7 +130,7 @@ const Assessment = () => {
   if (loading) {
     return (
       <div className="assessment-loading-overlay">
-        <div className="loading-spinner"></div>
+        <div className="loading-spinner" />
         <p>결과 불러오는 중…</p>
       </div>
     );
@@ -158,16 +154,6 @@ const Assessment = () => {
     <div className="assessment-wrapper">
       <div className="assessment-layout">
 
-        <AnswerAsidebar
-          show={showSidebar}
-          toggleSidebar={() => setShowSidebar((p) => !p)}
-          questions={questions}
-          answers={answers}
-          onSelectQuestion={(i) => {
-            setCurrentPage(Math.floor(i / questionsPerPage));
-          }}
-        />
-
         <div className="assessment-page">
           <div className="assessment-container">
             <h1>인적성 검사</h1>
@@ -177,38 +163,36 @@ const Assessment = () => {
               {answers.filter((v) => v !== null).length}문항 완료
             </p>
 
-            {/* 전체 5점(역문항 처리 포함) 자동 테스트 버튼 */}
+            {/* 자동 테스트 */}
             <div className="auto-test-area">
-             <button
-                type="button"
+              <button
                 className="auto-test-btn"
                 onClick={() => {
-                const autoAnswers = generateRandomAnswers(questions);
-                setAnswers(autoAnswers);
-                setCurrentPage(0);
-                alert("랜덤 자동 답안이 입력되었습니다!");
+                  setAnswers(generateRandomAnswers(questions));
+                  setCurrentPage(0);
+                  alert("랜덤 자동 답안 입력 완료!");
                 }}
-                >
+              >
                 자동 테스트 (랜덤)
-                </button>
+              </button>
             </div>
 
-            {/* 진행률 */}
+            {/*  진행률 바 */}
             <div className="progress-bar-container">
               <div
                 className="progress-bar"
                 style={{
                   width: `${progress}%`,
-                  backgroundColor: getProgressColor(progress),
+                  background: getProgressColor(progress),
+                  transition: "all 0.4s ease",
                 }}
-              ></div>
+              />
             </div>
 
             {/* 문항 리스트 */}
             <div className="question-list">
               {pagedQuestions.map((q, idx) => {
                 const globalIndex = startIndex + idx;
-
                 return (
                   <div key={q.id} className="question-item">
                     <p className="question-text">
@@ -221,8 +205,9 @@ const Assessment = () => {
                         {[1, 2, 3, 4, 5].map((value) => (
                           <button
                             key={value}
+                            data-score={value}
                             className={`scale-button ${
-                              answers[globalIndex] === value ? "selected" : ""
+                              answers[globalIndex] === value ? "active" : ""
                             }`}
                             onClick={() => handleAnswer(globalIndex, value)}
                           />
@@ -237,29 +222,26 @@ const Assessment = () => {
 
             {/* 네비게이션 */}
             <div className="navigation">
-              <button
-                disabled={currentPage === 0}
-                onClick={() => setCurrentPage((p) => p - 1)}
-              >
-                이전
-              </button>
-
-              <span>
-                {currentPage + 1} / {totalPages}
-              </span>
-
+              <button disabled={currentPage === 0} onClick={() => setCurrentPage(p => p - 1)}>이전</button>
+              <span>{currentPage + 1} / {totalPages}</span>
               {currentPage === totalPages - 1 ? (
-                <button onClick={submitAssessment}>검사 제출하기</button>
+                <button onClick={submitAssessment}>검사 제출</button>
               ) : (
-                <button onClick={() => setCurrentPage((p) => p + 1)}>
-                  다음
-                </button>
+                <button onClick={() => setCurrentPage(p => p + 1)}>다음</button>
               )}
             </div>
 
             {error && <p className="error-text">{error}</p>}
           </div>
         </div>
+
+        <AnswerAsidebar
+          show={showSidebar}
+          questions={questions}
+          answers={answers}
+          onSelectQuestion={(i) => setCurrentPage(Math.floor(i / questionsPerPage))}
+        />
+
       </div>
     </div>
   );
