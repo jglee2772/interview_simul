@@ -16,7 +16,7 @@ const generateRandomAnswers = (questions) =>
   questions.map(() => Math.floor(Math.random() * 5) + 1);
 
 // ----------------------------------------------
-// ✅ 진행률 색상 계산
+// 진행률 색상 계산
 // ----------------------------------------------
 const getProgressColor = (v) => {
   if (v < 30) return "linear-gradient(90deg, #f28b82, #ea766c)";   // 레드
