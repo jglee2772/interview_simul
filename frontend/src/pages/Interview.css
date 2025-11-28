@@ -272,12 +272,12 @@
   flex-shrink: 0;
 }
 
-/* 3. 내용 박스 (스크롤 핵심 영역) */
+/* 내용 박스 (스크롤 영역) */
 .feedback-content {
   font-size: 1.1rem;
   line-height: 1.7;
   color: #333;
-  white-space: pre-wrap; /* 줄바꿈 유지 */
+  white-space: pre-wrap;
   
   background-color: #f8f9fa;
   padding: 1.5rem;
@@ -285,11 +285,67 @@
   border: 1px solid #e9ecef;
   margin-bottom: 1.5rem;
 
-  /* 🔥 [핵심] 높이를 화면 높이의 50%로 강제 설정 */
   height: 50vh; 
-  
-  /* 🔥 [핵심] 내용이 넘치면 스크롤바 생성 (auto) */
   overflow-y: auto; 
+}
+
+/* ==================================================
+   🔥 [리스트 정렬 강제 교정: Flexbox + Counter]
+   ================================================== */
+
+/* 1. 기본 리스트 스타일 제거 (브라우저 기본 번호 숨김) */
+.feedback-content ol, 
+.feedback-content ul {
+  list-style: none !important; /* 기본 번호/점 숨기기 */
+  padding-left: 0 !important;
+  margin: 10px 0;
+}
+
+/* 2. 숫자 리스트 카운터 설정 */
+.feedback-content ol {
+  counter-reset: list-number; /* 카운터 초기화 */
+}
+
+/* 3. 리스트 아이템을 Flex 박스로 변경 (무조건 가로 정렬됨) */
+.feedback-content li {
+  display: flex;          /* 🔥 번호와 내용을 가로로 배치 */
+  align-items: flex-start; /* 위쪽 라인 맞춤 */
+  margin-bottom: 12px;
+}
+
+/* 4. 가짜 번호(숫자) 만들기 */
+.feedback-content ol li::before {
+  counter-increment: list-number;      /* 숫자 1씩 증가 */
+  content: counter(list-number) ". ";  /* "1. " 형태로 출력 */
+  margin-right: 8px;                   /* 숫자와 텍스트 사이 간격 */
+  font-weight: bold;
+  color: #2c3e50;
+  flex-shrink: 0;                      /* 숫자는 찌그러지지 않게 고정 */
+}
+
+/* 5. 가짜 글머리 기호(점) 만들기 */
+.feedback-content ul li::before {
+  content: "•";
+  margin-right: 8px;
+  font-weight: bold;
+  color: #2c3e50;
+  flex-shrink: 0;
+}
+
+/* 6. 내부 태그 줄바꿈 강제 제거 */
+.feedback-content li p,
+.feedback-content li span,
+.feedback-content li div {
+  margin: 0 !important;
+  padding: 0 !important;
+  display: block; /* Flex 안에서는 block이어도 옆으로 붙음 */
+}
+
+/* 제목 스타일 */
+.feedback-content strong {
+  color: #2c3e50;
+  font-weight: 700;
+  font-size: 1.05rem;
 }
 
 /* 👇 스크롤바 디자인 (진한 회색으로 눈에 띄게 설정) */
@@ -363,7 +419,7 @@
   background-color: #218838;
 }
 
-/* 🔥 [추가] 다운로드 버튼 스타일 */
+/* [추가] 다운로드 버튼 스타일 */
 .download-btn {
   background-color: #007bff; /* 파란색 */
 }

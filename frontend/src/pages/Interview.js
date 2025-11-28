@@ -25,7 +25,7 @@ function Interview() {
   const [isSessionStarted, setIsSessionStarted] = useState(false); // 시작 여부
   const [isFinished, setIsFinished] = useState(false);             // 종료 여부
   
-  // 🔥 피드백 데이터 저장용 상태
+  // 피드백 데이터 저장용 상태
   const [feedback, setFeedback] = useState(''); 
 
   // 페이지가 열릴 때 인적성 검사에서 넘어온 주제가 있다면 자동 입력
@@ -42,7 +42,7 @@ function Interview() {
   // (1) 대화 기록 중 'ai'가 보낸 마지막 메시지 찾기
   const lastAiMessage = conversation.filter(msg => msg.sender === 'ai').slice(-1)[0];
 
-  // (2) 🔥 말풍선 위치 계산 로직
+  // (2) 말풍선 위치 계산 로직
   // 현재까지 AI가 몇 번 말했는지 셉니다.
   const aiMsgCount = conversation.filter(msg => msg.sender === 'ai').length;
   
@@ -163,7 +163,7 @@ function Interview() {
     setFeedback(''); 
   };
 
-  // 🔥 [추가] 리포트 다운로드 함수
+  // [추가] 리포트 다운로드 함수
   const handleDownload = () => {
     if (!feedback) {
       alert("다운로드할 피드백 내용이 없습니다.");
@@ -228,7 +228,7 @@ function Interview() {
             {(isLoading || (lastAiMessage && !isFinished)) && (
               <div 
                 className="speech-bubble" 
-                style={bubbleStyle} /* 🔥 동적 스타일(위치 이동) 적용 */
+                style={bubbleStyle} /* 동적 스타일(위치 이동) 적용 */
               >
                 <div className="bubble-tail"></div>
                 <div className="bubble-content">
@@ -244,9 +244,7 @@ function Interview() {
                   </p>
                 </div>
               </div>
-            )}
-
-            {/* (기존 종료 메시지는 삭제됨) */}
+            )}            
           </div>
 
           {/* 2. 하단 인터랙션 영역 */}
@@ -267,7 +265,7 @@ function Interview() {
             ) : (
               /* (2) 면접 종료: 피드백 리포트 표시 */
               <div className="feedback-container">
-                <h2>📊 면접 분석 리포트</h2>
+                <h2>면접 분석 리포트</h2>
                 
                 <div className="feedback-content">
                   {/* 피드백 텍스트 표시 (줄바꿈 유지됨) */}
@@ -278,7 +276,7 @@ function Interview() {
                   )}
                 </div>
                 
-                {/* 🔥 [수정] 버튼 영역 (저장 + 돌아가기) */}
+                {/* [수정] 버튼 영역 (저장 + 돌아가기) */}
                 <div className="button-group">
                   <button className="download-btn" onClick={handleDownload}>
                     💾 리포트 저장
