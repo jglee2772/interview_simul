@@ -233,25 +233,21 @@
 }
 
 /* =========================================
-   D. 피드백 리포트 스타일 (최종 수정)
+   D. 피드백 리포트 스타일 (완전 정리본)
    ========================================= */
 
 /* 1. 전체 컨테이너 */
 .feedback-container {
   width: 100%;
-  max-width: 800px; /* 너무 넓어지지 않게 제한 */
+  max-width: 800px;
   background-color: #ffffff;
   border-radius: 15px;
   padding: 2rem;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   text-align: left;
-  
-  /* 화면 중앙에 오도록 설정 */
   margin: 0 auto; 
   display: flex;
   flex-direction: column;
-  
-  /* 애니메이션 */
   animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
@@ -272,134 +268,131 @@
   flex-shrink: 0;
 }
 
-/* 내용 박스 (스크롤 영역) */
+/* 3. 내용 박스 (스크롤 영역) */
 .feedback-content {
   font-size: 1.1rem;
-  line-height: 1.7;
-  color: #333;
+  line-height: 1.8;
+  color: #444;
   white-space: pre-wrap;
   
-  background-color: #f8f9fa;
-  padding: 1.5rem;
+  background-color: #ffffff;
+  padding: 2rem;
   border-radius: 10px;
-  border: 1px solid #e9ecef;
+  border: 1px solid #e0e0e0;
   margin-bottom: 1.5rem;
 
+  /* 스크롤 설정 */
   height: 50vh; 
   overflow-y: auto; 
+  text-align: left; 
 }
 
 /* ==================================================
-   🔥 [리스트 정렬 강제 교정: Flexbox + Counter]
+   🔥 [마크다운 스타일링 & 리스트 정렬 핵심]
    ================================================== */
 
-/* 1. 기본 리스트 스타일 제거 (브라우저 기본 번호 숨김) */
+/* 1. 제목 (h1, h2, h3) 디자인 */
+.feedback-content h1,
+.feedback-content h2,
+.feedback-content h3 {
+  color: #2c3e50;
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  
+  border-left: 5px solid #007bff;
+  padding-left: 12px;
+  background: linear-gradient(90deg, #f1f8ff 0%, rgba(255,255,255,0) 100%);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0 5px 5px 0;
+}
+
+.feedback-content h1:first-child,
+.feedback-content h2:first-child {
+  margin-top: 0;
+}
+
+/* 1. 기본 리스트 스타일 제거 및 여백 설정 */
+/* 1. 기본 리스트 스타일 제거 (초기화) */
 .feedback-content ol, 
 .feedback-content ul {
-  list-style: none !important; /* 기본 번호/점 숨기기 */
+  list-style: none !important; /* 기본 번호/점 숨김 */
   padding-left: 0 !important;
   margin: 10px 0;
 }
 
 /* 2. 숫자 리스트 카운터 설정 */
 .feedback-content ol {
-  counter-reset: list-number; /* 카운터 초기화 */
+  counter-reset: list-number;
 }
 
-/* 3. 리스트 아이템을 Flex 박스로 변경 (무조건 가로 정렬됨) */
+/* 3. 리스트 아이템을 Flex 박스로 만듦 (무조건 가로 배치) */
 .feedback-content li {
-  display: flex;          /* 🔥 번호와 내용을 가로로 배치 */
-  align-items: flex-start; /* 위쪽 라인 맞춤 */
+  display: flex;             /* 🔥 핵심: 가로 정렬 모드 */
+  align-items: flex-start;   /* 위쪽 라인 맞춤 */
   margin-bottom: 12px;
+  line-height: 1.6;
 }
 
-/* 4. 가짜 번호(숫자) 만들기 */
+/* 4. [숫자] 기호 만들기 */
 .feedback-content ol li::before {
-  counter-increment: list-number;      /* 숫자 1씩 증가 */
-  content: counter(list-number) ". ";  /* "1. " 형태로 출력 */
-  margin-right: 8px;                   /* 숫자와 텍스트 사이 간격 */
+  counter-increment: list-number;
+  content: counter(list-number) ". ";
+  
+  /* 디자인 */
   font-weight: bold;
   color: #2c3e50;
-  flex-shrink: 0;                      /* 숫자는 찌그러지지 않게 고정 */
+  margin-right: 8px;      /* 숫자와 내용 사이 간격 */
+  flex-shrink: 0;         /* 숫자가 찌그러지지 않게 고정 */
 }
 
-/* 5. 가짜 글머리 기호(점) 만들기 */
+/* 5. [점] 기호 만들기 */
 .feedback-content ul li::before {
-  content: "•";
-  margin-right: 8px;
-  font-weight: bold;
-  color: #2c3e50;
-  flex-shrink: 0;
+  content: '';            /* 글자 대신 도형으로 그림 */
+  
+  /* 디자인 */
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #007bff; /* 파란색 점 */
+  border-radius: 50%;
+  
+  /* 위치 조정 */
+  margin-top: 10px;       /* 글자 높이에 맞춰 살짝 내림 */
+  margin-right: 12px;     /* 점과 내용 사이 간격 */
+  flex-shrink: 0;         /* 점이 찌그러지지 않게 고정 */
 }
 
-/* 6. 내부 태그 줄바꿈 강제 제거 */
-.feedback-content li p,
-.feedback-content li span,
-.feedback-content li div {
-  margin: 0 !important;
-  padding: 0 !important;
-  display: block; /* Flex 안에서는 block이어도 옆으로 붙음 */
+/* 6. 내부 태그(p)의 줄바꿈 속성 제거 */
+.feedback-content li p {
+  margin: 0 !important;   /* 문단의 위아래 여백 강제 제거 */
+  padding: 0;
 }
 
-/* 제목 스타일 */
+/* 7. 강조 텍스트 (형광펜 효과) */
 .feedback-content strong {
   color: #2c3e50;
   font-weight: 700;
-  font-size: 1.05rem;
+  margin-right: 4px;
 }
 
-/* 👇 스크롤바 디자인 (진한 회색으로 눈에 띄게 설정) */
-.feedback-content::-webkit-scrollbar {
-  width: 14px; /* 너비를 넓게 */
-}
+/* 스크롤바 디자인 */
+.feedback-content::-webkit-scrollbar { width: 12px; }
+.feedback-content::-webkit-scrollbar-track { background-color: #f1f1f1; border-radius: 8px; }
+.feedback-content::-webkit-scrollbar-thumb { background-color: #a0a0a0; border-radius: 8px; border: 3px solid #f1f1f1; }
+.feedback-content::-webkit-scrollbar-thumb:hover { background-color: #707070; }
 
-.feedback-content::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
-  border-radius: 8px;
-  border: 2px solid transparent;
-  background-clip: content-box;
-}
-
-.feedback-content::-webkit-scrollbar-thumb {
-  background-color: #a0a0a0; /* 진한 회색 막대 */
-  border-radius: 8px;
-  border: 3px solid #f1f1f1; /* 여백 효과 */
-}
-
-.feedback-content::-webkit-scrollbar-thumb:hover {
-  background-color: #707070; /* 마우스 올리면 더 진하게 */
-}
-
-/* 4. 버튼 */
-.feedback-container .restart-btn {
-  width: 100%;
-  padding: 1rem;
-  font-size: 1.2rem;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: all 0.2s;
-  flex-shrink: 0;
-}
-
-.feedback-container .restart-btn:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-}
-
-/* 버튼 그룹 (가로 배치) */
+/* 버튼 그룹 */
 .button-group {
   display: flex;
-  gap: 10px; /* 버튼 사이 간격 */
+  gap: 10px;
   margin-top: 10px;
 }
 
-/* 공통 버튼 스타일 */
 .button-group button {
-  flex: 1; /* 공간을 반반씩 차지 */
+  flex: 1;
   padding: 1rem;
   font-size: 1.1rem;
   border: none;
@@ -411,23 +404,15 @@
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-/* 재시작 버튼 (기존 restart-btn 스타일을 여기로 통합) */
-.restart-btn {
-  background-color: #28a745; /* 초록색 */
-}
-.restart-btn:hover {
-  background-color: #218838;
-}
+.button-group button:active { transform: scale(0.98); }
 
-/* [추가] 다운로드 버튼 스타일 */
-.download-btn {
-  background-color: #007bff; /* 파란색 */
-}
-.download-btn:hover {
-  background-color: #0069d9;
-}
+.restart-btn { background-color: #28a745; }
+.restart-btn:hover { background-color: #218838; }
 
-/* 클릭 효과 */
-.button-group button:active {
-  transform: scale(0.98);
+.download-btn { background-color: #007bff; }
+.download-btn:hover { background-color: #0069d9; }
+
+.interview-page.finished-mode {
+  background: linear-gradient(to bottom, #2d2338, #3a2e46);
+  transition: background 0.8s ease-in-out;
 }

@@ -191,7 +191,7 @@ function Interview() {
   // 4. 화면 렌더링
   // -----------------------------------------------------------
   return (
-    <div className="interview-page">
+    <div className={`interview-page ${isFinished ? 'finished-mode' : ''}`}>
       
       {/* A. 시작 전 화면 */}
       {!isSessionStarted ? (

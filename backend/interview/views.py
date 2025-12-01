@@ -70,6 +70,7 @@ class StartInterviewView(APIView):
     """
     POST /api/interview/start/
     - 면접 시작: 랜덤 면접관 배정, 랜덤 질문 횟수 설정, 첫 질문 생성
+    - 수정: 첫 질문을 자기소개 고정
     """
     permission_classes = [AllowAny] # 누구나 접근 가능하게 허용
     authentication_classes = []     # 로그인 검사 안 함   
@@ -81,10 +82,10 @@ class StartInterviewView(APIView):
             return Response({"error": "job_topic이 필요합니다."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # 1. 총 질문 개수 랜덤 결정 (8~12회)
+            # 🔥 [수정 1] 총 질문 개수 6~10개로 변경
             random_limit = random.randint(8, 12)
 
-            # 2. 세션 생성 (질문 개수 저장)
+            # 2. 세션 생성
             session = InterviewSession.objects.create(
                 job_topic=job_topic,
                 total_questions=random_limit 
@@ -96,19 +97,16 @@ class StartInterviewView(APIView):
             # 4. 첫 번째 면접관 선택
             first_interviewer = session.interviewers.all().first()
             if not first_interviewer:
-                return Response(
-                    {"error": "등록된 면접관이 없습니다."}, 
-                    status=status.HTTP_500_INTERNAL_SERVER_ERROR
-                )
+                return Response({"error": "등록된 면접관이 없습니다."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
-            # 5. GPT 프롬프트 및 호출
-            system_prompt = first_interviewer.system_prompt
-            user_prompt = (
-                f"저는 {job_topic} 직무 면접에 지원했습니다. "
-                f"당신의 역할({first_interviewer.role})에 맞춰 첫 번째 면접 질문을 시작해주세요."
-            )
+            # -------------------------------------------------------
+            # 🔥 [수정 2] 첫 번째 질문 고정 (GPT 호출 안 함)
+            # -------------------------------------------------------
+            # system_prompt = ... (삭제: 첫 질문엔 필요 없음)
+            # user_prompt = ... (삭제)
+            # question_text = get_gpt_response(...) (삭제)
             
-            question_text = get_gpt_response(system_prompt, user_prompt)
+            question_text = "반갑습니다. 면접을 시작하겠습니다. 먼저 간단하게 1분 자기소개 부탁드립니다."
             
             # 6. 저장 및 응답
             exchange = InterviewExchange.objects.create(
@@ -129,6 +127,7 @@ class SubmitAnswerView(APIView):
     POST /api/interview/answer/
     - 답변 제출 및 다음 질문 생성
     - 종료 조건: DB에 저장된 total_questions 횟수에 도달하면 종료
+    - ★수정됨: 마지막 순서(total - 1)일 때 '입사 후 포부' 질문 고정
     - ★종료 시: 전체 면접 내용을 분석하여 피드백 제공
     """
     permission_classes = [AllowAny] # 누구나 접근 가능하게 허용
@@ -154,75 +153,83 @@ class SubmitAnswerView(APIView):
             answered_count = session.exchanges.filter(answer_text__isnull=False).count()
 
             # -------------------------------------------------------
-            # 🔥 3. 종료 조건 확인 & 피드백 생성 (핵심 수정 부분)
+            # 3. 종료 조건 확인 & 피드백 생성 (기존과 동일)
             # -------------------------------------------------------
             if answered_count >= session.total_questions:
                 session.status = 'completed'
                 session.save()
 
-                # (1) 피드백 생성을 위해 전체 대화 내역을 텍스트로 합침
+                # (1) 대화 내역 합치기 (이 부분은 자기소개/포부도 다 포함됨)
                 full_history_text = ""
                 all_exchanges = session.exchanges.all().order_by('created_at')
                 
                 for ex in all_exchanges:
-                    # 질문자(면접관) 역할과 질문 내용
                     role_name = ex.interviewer.role
                     full_history_text += f"면접관({role_name}): {ex.question_text}\n"
-                    # 지원자 답변
                     full_history_text += f"지원자: {ex.answer_text}\n\n"
 
-                # (2) 피드백 생성을 위한 프롬프트 작성
+                # (2) 🔥 [수정] 피드백 프롬프트 강화 (자기소개/포부 항목 추가)
                 feedback_system_prompt = (
                     "당신은 전 산업 분야를 아우르는 20년 경력의 베테랑 인사 담당자이자 면접 코치입니다. "
-                    "지원자의 직무 적합성, 태도, 논리력, 커뮤니케이션 능력을 종합적으로 평가합니다. "
                     "지원자의 전체 면접 기록을 분석하여 상세한 피드백을 제공해주세요. "
-                    "마크다운(Markdown) 형식을 사용하여 가독성 있게 작성하세요.\n\n"
+                    "특히 면접의 시작인 '1분 자기소개'와 마무리는 '입사 후 포부'에 대해 면밀히 평가해주세요.\n"
+                    "마크다운(Markdown) 형식을 사용하여 가독성 있게 작성하세요.\n"
                     "단, 최상단 제목('# 면접 피드백')은 제외하고 바로 '1. [총평]'부터 시작하세요.\n\n"
                     "다음 항목을 반드시 포함하여 작성하세요:\n"
                     "1. [총평] (지원자의 전반적인 인상, 강점, 태도 요약)\n"
-                    "2. [잘한 점] (구체적인 답변 사례를 인용하여 칭찬)\n"
-                    "3. [개선할 점] (답변의 논리, 구체성, 태도 등에서 부족했던 부분과 수정 제안)\n"
-                    "4. [종합 점수] (100점 만점 기준, 직무 적합도 반영)"
+                    "2. [자기소개 및 포부 평가] (시작과 끝맺음이 적절했는지, 인상 깊었는지 구체적 평가)\n" # 👈 추가됨
+                    "3. [잘한 점] (구체적인 답변 사례를 인용하여 칭찬)\n"
+                    "4. [개선할 점] (답변의 논리, 구체성, 태도 등에서 부족했던 부분과 수정 제안)\n"
+                    "5. [종합 점수] (100점 만점 기준, 직무 적합도 반영)"
                 )
                 
                 feedback_user_prompt = f"다음은 '{job_topic}' 직무 지원자의 전체 면접 기록입니다. 이에 대한 피드백을 작성해주세요:\n\n{full_history_text}"
 
-                # (3) GPT에게 피드백 요청 (시간이 조금 걸릴 수 있음)
+                # (3) GPT에게 피드백 요청
                 feedback_result = get_gpt_response(feedback_system_prompt, feedback_user_prompt)
                 
-                # (4) 종료 신호와 함께 피드백 반환
+                # (4) DB 저장 및 응답
+                session.final_feedback = feedback_result
+                session.save()
+
                 return Response({
                     "id": None, 
                     "is_finished": True, 
-                    "question_text": "면접이 종료되었습니다. 잠시 후 피드백을 확인해주세요.",
-                    "feedback": feedback_result,  # React로 피드백 전달
+                    "question_text": "수고하셨습니다. 면접이 종료되었습니다. 잠시 후 피드백을 확인해주세요.",
+                    "feedback": feedback_result,
                     "interviewer": None
                 }, status=status.HTTP_200_OK)
 
             # -------------------------------------------------------
-            # 4. 다음 면접관 결정 (종료 안 됐을 때)
+            # 4. 다음 면접관 결정
             # -------------------------------------------------------
             session_interviewers = list(session.interviewers.all())
-            
             if not session_interviewers:
                  return Response({"error": "면접관 없음"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             next_interviewer_index = answered_count % len(session_interviewers)
             next_interviewer = session_interviewers[next_interviewer_index]
 
-            # 5. GPT 히스토리 생성
-            history = []
-            previous_exchanges = session.exchanges.all().order_by('created_at')
-            for ex in previous_exchanges:
-                history.append({"role": "assistant", "content": ex.question_text})
-                if ex.answer_text:
-                    history.append({"role": "user", "content": ex.answer_text})
-
-            # 6. 다음 질문 생성
-            system_prompt = next_interviewer.system_prompt
-            user_prompt = f"{job_topic} 면접 상황입니다. 위 대화에 이어서 꼬리 질문을 해주세요."
+            # -------------------------------------------------------
+            # 🔥 [수정 3] 마지막 질문인지 확인하여 '입사 후 포부' 고정
+            # -------------------------------------------------------
+            # 예: 총 6문제인데 지금 5개를 대답했다면(count=5), 이번에 만들 질문은 6번째(마지막) 질문임.
+            if answered_count == session.total_questions - 1:
+                next_question_text = "마지막 질문입니다. 만약 우리 회사에 입사하게 된다면, 어떤 포부를 가지고 일하고 싶으신가요?"
             
-            next_question_text = get_gpt_response(system_prompt, user_prompt, history)
+            else:
+                # (그 외 중간 질문들은 GPT가 생성)
+                history = []
+                previous_exchanges = session.exchanges.all().order_by('created_at')
+                for ex in previous_exchanges:
+                    history.append({"role": "assistant", "content": ex.question_text})
+                    if ex.answer_text:
+                        history.append({"role": "user", "content": ex.answer_text})
+
+                system_prompt = next_interviewer.system_prompt
+                user_prompt = f"{job_topic} 면접 상황입니다. 위 대화에 이어서 꼬리 질문을 해주세요."
+                
+                next_question_text = get_gpt_response(system_prompt, user_prompt, history)
 
             # 7. 저장 및 응답
             new_exchange = InterviewExchange.objects.create(
