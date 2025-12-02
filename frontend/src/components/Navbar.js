@@ -1,49 +1,34 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import "./Navbar.css";
 
 const Navbar = () => {
   const location = useLocation();
 
+  // 상단 탭 정보 (두 번째 이미지 기준: 초록색, 주황색, 분홍색)
+  const topTabs = [
+    { path: "/", label: "메인홈 페이지", color: "green", emoji: "🏠", index: 0 },
+    { path: "/interview", label: "면접 시뮬레이션", color: "orange", emoji: "💬", index: 1 },
+    { path: "/assessment", label: "인적성 검사", color: "pink", emoji: "📄", index: 2 },
+    { path: "/resume", label: "이력서 작성", color: "purple", emoji: "✍️", index: 3 },
+  ];
+
   return (
-    
-    <div className="sidebar">
-      {/* 홈 버튼 */}
-      <div className="sidebar-top">
-        <Link
-          to="/"
-          className={`sidebar-link ${location.pathname === "/" ? "active" : ""}`}
-        >
-          <span className="emoji">🏠</span>
-          <span className="label">홈</span>
-        </Link>
-      </div>
-
-      {/* 나머지 메뉴 */}
-      <div className="sidebar-content">
-        <Link
-          to="/interview"
-          className={`sidebar-link ${location.pathname === "/interview" ? "active" : ""}`}
-        >
-          <span className="emoji">💬</span>
-          <span className="label">시뮬레이션</span>
-        </Link>
-
-        <Link
-          to="/assessment"
-          className={`sidebar-link ${location.pathname === "/assessment" ? "active" : ""}`}
-        >
-          <span className="emoji">📄</span>
-          <span className="label">인적성검사</span>
-        </Link>
-
-        <Link
-          to="/resume"
-          className={`sidebar-link ${location.pathname === "/resume" ? "active" : ""}`}
-        >
-          <span className="emoji">✍️</span>
-          <span className="label">이력서 작성</span>
-        </Link>
+    <div className="top-tabs-container">
+      <div className="top-tabs">
+        {topTabs.map((tab) => {
+          const isActive = location.pathname === tab.path;
+          
+          return (
+            <Link
+              key={tab.path}
+              to={tab.path}
+              className={`top-tab ${tab.color} ${isActive ? "active" : ""} tab-index-${tab.index}`}
+            >
+              <span className="tab-emoji">{tab.emoji}</span>
+              <span className="tab-label">{tab.label}</span>
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

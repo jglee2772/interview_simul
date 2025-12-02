@@ -1,76 +1,319 @@
 /**
  * 파일: index.css
- * 역할: 전역 스타일 (종이 질감 + 페이드인)
+ * 역할: 전역 스타일 및 디자인 시스템
  * 설명:
- * - 전체 페이지에 은은한 종이 배경 질감과 자연스러운 등장 효과를 부여
- * - 모든 페이지에 통일된 분위기 유지
+ * - CSS 변수를 통한 통합 디자인 토큰 시스템
+ * - 전체 페이지에 통일된 스타일 적용
  */
 
-/* ---------- 🔧 기본 리셋 ---------- */
+/* =========================================
+   🎨 디자인 토큰 (CSS 변수)
+   ========================================= */
+:root {
+  /* === 색상 시스템 === */
+  
+  /* Primary Colors - 연보라 계열 */
+  --color-primary: #a88cff;
+  --color-primary-light: #cbb8ff;
+  --color-primary-lighter: #d6c8ff;
+  --color-primary-dark: #5c4db8;
+  --color-primary-hover: #b7a8ff;
+  
+  /* Secondary Colors - 보라 계열 */
+  --color-secondary: #6a5acd;
+  --color-secondary-light: #8c7cff;
+  --color-secondary-dark: #4b3bbd;
+  
+  /* Accent Colors */
+  --color-accent-yellow: #f6c90e;
+  --color-accent-yellow-hover: #e5b80a;
+  --color-accent-blue: #1e4d8b;
+  --color-accent-blue-light: #61dafb;
+  
+  /* Success Colors */
+  --color-success: #28a745;
+  --color-success-light: #51cf66;
+  --color-success-dark: #40c057;
+  
+  /* Error Colors */
+  --color-error: #dc3545;
+  --color-error-light: #ff6b6b;
+  --color-error-dark: #ff5252;
+  --color-error-bg: #fff3cd;
+  --color-error-border: #ffc107;
+  --color-error-text: #856404;
+  
+  /* Warning Colors */
+  --color-warning: #ffc107;
+  
+  /* Text Colors */
+  --color-text-primary: #0e1a3a;
+  --color-text-secondary: #1b2141;
+  --color-text-tertiary: #333;
+  --color-text-muted: #6b7280;
+  --color-text-placeholder: #9ca3af;
+  --color-text-dark: #1a1a1a;
+  --color-text-description: #4b5563;
+  
+  /* Background Colors */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f9fafc;
+  --color-bg-tertiary: #f4f6fb;
+  --color-bg-quaternary: #f2f4fa;
+  --color-bg-input: #fafcff;
+  --color-bg-overlay: rgba(0, 0, 0, 0.5);
+  --color-bg-glass: rgba(255, 255, 255, 0.6);
+  
+  /* Border Colors */
+  --color-border: #e1e4eb;
+  --color-border-light: #cfd5e2;
+  --color-border-dark: #333;
+  
+  /* Shadow Colors */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --shadow-xl: 0 12px 32px rgba(0, 0, 0, 0.15);
+  --shadow-primary: 0 4px 12px rgba(160, 140, 255, 0.3);
+  --shadow-primary-hover: 0 6px 18px rgba(160, 140, 255, 0.4);
+  
+  /* === 타이포그래피 === */
+  --font-family-base: "Pretendard", "Noto Sans KR", -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.85rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.1rem;
+  --font-size-xl: 1.3rem;
+  --font-size-2xl: 1.8rem;
+  --font-size-3xl: 2.2rem;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.8;
+  
+  /* === 간격 시스템 === */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 12px;
+  --spacing-lg: 16px;
+  --spacing-xl: 24px;
+  --spacing-2xl: 32px;
+  --spacing-3xl: 40px;
+  --spacing-4xl: 60px;
+  
+  /* === Border Radius === */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 18px;
+  --radius-full: 999px;
+  
+  /* === 전환 효과 === */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+  --transition-slow: 0.35s ease;
+  --transition-slower: 0.4s ease;
+  
+  /* === Z-index === */
+  --z-base: 1;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-fixed: 300;
+  --z-modal-backdrop: 1000;
+  --z-modal: 1001;
+  --z-toast: 10000;
+  
+  /* === 페이지 테두리 색상 (모든 페이지 통일) === */
+  --page-border-color: #4a90e2;        /* 모든 페이지 - 파란색 테두리 */
+  --page-bg-color: #e8d6ff;            /* 모든 페이지 - 연한 보라색 배경 */
+  
+  /* === 페이지 테두리 스타일 === */
+  --page-border-width: 2px;           /* 얇은 파란색 테두리 */
+  --page-border-radius: 20px;
+  
+  /* === 상단 탭 공간 === */
+  --top-tabs-height: 100px;           /* 상단 탭 영역 높이 */
+  
+  /* === 상단 탭 색상 (페이지 배경색과 조화롭게) === */
+  --tab-green-bg: linear-gradient(180deg, #d4f4dd 0%, #c0e8cc 100%);
+  --tab-green-border: #a8d9b8;
+  --tab-green-active-bg: #a8d9b8; /* Home 페이지 배경색과 일치 */
+  --tab-green-active-border: #a8d9b8;
+  
+  --tab-orange-bg: linear-gradient(180deg, #ffe4d6 0%, #ffd4c2 100%);
+  --tab-orange-border: #ffc8a8;
+  --tab-orange-active-bg: #ffa880; /* Interview 페이지 배경색과 일치 */
+  --tab-orange-active-border: #ffa880;
+  
+  --tab-pink-bg: linear-gradient(180deg, #ffd6e8 0%, #ffc2d9 100%);
+  --tab-pink-border: #ffb0d0;
+  --tab-pink-active-bg: #ffb0d0; /* Assessment 페이지 배경색과 일치 */
+  --tab-pink-active-border: #ffb0d0;
+  
+  /* 보라색은 메인 콘텐츠 영역용 */
+  --tab-purple-bg: linear-gradient(180deg, #d8d6ff 0%, #c5c2ff 100%);
+  --tab-purple-border: #b8b5ff;
+  --tab-purple-active-bg: #8e8aff; /* Resume 페이지 배경색과 일치 */
+  --tab-purple-active-border: #8e8aff;
+}
+
+/* =========================================
+   🔧 기본 리셋
+   ========================================= */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* ---------- 🌐 전체 바디 ---------- */
+/* =========================================
+   🌐 전체 바디
+   ========================================= */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: var(--font-family-base);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
   /* ✨ 종이 질감 + 그라데이션 배경 */
-  background-color: #f9f9fc;
+  background-color: var(--color-bg-quaternary);
   background-image: 
     url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
-    linear-gradient(180deg, #f9f9fc 0%, #f2f4fa 40%, #edf0f7 100%);
+    linear-gradient(180deg, var(--color-bg-quaternary) 0%, var(--color-bg-tertiary) 40%, var(--color-bg-secondary) 100%);
   background-attachment: fixed;
   background-size: cover;
 
-  color: #1a1a1a;
-  line-height: 1.5;
+  color: var(--color-text-dark);
+  line-height: var(--line-height-normal);
   min-height: 100vh;
 
   animation: globalFadeIn 0.6s ease-in-out;
+  
+  /* Navbar의 fixed positioning을 방해하지 않도록 */
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  overflow-x: hidden;
+  /* 스크롤은 body에서만 발생 */
+  overflow-y: auto;
+  position: static !important;
+  /* fixed positioning context 유지 */
+  will-change: auto;
 }
 
-/* ---------- 🖋️ 기본 텍스트 ---------- */
+html {
+  /* Navbar의 fixed positioning을 방해하지 않도록 */
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  overflow-x: hidden;
+  /* 스크롤은 body에서만 */
+  height: 100%;
+  position: static !important;
+  /* fixed positioning context 유지 */
+  will-change: auto;
+}
+
+#root {
+  /* Navbar의 fixed positioning을 방해하지 않도록 */
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  position: static !important;
+  min-height: 100vh;
+  /* fixed positioning context 유지 */
+  will-change: auto;
+}
+
+/* =========================================
+   🖋️ 기본 텍스트
+   ========================================= */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 700;
-  color: #0e1a3a;
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
+  line-height: var(--line-height-tight);
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
 }
 
 p {
-  margin: 0.4rem 0;
-  color: #333;
+  margin: var(--spacing-sm) 0;
+  color: var(--color-text-tertiary);
+  line-height: var(--line-height-relaxed);
 }
 
-/* ---------- 🧭 링크 ---------- */
+/* =========================================
+   🧭 링크
+   ========================================= */
 a {
-  color: #1e4d8b;
+  color: var(--color-accent-blue);
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: color var(--transition-fast);
 }
 
 a:hover {
-  color: #f6c90e;
+  color: var(--color-accent-yellow);
 }
 
-/* ---------- 🧱 버튼 ---------- */
+/* =========================================
+   🧱 버튼 기본 스타일
+   ========================================= */
 button {
-  font-family: inherit;
+  font-family: var(--font-family-base);
   cursor: pointer;
+  border: none;
+  outline: none;
+  transition: all var(--transition-base);
 }
 
-/* ---------- 🖼️ 이미지 ---------- */
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* =========================================
+   📝 입력 필드 기본 스타일
+   ========================================= */
+input,
+textarea,
+select {
+  font-family: var(--font-family-base);
+  transition: all var(--transition-base);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+}
+
+/* =========================================
+   🖼️ 이미지
+   ========================================= */
 img {
   max-width: 100%;
   display: block;
 }
 
-/* ---------- ✨ 전역 Fade-in ---------- */
+/* =========================================
+   ✨ 전역 애니메이션
+   ========================================= */
 @keyframes globalFadeIn {
   from {
     opacity: 0;
@@ -82,12 +325,248 @@ img {
   }
 }
 
-/* ---------- 📱 반응형 ---------- */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================================
+   🧭 상단 탭 네비게이션 (모든 페이지 공통)
+   ========================================= */
+.top-tabs-container {
+  /* 일반 위치 - 스크롤하면 함께 움직임 */
+  position: relative;
+  width: 100%;
+  z-index: 100;
+  padding: var(--spacing-lg) 0 0 var(--spacing-xl);
+  pointer-events: none;
+  background: transparent;
+  margin: 0;
+  margin-bottom: 0; /* 하단 마진 제거 - 콘텐츠와 붙게 */
+  padding-bottom: 0; /* 하단 패딩 제거 */
+  display: block;
+  box-sizing: border-box;
+  /* 탭 높이 자동 계산 */
+  height: auto;
+  /* 탭 하단이 페이지와 자연스럽게 맞닿도록 */
+  overflow: visible;
+  /* 탭 컨테이너의 하단 가장자리가 정확히 보이도록 */
+  line-height: 0;
+}
+
+.top-tabs {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  gap: 0;
+  pointer-events: auto;
+  transform: none;
+  margin-bottom: 0; /* 하단 마진 제거 */
+  padding-bottom: 0; /* 하단 패딩 제거 */
+  /* 탭 하단이 페이지 테두리와 정확히 맞도록 */
+  line-height: 0;
+  /* 탭의 하단 가장자리가 정확히 보이도록 */
+  height: auto;
+  vertical-align: bottom;
+}
+
+/* 개별 탭 스타일 (폴더 형태) */
+.top-tab {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-md);
+  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
+  min-width: 200px;
+  max-width: 250px;
+  text-decoration: none;
+  border-radius: 20px 20px 0 0;
+  transition: all var(--transition-base);
+  cursor: pointer;
+  box-shadow: none;
+  border: none;
+  border-bottom: none;
+  margin-left: 0;
+  margin-right: -15px; /* 더 많이 겹치도록 */
+  margin-bottom: 0; /* 하단 마진 제거 */
+  /* 탭 하단이 페이지 테두리와 정확히 맞도록 */
+  vertical-align: bottom;
+  line-height: 1.5;
+  /* 탭의 하단 가장자리가 정확히 보이도록 */
+  box-sizing: border-box;
+  /* 탭의 하단 패딩이 정확히 맞도록 */
+  padding-bottom: var(--spacing-md);
+  overflow: visible; /* 외부로 튀어나오게 함 */
+  z-index: 1;        /* 기본 z-index */
+}
+
+
+
+/* 각 탭의 인덱스별 위치 조정 (더 많이 겹치도록) */
+.top-tab.tab-index-0 {
+  z-index: 4;
+  transform: translateX(0);
+}
+
+.top-tab.tab-index-1 {
+  z-index: 3;
+  transform: translateX(15px);
+}
+
+.top-tab.tab-index-2 {
+  z-index: 2;
+  transform: translateX(30px);
+}
+
+.top-tab.tab-index-3 {
+  z-index: 1;
+  transform: translateX(45px);
+}
+
+/* 활성 탭은 항상 최상위 */
+.top-tab.active {
+  z-index: 1000;
+}
+
+/* 탭 색상 */
+.top-tab.purple {
+  background: var(--tab-purple-bg);
+  border-color: var(--tab-purple-border);
+}
+
+.top-tab.green {
+  background: var(--tab-green-bg);
+  border-color: var(--tab-green-border);
+}
+
+.top-tab.orange {
+  background: var(--tab-orange-bg);
+  border-color: var(--tab-orange-border);
+}
+
+.top-tab.pink {
+  background: var(--tab-pink-bg);
+  border-color: var(--tab-pink-border);
+}
+
+/* 활성화된 탭 */
+.top-tab.active {
+  z-index: 1000; /* 활성 탭은 항상 최상위 */
+}
+
+.top-tab.active.purple {
+  background: var(--tab-purple-active-bg);
+  border-color: var(--tab-purple-active-border);
+}
+
+.top-tab.active.green {
+  background: var(--tab-green-active-bg);
+  border-color: var(--tab-green-active-border);
+}
+
+.top-tab.active.orange {
+  background: var(--tab-orange-active-bg);
+  border-color: var(--tab-orange-active-border);
+}
+
+.top-tab.active.pink {
+  background: var(--tab-pink-active-bg);
+  border-color: var(--tab-pink-active-border);
+}
+
+/* Hover 효과 */
+.top-tab:hover:not(.active) {
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.top-tab.tab-index-0:hover:not(.active) {
+  transform: translateX(-2px) !important;
+}
+
+.top-tab.tab-index-1:hover:not(.active) {
+  transform: translateX(13px) !important;
+}
+
+.top-tab.tab-index-2:hover:not(.active) {
+  transform: translateX(28px) !important;
+}
+
+.top-tab.tab-index-3:hover:not(.active) {
+  transform: translateX(43px) !important;
+}
+
+/* 탭 내부 요소 */
+.tab-emoji {
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tab-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+  white-space: nowrap;
+}
+
+.top-tab.active .tab-label {
+  color: #fff;
+  font-weight: var(--font-weight-bold);
+}
+
+/* =========================================
+   📱 반응형
+   ========================================= */
 @media (max-width: 768px) {
   body {
     font-size: 15px;
     background-image: 
       url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
-      linear-gradient(180deg, #fafbff 0%, #f2f4fa 100%);
+      linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-tertiary) 100%);
+  }
+  
+  h1 {
+    font-size: var(--font-size-2xl);
+  }
+  
+  h2 {
+    font-size: var(--font-size-xl);
+  }
+  
+  .top-tabs-container {
+    padding: var(--spacing-md) var(--spacing-md) 0;
+  }
+
+  .top-tab {
+    min-width: 150px;
+    max-width: 180px;
+    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+  }
+
+  .tab-label {
+    font-size: var(--font-size-xs);
+  }
+
+  .tab-emoji {
+    font-size: 1rem;
   }
 }

@@ -1,15 +1,36 @@
 /* 공통 */
 .home {
-  width: 100%;
-  min-height: 100vh;
+  width: calc(100% - 32px);
+  min-height: calc(100vh - 32px);
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  padding: 80px 40px;
+  padding: var(--spacing-3xl) var(--spacing-3xl) var(--spacing-2xl);
   box-sizing: border-box;
   overflow-x: hidden;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  font-family: var(--font-family-base);
+
+  /* 왼쪽 상단만 직각, 나머지는 둥글게 */
+  border-radius: 0 var(--page-border-radius)
+                 var(--page-border-radius)
+                 var(--page-border-radius);
+
+  margin: var(--spacing-lg);
+  margin-top: 0px;
+  margin-left: 24px;
+
+  padding-top: calc(
+    var(--spacing-lg) + 
+    var(--spacing-md) + 
+    24px + 
+    var(--spacing-md) + 
+    var(--spacing-xl)
+  );
+
+  background-color: #a8d9b8;
+  position: relative;
 }
+
 
 /* 내부 컨테이너 */
 .home-container {
@@ -22,9 +43,9 @@
 
 /* 제목 */
 .home-header h2 {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #0e1a3a;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-extrabold);
+  color: var(--color-text-primary);
   letter-spacing: -0.5px;
 }
 
@@ -32,7 +53,7 @@
   overflow: hidden;
   width: 100%;
   background-color: rgba(128, 128, 128, 0.1);
-  padding: 10px 0;
+  padding: var(--spacing-md) 0;
 }
 
 .tip-slider {
@@ -67,16 +88,16 @@
 
 /* 카드 디자인 */
 .card {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  padding: 30px;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-2xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow);
 }
 
 .card:hover {
@@ -101,14 +122,14 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
+  border-radius: var(--radius-xl);
   z-index: 0;
 }
 
 .card-interview h3 {
   position: relative;
-  z-index: 1;
-  color: #0e1a3a;
+  z-index: var(--z-base);
+  color: var(--color-text-primary);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
@@ -130,14 +151,14 @@
   right: 0;
   bottom: 0;
   background: rgba(255, 255, 255, 0.6);
-  border-radius: 16px;
+  border-radius: var(--radius-xl);
   z-index: 0;
 }
 
 .card-assessment h3 {
   position: relative;
-  z-index: 1;
-  color: #0e1a3a;
+  z-index: var(--z-base);
+  color: var(--color-text-primary);
   text-shadow: 0 2px 4px rgba(255, 255, 255, 0.8);
 }
 
@@ -145,59 +166,59 @@
 .card-icon {
   width: 80px;
   height: 80px;
-  background-color: #f6c90e;
-  border-radius: 18px;
-  margin-bottom: 14px;
+  background-color: var(--color-accent-yellow);
+  border-radius: var(--radius-2xl);
+  margin-bottom: var(--spacing-lg);
 }
 
 .card-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0e1a3a;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
 }
 
 .card-info {
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  padding: 30px;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: var(--spacing-2xl);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow);
 }
 
 .card-info input,
 .card-info select {
   width: 100%;
-  padding: 10px 14px;
-  font-size: 0.9rem;
-  border: 1px solid #cfd5e2;
-  border-radius: 6px;
-  background-color: #fafcff;
+  padding: var(--spacing-md) var(--spacing-lg);
+  font-size: var(--font-size-sm);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-input);
   outline: none;
-  transition: all 0.25s ease;
-  margin-bottom: 12px;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  transition: all var(--transition-base);
+  margin-bottom: var(--spacing-md);
+  font-family: var(--font-family-base);
 }
 
 .card-info input:focus,
 .card-info select:focus {
-  border-color: #1e4d8b;
+  border-color: var(--color-accent-blue);
   box-shadow: 0 0 10px rgba(30, 77, 139, 0.3);
-  background-color: #fff;
+  background-color: var(--color-bg-primary);
 }
 
 .card-info input.error,
 .card-info select.error {
-  border-color: #f44336;
+  border-color: var(--color-error);
   background-color: #fff5f5;
 }
 
 .card-info input.error:focus,
 .card-info select.error:focus {
-  border-color: #f44336;
+  border-color: var(--color-error);
   box-shadow: 0 0 10px rgba(244, 67, 54, 0.3);
 }
 
@@ -216,11 +237,11 @@
 
 .error-message {
   display: block;
-  color: #f44336;
-  font-size: 0.8rem;
+  color: var(--color-error);
+  font-size: var(--font-size-xs);
   margin-top: -8px;
-  margin-bottom: 12px;
-  padding-left: 4px;
+  margin-bottom: var(--spacing-md);
+  padding-left: var(--spacing-xs);
 }
 
 /* 버튼 그룹 */
@@ -234,25 +255,25 @@
 .info-save,
 .info-clear {
   flex: 1;
-  padding: 12px 20px;
-  font-size: 0.95rem;
-  font-weight: 600;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   border: none;
-  border-radius: 6px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  transition: all var(--transition-slow);
+  font-family: var(--font-family-base);
 }
 
 .info-save {
-  background-color: #1e4d8b;
+  background-color: var(--color-accent-blue);
   color: #ffffff;
 }
 
 .info-save:hover {
   background-color: #153a6b;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(30, 77, 139, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .info-clear {
@@ -263,7 +284,7 @@
 .info-clear:hover {
   background-color: #5a6268;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 /* 하단 섹션 */
@@ -276,15 +297,15 @@
 /* ✅ 이력서 카드 */
 .resume-card {
   height: 120px;
-  background-color: #ffffff;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-  padding: 25px 30px;
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  padding: 25px var(--spacing-2xl);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-xl);
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow);
 }
 
 .resume-card:hover {
@@ -296,37 +317,37 @@
 .resume-icon {
   width: 80px;
   height: 80px;
-  border-radius: 14px;
+  border-radius: var(--radius-lg);
   object-fit: cover;
-  background-color: #f6c90e;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  background-color: var(--color-accent-yellow);
+  box-shadow: var(--shadow-sm);
 }
 
 /* 제목 */
 .resume-card h3 {
-  color: #0e1a3a;
-  font-size: 1.15rem;
-  font-weight: 700;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
 }
 
 /* 구인사이트 */
 .job-section {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 25px 30px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  padding: 25px var(--spacing-2xl);
+  box-shadow: var(--shadow-md);
 }
 
 .job-section h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: #0e1a3a;
-  margin-bottom: 10px;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-md);
 }
 
 .job-section p {
   color: #555;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
 }
 
 /* 반응형 */
@@ -354,23 +375,23 @@
 /* ===== 구인사이트 섹션 (수정버전) ===== */
 
 .job-section {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 30px 40px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+  box-shadow: var(--shadow-md);
   text-align: center;
 }
 
 .job-section h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0e1a3a;
-  margin-bottom: 8px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .job-section p {
   color: #555;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
   margin-bottom: 25px;
 }
 
@@ -392,17 +413,17 @@
   width: 45%;
   max-width: 350px;
   min-width: 280px;
-  background-color: #fafbff;
-  border-radius: 14px;
-  padding: 25px 20px;
+  background-color: var(--color-bg-secondary);
+  border-radius: var(--radius-lg);
+  padding: 25px var(--spacing-xl);
   text-decoration: none;
-  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-slow);
 }
 
 .job-card-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 6px 18px rgba(246, 201, 14, 0.25);
+  box-shadow: var(--shadow-md);
 }
 
 /* 🔹 이미지 */
@@ -415,9 +436,9 @@
 
 /* 🔹 텍스트 */
 .job-card-box span {
-  color: #0e1a3a;
-  font-weight: 600;
-  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
 }
 
 /* ✅ 반응형: 모바일에서는 세로 배치 */
@@ -434,23 +455,23 @@
 
 /* ===== 후원 섹션 ===== */
 .sponsor {
-  background-color: #ffffff;
-  border-radius: 16px;
-  padding: 30px 40px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-xl);
+  padding: var(--spacing-2xl) var(--spacing-3xl);
+  box-shadow: var(--shadow-md);
   text-align: center;
 }
 
 .sponsor h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0e1a3a;
-  margin-bottom: 8px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-primary);
+  margin-bottom: var(--spacing-sm);
 }
 
 .sponsor p {
   color: #555;
-  font-size: 0.95rem;
+  font-size: var(--font-size-sm);
   margin-bottom: 25px;
 }
 
@@ -464,29 +485,29 @@
 }
 
 .amount-btn {
-  padding: 12px 24px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  border: 2px solid #cfd5e2;
-  border-radius: 8px;
-  background-color: #ffffff;
-  color: #0e1a3a;
+  padding: var(--spacing-md) var(--spacing-xl);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border: 2px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  transition: all var(--transition-slow);
+  font-family: var(--font-family-base);
 }
 
 .amount-btn:hover {
-  border-color: #1e4d8b;
-  background-color: #fafbff;
+  border-color: var(--color-accent-blue);
+  background-color: var(--color-bg-secondary);
   transform: translateY(-2px);
 }
 
 .amount-btn.selected {
-  border-color: #1e4d8b;
-  background-color: #1e4d8b;
+  border-color: var(--color-accent-blue);
+  background-color: var(--color-accent-blue);
   color: #ffffff;
-  box-shadow: 0 4px 12px rgba(30, 77, 139, 0.3);
+  box-shadow: var(--shadow-md);
 }
 
 .amount-btn.selected:hover {
@@ -495,28 +516,28 @@
 
 /* 후원하기 버튼 */
 .sp-btn {
-  padding: 14px 40px;
-  font-size: 1rem;
-  font-weight: 700;
+  padding: var(--spacing-lg) var(--spacing-3xl);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   border: none;
-  border-radius: 8px;
-  background-color: #f6c90e;
-  color: #0e1a3a;
+  border-radius: var(--radius-md);
+  background-color: var(--color-accent-yellow);
+  color: var(--color-text-primary);
   cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  transition: all var(--transition-slow);
+  font-family: var(--font-family-base);
   min-width: 150px;
 }
 
 .sp-btn:hover:not(:disabled) {
-  background-color: #e5b80a;
+  background-color: var(--color-accent-yellow-hover);
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(246, 201, 14, 0.4);
 }
 
 .sp-btn:disabled {
-  background-color: #cfd5e2;
-  color: #9ca3af;
+  background-color: var(--color-border-light);
+  color: var(--color-text-placeholder);
   cursor: not-allowed;
   opacity: 0.6;
 }

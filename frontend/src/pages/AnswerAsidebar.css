@@ -2,16 +2,16 @@
 .asidebar {
   width: 220px;
   display: flex;
-  right: 30px;
+  right: var(--spacing-2xl);
   justify-content: center;
   align-items: flex-start;
-  margin-top: 12px;
+  margin-top: var(--spacing-md);
   background: transparent;
   position: sticky;
-  top: 40px;
+  top: var(--spacing-3xl);
   height: fit-content;
   align-self: flex-start;
-  z-index: 99;
+  z-index: var(--z-sticky);
   justify-self: end;
 }
 
@@ -19,20 +19,20 @@
 .aside-inner-box {
   width: 100%;
   background: linear-gradient(180deg, #fbfbff, #f3f4ff);
-  border-left: 3px solid #b9b4ff;
-  border-radius: 18px;
-  padding: 16px 14px 20px;
-  box-shadow: 0 4px 12px rgba(120, 120, 220, 0.15);
+  border-left: 3px solid var(--color-primary-light);
+  border-radius: var(--radius-2xl);
+  padding: var(--spacing-lg) var(--spacing-lg) var(--spacing-xl);
+  box-shadow: var(--shadow-sm);
   text-align: center;
-  transition: all 0.3s ease;
+  transition: all var(--transition-slow);
 }
 
 /* 제목 */
 .aside-inner-box h3 {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
   color: #5a5fa7;
-  margin-bottom: 12px;
+  margin-bottom: var(--spacing-md);
   border-bottom: none;
   padding-bottom: 0;
   letter-spacing: 0.03em;
@@ -50,18 +50,18 @@
 .aside-question-list li {
   width: 26px;
   height: 26px;
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  border-radius: 50%;
+  border-radius: var(--radius-full);
   border: 1px solid rgba(160, 160, 220, 0.35);
   color: #6b6fae;
   background: rgba(220, 225, 255, 0.4);
   position: relative;
-  transition: all 0.18s ease;
+  transition: all var(--transition-fast);
 }
 
 /* hover: 은은 */
@@ -76,7 +76,7 @@
   background: linear-gradient(135deg, #8e90df, #b6b7f2);
   color: #fff;
   border: none;
-  box-shadow: 0 0 8px rgba(145, 145, 230, 0.45);
+  box-shadow: var(--shadow-sm);
   transform: scale(1.12);
 }
 
@@ -112,6 +112,6 @@
   .aside-question-list li {
     width: 25px;
     height: 25px;
-    font-size: 0.65rem;
+    font-size: var(--font-size-xs);
   }
 }

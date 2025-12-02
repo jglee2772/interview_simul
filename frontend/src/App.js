@@ -25,8 +25,9 @@ import Resume from './pages/Resume';
 function App() {
   return (
     <Router>
+      {/* Navbar를 Router 바로 아래로 이동 - App div 밖으로 */}
+      <Navbar />
       <div className="App">
-        <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/interview" element={<Interview />} />

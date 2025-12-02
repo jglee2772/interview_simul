@@ -1,11 +1,44 @@
 /* 전체 페이지 배경 */
 .interview-page {
-  min-height: 100vh;
-  background-color: #282c34;
+  width: calc(100% - 32px);
+  min-height: calc(100vh - 32px);
+  background-color: #ffa880;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Noto Sans KR', sans-serif;
+  font-family: var(--font-family-base);
+
+  /* 왼쪽 상단만 직각, 나머지는 둥글게 */
+  border-radius: 0 var(--page-border-radius)
+                 var(--page-border-radius)
+                 var(--page-border-radius);
+
+  margin: var(--spacing-lg);
+  margin-top: 0px;
+  margin-left: 24px;
+
+  padding-top: calc(
+    var(--spacing-lg) + 
+    var(--spacing-md) + 
+    24px + 
+    var(--spacing-md) + 
+    var(--spacing-xl)
+  );
+
+  box-sizing: border-box;
+  position: relative;
+  padding-left: var(--spacing-xl);
+  padding-right: var(--spacing-xl);
+  padding-bottom: var(--spacing-3xl);
+}
+
+/* Interview 페이지 내부 어두운 배경은 유지 */
+.interview-page .start-container,
+.interview-page .interview-container,
+.interview-page .feedback-container {
+  background-color: #282c34;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
 }
 
 /* =========================================
@@ -23,14 +56,14 @@
 }
 
 .start-card {
-  background: white;
-  padding: 2rem;
-  border-radius: 15px;
+  background: var(--color-bg-primary);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-lg);
   width: 400px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  box-shadow: var(--shadow-xl);
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: var(--spacing-lg);
 }
 
 .preview-img {
@@ -40,21 +73,21 @@
 }
 
 .start-card input {
-  padding: 12px;
-  border: 2px solid #ddd;
-  border-radius: 8px;
-  font-size: 1rem;
+  padding: var(--spacing-md);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
 }
 
 .start-card button {
-  padding: 12px;
-  background-color: #007bff;
+  padding: var(--spacing-md);
+  background-color: var(--color-accent-blue);
   color: white;
   border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-lg);
   cursor: pointer;
-  transition: 0.2s;
+  transition: var(--transition-fast);
 }
 
 .start-card button:hover {
@@ -81,25 +114,25 @@
 
 .stage-img {
   width: 100%;
-  border-radius: 20px;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+  border-radius: var(--spacing-xl);
+  box-shadow: var(--shadow-xl);
   display: block;
 }
 
 /* 말풍선 (Speech Bubble) */
 .speech-bubble {
   position: absolute;
-  bottom: 20px; 
+  bottom: var(--spacing-xl); 
   left: 50%;
   transform: translateX(-50%);
   width: 350px;
   max-width: 85%;
   background-color: rgba(255, 255, 255, 0.98);
-  border: 3px solid #333;
-  border-radius: 20px;
+  border: 3px solid var(--color-border-dark);
+  border-radius: var(--spacing-xl);
   padding: 1.2rem 1.5rem;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
-  z-index: 10;
+  box-shadow: var(--shadow-lg);
+  z-index: var(--z-base);
   animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
@@ -202,25 +235,25 @@
 .answer-box textarea {
   width: 100%;
   height: 100px;
-  padding: 1rem;
-  font-size: 1.1rem;
-  border-radius: 15px;
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-lg);
+  border-radius: var(--radius-lg);
   border: none;
   resize: none;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  box-shadow: var(--shadow-md);
 }
 
 .answer-box button {
   height: 50px;
   background-color: #ff5722;
   color: white;
-  font-size: 1.2rem;
-  font-weight: bold;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   border: none;
-  border-radius: 15px;
+  border-radius: var(--radius-lg);
   cursor: pointer;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  transition: transform 0.1s;
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-fast);
 }
 
 .answer-box button:active {
@@ -240,10 +273,10 @@
 .feedback-container {
   width: 100%;
   max-width: 800px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  background-color: var(--color-bg-primary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-2xl);
+  box-shadow: var(--shadow-xl);
   text-align: left;
   margin: 0 auto; 
   display: flex;
@@ -260,26 +293,26 @@
 .feedback-container h2 {
   text-align: center;
   color: #2c3e50;
-  font-size: 1.8rem;
+  font-size: var(--font-size-2xl);
   margin-top: 0;
-  margin-bottom: 1rem;
+  margin-bottom: var(--spacing-lg);
   border-bottom: 3px solid #f1f3f5;
-  padding-bottom: 15px;
+  padding-bottom: var(--spacing-lg);
   flex-shrink: 0;
 }
 
 /* 3. 내용 박스 (스크롤 영역) */
 .feedback-content {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
   color: #444;
   white-space: pre-wrap;
   
-  background-color: #ffffff;
-  padding: 2rem;
-  border-radius: 10px;
-  border: 1px solid #e0e0e0;
-  margin-bottom: 1.5rem;
+  background-color: var(--color-bg-primary);
+  padding: var(--spacing-2xl);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  margin-bottom: var(--spacing-lg);
 
   /* 스크롤 설정 */
   height: 50vh; 
@@ -296,17 +329,17 @@
 .feedback-content h2,
 .feedback-content h3 {
   color: #2c3e50;
-  font-size: 1.4rem;
-  font-weight: 800;
-  margin-top: 30px;
-  margin-bottom: 15px;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-extrabold);
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
   
-  border-left: 5px solid #007bff;
-  padding-left: 12px;
+  border-left: 5px solid var(--color-accent-blue);
+  padding-left: var(--spacing-md);
   background: linear-gradient(90deg, #f1f8ff 0%, rgba(255,255,255,0) 100%);
-  padding-top: 5px;
-  padding-bottom: 5px;
-  border-radius: 0 5px 5px 0;
+  padding-top: var(--spacing-xs);
+  padding-bottom: var(--spacing-xs);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
 .feedback-content h1:first-child,
@@ -393,15 +426,15 @@
 
 .button-group button {
   flex: 1;
-  padding: 1rem;
-  font-size: 1.1rem;
+  padding: var(--spacing-lg);
+  font-size: var(--font-size-lg);
   border: none;
-  border-radius: 10px;
+  border-radius: var(--radius-md);
   cursor: pointer;
-  font-weight: bold;
-  transition: transform 0.1s, background-color 0.2s;
+  font-weight: var(--font-weight-bold);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
   color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  box-shadow: var(--shadow-sm);
 }
 
 .button-group button:active { transform: scale(0.98); }

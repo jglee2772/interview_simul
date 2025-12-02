@@ -6,4 +6,14 @@
  * - 앱 전체에 적용되는 기본 스타일을 작성합니다
  */
 
-/* 메인 앱 스타일 작성 */
+.App {
+  /* Navbar의 fixed positioning을 방해하지 않도록 */
+  transform: none !important;
+  perspective: none !important;
+  filter: none !important;
+  /* 스크롤 컨테이너 */
+  min-height: 100vh;
+  position: relative;
+  /* overflow는 body에서만 */
+  overflow: visible;
+}
