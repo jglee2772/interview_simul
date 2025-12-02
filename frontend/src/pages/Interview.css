@@ -273,10 +273,10 @@
 .feedback-container {
   width: 100%;
   max-width: 800px;
-  background-color: var(--color-bg-primary);
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
-  box-shadow: var(--shadow-xl);
+  background-color: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
   text-align: left;
   margin: 0 auto; 
   display: flex;
@@ -293,31 +293,33 @@
 .feedback-container h2 {
   text-align: center;
   color: #2c3e50;
-  font-size: var(--font-size-2xl);
+  font-size: 1.8rem;
   margin-top: 0;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: 1rem;
   border-bottom: 3px solid #f1f3f5;
-  padding-bottom: var(--spacing-lg);
+  padding-bottom: 15px;
   flex-shrink: 0;
 }
 
-/* 3. 내용 박스 (스크롤 영역) */
+/* 내용 박스 (스크롤 영역) */
 .feedback-content {
-  font-size: var(--font-size-lg);
-  line-height: var(--line-height-relaxed);
-  color: #444;
-  white-space: pre-wrap;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #333;
   
-  background-color: var(--color-bg-primary);
-  padding: var(--spacing-2xl);
-  border-radius: var(--radius-md);
-  border: 1px solid var(--color-border);
-  margin-bottom: var(--spacing-lg);
+  /* 🔥 핵심 수정: 줄바꿈 정책 변경 */
+  white-space: normal;    /* pre-wrap(X) -> normal(O) : 강제 줄바꿈 대신 자동 줄바꿈 */
+  word-wrap: break-word;  /* 긴 단어가 있어도 강제로 줄바꿈 */
+  
+  background-color: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #e9ecef;
+  margin-bottom: 1.5rem;
 
-  /* 스크롤 설정 */
   height: 50vh; 
   overflow-y: auto; 
-  text-align: left; 
+  overflow-x: hidden;     /* 가로 스크롤 강제 차단 */
 }
 
 /* ==================================================
@@ -329,17 +331,17 @@
 .feedback-content h2,
 .feedback-content h3 {
   color: #2c3e50;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-extrabold);
-  margin-top: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-top: 30px;
+  margin-bottom: 15px;
   
-  border-left: 5px solid var(--color-accent-blue);
-  padding-left: var(--spacing-md);
+  border-left: 5px solid #007bff;
+  padding-left: 12px;
   background: linear-gradient(90deg, #f1f8ff 0%, rgba(255,255,255,0) 100%);
-  padding-top: var(--spacing-xs);
-  padding-bottom: var(--spacing-xs);
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 0 5px 5px 0;
 }
 
 .feedback-content h1:first-child,
@@ -347,13 +349,16 @@
   margin-top: 0;
 }
 
-/* 1. 기본 리스트 스타일 제거 및 여백 설정 */
-/* 1. 기본 리스트 스타일 제거 (초기화) */
+/* ==================================================
+   🔥 [리스트 정렬 문제 최종 해결: 절대 위치 고정 방식]
+   ================================================== */
+
+/* 1. 기본 리스트 스타일 제거 */
 .feedback-content ol, 
 .feedback-content ul {
-  list-style: none !important; /* 기본 번호/점 숨김 */
+  list-style: none !important;
   padding-left: 0 !important;
-  margin: 10px 0;
+  margin: 15px 0;
 }
 
 /* 2. 숫자 리스트 카운터 설정 */
@@ -361,54 +366,59 @@
   counter-reset: list-number;
 }
 
-/* 3. 리스트 아이템을 Flex 박스로 만듦 (무조건 가로 배치) */
+/* 3. 리스트 아이템 설정 (여백 확보) */
 .feedback-content li {
-  display: flex;             /* 🔥 핵심: 가로 정렬 모드 */
-  align-items: flex-start;   /* 위쪽 라인 맞춤 */
-  margin-bottom: 12px;
+  position: relative; /* 기준점 */
+  padding-left: 25px; /* 왼쪽에 기호 들어갈 공간 */
+  margin-bottom: 15px;
   line-height: 1.6;
+  text-align: left;
+  display: block; /* Flex 제거 -> Block으로 변경 */
 }
 
-/* 4. [숫자] 기호 만들기 */
+/* 4. [숫자] 기호 만들기 (왼쪽 고정) */
 .feedback-content ol li::before {
   counter-increment: list-number;
   content: counter(list-number) ". ";
   
-  /* 디자인 */
   font-weight: bold;
   color: #2c3e50;
-  margin-right: 8px;      /* 숫자와 내용 사이 간격 */
-  flex-shrink: 0;         /* 숫자가 찌그러지지 않게 고정 */
+  
+  /* 위치 고정 */
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 
-/* 5. [점] 기호 만들기 */
+/* 5. [점] 기호 만들기 (왼쪽 고정) */
 .feedback-content ul li::before {
-  content: '';            /* 글자 대신 도형으로 그림 */
-  
-  /* 디자인 */
-  display: inline-block;
+  content: '';            
+  display: block;
   width: 6px;
   height: 6px;
-  background-color: #007bff; /* 파란색 점 */
+  background-color: #007bff; 
   border-radius: 50%;
   
-  /* 위치 조정 */
-  margin-top: 10px;       /* 글자 높이에 맞춰 살짝 내림 */
-  margin-right: 12px;     /* 점과 내용 사이 간격 */
-  flex-shrink: 0;         /* 점이 찌그러지지 않게 고정 */
+  /* 위치 고정 */
+  position: absolute;
+  left: 8px; /* 점 위치 */
+  top: 10px; /* 텍스트 첫 줄 높이에 맞춤 */
 }
 
-/* 6. 내부 태그(p)의 줄바꿈 속성 제거 */
-.feedback-content li p {
-  margin: 0 !important;   /* 문단의 위아래 여백 강제 제거 */
-  padding: 0;
+/* 6. 🚨 내부 텍스트 강제 정리 */
+.feedback-content li > * {
+  display: inline; /* 텍스트가 줄바꿈 없이 쭉 이어지게 함 */
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* 7. 강조 텍스트 (형광펜 효과) */
+/* 7. 강조 텍스트 */
 .feedback-content strong {
   color: #2c3e50;
   font-weight: 700;
-  margin-right: 4px;
+  background: linear-gradient(to top, #fff3cd 40%, transparent 40%);
+  padding: 0 2px;
+  margin-right: 5px;
 }
 
 /* 스크롤바 디자인 */
@@ -426,15 +436,15 @@
 
 .button-group button {
   flex: 1;
-  padding: var(--spacing-lg);
-  font-size: var(--font-size-lg);
+  padding: 1rem;
+  font-size: 1.1rem;
   border: none;
-  border-radius: var(--radius-md);
+  border-radius: 10px;
   cursor: pointer;
-  font-weight: var(--font-weight-bold);
-  transition: transform var(--transition-fast), background-color var(--transition-fast);
+  font-weight: bold;
+  transition: transform 0.1s, background-color 0.2s;
   color: white;
-  box-shadow: var(--shadow-sm);
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 .button-group button:active { transform: scale(0.98); }

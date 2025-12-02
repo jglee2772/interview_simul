@@ -82,7 +82,7 @@ class StartInterviewView(APIView):
             return Response({"error": "job_topic이 필요합니다."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # 🔥 [수정 1] 총 질문 개수 6~10개로 변경
+            # 🔥 [수정 1] 총 질문 개수 8~12개로 변경
             random_limit = random.randint(8, 12)
 
             # 2. 세션 생성
@@ -92,8 +92,8 @@ class StartInterviewView(APIView):
             )
             
             # 3. 랜덤 면접관 4명 할당
-            session.set_random_interviewers(count=4)
-            
+            session.set_random_interviewers()
+            22
             # 4. 첫 번째 면접관 선택
             first_interviewer = session.interviewers.all().first()
             if not first_interviewer:
@@ -180,7 +180,7 @@ class SubmitAnswerView(APIView):
                     "2. [자기소개 및 포부 평가] (시작과 끝맺음이 적절했는지, 인상 깊었는지 구체적 평가)\n" # 👈 추가됨
                     "3. [잘한 점] (구체적인 답변 사례를 인용하여 칭찬)\n"
                     "4. [개선할 점] (답변의 논리, 구체성, 태도 등에서 부족했던 부분과 수정 제안)\n"
-                    "5. [종합 점수] (100점 만점 기준, 직무 적합도 반영)"
+                    "5. [종합 점수] (100점 만점 기준, 예시: '85 / 100 점' 형태로 한 줄에 작성, 직무 적합도 반영)"
                 )
                 
                 feedback_user_prompt = f"다음은 '{job_topic}' 직무 지원자의 전체 면접 기록입니다. 이에 대한 피드백을 작성해주세요:\n\n{full_history_text}"

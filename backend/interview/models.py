@@ -13,73 +13,79 @@
 """
 
 from django.db import models
-from django.contrib.auth.models import User # (선택) 나중에 사용자 로그인을 붙일 경우 대비
 import random
 
 class Interviewer(models.Model):
-    """
-    총 8명의 고유한 면접관 정보를 저장합니다.
-    이 정보는 관리자 페이지(admin)에서 미리 생성해두어야 합니다.
-    """
-    
-    # 면접관의 성격 유형을 미리 정의합니다.
-    PERSONALITY_CHOICES = [
-        ('friendly', '우호적'),        # (예: HR, 문화 적합성 중시)
-        ('aggressive', '압박형'),     # (예: 스트레스 테스트)
-        ('technical', '기술 집착형'),  # (예: 시니어 개발자, CS 기본기 중시)
-        ('practical', '실무형'),      # (예: 팀 리드, 문제 해결 능력 중시)
-        ('silent', '과묵형'),         # (예: 답변을 유도하는 유형)
-        ('beginner', '주니어형'),     # (예: 실무 지식이 조금 부족한 면접관)
-        ('cto_level', 'CTO 수준'),    # (예: 아키텍처, 비전 중시)
-        ('hr_focused', '인사팀'),     # (예: 인성, 조직 문화 중시)
+    # 팀 구분을 위한 선택지 (이 값이 중요합니다!)
+    ROLE_CHOICES = [
+        ('hr', '인사팀 (인성/문화)'),       # 3명
+        ('tech', '기술팀 (직무/지식)'),     # 2명
+        ('exp', '관련경험팀 (실무/경험)'),  # 3명
     ]
 
-    name = models.CharField(max_length=100, help_text="면접관 이름 (예: 김OO 팀장)")
-    role = models.CharField(max_length=100, help_text="면접관 직무 (예: 시니어 백엔드 개발자)")
-    personality = models.CharField(max_length=20, choices=PERSONALITY_CHOICES, unique=True)
+    name = models.CharField(max_length=100)
+    role = models.CharField(max_length=100, help_text="직함 (예: 인사팀장, 수석 개발자)")
     
-    # 핵심: 이 면접관의 GPT 프롬프트를 정의하는 필드
-    system_prompt = models.TextField(
-        help_text="GPT API에 시스템 메시지로 주입할 프롬프트 (예: '당신은 매우 꼼꼼한 시니어 개발자입니다...')"
+    # personality 필드를 '소속 팀' 구분자로 사용합니다.
+    personality = models.CharField(
+        max_length=10, 
+        choices=ROLE_CHOICES, 
+        help_text="소속 팀 (hr, tech, exp 중 선택)"
     )
+    
+    system_prompt = models.TextField()
 
     def __str__(self):
-        return f"{self.name} ({self.get_personality_display()})"
+        return f"[{self.get_personality_display()}] {self.name}"
+
 
 class InterviewSession(models.Model):
-    """
-    하나의 전체 면접 세션을 관리합니다.
-    """
-    # user = models.ForeignKey(User, on_delete=models.CASCADE) # (선택)
-    job_topic = models.CharField(max_length=100, help_text="면접 주제 (예: React, Django)")
+    # ... (기존 필드들: job_topic, total_questions, status 등 동일) ...
+    job_topic = models.CharField(max_length=100)
+    total_questions = models.IntegerField(default=10)
+    status = models.CharField(max_length=20, default='started')
     created_at = models.DateTimeField(auto_now_add=True)
-    status = models.CharField(max_length=20, choices=[('started', '시작됨'), ('completed', '완료됨')], default='started')
-    total_questions = models.IntegerField(default=10, help_text="이 세션에서 진행할 총 질문 횟수")
+    final_feedback = models.TextField(blank=True, null=True)
 
-    # 핵심: 이 세션에 참여하는 면접관들 (4명이 할당될 필드)
-    interviewers = models.ManyToManyField(
-        Interviewer, 
-        related_name="interview_sessions",
-        help_text="이 세션에 배정된 면접관들"
-    )
+    interviewers = models.ManyToManyField(Interviewer, related_name="sessions")
 
-    def __str__(self):
-        return f"면접 세션 #{self.id} ({self.job_topic})"
-    
-    # (참고) 이 메서드는 views.py에서 호출하게 됩니다.
-    def set_random_interviewers(self, count=4):
+    # 🔥 [핵심 수정] 팀별로 TO에 맞춰 랜덤 뽑기 로직
+    def set_random_interviewers(self):
         """
-        views.py에서 이 세션이 생성된 직후 호출할 메서드.
-        모든 면접관 중 'count' 만큼 랜덤으로 뽑아 이 세션에 할당합니다.
+        총 4명 선발: 인사팀 2명 + 기술팀 1명 + 경험팀 1명
+        각 팀 풀에서 랜덤으로 뽑아서 섞습니다.
         """
-        all_interviewers = list(Interviewer.objects.all())
-        # 면접관 수가 4명보다 적으면 샘플링 에러가 나므로, 가능한 만큼만 뽑습니다.
-        if len(all_interviewers) > count:
-            selected = random.sample(all_interviewers, count)
+        # 1. 각 팀의 전체 인원 가져오기 (DB 쿼리)
+        hr_pool = list(Interviewer.objects.filter(personality='hr'))   # 인사팀 3명
+        tech_pool = list(Interviewer.objects.filter(personality='tech')) # 기술팀 2명
+        exp_pool = list(Interviewer.objects.filter(personality='exp'))   # 경험팀 3명
+
+        selected_interviewers = []
+
+        # 2. 팀별 정원만큼 랜덤 뽑기 (예외 처리 포함)
+        # 인사팀: 2명
+        if len(hr_pool) >= 2:
+            selected_interviewers.extend(random.sample(hr_pool, 2))
         else:
-            selected = all_interviewers
-            
-        self.interviewers.set(selected)
+            selected_interviewers.extend(hr_pool) # 인원 부족하면 다 넣음
+
+        # 기술팀: 1명
+        if len(tech_pool) >= 1:
+            selected_interviewers.extend(random.sample(tech_pool, 1))
+        else:
+            selected_interviewers.extend(tech_pool)
+
+        # 경험팀: 1명
+        if len(exp_pool) >= 1:
+            selected_interviewers.extend(random.sample(exp_pool, 1))
+        else:
+            selected_interviewers.extend(exp_pool)
+
+        # 3. 뽑힌 4명의 순서를 섞음 (누가 먼저 질문할지 랜덤)
+        random.shuffle(selected_interviewers)
+
+        # 4. 저장
+        self.interviewers.set(selected_interviewers)
 
 class InterviewExchange(models.Model):
     """

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import ReactMarkdown from 'react-markdown';
 import './Interview.css';
 // 이미지를 import 합니다. (파일 경로와 이름 확인 필수!)
@@ -11,6 +11,7 @@ function Interview() {
   // 0. 인적성 결과값 받아오기 (페이지 진입 시 자동 설정)
   // -----------------------------------------------------------
   const location = useLocation();
+  const navigate = useNavigate();
   const receivedJobTopic = location.state?.jobTopic || "";
 
   // -----------------------------------------------------------
@@ -160,7 +161,8 @@ function Interview() {
     setJobTopic('');
     setConversation([]);
     setCurrentExchangeId(null);
-    setFeedback(''); 
+    setFeedback('');
+    navigate('/'); 
   };
 
   // [추가] 리포트 다운로드 함수
