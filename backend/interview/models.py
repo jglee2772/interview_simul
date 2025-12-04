@@ -49,7 +49,7 @@ class InterviewSession(models.Model):
 
     interviewers = models.ManyToManyField(Interviewer, related_name="sessions")
 
-    # 🔥 [핵심 수정] 팀별로 TO에 맞춰 랜덤 뽑기 로직
+    # [핵심 수정] 팀별로 TO에 맞춰 랜덤 뽑기 로직
     def set_random_interviewers(self):
         """
         총 4명 선발: 인사팀 2명 + 기술팀 1명 + 경험팀 1명

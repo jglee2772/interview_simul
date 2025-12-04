@@ -82,7 +82,7 @@ class StartInterviewView(APIView):
             return Response({"error": "job_topic이 필요합니다."}, status=status.HTTP_400_BAD_REQUEST)
 
         try:
-            # 🔥 [수정 1] 총 질문 개수 8~12개로 변경
+            # [수정 1] 총 질문 개수 8~12개로 변경
             random_limit = random.randint(8, 12)
 
             # 2. 세션 생성
@@ -100,7 +100,7 @@ class StartInterviewView(APIView):
                 return Response({"error": "등록된 면접관이 없습니다."}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
             # -------------------------------------------------------
-            # 🔥 [수정 2] 첫 번째 질문 고정 (GPT 호출 안 함)
+            # [수정 2] 첫 번째 질문 고정 (GPT 호출 안 함)
             # -------------------------------------------------------
             # system_prompt = ... (삭제: 첫 질문엔 필요 없음)
             # user_prompt = ... (삭제)
@@ -168,7 +168,7 @@ class SubmitAnswerView(APIView):
                     full_history_text += f"면접관({role_name}): {ex.question_text}\n"
                     full_history_text += f"지원자: {ex.answer_text}\n\n"
 
-                # (2) 🔥 [수정] 피드백 프롬프트 강화 (자기소개/포부 항목 추가)
+                # (2) [수정] 피드백 프롬프트 강화 (자기소개/포부 항목 추가)
                 feedback_system_prompt = (
                     "당신은 전 산업 분야를 아우르는 20년 경력의 베테랑 인사 담당자이자 면접 코치입니다. "
                     "지원자의 전체 면접 기록을 분석하여 상세한 피드백을 제공해주세요. "
@@ -211,7 +211,7 @@ class SubmitAnswerView(APIView):
             next_interviewer = session_interviewers[next_interviewer_index]
 
             # -------------------------------------------------------
-            # 🔥 [수정 3] 마지막 질문인지 확인하여 '입사 후 포부' 고정
+            # [수정 3] 마지막 질문인지 확인하여 '입사 후 포부' 고정
             # -------------------------------------------------------
             # 예: 총 6문제인데 지금 5개를 대답했다면(count=5), 이번에 만들 질문은 6번째(마지막) 질문임.
             if answered_count == session.total_questions - 1:
