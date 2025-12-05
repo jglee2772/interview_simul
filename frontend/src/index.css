@@ -27,7 +27,7 @@
   /* Accent Colors */
   --color-accent-yellow: #f6c90e;
   --color-accent-yellow-hover: #e5b80a;
-  --color-accent-blue: #1e4d8b;
+  --color-accent-blue: #9b83f3e8;
   --color-accent-blue-light: #61dafb;
   
   /* Success Colors */
@@ -176,49 +176,7 @@
 /* =========================================
    🌐 전체 바디
    ========================================= */
-body {
-  font-family: var(--font-family-base);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 
-  /* ✨ 종이 질감 + 그라데이션 배경 */
-  background-color: var(--color-bg-quaternary);
-  background-image: 
-    url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
-    linear-gradient(180deg, var(--color-bg-quaternary) 0%, var(--color-bg-tertiary) 40%, var(--color-bg-secondary) 100%);
-  background-attachment: fixed;
-  background-size: cover;
-
-  color: var(--color-text-dark);
-  line-height: var(--line-height-normal);
-  min-height: 100vh;
-
-  animation: globalFadeIn 0.6s ease-in-out;
-  
-  /* Navbar의 fixed positioning을 방해하지 않도록 */
-  transform: none !important;
-  perspective: none !important;
-  filter: none !important;
-  overflow-x: hidden;
-  /* 스크롤은 body에서만 발생 */
-  overflow-y: auto;
-  position: static !important;
-  /* fixed positioning context 유지 */
-  will-change: auto;
-}
-
-html {
-  /* Navbar의 fixed positioning을 방해하지 않도록 */
-  transform: none !important;
-  perspective: none !important;
-  filter: none !important;
-  overflow-x: hidden;
-  /* 스크롤은 body에서만 */
-  height: 100%;
-  position: static !important;
-  /* fixed positioning context 유지 */
-  will-change: auto;
-}
 
 #root {
   /* Navbar의 fixed positioning을 방해하지 않도록 */
@@ -312,261 +270,145 @@ img {
 }
 
 /* =========================================
-   ✨ 전역 애니메이션
+   🧭 상단 폴더 탭 (SVG 기반) - 최종 정리본
    ========================================= */
-@keyframes globalFadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+
+
+/* ✅ 다시 파일탭처럼 겹치게 */
+.top-tabs {
+  display: flex;
+  align-items: flex-end;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* 겹치기 */
+.top-tab {
+  margin-left: -24px;
 }
 
-@keyframes slideUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* 첫 탭은 안 겹치게 */
+.top-tab:first-child {
+  margin-left: 0;
 }
 
 /* =========================================
-   🧭 상단 탭 네비게이션 (모든 페이지 공통)
+   SVG 연결 (Navbar.js 클래스에 맞춤)
    ========================================= */
+
+.top-tab.green  { background-image: url("./assets/Folder1.svg") !important; }
+.top-tab.orange { background-image: url("./assets/Folder2.svg") !important; }
+.top-tab.pink   { background-image: url("./assets/Folder3.svg") !important; }
+.top-tab.purple { background-image: url("./assets/Folder4.svg") !important; }
+
+/* =========================================
+   폴더 탭 리셋 + 안정 세팅
+   ========================================= */
+
 .top-tabs-container {
-  /* 일반 위치 - 스크롤하면 함께 움직임 */
-  position: relative;
-  width: 100%;
-  z-index: 100;
-  padding: var(--spacing-lg) 0 0 var(--spacing-xl);
-  pointer-events: none;
-  background: transparent;
-  margin: 0;
-  margin-bottom: 0; /* 하단 마진 제거 - 콘텐츠와 붙게 */
-  padding-bottom: 0; /* 하단 패딩 제거 */
-  display: block;
-  box-sizing: border-box;
-  /* 탭 높이 자동 계산 */
-  height: auto;
-  /* 탭 하단이 페이지와 자연스럽게 맞닿도록 */
-  overflow: visible;
-  /* 탭 컨테이너의 하단 가장자리가 정확히 보이도록 */
-  line-height: 0;
+  padding: 20px 30px 0;
 }
 
+/* 가로 정렬 */
 .top-tabs {
-  position: relative;
   display: flex;
-  flex-direction: row;
   align-items: flex-end;
-  gap: 0;
-  pointer-events: auto;
-  transform: none;
-  margin-bottom: 0; /* 하단 마진 제거 */
-  padding-bottom: 0; /* 하단 패딩 제거 */
-  /* 탭 하단이 페이지 테두리와 정확히 맞도록 */
-  line-height: 0;
-  /* 탭의 하단 가장자리가 정확히 보이도록 */
-  height: auto;
-  vertical-align: bottom;
+  
 }
 
-/* 개별 탭 스타일 (폴더 형태) */
+/* 탭 기본 */
 .top-tab {
-  position: relative;
+  width: 260px;
+  height: 72px;
+  overflow: hidden;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: bottom center;
+  filter: drop-shadow(-4px 0 6px rgba(0,0,0,0.2)),
+          drop-shadow( 4px 0 6px rgba(0,0,0,0.22));
   display: flex;
-  align-items: center;
-  gap: var(--spacing-md);
-  padding: var(--spacing-md) var(--spacing-xl) var(--spacing-md) var(--spacing-lg);
-  min-width: 200px;
-  max-width: 250px;
-  text-decoration: none;
-  border-radius: 20px 20px 0 0;
-  transition: all var(--transition-base);
-  cursor: pointer;
-  box-shadow: none;
-  border: none;
-  border-bottom: none;
-  margin-left: 0;
-  margin-right: -15px; /* 더 많이 겹치도록 */
-  margin-bottom: 0; /* 하단 마진 제거 */
-  /* 탭 하단이 페이지 테두리와 정확히 맞도록 */
-  vertical-align: bottom;
-  line-height: 1.5;
-  /* 탭의 하단 가장자리가 정확히 보이도록 */
-  box-sizing: border-box;
-  /* 탭의 하단 패딩이 정확히 맞도록 */
-  padding-bottom: var(--spacing-md);
-  overflow: visible; /* 외부로 튀어나오게 함 */
-  z-index: 1;        /* 기본 z-index */
-}
-
-
-
-/* 각 탭의 인덱스별 위치 조정 (더 많이 겹치도록) */
-.top-tab.tab-index-0 {
-  z-index: 4;
-  transform: translateX(0);
-}
-
-.top-tab.tab-index-1 {
-  z-index: 3;
-  transform: translateX(15px);
-}
-
-.top-tab.tab-index-2 {
-  z-index: 2;
-  transform: translateX(30px);
-}
-
-.top-tab.tab-index-3 {
-  z-index: 1;
-  transform: translateX(45px);
-}
-
-/* 활성 탭은 항상 최상위 */
-.top-tab.active {
-  z-index: 1000;
-}
-
-/* 탭 색상 */
-.top-tab.purple {
-  background: var(--tab-purple-bg);
-  border-color: var(--tab-purple-border);
-}
-
-.top-tab.green {
-  background: var(--tab-green-bg);
-  border-color: var(--tab-green-border);
-}
-
-.top-tab.orange {
-  background: var(--tab-orange-bg);
-  border-color: var(--tab-orange-border);
-}
-
-.top-tab.pink {
-  background: var(--tab-pink-bg);
-  border-color: var(--tab-pink-border);
-}
-
-/* 활성화된 탭 */
-.top-tab.active {
-  z-index: 1000; /* 활성 탭은 항상 최상위 */
-}
-
-.top-tab.active.purple {
-  background: var(--tab-purple-active-bg);
-  border-color: var(--tab-purple-active-border);
-}
-
-.top-tab.active.green {
-  background: var(--tab-green-active-bg);
-  border-color: var(--tab-green-active-border);
-}
-
-.top-tab.active.orange {
-  background: var(--tab-orange-active-bg);
-  border-color: var(--tab-orange-active-border);
-}
-
-.top-tab.active.pink {
-  background: var(--tab-pink-active-bg);
-  border-color: var(--tab-pink-active-border);
-}
-
-/* Hover 효과 */
-.top-tab:hover:not(.active) {
-  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.top-tab.tab-index-0:hover:not(.active) {
-  transform: translateX(-2px) !important;
-}
-
-.top-tab.tab-index-1:hover:not(.active) {
-  transform: translateX(13px) !important;
-}
-
-.top-tab.tab-index-2:hover:not(.active) {
-  transform: translateX(28px) !important;
-}
-
-.top-tab.tab-index-3:hover:not(.active) {
-  transform: translateX(43px) !important;
-}
-
-/* 탭 내부 요소 */
-.tab-emoji {
-  font-size: 1.2rem;
-  display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  padding-top: 36px;
+  gap: 6px;
+
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+
+  border-radius: 10px 10px 0 0;
+
+
+
 }
 
-.tab-label {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-semibold);
-  color: var(--color-text-primary);
-  white-space: nowrap;
+/* SVG 연결 */
+.top-tab.green  { background-image: url("./assets/Folder1.svg"); }
+.top-tab.orange { background-image: url("./assets/Folder2.svg"); }
+.top-tab.pink   { background-image: url("./assets/Folder3.svg"); }
+.top-tab.purple { background-image: url("./assets/Folder4.svg"); }
+
+/* 겹침 */
+.top-tab {
+  margin-left: -40px;
 }
 
-.top-tab.active .tab-label {
-  color: #fff;
-  font-weight: var(--font-weight-bold);
+.top-tab:first-child {
+  margin-left: 0;
 }
+
+/* Hover */
+.top-tab:hover {
+  transform: translateY(-2px), scale(1.02);
+  transition: transform 0.25s cubic-bezier(0.25, 0.8, 0.25, 1), filter 0.25s ease;
+  z-index: 5;
+  filter: drop-shadow(-2px 0 3px rgba(0,0,0,0.12))
+          drop-shadow( 2px 0 3px rgba(0,0,0,0.12));                                                                
+}
+
+.top-tab.active {
+  position: relative;
+  z-index: 9999 !important;
+  transform: translateY(-3px);
+  transform: scale(1.03);
+  filter: drop-shadow(-3px 0 4px rgba(0,0,0,0.18))
+          drop-shadow( 3px 0 4px rgba(0,0,0,0.18));
+}
+
+/* 기본 접힘 순서 */
+.top-tab.tab-index-0 { z-index: 4; }
+.top-tab.tab-index-1 { z-index: 3; }
+.top-tab.tab-index-2 { z-index: 2; }
+.top-tab.tab-index-3 { z-index: 1; }
+
+/* ✅ 현재 활성 탭은 항상 제일 위 */
+.top-tab.active {
+  z-index: 999 !important;
+}
+
 
 /* =========================================
    📱 반응형
    ========================================= */
+
 @media (max-width: 768px) {
-  body {
-    font-size: 15px;
-    background-image: 
-      url("https://www.transparenttextures.com/patterns/paper-fibers.png"),
-      linear-gradient(180deg, var(--color-bg-primary) 0%, var(--color-bg-tertiary) 100%);
-  }
-  
-  h1 {
-    font-size: var(--font-size-2xl);
-  }
-  
-  h2 {
-    font-size: var(--font-size-xl);
-  }
-  
   .top-tabs-container {
-    padding: var(--spacing-md) var(--spacing-md) 0;
+    padding-left: 16px;
+    padding-top: 20px;
   }
 
   .top-tab {
-    min-width: 150px;
-    max-width: 180px;
-    padding: var(--spacing-sm) var(--spacing-md) var(--spacing-sm) var(--spacing-md);
+    width: 150px;
+    height: 64px;
   }
 
   .tab-label {
-    font-size: var(--font-size-xs);
+    font-size: 12px;
   }
 
   .tab-emoji {
     font-size: 1rem;
   }
+
+  .top-tab.tab-index-1 { --shift: -18px; }
+  .top-tab.tab-index-2 { --shift: -36px; }
+  .top-tab.tab-index-3 { --shift: -54px; }
 }

@@ -2,7 +2,7 @@
 .interview-page {
   width: calc(100% - 32px);
   min-height: calc(100vh - 32px);
-  background-color: #ffa880;
+  background-color: #FFE4C2;
   display: flex;
   justify-content: center;
   align-items: center;

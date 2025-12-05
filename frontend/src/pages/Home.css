@@ -27,8 +27,39 @@
     var(--spacing-xl)
   );
 
-  background-color: #a8d9b8;
+  background-color: #E8E8FF;
   position: relative;
+}
+
+/* ===============================
+   🧾 홈 메인 흰 배경 레이어
+   =============================== */
+
+.home-container {
+  position: relative;
+  z-index: 1;
+}
+
+/*  전체 콘텐츠 뒤 흰 바탕 */
+.home-container::before {
+  content: "";
+  position: absolute;
+
+  /*  폴더 탭 아래부터 시작 */
+  top: -40px;     
+  left: -30px;
+  right: -30px;
+  bottom: -30px;
+
+  background: #ffffff;
+  border-radius: 22px;
+
+  /* 적당한 종이 그림자 */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.08),
+    0 4px 10px rgba(0,0,0,0.05);
+
+  z-index: -1;
 }
 
 
@@ -102,7 +133,7 @@
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 8px 22px rgba(246, 201, 14, 0.4);
+  box-shadow: 0 8px 22px rgba(169, 146, 253, 0.4);
 }
 
 .card-interview {
@@ -206,7 +237,7 @@
 .card-info input:focus,
 .card-info select:focus {
   border-color: var(--color-accent-blue);
-  box-shadow: 0 0 10px rgba(30, 77, 139, 0.3);
+  box-shadow: 0 0 10px rgba(30, 90, 139, 0.3);
   background-color: var(--color-bg-primary);
 }
 
@@ -256,7 +287,7 @@
 .info-clear {
   flex: 1;
   padding: var(--spacing-md) var(--spacing-xl);
-  font-size: var(--font-size-sm);
+  font-size: var(--font-size-xs);
   font-weight: var(--font-weight-semibold);
   border: none;
   border-radius: var(--radius-md);
@@ -271,13 +302,13 @@
 }
 
 .info-save:hover {
-  background-color: #153a6b;
+  background-color: #9b83f3;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 .info-clear {
-  background-color: #6c757d;
+  background-color: #7A7F8F;
   color: #ffffff;
 }
 
@@ -310,7 +341,7 @@
 
 .resume-card:hover {
   transform: translateY(-3px);
-  box-shadow: 0 8px 22px rgba(246, 201, 14, 0.4);
+  box-shadow: 0 8px 22px rgba(169, 146, 253, 0.4)
 }
 
 /* ✅ 이력서 이미지 */

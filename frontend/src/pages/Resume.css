@@ -8,7 +8,7 @@
 .resume {
   width: calc(100% - 32px);
   min-height: calc(100vh - 32px);
-  background: #8e8aff;
+  background: #FFD6F0;
   display: flex;
   justify-content: center;
   align-items: flex-start;
