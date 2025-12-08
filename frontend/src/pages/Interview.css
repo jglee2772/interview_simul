@@ -1,221 +1,274 @@
-/* 전체 페이지 배경 */
+/* frontend/src/pages/Interview.css */
+
+/* 1. 전체 페이지 레이아웃 */
 .interview-page {
-  width: calc(100% - 32px);
-  min-height: calc(100vh - 32px);
-  background-color: #FFE4C2;
+  width: 100%;
+  min-height: 100vh;
+  background-color: #F5F7FA;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: var(--font-family-base);
-
-  /* 왼쪽 상단만 직각, 나머지는 둥글게 */
-  border-radius: 0 var(--page-border-radius)
-                 var(--page-border-radius)
-                 var(--page-border-radius);
-
-  margin: var(--spacing-lg);
-  margin-top: 0px;
-  margin-left: 24px;
-
-  padding-top: calc(
-    var(--spacing-lg) + 
-    var(--spacing-md) + 
-    24px + 
-    var(--spacing-md) + 
-    var(--spacing-xl)
-  );
-
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-  position: relative;
-  padding-left: var(--spacing-xl);
-  padding-right: var(--spacing-xl);
-  padding-bottom: var(--spacing-3xl);
+  overflow-y: auto; 
+  overflow-x: hidden;
 }
 
-/* Interview 페이지 내부 어두운 배경은 유지 */
-.interview-page .start-container,
-.interview-page .interview-container,
-.interview-page .feedback-container {
-  background-color: #282c34;
-  border-radius: var(--radius-lg);
-  padding: var(--spacing-2xl);
+/* 2. 상단 네비게이션 */
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 1000;
+  flex-shrink: 0;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1400px;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1A202C;
+  cursor: pointer;
+  letter-spacing: -0.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+}
+
+.nav-item {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #718096;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nav-item:hover {
+  color: #3182CE;
+}
+
+/* 3. 메인 컨텐츠 영역 */
+.page-body {
+  width: 100%;
+  max-width: 1000px;
+  /* [수정] 상하 여백 조정 */
+  margin: 0 auto; 
+  padding: 40px 20px;
+  
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* 위에서부터 배치 */
+  align-items: center;
+}
+
+/* =========================================
+   2. 공통 카드 스타일
+   ========================================= */
+.start-container,
+.interview-container {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  padding: 40px;
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  
+  /* [수정] 위쪽으로 땡기기 위해 margin-top 제거 */
+  margin: 0 auto 30px auto; 
+  
+  /* 박스 강조 효과 */
+  transform: translateY(0);
+  box-shadow: 
+    0 6px 12px rgba(0, 0, 0, 0.04),
+    0 20px 40px rgba(49, 130, 206, 0.15);
+  border: 1px solid rgba(49, 130, 206, 0.3);
+  
+  transition: all 0.3s ease;
 }
 
 /* =========================================
    A. 시작 화면 스타일
    ========================================= */
 .start-container {
+  max-width: 600px;
+  /* 시작 화면은 중앙 배치가 예쁨 */
+  margin-top: auto; 
+  margin-bottom: auto;
+  
   text-align: center;
-  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .title {
-  margin-bottom: 2rem;
-  font-size: 2.5rem;
-  color: #61dafb;
+  margin-bottom: 1.5rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #2D3748;
 }
 
 .start-card {
-  background: var(--color-bg-primary);
-  padding: var(--spacing-2xl);
-  border-radius: var(--radius-lg);
-  width: 400px;
-  box-shadow: var(--shadow-xl);
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-lg);
+  gap: 20px;
 }
 
 .preview-img {
   width: 100%;
-  border-radius: 10px;
-  margin-bottom: 1rem;
+  border-radius: 12px;
+  margin-bottom: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.start-card p {
+  color: #718096;
+  font-size: 1.1rem;
+  line-height: 1.5;
+  margin-bottom: 10px;
 }
 
 .start-card input {
-  padding: var(--spacing-md);
-  border: 2px solid var(--color-border);
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-base);
+  padding: 14px;
+  border: 1px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background-color: #F8FAFC;
+  color: #333;
+  outline: none;
+}
+
+.start-card input:focus {
+  background-color: #FFFFFF;
+  border-color: #3182CE;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
 .start-card button {
-  padding: var(--spacing-md);
-  background-color: var(--color-accent-blue);
+  padding: 14px;
+  background-color: #3182CE;
   color: white;
   border: none;
-  border-radius: var(--radius-md);
-  font-size: var(--font-size-lg);
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: var(--transition-fast);
+  transition: background-color 0.2s;
 }
 
 .start-card button:hover {
-  background-color: #0056b3;
+  background-color: #2B6CB0;
+}
+
+.start-card button:disabled {
+  background-color: #A0AEC0;
+  cursor: not-allowed;
 }
 
 /* =========================================
    B. 면접 진행 화면 (스테이지)
    ========================================= */
 .interview-container {
-  width: 100%;
-  max-width: 900px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2rem;
+  gap: 30px;
+  /* 면접 중/후에는 위쪽에 붙어서 배치 */
+  margin-top: 0;
 }
 
-/* 1. 스테이지 영역 (이미지 + 말풍선) */
 .stage-area {
   position: relative;
   width: 100%;
+  border-radius: 15px;
+  overflow: visible; /* 말풍선 잘림 방지 */
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  min-height: 300px;
+  background-color: #f9f9f9;
+  margin-bottom: 30px;
 }
 
 .stage-img {
   width: 100%;
-  border-radius: var(--spacing-xl);
-  box-shadow: var(--shadow-xl);
   display: block;
+  border-radius: 15px;
 }
 
-/* 말풍선 (Speech Bubble) */
+/* 말풍선 */
 .speech-bubble {
   position: absolute;
-  bottom: var(--spacing-xl); 
+  bottom: 40px; 
   left: 50%;
   transform: translateX(-50%);
-  width: 350px;
-  max-width: 85%;
+  width: 85%;
+  max-width: 500px;
   background-color: rgba(255, 255, 255, 0.98);
-  border: 3px solid var(--color-border-dark);
-  border-radius: var(--spacing-xl);
-  padding: 1.2rem 1.5rem;
-  box-shadow: var(--shadow-lg);
-  z-index: var(--z-base);
+  border: 1px solid #E2E8F0;
+  border-radius: 20px;
+  padding: 20px 25px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  z-index: 20;
   animation: popUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  text-align: center;
 }
 
 @keyframes popUp {
-  from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.8); }
+  from { opacity: 0; transform: translateX(-50%) translateY(20px) scale(0.9); }
   to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); }
 }
 
-/* 2. 말풍선 꼬리 (위쪽 방향 ▲) */
 .bubble-tail {
   position: absolute;
-  /* 바닥(bottom)이 아니라 천장(top)으로 이동 */
-  top: -15px; 
-  bottom: auto; 
-  
+  top: -12px;
   left: 50%;
   transform: translateX(-50%);
-  width: 0; 
-  height: 0; 
-  
-  /* 위쪽 방향 삼각형 만들기 (border-bottom에 색을 줌) */
-  border-left: 15px solid transparent;
-  border-right: 15px solid transparent;
-  border-bottom: 15px solid #333; /* ▲ 검은색 테두리 */
-  border-top: 0;
-}
-
-/* 꼬리 내부 (흰색) */
-.bubble-tail::after {
-  content: '';
-  position: absolute;
-  /* 검은색 삼각형보다 약간 아래로 배치하여 테두리 효과 */
-  top: 3px; 
-  left: -12px;
-  
+  width: 0; height: 0; 
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
-  border-bottom: 12px solid #fff; /* ▲ 흰색 채우기 */
-  border-top: 0;
+  border-bottom: 12px solid #fff;
 }
 
 .bubble-content {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-align: center;
-}
-
-.bubble-content p {
-  font-size: 1.1rem;
-  line-height: 1.5;
-  color: #333;
-  margin: 0;
-  font-weight: 500;
-  white-space: pre-wrap;
+  gap: 8px;
 }
 
 .interviewer-badge {
-  background-color: #ffc107;
-  color: #000;
-  font-size: 0.9rem;
-  font-weight: 800;
+  background-color: #3182CE;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
   padding: 4px 10px;
   border-radius: 12px;
-  margin-bottom: 8px;
   display: inline-block;
-  border: 2px solid #333;
-  box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-/* 종료 상태 말풍선 */
-.speech-bubble.finished {
-  border-color: #28a745;
-  background-color: #f0fff4;
-  bottom: 40px;
-}
-.speech-bubble.finished .bubble-tail {
-  display: none;
-}
-.speech-bubble.finished h3 {
-  margin: 0 0 10px 0;
-  color: #28a745;
-  font-size: 1.5rem;
+.bubble-content p {
+  font-size: 1.15rem;
+  line-height: 1.6;
+  color: #2D3748;
+  margin: 0;
+  font-weight: 600;
+  white-space: pre-wrap;
 }
 
 /* =========================================
@@ -223,239 +276,131 @@
    ========================================= */
 .interaction-area {
   width: 100%;
-  padding-bottom: 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .answer-box {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
 }
 
 .answer-box textarea {
   width: 100%;
-  height: 100px;
-  padding: var(--spacing-lg);
-  font-size: var(--font-size-lg);
-  border-radius: var(--radius-lg);
-  border: none;
+  height: 120px;
+  padding: 15px;
+  font-size: 1rem;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  background-color: #F8FAFC;
   resize: none;
-  box-shadow: var(--shadow-md);
+  font-family: inherit;
+  color: #333;
+}
+
+.answer-box textarea:focus {
+  background-color: #fff;
+  border-color: #3182CE;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(49, 130, 206, 0.1);
 }
 
 .answer-box button {
-  height: 50px;
-  background-color: #ff5722;
+  height: 55px;
+  background-color: #3182CE;
   color: white;
-  font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
+  font-size: 1.1rem;
+  font-weight: bold;
   border: none;
-  border-radius: var(--radius-lg);
+  border-radius: 12px;
   cursor: pointer;
-  box-shadow: var(--shadow-md);
-  transition: transform var(--transition-fast);
+  transition: 0.2s;
 }
 
-.answer-box button:active {
-  transform: scale(0.98);
+.answer-box button:hover {
+  background-color: #2B6CB0;
 }
 
-.answer-box button:disabled {
-  background-color: #888;
-  cursor: wait;
-}
+.answer-box button:disabled { background-color: #CBD5E0; cursor: not-allowed; }
 
 /* =========================================
-   D. 피드백 리포트 스타일 (완전 정리본)
+   D. 피드백 리포트 스타일 (카드 내부 스타일)
    ========================================= */
-
-/* 1. 전체 컨테이너 */
-.feedback-container {
-  width: 100%;
-  max-width: 800px;
-  background-color: #ffffff;
-  border-radius: 15px;
-  padding: 2rem;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  text-align: left;
-  margin: 0 auto; 
+/* [수정] 피드백 래퍼는 카드 스타일 없이 내부 레이아웃만 담당 */
+.feedback-wrapper {
   display: flex;
   flex-direction: column;
-  animation: slideUp 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+  animation: slideUp 0.6s ease-out;
+  margin-top: 0; 
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(40px); }
+  from { opacity: 0; transform: translateY(30px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* 2. 제목 헤더 */
-.feedback-container h2 {
+.feedback-wrapper h2 {
   text-align: center;
-  color: #2c3e50;
-  font-size: 1.8rem;
+  color: #2D3748;
+  font-size: 2rem;
   margin-top: 0;
-  margin-bottom: 1rem;
-  border-bottom: 3px solid #f1f3f5;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #EDF2F7;
   padding-bottom: 15px;
-  flex-shrink: 0;
 }
 
-/* 내용 박스 (스크롤 영역) */
 .feedback-content {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   line-height: 1.7;
-  color: #333;
-  
-  /* 🔥 핵심 수정: 줄바꿈 정책 변경 */
-  white-space: normal;    /* pre-wrap(X) -> normal(O) : 강제 줄바꿈 대신 자동 줄바꿈 */
-  word-wrap: break-word;  /* 긴 단어가 있어도 강제로 줄바꿈 */
-  
-  background-color: #f8f9fa;
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid #e9ecef;
-  margin-bottom: 1.5rem;
-
-  height: 50vh; 
-  overflow-y: auto; 
-  overflow-x: hidden;     /* 가로 스크롤 강제 차단 */
+  color: #4A5568;
+  background-color: #F7FAFC;
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid #EDF2F7;
+  margin-bottom: 20px;
+  max-height: 60vh;
+  overflow-y: auto;
 }
 
-/* ==================================================
-   🔥 [마크다운 스타일링 & 리스트 정렬 핵심]
-   ================================================== */
-
-/* 1. 제목 (h1, h2, h3) 디자인 */
-.feedback-content h1,
-.feedback-content h2,
-.feedback-content h3 {
-  color: #2c3e50;
-  font-size: 1.4rem;
+.feedback-content h1, .feedback-content h2, .feedback-content h3 {
+  color: #2C5282;
   font-weight: 800;
-  margin-top: 30px;
-  margin-bottom: 15px;
-  
-  border-left: 5px solid #007bff;
-  padding-left: 12px;
-  background: linear-gradient(90deg, #f1f8ff 0%, rgba(255,255,255,0) 100%);
-  padding-top: 5px;
+  margin-top: 25px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #E2E8F0;
   padding-bottom: 5px;
-  border-radius: 0 5px 5px 0;
 }
 
-.feedback-content h1:first-child,
-.feedback-content h2:first-child {
-  margin-top: 0;
-}
-
-/* ==================================================
-   🔥 [리스트 정렬 문제 최종 해결: 절대 위치 고정 방식]
-   ================================================== */
-
-/* 1. 기본 리스트 스타일 제거 */
-.feedback-content ol, 
-.feedback-content ul {
-  list-style: none !important;
-  padding-left: 0 !important;
-  margin: 15px 0;
-}
-
-/* 2. 숫자 리스트 카운터 설정 */
-.feedback-content ol {
-  counter-reset: list-number;
-}
-
-/* 3. 리스트 아이템 설정 (여백 확보) */
-.feedback-content li {
-  position: relative; /* 기준점 */
-  padding-left: 25px; /* 왼쪽에 기호 들어갈 공간 */
-  margin-bottom: 15px;
-  line-height: 1.6;
-  text-align: left;
-  display: block; /* Flex 제거 -> Block으로 변경 */
-}
-
-/* 4. [숫자] 기호 만들기 (왼쪽 고정) */
-.feedback-content ol li::before {
-  counter-increment: list-number;
-  content: counter(list-number) ". ";
-  
-  font-weight: bold;
-  color: #2c3e50;
-  
-  /* 위치 고정 */
-  position: absolute;
-  left: 0;
-  top: 0;
-}
-
-/* 5. [점] 기호 만들기 (왼쪽 고정) */
-.feedback-content ul li::before {
-  content: '';            
-  display: block;
-  width: 6px;
-  height: 6px;
-  background-color: #007bff; 
-  border-radius: 50%;
-  
-  /* 위치 고정 */
-  position: absolute;
-  left: 8px; /* 점 위치 */
-  top: 10px; /* 텍스트 첫 줄 높이에 맞춤 */
-}
-
-/* 6. 🚨 내부 텍스트 강제 정리 */
-.feedback-content li > * {
-  display: inline; /* 텍스트가 줄바꿈 없이 쭉 이어지게 함 */
-  margin: 0 !important;
-  padding: 0 !important;
-}
-
-/* 7. 강조 텍스트 */
-.feedback-content strong {
-  color: #2c3e50;
-  font-weight: 700;
-  background: linear-gradient(to top, #fff3cd 40%, transparent 40%);
-  padding: 0 2px;
-  margin-right: 5px;
-}
-
-/* 스크롤바 디자인 */
-.feedback-content::-webkit-scrollbar { width: 12px; }
-.feedback-content::-webkit-scrollbar-track { background-color: #f1f1f1; border-radius: 8px; }
-.feedback-content::-webkit-scrollbar-thumb { background-color: #a0a0a0; border-radius: 8px; border: 3px solid #f1f1f1; }
-.feedback-content::-webkit-scrollbar-thumb:hover { background-color: #707070; }
+.feedback-content ol, .feedback-content ul { padding-left: 20px; }
 
 /* 버튼 그룹 */
 .button-group {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: 15px;
 }
 
 .button-group button {
   flex: 1;
-  padding: 1rem;
-  font-size: 1.1rem;
+  padding: 15px;
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   cursor: pointer;
   font-weight: bold;
-  transition: transform 0.1s, background-color 0.2s;
   color: white;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  transition: 0.2s;
 }
 
-.button-group button:active { transform: scale(0.98); }
+.download-btn { background-color: #3182CE; }
+.download-btn:hover { background-color: #2B6CB0; }
 
-.restart-btn { background-color: #28a745; }
-.restart-btn:hover { background-color: #218838; }
+.restart-btn { background-color: #38A169; }
+.restart-btn:hover { background-color: #2F855A; }
 
-.download-btn { background-color: #007bff; }
-.download-btn:hover { background-color: #0069d9; }
-
-.interview-page.finished-mode {
-  background: linear-gradient(to bottom, #2d2338, #3a2e46);
-  transition: background 0.8s ease-in-out;
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .page-body { padding: 20px 15px; }
+  .start-container, .interview-container { padding: 20px; }
+  .speech-bubble { width: 95%; bottom: 20px; }
 }
