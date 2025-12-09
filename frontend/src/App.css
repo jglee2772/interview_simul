@@ -17,3 +17,13 @@
   /* overflow는 body에서만 */
   overflow: visible;
 }
+
+.content-wrap {
+  flex: 1; /* 이게 핵심! 내용이 적어도 푸터를 바닥으로 밀어냄 */
+}
+
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}

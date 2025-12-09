@@ -14,7 +14,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #D8D6FF;
+  background: #ffffff;
 
   /* 왼쪽 상단만 직각, 나머지는 둥글게 */
   border-radius: 0 var(--page-border-radius)
@@ -104,7 +104,7 @@ body {
     var(--spacing-xl)
   );
 
-  background-color: #ffb0d0;
+  background-color: #ffffff;
   box-sizing: border-box;
   position: relative;
 }

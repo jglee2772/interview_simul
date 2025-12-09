@@ -1,0 +1,108 @@
+/* frontend/src/components/Footer.css */
+
+.footer {
+  width: 100%;
+  background-color: #FFFFFF;
+  border-top: 1px solid #E2E8F0;
+  padding: 40px 0;
+  margin-top: auto;
+  font-family: 'Pretendard', 'Apple SD Gothic Neo', sans-serif;
+  display: flex;
+  justify-content: center;
+
+  /* [수정] 헤더와 동일한 2px 두께의 연한 회색선 */
+  border-top: 2px solid #a1baf8;
+}
+
+.footer-container {
+  width: 100%;
+  max-width: 800px; /* 텍스트가 많아져서 너비를 조금 넓힘 (800 -> 1100) */
+  padding: 0 20px;
+  box-sizing: border-box;
+  
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* 위쪽 라인 맞춤 */
+  gap: 40px;
+}
+
+/* === 왼쪽 영역 === */
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex: 0 0 300px; /* 왼쪽 너비 고정 */
+}
+
+.footer-logo {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #1A202C;
+  letter-spacing: -0.5px;
+}
+
+.footer-desc {
+  font-size: 0.95rem;
+  color: #718096;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* === 오른쪽 영역 (사업자 정보) === */
+.footer-right {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  flex: 1; /* 남은 공간 차지 */
+}
+
+.footer-company-name {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #2D3748;
+  margin-bottom: 12px;
+}
+
+.footer-info-text p {
+  font-size: 0.8rem; /* 정보성 텍스트는 작게 */
+  color: #718096;
+  line-height: 1.6;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.2px;
+}
+
+.contact-info {
+  margin-top: 8px !important;
+  font-weight: 600;
+  color: #4A5568 !important;
+}
+
+.copyright {
+  font-size: 0.75rem;
+  color: #A0AEC0;
+  margin-top: 20px;
+}
+
+/* 모바일 반응형 */
+@media (max-width: 768px) {
+  .footer {
+    padding: 40px 0;
+  }
+  
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .footer-left {
+    flex: auto;
+    align-items: center;
+  }
+
+  .footer-right {
+    align-items: center;
+    text-align: center;
+  }
+}

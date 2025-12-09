@@ -13,7 +13,7 @@
   /* === 색상 시스템 === */
   
   /* Primary Colors - 연보라 계열 */
-  --color-primary: #a88cff;
+  --color-primary: #ffffff;
   --color-primary-light: #cbb8ff;
   --color-primary-lighter: #d6c8ff;
   --color-primary-dark: #5c4db8;
@@ -132,7 +132,7 @@
   
   /* === 페이지 테두리 색상 (모든 페이지 통일) === */
   --page-border-color: #4a90e2;        /* 모든 페이지 - 파란색 테두리 */
-  --page-bg-color: #e8d6ff;            /* 모든 페이지 - 연한 보라색 배경 */
+  --page-bg-color: #ffffff;            /* 모든 페이지 - 연한 보라색 배경 */
   
   /* === 페이지 테두리 스타일 === */
   --page-border-width: 2px;           /* 얇은 파란색 테두리 */

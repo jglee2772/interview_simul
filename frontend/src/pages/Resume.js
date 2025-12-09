@@ -4,6 +4,7 @@
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
+
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
@@ -768,7 +769,7 @@ const Resume = () => {
     downloadFile(html, fileName, 'text/html;charset=utf-8', '이력서가 다운로드되었습니다. 브라우저에서 열어 인쇄하여 PDF로 저장하세요.');
   };
 
-  return (
+  return (  
     <div className="resume-page">
       
 

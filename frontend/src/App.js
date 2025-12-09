@@ -16,6 +16,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import Home from './pages/Home';
 import Interview from './pages/Interview';
 import Assessment from './pages/Assessment';
@@ -25,15 +26,18 @@ import Resume from './pages/Resume';
 function App() {
   return (
     <Router>
+      <div className="app-wrapper">
       <Navbar />
-      <div className="App">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/interview" element={<Interview />} />
-          <Route path="/assessment" element={<Assessment />} />
-          <Route path="/assessment-result/:id" element={<AssessmentResult />} />
-          <Route path="/resume" element={<Resume />} />
-        </Routes>
+        <div className="App">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/interview" element={<Interview />} />
+            <Route path="/assessment" element={<Assessment />} />
+            <Route path="/assessment-result/:id" element={<AssessmentResult />} />
+            <Route path="/resume" element={<Resume />} />
+          </Routes>
+        </div>
+      <Footer />
       </div>
     </Router>
   );
