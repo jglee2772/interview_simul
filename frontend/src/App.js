@@ -15,7 +15,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import './App.css';
-// import Navbar from './components/Navbar';  <-- 이 줄을 삭제했습니다.
+import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Interview from './pages/Interview';
 import Assessment from './pages/Assessment';
@@ -25,8 +25,7 @@ import Resume from './pages/Resume';
 function App() {
   return (
     <Router>
-      {/* 기존 Navbar 컴포넌트 삭제함 */}
-      
+      <Navbar />
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />

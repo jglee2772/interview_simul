@@ -4,7 +4,6 @@
 
 import React, { useState, useEffect, useMemo, useCallback, useRef } from 'react';
 import ReactMarkdown from 'react-markdown';
-import { useNavigate } from 'react-router-dom'; // 네비게이션을 위해 추가
 import './Resume.css';
 import resumeAPI from '../services/resumeAPI';
 
@@ -291,7 +290,6 @@ const saveToStorage = (formData, photoPreview) => {
 };
 
 const Resume = () => {
-  const navigate = useNavigate(); // 네비게이션 사용
   const [formData, setFormData] = useState(defaultFormData);
   const [emailError, setEmailError] = useState('');
   const [photoPreview, setPhotoPreview] = useState(null);
@@ -773,19 +771,6 @@ const Resume = () => {
   return (
     <div className="resume-page">
       
-      {/* 1. 상단 네비게이션 (헤더) */}
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => navigate('/')}>
-            Interview Master
-          </div>
-          <div className="nav-links">
-            <div className="nav-item" onClick={() => navigate('/assessment')}>인적성 검사</div>
-            <div className="nav-item" onClick={() => navigate('/interview')}>면접 연습</div>
-            <div className="nav-item" onClick={() => navigate('/resume')}>이력서</div>
-          </div>
-        </div>
-      </nav>
 
       {/* 2. 메인 컨텐츠 영역 */}
       <div className="page-body">

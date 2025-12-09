@@ -161,20 +161,6 @@ function Interview() {
   return (
     <div className="interview-page">
       
-      {/* 1. 상단 네비게이션 */}
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => navigate('/')}>
-            Interview Master
-          </div>
-          <div className="nav-links">
-            <div className="nav-item" onClick={() => navigate('/assessment')}>인적성 검사</div>
-            <div className="nav-item" onClick={() => navigate('/interview')}>면접 연습</div>
-            <div className="nav-item" onClick={() => navigate('/resume')}>이력서</div>
-          </div>
-        </div>
-      </nav>
-
       {/* 2. 메인 컨텐츠 영역 */}
       <div className="page-body">
         

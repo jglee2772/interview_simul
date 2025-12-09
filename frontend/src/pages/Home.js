@@ -251,19 +251,7 @@ const Home = () => {
   return (
     <div className="home">
       
-      {/* 1. 네비게이션 */}
-      <nav className="navbar">
-        <div className="nav-container">
-          <div className="nav-logo" onClick={() => window.location.reload()}>
-            Interview Master
-          </div>
-          <div className="nav-links">
-            <div className="nav-item" onClick={handleNavigateToAssessment}>인적성 검사</div>
-            <div className="nav-item" onClick={() => navigate('/interview')}>면접 연습</div>
-            <div className="nav-item" onClick={handleNavigateToResume}>이력서</div>
-          </div>
-        </div>
-      </nav>
+      
 
       {/* 2. 메인 대시보드 */}
       <div className="dashboard-container">
