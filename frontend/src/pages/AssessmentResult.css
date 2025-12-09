@@ -168,6 +168,10 @@ body {
   text-align: center;
   min-width: 250px;
   max-width: 330px;
+  /* 추가 파랑색 버튼 수정했어여! */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .job-item:hover {
@@ -177,10 +181,19 @@ body {
 
 /* 🔹 순위 및 텍스트 */
 .job-item p {
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #4b3bbd;
   margin-bottom: 18px;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  padding-bottom: 10px; 
+  /* 1위 2위 3위   고정시킴 */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* 🔹 버튼 */
@@ -266,5 +279,6 @@ body {
 
   .job-item button {
     width: 90%;
+    margin-top: 15px;
   }
 }
