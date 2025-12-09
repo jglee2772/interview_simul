@@ -182,18 +182,9 @@ body {
 /* 🔹 순위 및 텍스트 */
 .job-item p {
   font-size: 1.1rem;
-  font-weight: 600;
+  font-weight: 700;
   color: #4b3bbd;
-  margin-bottom: 18px;
-  flex-grow: 1;
-  display: flex;
-  align-items: center;
-  justify-content: left;
-  padding-bottom: 10px; 
-  /* 1위 2위 3위   고정시킴 */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex-direction: column;
 }
 
 /* 🔹 버튼 */
@@ -206,9 +197,13 @@ body {
   border-radius: var(--radius-md);
   padding: var(--spacing-lg) var(--spacing-xl);
   cursor: pointer;
-  width: 80%;
+  /* width: 80%; */
+  transition: all var(--transition-base);
+  padding: var(--spacing-xl) var(--spacing-md);
+  box-shadow: var(--shadow-md);
   transition: all var(--transition-base);
   box-shadow: var(--shadow-md);
+  
 }
 
 .job-item button:hover {
