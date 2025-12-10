@@ -168,12 +168,12 @@ class AssessmentResult(models.Model):
         on_delete=models.CASCADE
     )
 
-    communication = models.DecimalField(max_digits=3, decimal_places=2)
-    responsibility = models.DecimalField(max_digits=3, decimal_places=2)
-    problem_solving = models.DecimalField(max_digits=3, decimal_places=2)
-    growth = models.DecimalField(max_digits=3, decimal_places=2)
-    stress = models.DecimalField(max_digits=3, decimal_places=2)
-    adaptation = models.DecimalField(max_digits=3, decimal_places=2)
+    communication = models.DecimalField(max_digits=6, decimal_places=2)
+    responsibility = models.DecimalField(max_digits=6, decimal_places=2)
+    problem_solving = models.DecimalField(max_digits=6, decimal_places=2)
+    growth = models.DecimalField(max_digits=6, decimal_places=2)
+    stress = models.DecimalField(max_digits=6, decimal_places=2)
+    adaptation = models.DecimalField(max_digits=6, decimal_places=2)
 
     attention_check_pass = models.BooleanField(default=True)
     exaggeration_flag = models.BooleanField(default=False)
