@@ -11,18 +11,20 @@
   overflow-x: hidden;
 }
 
-
 /* 3. 메인 컨텐츠 영역 */
 .dashboard-container {
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
   padding: 40px 40px;
-  flex: 1;
+  /* flex: 1; -> 제거: 슬라이더 추가로 인해 고정 비율 해제 */
   display: flex;
   flex-direction: column;
   justify-content: center;
   box-sizing: border-box;
+  
+  /* 본문 최소 높이 확보 */
+  min-height: 650px;
 }
 
 /* 4. 본문 레이아웃 */
@@ -32,11 +34,9 @@
   align-items: stretch; /* 좌우 높이 맞춤 */
   width: 100%;
   gap: 60px;
-  height: auto; 
-  min-height: 650px; 
 }
 
-/* [1] 왼쪽 통합 영역 (제목 -> 이미지 -> 설명) */
+/* [1] 왼쪽 통합 영역 */
 .left-intro-area {
   flex: 0 0 450px;
   display: flex;
@@ -46,7 +46,7 @@
   padding: 10px 0;
 }
 
-/* 1. 제목 (맨 위) */
+/* 1. 제목 */
 .intro-title {
   font-size: 2.8rem;
   font-weight: 800;
@@ -61,7 +61,7 @@
   display: block;
 }
 
-/* 2. 이미지 슬라이더 (중간) */
+/* 2. 이미지 슬라이더 */
 .image-slider-container {
   position: relative;
   width: 100%;
@@ -72,7 +72,6 @@
   border-radius: 8px;
   overflow: hidden;
   background-color: #fff;
-  /* 이미지 박스 그림자도 아주 살짝만 */
   box-shadow: 0 4px 15px rgba(0,0,0,0.03);
 }
 
@@ -92,7 +91,7 @@
   opacity: 0.9;
 }
 
-/* 3. 소개글 설명 (맨 아래) */
+/* 3. 설명 */
 .intro-desc {
   font-size: 1.15rem;
   color: #718096;
@@ -100,7 +99,6 @@
   word-break: keep-all;
   margin: 0;
 }
-
 
 /* [2] 오른쪽: 카드 그리드 영역 */
 .right-grid-area {
@@ -258,6 +256,71 @@
 .chip.active, .chip:hover {
   background-color: #EBF8FF; border-color: #3182CE;
   color: #3182CE; font-weight: 700;
+}
+
+/* =========================================
+   [NEW] 구직 사이트 슬라이더 섹션 (무한 루프 수정)
+   ========================================= */
+.job-slider-section {
+  width: 100%;
+  padding: 60px 0 100px 0;
+  background-color: #F5F7FA;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden; /* 가로 스크롤 방지 */
+}
+
+.slider-title {
+  font-size: 1.2rem;
+  color: #A0AEC0;
+  margin-bottom: 40px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* 슬라이더 트랙 */
+.slider-track {
+  display: flex;
+  /* [핵심 수정] gap 제거 -> margin으로 대체하여 계산 정확도 높임 */
+  /* gap: 40px; */ 
+  width: max-content;
+  /* 애니메이션 시간을 30초로 설정 */
+  animation: scroll 30s linear infinite;
+}
+
+/* 로고 카드 */
+.job-logo-card {
+  width: 220px;
+  height: 90px;
+  background-color: #FFFFFF;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+  border: 1px solid rgba(0,0,0,0.03);
+  
+  /* [핵심 수정] gap 대신 margin-right 사용 */
+  margin-right: 40px; 
+  flex-shrink: 0; /* 크기 줄어들지 않게 고정 */
+  
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  transition: transform 0.2s;
+  text-decoration: none; /* a 태그 밑줄 제거 */
+}
+
+.job-logo-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* 애니메이션 (4세트 중 1세트만 이동하고 리셋) */
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-25%); } /* 4묶음일 때 -25% 이동하면 처음과 같아짐 */
 }
 
 /* 모바일 반응형 */

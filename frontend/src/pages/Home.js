@@ -3,15 +3,52 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import homepageAPI from '../services/homepageAPI';
 
-// 사용하시는 이미지 import (경로 확인해주세요)
+// 이미지 import
 import img1 from '../assets/interview1.jpg'; 
 import img2 from '../assets/interview2.jpg'; 
 import img3 from '../assets/interview3.jpg'; 
 
+// [2] 구직 사이트 로고 이미지 import (파일이 assets 폴더에 있어야 합니다!)
+// 예시 파일명입니다. 실제 파일명으로 바꿔주세요.
+import logoSaramin from '../assets/사람인.jpg';   
+import logoJobkorea from '../assets/잡코리아.png'; 
+import logoWanted from '../assets/원티드.png';     
+import logoIncruit from '../assets/인쿠르트.png';   
+import logoWorknet from '../assets/워크넷.jpg';  
+
 const STORAGE_KEY = 'resumeData';
 const DATE_FORMAT_ERROR = '올바른 날짜 형식을 입력해주세요.';
 
-// --- 헬퍼 함수들 ---
+// [3] 구직 사이트 데이터 수정 (이미지 + 링크 추가)
+const jobSites = [
+  { 
+    name: '사람인', 
+    url: 'https://www.saramin.co.kr', 
+    img: logoSaramin 
+  },
+  { 
+    name: '잡코리아', 
+    url: 'https://www.jobkorea.co.kr', 
+    img: logoJobkorea 
+  },
+  { 
+    name: '원티드', 
+    url: 'https://www.wanted.co.kr', 
+    img: logoWanted 
+  },
+  { 
+    name: '인크루트', 
+    url: 'https://www.incruit.com', 
+    img: logoIncruit 
+  },
+  { 
+    name: '워크넷', 
+    url: 'https://www.work.go.kr', 
+    img: logoWorknet 
+  },
+];
+
+// --- 헬퍼 함수들 (기존 유지) ---
 const formatPhoneNumber = (value) => {
   const numbers = value.replace(/[^\d]/g, '');
   if (numbers.length <= 3) return numbers;
@@ -251,22 +288,19 @@ const Home = () => {
   return (
     <div className="home">
       
-      
+
 
       {/* 2. 메인 대시보드 */}
       <div className="dashboard-container">
         <div className="dashboard-body">
           
-          {/* [1] 왼쪽 통합 영역 (순서: 제목 -> 이미지 -> 설명) */}
+          {/* [1] 왼쪽 통합 영역 */}
           <div className="left-intro-area">
-            
-            {/* 1. 제목 (맨 위) */}
             <h1 className="intro-title">
               <span>성공적인 취업을 위한</span>
               <span>스마트한 선택</span>
             </h1>
 
-            {/* 2. 이미지 슬라이더 (가운데) */}
             <div className="image-slider-container">
               {images.map((img, index) => (
                 <img 
@@ -278,17 +312,14 @@ const Home = () => {
               ))}
             </div>
 
-            {/* 3. 설명 (맨 아래) */}
             <p className="intro-desc">
               AI 면접 시뮬레이션부터 이력서 관리까지.<br />
               당신의 꿈을 현실로 만들어보세요.
             </p>
-            
           </div>
 
           {/* [2] 오른쪽: 카드 그리드 */}
           <div className="right-grid-area">
-            
             <div className="grid-column">
               {/* 기본정보 카드 */}
               <div className="clean-card h-tall">
@@ -355,6 +386,32 @@ const Home = () => {
           </div>
         </div>
       </div>
+      
+      {/* [NEW] 구직 사이트 슬라이더 섹션 (무한 루프) */}
+      <div className="job-slider-section">
+        <h3 className="slider-title">함께하는 채용 파트너</h3>
+        <div className="slider-track">
+          {/* [핵심] 리스트 4번 반복 */}
+          {[...jobSites, ...jobSites, ...jobSites, ...jobSites].map((site, index) => (
+            <a 
+              key={index} 
+              href={site.url} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="job-logo-card"
+            >
+              {/* 이미지 로고가 있으면 img 사용, 없으면 텍스트 */}
+              <img 
+                src={site.img} 
+                alt={site.name} 
+                style={{ maxWidth: '80%', maxHeight: '60%', objectFit: 'contain' }} 
+              />
+              {/* <span style={{ color: site.color }}>{site.name}</span> */}
+            </a>
+          ))}
+        </div>
+      </div>
+
     </div>
   );
 };
